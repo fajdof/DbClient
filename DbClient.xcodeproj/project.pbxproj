@@ -7,19 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		752871021DCFB225000BBCDE /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 752871011DCFB225000BBCDE /* libiconv.2.4.0.tbd */; };
+		752871041DCFB22D000BBCDE /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 752871031DCFB22D000BBCDE /* libiconv.2.tbd */; };
+		752871061DCFD17A000BBCDE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752871051DCFD17A000BBCDE /* Item.swift */; };
 		752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752EF9AD1DCE33E2000B6C42 /* AppDelegate.swift */; };
-		752EF9B01DCE33E2000B6C42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752EF9AF1DCE33E2000B6C42 /* ViewController.swift */; };
+		752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752EF9AF1DCE33E2000B6C42 /* DbConnectViewController.swift */; };
 		752EF9B21DCE33E2000B6C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752EF9B11DCE33E2000B6C42 /* Assets.xcassets */; };
 		752EF9B51DCE33E2000B6C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 752EF9B31DCE33E2000B6C42 /* Main.storyboard */; };
+		752EF9CB1DCE36A6000B6C42 /* libfreetds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 752EF9C11DCE36A6000B6C42 /* libfreetds.a */; };
+		752EF9CC1DCE36A6000B6C42 /* SQLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 752EF9C41DCE36A6000B6C42 /* SQLClient.m */; };
+		752EF9CF1DCE370C000B6C42 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 752EF9CE1DCE370C000B6C42 /* libiconv.tbd */; };
+		753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */; };
+		753D6EE51DD730490027EDA7 /* DbItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 753D6EE41DD730490027EDA7 /* DbItemView.xib */; };
+		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		060F834505056EF9ECFAC506 /* Pods-DbClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.debug.xcconfig"; sourceTree = "<group>"; };
+		336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.release.xcconfig"; sourceTree = "<group>"; };
+		752871011DCFB225000BBCDE /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		752871031DCFB22D000BBCDE /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
+		752871051DCFD17A000BBCDE /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		752EF9AA1DCE33E2000B6C42 /* DbClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DbClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		752EF9AD1DCE33E2000B6C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		752EF9AF1DCE33E2000B6C42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		752EF9AF1DCE33E2000B6C42 /* DbConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbConnectViewController.swift; sourceTree = "<group>"; };
 		752EF9B11DCE33E2000B6C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		752EF9B41DCE33E2000B6C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		752EF9B61DCE33E2000B6C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		752EF9BD1DCE36A6000B6C42 /* bkpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bkpublic.h; sourceTree = "<group>"; };
+		752EF9BE1DCE36A6000B6C42 /* cspublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cspublic.h; sourceTree = "<group>"; };
+		752EF9BF1DCE36A6000B6C42 /* cstypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstypes.h; sourceTree = "<group>"; };
+		752EF9C01DCE36A6000B6C42 /* ctpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ctpublic.h; sourceTree = "<group>"; };
+		752EF9C11DCE36A6000B6C42 /* libfreetds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetds.a; sourceTree = "<group>"; };
+		752EF9C21DCE36A6000B6C42 /* odbcss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odbcss.h; sourceTree = "<group>"; };
+		752EF9C31DCE36A6000B6C42 /* SQLClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLClient.h; sourceTree = "<group>"; };
+		752EF9C41DCE36A6000B6C42 /* SQLClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLClient.m; sourceTree = "<group>"; };
+		752EF9C51DCE36A6000B6C42 /* sqldb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqldb.h; sourceTree = "<group>"; };
+		752EF9C61DCE36A6000B6C42 /* sqlfront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlfront.h; sourceTree = "<group>"; };
+		752EF9C71DCE36A6000B6C42 /* sybdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sybdb.h; sourceTree = "<group>"; };
+		752EF9C81DCE36A6000B6C42 /* syberror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syberror.h; sourceTree = "<group>"; };
+		752EF9C91DCE36A6000B6C42 /* sybfront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sybfront.h; sourceTree = "<group>"; };
+		752EF9CA1DCE36A6000B6C42 /* tds_sysdep_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tds_sysdep_public.h; sourceTree = "<group>"; };
+		752EF9CE1DCE370C000B6C42 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		752EF9D11DCE381E000B6C42 /* DbClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DbClient-Bridging-Header.h"; sourceTree = "<group>"; };
+		753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbItemView.swift; sourceTree = "<group>"; };
+		753D6EE41DD730490027EDA7 /* DbItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbItemView.xib; sourceTree = "<group>"; };
+		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +60,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				752871041DCFB22D000BBCDE /* libiconv.2.tbd in Frameworks */,
+				752871021DCFB225000BBCDE /* libiconv.2.4.0.tbd in Frameworks */,
+				752EF9CF1DCE370C000B6C42 /* libiconv.tbd in Frameworks */,
+				752EF9CB1DCE36A6000B6C42 /* libfreetds.a in Frameworks */,
+				7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73FE2533F536EAACB96B6C13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				060F834505056EF9ECFAC506 /* Pods-DbClient.debug.xcconfig */,
+				336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		752EF9A11DCE33E2000B6C42 = {
 			isa = PBXGroup;
 			children = (
 				752EF9AC1DCE33E2000B6C42 /* DbClient */,
 				752EF9AB1DCE33E2000B6C42 /* Products */,
+				752EF9CD1DCE370C000B6C42 /* Frameworks */,
+				73FE2533F536EAACB96B6C13 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,13 +101,74 @@
 		752EF9AC1DCE33E2000B6C42 /* DbClient */ = {
 			isa = PBXGroup;
 			children = (
+				752EF9D11DCE381E000B6C42 /* DbClient-Bridging-Header.h */,
 				752EF9AD1DCE33E2000B6C42 /* AppDelegate.swift */,
-				752EF9AF1DCE33E2000B6C42 /* ViewController.swift */,
+				753D6EE11DD72F7A0027EDA7 /* DbConnectScene */,
+				753D6EE01DD72F6E0027EDA7 /* Models */,
+				752EF9BC1DCE36A6000B6C42 /* SQLClient */,
 				752EF9B11DCE33E2000B6C42 /* Assets.xcassets */,
 				752EF9B31DCE33E2000B6C42 /* Main.storyboard */,
 				752EF9B61DCE33E2000B6C42 /* Info.plist */,
 			);
 			path = DbClient;
+			sourceTree = "<group>";
+		};
+		752EF9BC1DCE36A6000B6C42 /* SQLClient */ = {
+			isa = PBXGroup;
+			children = (
+				752EF9BD1DCE36A6000B6C42 /* bkpublic.h */,
+				752EF9BE1DCE36A6000B6C42 /* cspublic.h */,
+				752EF9BF1DCE36A6000B6C42 /* cstypes.h */,
+				752EF9C01DCE36A6000B6C42 /* ctpublic.h */,
+				752EF9C11DCE36A6000B6C42 /* libfreetds.a */,
+				752EF9C21DCE36A6000B6C42 /* odbcss.h */,
+				752EF9C31DCE36A6000B6C42 /* SQLClient.h */,
+				752EF9C41DCE36A6000B6C42 /* SQLClient.m */,
+				752EF9C51DCE36A6000B6C42 /* sqldb.h */,
+				752EF9C61DCE36A6000B6C42 /* sqlfront.h */,
+				752EF9C71DCE36A6000B6C42 /* sybdb.h */,
+				752EF9C81DCE36A6000B6C42 /* syberror.h */,
+				752EF9C91DCE36A6000B6C42 /* sybfront.h */,
+				752EF9CA1DCE36A6000B6C42 /* tds_sysdep_public.h */,
+			);
+			path = SQLClient;
+			sourceTree = "<group>";
+		};
+		752EF9CD1DCE370C000B6C42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				752871031DCFB22D000BBCDE /* libiconv.2.tbd */,
+				752871011DCFB225000BBCDE /* libiconv.2.4.0.tbd */,
+				752EF9CE1DCE370C000B6C42 /* libiconv.tbd */,
+				C417C4A93000542E98453F59 /* Pods_DbClient.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		753D6EE01DD72F6E0027EDA7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				752871051DCFD17A000BBCDE /* Item.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		753D6EE11DD72F7A0027EDA7 /* DbConnectScene */ = {
+			isa = PBXGroup;
+			children = (
+				752EF9AF1DCE33E2000B6C42 /* DbConnectViewController.swift */,
+				753D6EE61DD730520027EDA7 /* Views */,
+			);
+			name = DbConnectScene;
+			sourceTree = "<group>";
+		};
+		753D6EE61DD730520027EDA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				753D6EE41DD730490027EDA7 /* DbItemView.xib */,
+				753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 752EF9B91DCE33E2000B6C42 /* Build configuration list for PBXNativeTarget "DbClient" */;
 			buildPhases = (
+				E65EB7D61EC4C03FABA598D6 /* [CP] Check Pods Manifest.lock */,
 				752EF9A61DCE33E2000B6C42 /* Sources */,
 				752EF9A71DCE33E2000B6C42 /* Frameworks */,
 				752EF9A81DCE33E2000B6C42 /* Resources */,
+				D95E92F519E2CD31B3661CAA /* [CP] Embed Pods Frameworks */,
+				474D1486037CF38EE5F5AD07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -93,7 +206,7 @@
 				TargetAttributes = {
 					752EF9A91DCE33E2000B6C42 = {
 						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -120,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				753D6EE51DD730490027EDA7 /* DbItemView.xib in Resources */,
 				752EF9B21DCE33E2000B6C42 /* Assets.xcassets in Resources */,
 				752EF9B51DCE33E2000B6C42 /* Main.storyboard in Resources */,
 			);
@@ -127,13 +241,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		474D1486037CF38EE5F5AD07 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DbClient/Pods-DbClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D95E92F519E2CD31B3661CAA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DbClient/Pods-DbClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E65EB7D61EC4C03FABA598D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		752EF9A61DCE33E2000B6C42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				752EF9B01DCE33E2000B6C42 /* ViewController.swift in Sources */,
+				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
+				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
+				752EF9CC1DCE36A6000B6C42 /* SQLClient.m in Sources */,
+				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +334,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -218,6 +384,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -243,26 +410,46 @@
 		};
 		752EF9BA1DCE33E2000B6C42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 060F834505056EF9ECFAC506 /* Pods-DbClient.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DbClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DbClient/SQLClient",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fer.DbClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DbClient/DbClient-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		752EF9BB1DCE33E2000B6C42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DbClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DbClient/SQLClient",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fer.DbClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DbClient/DbClient-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -286,6 +473,7 @@
 				752EF9BB1DCE33E2000B6C42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

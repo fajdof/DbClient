@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "752EF9A91DCE33E2000B6C42"
-               BuildableName = "DbClient.app"
-               BlueprintName = "DbClient"
-               ReferencedContainer = "container:DbClient.xcodeproj">
+               BlueprintIdentifier = "D594C00866C1066E1A0E8E995B41078B"
+               BuildableName = "Pods_DbClient.framework"
+               BlueprintName = "Pods-DbClient"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "752EF9A91DCE33E2000B6C42"
-            BuildableName = "DbClient.app"
-            BlueprintName = "DbClient"
-            ReferencedContainer = "container:DbClient.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "752EF9A91DCE33E2000B6C42"
-            BuildableName = "DbClient.app"
-            BlueprintName = "DbClient"
-            ReferencedContainer = "container:DbClient.xcodeproj">
+            BlueprintIdentifier = "D594C00866C1066E1A0E8E995B41078B"
+            BuildableName = "Pods_DbClient.framework"
+            BlueprintName = "Pods-DbClient"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "752EF9A91DCE33E2000B6C42"
-            BuildableName = "DbClient.app"
-            BlueprintName = "DbClient"
-            ReferencedContainer = "container:DbClient.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

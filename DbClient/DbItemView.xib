@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView identifier="DbItemView" id="FiG-tn-RbE" customClass="DbItemView" customModule="DbClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="239"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j4N-LO-t2a">
+                    <rect key="frame" x="16" y="90" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="cI0-mc-Np9"/>
+                        <constraint firstAttribute="height" constant="60" id="xm2-7S-1Vj"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="g4e-gK-rpH"/>
+                </imageView>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a57-p1-8PV">
+                    <rect key="frame" x="92" y="49" width="88" height="142"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3W9-or-9Xo">
+                            <rect key="frame" x="-2" y="125" width="92" height="17"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="V06-rO-qDf">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="D1M-K6-bgH">
+                            <rect key="frame" x="-2" y="100" width="92" height="17"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="2qG-4o-cm5">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BpB-mp-JxT">
+                            <rect key="frame" x="-2" y="75" width="92" height="17"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="wBR-fk-6yi">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TJ9-1i-sOj">
+                            <rect key="frame" x="-2" y="50" width="92" height="17"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="6aG-la-l5v">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Aix-oI-WNm">
+                            <rect key="frame" x="-2" y="25" width="92" height="17"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="tUF-Hs-h3G">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6Qg-IZ-b5y">
+                            <rect key="frame" x="-2" y="0.0" width="92" height="17"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="jgZ-mg-fVH">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="j4N-LO-t2a" firstAttribute="centerY" secondItem="FiG-tn-RbE" secondAttribute="centerY" id="Vzb-3f-Kmu"/>
+                <constraint firstItem="a57-p1-8PV" firstAttribute="centerY" secondItem="FiG-tn-RbE" secondAttribute="centerY" id="Wv2-Zd-7rg"/>
+                <constraint firstItem="a57-p1-8PV" firstAttribute="leading" secondItem="j4N-LO-t2a" secondAttribute="trailing" constant="16" id="ZTW-wK-EUz"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a57-p1-8PV" secondAttribute="trailing" constant="16" id="kPz-lv-bXa"/>
+                <constraint firstItem="j4N-LO-t2a" firstAttribute="leading" secondItem="FiG-tn-RbE" secondAttribute="leading" constant="16" id="yX1-T9-s79"/>
+            </constraints>
+            <connections>
+                <outlet property="ZULabel" destination="6Qg-IZ-b5y" id="cQV-qQ-05U"/>
+                <outlet property="codeLabel" destination="Aix-oI-WNm" id="fvn-uI-gZQ"/>
+                <outlet property="descLabel" destination="D1M-K6-bgH" id="zA0-Zv-6iP"/>
+                <outlet property="imageView" destination="j4N-LO-t2a" id="HGQ-Rs-ctV"/>
+                <outlet property="itemImageView" destination="j4N-LO-t2a" id="O0R-5j-nuv"/>
+                <outlet property="nameLabel" destination="3W9-or-9Xo" id="CCj-xc-Ngz"/>
+                <outlet property="priceLabel" destination="BpB-mp-JxT" id="bBD-P0-Kok"/>
+                <outlet property="unitLabel" destination="TJ9-1i-sOj" id="tUf-Cj-I7W"/>
+            </connections>
+            <point key="canvasLocation" x="103" y="147.5"/>
+        </tableCellView>
+    </objects>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+    </resources>
+</document>
