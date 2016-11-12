@@ -9,6 +9,11 @@
 import Cocoa
 import ObjectMapper
 
+enum Tables: String {
+	case Item = "Artikl"
+	case Document = "Dokument"
+}
+
 class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewDataSource, NSTableViewDelegate {
 	
 	@IBOutlet weak var tableView: NSTableView!
@@ -20,14 +25,10 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	let selectQuery = "SELECT * FROM "
 	let dbNameView = "DbNameView"
 	let dbTableViewController = "DbTableViewController"
+	
 	var client: SQLClient?
 	var items: [Item] = []
 	var tables: [Tables] = []
-	
-	enum Tables: String {
-		case Item = "Artikl"
-		case Document = "Dokument"
-	}
 
 	
 	override func viewDidLoad() {
@@ -136,6 +137,7 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 		let dbTableVC = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
 		dbTableVC.items = items
 		dbTableVC.title = tables[row].rawValue
+		dbTableVC.type = tables[row]
 		
 		presentViewControllerAsModalWindow(dbTableVC)
 		return true

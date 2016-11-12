@@ -16,6 +16,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	let dbItemView = "DbItemView"
 	var items: [Item] = []
+	var type: Tables!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -34,7 +35,13 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let cellView = tableView.make(withIdentifier: dbItemView, owner: self) as! DbItemView
-		return configureItemView(itemView: cellView, row: row)
+		
+		switch type! {
+		case .Item:
+			return configureItemView(itemView: cellView, row: row)
+		case .Document:
+			return NSView()
+		}
 	}
 	
 	
@@ -53,6 +60,11 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return items.count
+		switch type! {
+		case .Item:
+			return items.count
+		case .Document:
+			return 0
+		}
 	}
 }
