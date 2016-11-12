@@ -19,6 +19,9 @@
 		752EF9CF1DCE370C000B6C42 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 752EF9CE1DCE370C000B6C42 /* libiconv.tbd */; };
 		753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */; };
 		753D6EE51DD730490027EDA7 /* DbItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 753D6EE41DD730490027EDA7 /* DbItemView.xib */; };
+		755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DF95C1DD74994004F4D94 /* DbTableViewController.swift */; };
+		755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DF9611DD74D34004F4D94 /* DbNameView.swift */; };
+		755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 755DF9631DD74D80004F4D94 /* DbNameView.xib */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,9 @@
 		752EF9D11DCE381E000B6C42 /* DbClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DbClient-Bridging-Header.h"; sourceTree = "<group>"; };
 		753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbItemView.swift; sourceTree = "<group>"; };
 		753D6EE41DD730490027EDA7 /* DbItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbItemView.xib; sourceTree = "<group>"; };
+		755DF95C1DD74994004F4D94 /* DbTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbTableViewController.swift; sourceTree = "<group>"; };
+		755DF9611DD74D34004F4D94 /* DbNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbNameView.swift; sourceTree = "<group>"; };
+		755DF9631DD74D80004F4D94 /* DbNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbNameView.xib; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,6 +110,7 @@
 				752EF9D11DCE381E000B6C42 /* DbClient-Bridging-Header.h */,
 				752EF9AD1DCE33E2000B6C42 /* AppDelegate.swift */,
 				753D6EE11DD72F7A0027EDA7 /* DbConnectScene */,
+				755DF95E1DD74998004F4D94 /* DbTableViewScene */,
 				753D6EE01DD72F6E0027EDA7 /* Models */,
 				752EF9BC1DCE36A6000B6C42 /* SQLClient */,
 				752EF9B11DCE33E2000B6C42 /* Assets.xcassets */,
@@ -157,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				752EF9AF1DCE33E2000B6C42 /* DbConnectViewController.swift */,
-				753D6EE61DD730520027EDA7 /* Views */,
+				755DF9651DD74DA0004F4D94 /* Views */,
 			);
 			name = DbConnectScene;
 			sourceTree = "<group>";
@@ -167,6 +174,24 @@
 			children = (
 				753D6EE41DD730490027EDA7 /* DbItemView.xib */,
 				753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		755DF95E1DD74998004F4D94 /* DbTableViewScene */ = {
+			isa = PBXGroup;
+			children = (
+				755DF95C1DD74994004F4D94 /* DbTableViewController.swift */,
+				753D6EE61DD730520027EDA7 /* Views */,
+			);
+			name = DbTableViewScene;
+			sourceTree = "<group>";
+		};
+		755DF9651DD74DA0004F4D94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				755DF9631DD74D80004F4D94 /* DbNameView.xib */,
+				755DF9611DD74D34004F4D94 /* DbNameView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -234,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				753D6EE51DD730490027EDA7 /* DbItemView.xib in Resources */,
+				755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */,
 				752EF9B21DCE33E2000B6C42 /* Assets.xcassets in Resources */,
 				752EF9B51DCE33E2000B6C42 /* Main.storyboard in Resources */,
 			);
@@ -298,7 +324,9 @@
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
 				752EF9CC1DCE36A6000B6C42 /* SQLClient.m in Sources */,
+				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
+				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

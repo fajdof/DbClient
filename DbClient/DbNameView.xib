@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView identifier="DbNameView" id="EZl-df-T76" customClass="DbNameView" customModule="DbClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-Vf-UYV">
+                    <rect key="frame" x="14" y="117" width="4" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="exU-fx-0t6">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="7uQ-Vf-UYV" firstAttribute="centerY" secondItem="EZl-df-T76" secondAttribute="centerY" id="S0D-pT-CvB"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7uQ-Vf-UYV" secondAttribute="trailing" constant="16" id="dPb-6U-kJv"/>
+                <constraint firstItem="7uQ-Vf-UYV" firstAttribute="leading" secondItem="EZl-df-T76" secondAttribute="leading" constant="16" id="snd-n8-dJs"/>
+            </constraints>
+            <connections>
+                <outlet property="nameLabel" destination="7uQ-Vf-UYV" id="zAJ-FV-koZ"/>
+                <outlet property="textField" destination="7uQ-Vf-UYV" id="nMN-5z-vvx"/>
+            </connections>
+            <point key="canvasLocation" x="121" y="154"/>
+        </tableCellView>
+    </objects>
+</document>

@@ -18,13 +18,15 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	let password = "r3p##2011"
 	let dbName = "Firma"
 	let selectQuery = "SELECT * FROM "
-	let dbItemView = "DbItemView"
+	let dbNameView = "DbNameView"
+	let dbTableViewController = "DbTableViewController"
 	var client: SQLClient?
 	var items: [Item] = []
+	var tables: [Tables] = []
 	
-	private struct TableList {
-		static let item = "Artikl"
-		static let document = "Dokument"
+	enum Tables: String {
+		case Item = "Artikl"
+		case Document = "Dokument"
 	}
 
 	
@@ -33,7 +35,7 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 		
 		tableView.dataSource = self
 		tableView.delegate = self
-		tableView.register(NSNib(nibNamed: dbItemView, bundle: nil), forIdentifier: dbItemView)
+		tableView.register(NSNib(nibNamed: dbNameView, bundle: nil), forIdentifier: dbNameView)
 		
 		connectToSqlServer()
 	}
@@ -57,30 +59,43 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	
 	
 	func executeQueries() {
-		client?.execute(self.selectQuery + TableList.item, completion: { (dbData) in
-			if let data = dbData {
-				for table in data {
-					if let tab = table as? Array<Dictionary<String, AnyObject>> {
-						for row in tab {
-							if let item = Item(JSON: row) {
-								self.items.append(item)
-							}
-						}
-					}
+		
+		let tables = [Tables.Item]
+		
+		for table in tables {
+			client?.execute(selectQuery + table.rawValue, completion: { [weak self] (dbData) in
+				if let data = dbData {
+					self?.proccessQuery(data: data, type: table)
+					self?.tables.append(table)
+					self?.tableView.reloadData()
+				} else {
+					print("No data")
+				}
+			})
+		}
+	}
+	
+	
+	func proccessQuery(data: [Any], type: Tables) {
+		for table in data {
+			if let tab = table as? Array<Dictionary<String, AnyObject>> {
+				for row in tab {
+					parseRow(row: row, type: type)
 				}
 			}
-			self.tableView.reloadData()
-		})
-		
-		//			client?.execute(self.selectQuery + TableList.document, completion: { (data) in
-		//				for table in data! {
-		//					if let tab = table as? Array<Dictionary<String, AnyObject>> {
-		//						for row in tab {
-		//							let artikl = Artikl(JSON: row)
-		//						}
-		//					}
-		//				}
-		//			})
+		}
+	}
+	
+	
+	func parseRow(row: Dictionary<String, AnyObject>, type: Tables) {
+		switch type {
+		case .Item:
+			if let item = Item(JSON: row) {
+				self.items.append(item)
+			}
+		case .Document:
+			break
+		}
 	}
 	
 	
@@ -92,46 +107,37 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	func message(_ message: String!) {
 		print(message)
 	}
-
-	
-	override var representedObject: Any? {
-		didSet {
-		// Update the view, if already loaded.
-		}
-	}
 	
 	
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-		return 200
+		return 60
 	}
 	
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		let cellView = tableView.make(withIdentifier: dbItemView, owner: self) as! DbItemView
-		return configureItemView(itemView: cellView, row: row)
+		let cellView = tableView.make(withIdentifier: dbNameView, owner: self) as! DbNameView
+		return configureNameView(nameView: cellView, row: row)
 	}
 	
 	
-	func configureItemView(itemView: DbItemView, row: Int) -> DbItemView {
-		let item = items[row]
-		itemView.codeLabel.stringValue = "Šifra: " + (item.code ?? "")
-		itemView.descLabel.stringValue = "Tekst: " + (item.text ?? "")
-		itemView.nameLabel.stringValue = "Naziv: " + (item.name ?? "")
-		itemView.priceLabel.stringValue = "Cijena: " + (item.price ?? "")
-		itemView.unitLabel.stringValue = "Jedinica mjere: " + (item.unit ?? "")
-		itemView.ZULabel.stringValue = "ZaštUsluga: " + (item.secU ?? "")
-		itemView.itemImageView.image = item.image
+	func configureNameView(nameView: DbNameView, row: Int) -> DbNameView {
+		nameView.nameLabel.stringValue = tables[row].rawValue
 		
-		return itemView
+		return nameView
 	}
 	
 	
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return items.count
+		return tables.count
 	}
 	
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+		let dbTableVC = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
+		dbTableVC.items = items
+		dbTableVC.title = tables[row].rawValue
+		
+		presentViewControllerAsModalWindow(dbTableVC)
 		return true
 	}
 
