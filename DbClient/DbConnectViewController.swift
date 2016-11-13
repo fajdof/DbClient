@@ -51,17 +51,21 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		tableView.register(NSNib(nibNamed: dbNameView, bundle: nil), forIdentifier: dbNameView)
 		
 		connectToSqlServer()
+		
+		addDbTableAsChild()
+	}
+	
+	
+	func addDbTableAsChild() {
+		dbTableVC = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
+		addChildViewController(dbTableVC)
+		childView.addSubview(dbTableVC.view)
 	}
 	
 	
 	override func viewDidLayout() {
 		super.viewDidLayout()
-		
-		dbTableVC = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
-		addChildViewController(dbTableVC)
 		dbTableVC.view.frame = CGRect(origin: CGPoint.zero, size: childView.frame.size)
-		
-		childView.addSubview(dbTableVC.view)
 	}
 	
 	
