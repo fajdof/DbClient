@@ -47,12 +47,13 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	func configureItemView(itemView: DbItemView, row: Int) -> DbItemView {
 		let item = items[row]
-		itemView.codeLabel.stringValue = "Šifra: " + (item.code ?? "")
-		itemView.descLabel.stringValue = "Tekst: " + (item.text ?? "")
-		itemView.nameLabel.stringValue = "Naziv: " + (item.name ?? "")
-		itemView.priceLabel.stringValue = "Cijena: " + (item.price ?? "")
-		itemView.unitLabel.stringValue = "Jedinica mjere: " + (item.unit ?? "")
-		itemView.ZULabel.stringValue = "ZaštUsluga: " + (item.secU ?? "")
+		
+		itemView.codeLabel.addAttributedString(Item.Attributes.code, dataString: item.code)
+		itemView.descLabel.addAttributedString(Item.Attributes.text, dataString: item.text)
+		itemView.priceLabel.addAttributedString(Item.Attributes.price, dataString: item.price)
+		itemView.unitLabel.addAttributedString(Item.Attributes.unit, dataString: item.unit)
+		itemView.ZULabel.addAttributedString(Item.Attributes.secU, dataString: item.secU)
+		itemView.nameLabel.addAttributedString(Item.Attributes.name, dataString: item.name)
 		itemView.itemImageView.image = item.image
 		
 		return itemView

@@ -11,6 +11,15 @@ import ObjectMapper
 
 class Item: Mappable {
 	
+	struct Attributes {
+		static let price = "Cijena: "
+		static let unit = "Jedinica mjere: "
+		static let name = "Naziv: "
+		static let code = "Šifra: "
+		static let text = "Tekst: "
+		static let secU = "ZaštUsluga: "
+	}
+	
 	var price: String?
 	var unit: String?
 	var name: String?
