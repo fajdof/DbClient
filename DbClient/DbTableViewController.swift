@@ -20,6 +20,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	var items: [Item] = []
 	var docs: [Document] = []
 	var countries: [Country] = []
+	var users: [User] = []
+	var places: [Place] = []
 	var type: Tables! = Tables.Item
 	
 	override func viewDidLoad() {
@@ -40,6 +42,10 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return 280
 		case .Country:
 			return 120
+		case .User:
+			return 80
+		case .Place:
+			return 180
 		}
 	}
 	
@@ -56,6 +62,12 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Country:
 			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configureCountryView(countryView: cellView, row: row)
+		case .User:
+			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
+			return configureUserView(userView: cellView, row: row)
+		case .Place:
+			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
+			return configurePlaceView(placeView: cellView, row: row)
 		}
 	}
 	
@@ -99,6 +111,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	func configureCountryView(countryView: DbListView, row: Int) -> DbListView {
 		let country = countries[row]
 		
+		unhideAllLabels(cellView: countryView)
 		countryView.firstLabel.addAttributedString(Country.Attributes.name, dataString: country.name)
 		countryView.secondLabel.addAttributedString(Country.Attributes.code, dataString: country.code?.description)
 		countryView.thirdLabel.addAttributedString(Country.Attributes.mark, dataString: country.mark)
@@ -109,6 +122,40 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		countryView.eighthLabel.isHidden = true
 		
 		return countryView
+	}
+	
+	
+	func configureUserView(userView: DbListView, row: Int) -> DbListView {
+		let user = users[row]
+		
+		unhideAllLabels(cellView: userView)
+		userView.firstLabel.addAttributedString(User.Attributes.username, dataString: user.username)
+		userView.secondLabel.addAttributedString(User.Attributes.password, dataString: user.password)
+		userView.thirdLabel.isHidden = true
+		userView.fourthLabel.isHidden = true
+		userView.fifthLabel.isHidden = true
+		userView.sixthLabel.isHidden = true
+		userView.seventhLabel.isHidden = true
+		userView.eighthLabel.isHidden = true
+		
+		return userView
+	}
+	
+	
+	func configurePlaceView(placeView: DbListView, row: Int) -> DbListView {
+		let place = places[row]
+		
+		unhideAllLabels(cellView: placeView)
+		placeView.firstLabel.addAttributedString(Place.Attributes.name, dataString: place.name)
+		placeView.secondLabel.addAttributedString(Place.Attributes.countryCode, dataString: place.countryCode)
+		placeView.thirdLabel.addAttributedString(Place.Attributes.id, dataString: place.id?.description)
+		placeView.fourthLabel.addAttributedString(Place.Attributes.postalCode, dataString: place.postalCode?.description)
+		placeView.fifthLabel.addAttributedString(Place.Attributes.postalName, dataString: place.postalName)
+		placeView.sixthLabel.isHidden = true
+		placeView.seventhLabel.isHidden = true
+		placeView.eighthLabel.isHidden = true
+		
+		return placeView
 	}
 	
 	
@@ -132,6 +179,10 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return docs.count
 		case .Country:
 			return countries.count
+		case .User:
+			return users.count
+		case .Place:
+			return places.count
 		}
 	}
 }

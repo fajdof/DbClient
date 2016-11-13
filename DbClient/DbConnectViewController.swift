@@ -13,6 +13,8 @@ enum Tables: String {
 	case Item = "Artikl"
 	case Document = "Dokument"
 	case Country = "Drzava"
+	case User = "Korisnik"
+	case Place = "Mjesto"
 }
 
 class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
@@ -32,6 +34,8 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var items: [Item] = []
 	var docs: [Document] = []
 	var countries: [Country] = []
+	var users: [User] = []
+	var places: [Place] = []
 	var tables: [Tables] = []
 	var queryTables: [Tables] = []
 	var dbTableVC: DbTableViewController!
@@ -77,7 +81,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func executeQueries() {
 		
-		queryTables = [Tables.Item, Tables.Document, Tables.Country]
+		queryTables = [Tables.Item, Tables.Document, Tables.Country, Tables.User, Tables.Place]
 		
 		queryIteration(index: 0)
 	}
@@ -128,6 +132,14 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			if let country = Country(JSON: row) {
 				countries.append(country)
 			}
+		case .User:
+			if let user = User(JSON: row) {
+				users.append(user)
+			}
+		case .Place:
+			if let place = Place(JSON: row) {
+				places.append(place)
+			}
 		}
 	}
 	
@@ -163,6 +175,10 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			dbTableVC.docs = docs
 		case .Country:
 			dbTableVC.countries = countries
+		case .User:
+			dbTableVC.users = users
+		case .Place:
+			dbTableVC.places = places
 		}
 		
 		dbTableVC.tableView.tableColumns.first?.title = tables[row].rawValue
