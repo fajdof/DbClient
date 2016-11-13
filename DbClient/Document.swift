@@ -22,13 +22,13 @@ class Document: Mappable {
 		static let docVr = "VrDokumenta: "
 	}
 	
-	var docNumber: String?
-	var docDate: String?
-	var docId: String?
-	var partnerId: String?
-	var docBeforeId: String?
-	var docValue: String?
-	var tax: String?
+	var docNumber: Int?
+	var docDate: Date?
+	var docId: Int?
+	var partnerId: Int?
+	var docBeforeId: Int?
+	var docValue: Double?
+	var tax: Double?
 	var docVr: String?
 	
 	required init?(map: Map) {

@@ -14,8 +14,6 @@
 		752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752EF9AF1DCE33E2000B6C42 /* DbConnectViewController.swift */; };
 		752EF9B21DCE33E2000B6C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752EF9B11DCE33E2000B6C42 /* Assets.xcassets */; };
 		752EF9B51DCE33E2000B6C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 752EF9B31DCE33E2000B6C42 /* Main.storyboard */; };
-		752EF9CB1DCE36A6000B6C42 /* libfreetds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 752EF9C11DCE36A6000B6C42 /* libfreetds.a */; };
-		752EF9CC1DCE36A6000B6C42 /* SQLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 752EF9C41DCE36A6000B6C42 /* SQLClient.m */; };
 		752EF9CF1DCE370C000B6C42 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 752EF9CE1DCE370C000B6C42 /* libiconv.tbd */; };
 		753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */; };
 		753D6EE51DD730490027EDA7 /* DbItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 753D6EE41DD730490027EDA7 /* DbItemView.xib */; };
@@ -24,6 +22,10 @@
 		755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 755DF9631DD74D80004F4D94 /* DbNameView.xib */; };
 		75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A719021DD8A7E700F93547 /* GeneralExtensions.swift */; };
 		75A719051DD8AB1E00F93547 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A719041DD8AB1E00F93547 /* Document.swift */; };
+		75A7190B1DD8B72A00F93547 /* DbListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7190A1DD8B72A00F93547 /* DbListView.xib */; };
+		75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7190C1DD8B73700F93547 /* DbListView.swift */; };
+		75F48C4D1DD8C3BF00FFB063 /* libsybdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F48C431DD8C3BE00FFB063 /* libsybdb.a */; };
+		75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C461DD8C3BE00FFB063 /* SQLClient.m */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,20 +41,6 @@
 		752EF9B11DCE33E2000B6C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		752EF9B41DCE33E2000B6C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		752EF9B61DCE33E2000B6C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		752EF9BD1DCE36A6000B6C42 /* bkpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bkpublic.h; sourceTree = "<group>"; };
-		752EF9BE1DCE36A6000B6C42 /* cspublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cspublic.h; sourceTree = "<group>"; };
-		752EF9BF1DCE36A6000B6C42 /* cstypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstypes.h; sourceTree = "<group>"; };
-		752EF9C01DCE36A6000B6C42 /* ctpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ctpublic.h; sourceTree = "<group>"; };
-		752EF9C11DCE36A6000B6C42 /* libfreetds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetds.a; sourceTree = "<group>"; };
-		752EF9C21DCE36A6000B6C42 /* odbcss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odbcss.h; sourceTree = "<group>"; };
-		752EF9C31DCE36A6000B6C42 /* SQLClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLClient.h; sourceTree = "<group>"; };
-		752EF9C41DCE36A6000B6C42 /* SQLClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLClient.m; sourceTree = "<group>"; };
-		752EF9C51DCE36A6000B6C42 /* sqldb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqldb.h; sourceTree = "<group>"; };
-		752EF9C61DCE36A6000B6C42 /* sqlfront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlfront.h; sourceTree = "<group>"; };
-		752EF9C71DCE36A6000B6C42 /* sybdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sybdb.h; sourceTree = "<group>"; };
-		752EF9C81DCE36A6000B6C42 /* syberror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syberror.h; sourceTree = "<group>"; };
-		752EF9C91DCE36A6000B6C42 /* sybfront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sybfront.h; sourceTree = "<group>"; };
-		752EF9CA1DCE36A6000B6C42 /* tds_sysdep_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tds_sysdep_public.h; sourceTree = "<group>"; };
 		752EF9CE1DCE370C000B6C42 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		752EF9D11DCE381E000B6C42 /* DbClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DbClient-Bridging-Header.h"; sourceTree = "<group>"; };
 		753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbItemView.swift; sourceTree = "<group>"; };
@@ -62,6 +50,22 @@
 		755DF9631DD74D80004F4D94 /* DbNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbNameView.xib; sourceTree = "<group>"; };
 		75A719021DD8A7E700F93547 /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		75A719041DD8AB1E00F93547 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		75A7190A1DD8B72A00F93547 /* DbListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbListView.xib; sourceTree = "<group>"; };
+		75A7190C1DD8B73700F93547 /* DbListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbListView.swift; sourceTree = "<group>"; };
+		75F48C3F1DD8C3BE00FFB063 /* bkpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bkpublic.h; sourceTree = "<group>"; };
+		75F48C401DD8C3BE00FFB063 /* cspublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cspublic.h; sourceTree = "<group>"; };
+		75F48C411DD8C3BE00FFB063 /* cstypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstypes.h; sourceTree = "<group>"; };
+		75F48C421DD8C3BE00FFB063 /* ctpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ctpublic.h; sourceTree = "<group>"; };
+		75F48C431DD8C3BE00FFB063 /* libsybdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsybdb.a; sourceTree = "<group>"; };
+		75F48C441DD8C3BE00FFB063 /* odbcss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odbcss.h; sourceTree = "<group>"; };
+		75F48C451DD8C3BE00FFB063 /* SQLClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLClient.h; sourceTree = "<group>"; };
+		75F48C461DD8C3BE00FFB063 /* SQLClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLClient.m; sourceTree = "<group>"; };
+		75F48C471DD8C3BE00FFB063 /* sqldb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqldb.h; sourceTree = "<group>"; };
+		75F48C481DD8C3BE00FFB063 /* sqlfront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlfront.h; sourceTree = "<group>"; };
+		75F48C491DD8C3BF00FFB063 /* sybdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sybdb.h; sourceTree = "<group>"; };
+		75F48C4A1DD8C3BF00FFB063 /* syberror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syberror.h; sourceTree = "<group>"; };
+		75F48C4B1DD8C3BF00FFB063 /* sybfront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sybfront.h; sourceTree = "<group>"; };
+		75F48C4C1DD8C3BF00FFB063 /* tds_sysdep_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tds_sysdep_public.h; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,9 +75,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				752871041DCFB22D000BBCDE /* libiconv.2.tbd in Frameworks */,
+				75F48C4D1DD8C3BF00FFB063 /* libsybdb.a in Frameworks */,
 				752871021DCFB225000BBCDE /* libiconv.2.4.0.tbd in Frameworks */,
 				752EF9CF1DCE370C000B6C42 /* libiconv.tbd in Frameworks */,
-				752EF9CB1DCE36A6000B6C42 /* libfreetds.a in Frameworks */,
 				7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,33 +121,12 @@
 				753D6EE11DD72F7A0027EDA7 /* DbConnectScene */,
 				755DF95E1DD74998004F4D94 /* DbTableViewScene */,
 				753D6EE01DD72F6E0027EDA7 /* Models */,
-				752EF9BC1DCE36A6000B6C42 /* SQLClient */,
+				75F48C4F1DD8C3C500FFB063 /* SQLClient */,
 				752EF9B11DCE33E2000B6C42 /* Assets.xcassets */,
 				752EF9B31DCE33E2000B6C42 /* Main.storyboard */,
 				752EF9B61DCE33E2000B6C42 /* Info.plist */,
 			);
 			path = DbClient;
-			sourceTree = "<group>";
-		};
-		752EF9BC1DCE36A6000B6C42 /* SQLClient */ = {
-			isa = PBXGroup;
-			children = (
-				752EF9BD1DCE36A6000B6C42 /* bkpublic.h */,
-				752EF9BE1DCE36A6000B6C42 /* cspublic.h */,
-				752EF9BF1DCE36A6000B6C42 /* cstypes.h */,
-				752EF9C01DCE36A6000B6C42 /* ctpublic.h */,
-				752EF9C11DCE36A6000B6C42 /* libfreetds.a */,
-				752EF9C21DCE36A6000B6C42 /* odbcss.h */,
-				752EF9C31DCE36A6000B6C42 /* SQLClient.h */,
-				752EF9C41DCE36A6000B6C42 /* SQLClient.m */,
-				752EF9C51DCE36A6000B6C42 /* sqldb.h */,
-				752EF9C61DCE36A6000B6C42 /* sqlfront.h */,
-				752EF9C71DCE36A6000B6C42 /* sybdb.h */,
-				752EF9C81DCE36A6000B6C42 /* syberror.h */,
-				752EF9C91DCE36A6000B6C42 /* sybfront.h */,
-				752EF9CA1DCE36A6000B6C42 /* tds_sysdep_public.h */,
-			);
-			path = SQLClient;
 			sourceTree = "<group>";
 		};
 		752EF9CD1DCE370C000B6C42 /* Frameworks */ = {
@@ -179,7 +162,9 @@
 			isa = PBXGroup;
 			children = (
 				753D6EE41DD730490027EDA7 /* DbItemView.xib */,
+				75A7190A1DD8B72A00F93547 /* DbListView.xib */,
 				753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */,
+				75A7190C1DD8B73700F93547 /* DbListView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -200,6 +185,27 @@
 				755DF9611DD74D34004F4D94 /* DbNameView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		75F48C4F1DD8C3C500FFB063 /* SQLClient */ = {
+			isa = PBXGroup;
+			children = (
+				75F48C3F1DD8C3BE00FFB063 /* bkpublic.h */,
+				75F48C401DD8C3BE00FFB063 /* cspublic.h */,
+				75F48C411DD8C3BE00FFB063 /* cstypes.h */,
+				75F48C421DD8C3BE00FFB063 /* ctpublic.h */,
+				75F48C431DD8C3BE00FFB063 /* libsybdb.a */,
+				75F48C441DD8C3BE00FFB063 /* odbcss.h */,
+				75F48C451DD8C3BE00FFB063 /* SQLClient.h */,
+				75F48C461DD8C3BE00FFB063 /* SQLClient.m */,
+				75F48C471DD8C3BE00FFB063 /* sqldb.h */,
+				75F48C481DD8C3BE00FFB063 /* sqlfront.h */,
+				75F48C491DD8C3BF00FFB063 /* sybdb.h */,
+				75F48C4A1DD8C3BF00FFB063 /* syberror.h */,
+				75F48C4B1DD8C3BF00FFB063 /* sybfront.h */,
+				75F48C4C1DD8C3BF00FFB063 /* tds_sysdep_public.h */,
+			);
+			name = SQLClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A7190B1DD8B72A00F93547 /* DbListView.xib in Resources */,
 				753D6EE51DD730490027EDA7 /* DbItemView.xib in Resources */,
 				755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */,
 				752EF9B21DCE33E2000B6C42 /* Assets.xcassets in Resources */,
@@ -327,13 +334,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */,
+				75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */,
 				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
-				752EF9CC1DCE36A6000B6C42 /* SQLClient.m in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
+				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +466,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DbClient/SQLClient",
+					"$(PROJECT_DIR)/DbClient",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fer.DbClient;
@@ -481,6 +490,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DbClient/SQLClient",
+					"$(PROJECT_DIR)/DbClient",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fer.DbClient;

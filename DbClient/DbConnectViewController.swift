@@ -14,7 +14,7 @@ enum Tables: String {
 	case Document = "Dokument"
 }
 
-class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewDataSource, NSTableViewDelegate {
+class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	
 	@IBOutlet weak var tableView: NSTableView!
 	@IBOutlet weak var childView: NSView!
@@ -59,7 +59,6 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	
 	func connectToSqlServer() {
 		client = SQLClient.sharedInstance()
-		client?.delegate = self
 		
 		client?.connect(hostName, username: username, password: password, database: dbName, completion: { [weak self] (completed) in
 			guard let `self` = self else { return }
@@ -88,6 +87,7 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 		client?.execute(selectQuery + table.rawValue, completion: { [weak self] (dbData) in
 			guard let `self` = self else { return }
 			if let data = dbData {
+				print(data)
 				self.proccessQuery(data: data, type: table)
 				self.tables.append(table)
 				self.tableView.reloadData()
@@ -123,16 +123,6 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 				docs.append(doc)
 			}
 		}
-	}
-	
-	
-	func error(_ error: String!, code: Int32, severity: Int32) {
-		print(error)
-	}
-	
-	
-	func message(_ message: String!) {
-		print(message)
 	}
 	
 	

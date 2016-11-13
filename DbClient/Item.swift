@@ -20,13 +20,13 @@ class Item: Mappable {
 		static let secU = "ZaštUsluga: "
 	}
 	
-	var price: String?
+	var price: Double?
 	var unit: String?
 	var name: String?
-	var code: String?
-	var image: NSImage?
+	var code: Int?
+	var image: Data?
 	var text: String?
-	var secU: String?
+	var secU: NSNumber?
 	
 	required init?(map: Map) {
 		
