@@ -16,7 +16,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	let dbItemView = "DbItemView"
 	var items: [Item] = []
-	var type: Tables!
+	var type: Tables! = Tables.Item
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,7 +29,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-		return 200
+		return 220
 	}
 	
 	

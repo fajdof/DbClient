@@ -17,6 +17,7 @@ enum Tables: String {
 class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewDataSource, NSTableViewDelegate {
 	
 	@IBOutlet weak var tableView: NSTableView!
+	@IBOutlet weak var childView: NSView!
 	
 	let hostName = "rppp.fer.hr:3000"
 	let username = "rppp"
@@ -29,6 +30,7 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	var client: SQLClient?
 	var items: [Item] = []
 	var tables: [Tables] = []
+	var dbTableVC: DbTableViewController!
 
 	
 	override func viewDidLoad() {
@@ -39,6 +41,17 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 		tableView.register(NSNib(nibNamed: dbNameView, bundle: nil), forIdentifier: dbNameView)
 		
 		connectToSqlServer()
+	}
+	
+	
+	override func viewDidLayout() {
+		super.viewDidLayout()
+		
+		dbTableVC = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
+		addChildViewController(dbTableVC)
+		dbTableVC.view.frame = CGRect(origin: CGPoint.zero, size: childView.frame.size)
+		
+		childView.addSubview(dbTableVC.view)
 	}
 	
 	
@@ -134,12 +147,11 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		let dbTableVC = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
 		dbTableVC.items = items
-		dbTableVC.title = tables[row].rawValue
+		dbTableVC.tableView.tableColumns.first?.title = tables[row].rawValue
 		dbTableVC.type = tables[row]
+		dbTableVC.tableView.reloadData()
 		
-		presentViewControllerAsModalWindow(dbTableVC)
 		return true
 	}
 
