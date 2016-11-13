@@ -26,6 +26,7 @@
 		75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7190C1DD8B73700F93547 /* DbListView.swift */; };
 		75F48C4D1DD8C3BF00FFB063 /* libsybdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F48C431DD8C3BE00FFB063 /* libsybdb.a */; };
 		75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C461DD8C3BE00FFB063 /* SQLClient.m */; };
+		75F48C511DD9081500FFB063 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C501DD9081500FFB063 /* Country.swift */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		75F48C4A1DD8C3BF00FFB063 /* syberror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syberror.h; sourceTree = "<group>"; };
 		75F48C4B1DD8C3BF00FFB063 /* sybfront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sybfront.h; sourceTree = "<group>"; };
 		75F48C4C1DD8C3BF00FFB063 /* tds_sysdep_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tds_sysdep_public.h; sourceTree = "<group>"; };
+		75F48C501DD9081500FFB063 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 			children = (
 				752871051DCFD17A000BBCDE /* Item.swift */,
 				75A719041DD8AB1E00F93547 /* Document.swift */,
+				75F48C501DD9081500FFB063 /* Country.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
+				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,

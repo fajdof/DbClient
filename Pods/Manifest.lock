@@ -1,12 +1,15 @@
 PODS:
   - ObjectMapper (2.2.0)
+  - SwiftDate (4.0.7)
 
 DEPENDENCIES:
   - ObjectMapper
+  - SwiftDate (~> 4.0)
 
 SPEC CHECKSUMS:
   ObjectMapper: 4060d739febae11ab0c6af8d786f98667c82e1bd
+  SwiftDate: 0efb04a6751b1ab804049b2b09a69848cd304c12
 
-PODFILE CHECKSUM: cc1dfaa6186ee5066891237c675fdb0c92ff51b5
+PODFILE CHECKSUM: 2449abc301e69935a4da58aa7d4c0eb11103ec64
 
 COCOAPODS: 1.1.0.rc.2

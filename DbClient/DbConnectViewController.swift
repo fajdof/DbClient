@@ -12,6 +12,7 @@ import ObjectMapper
 enum Tables: String {
 	case Item = "Artikl"
 	case Document = "Dokument"
+	case Country = "Drzava"
 }
 
 class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
@@ -30,6 +31,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var client: SQLClient?
 	var items: [Item] = []
 	var docs: [Document] = []
+	var countries: [Country] = []
 	var tables: [Tables] = []
 	var queryTables: [Tables] = []
 	var dbTableVC: DbTableViewController!
@@ -75,7 +77,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func executeQueries() {
 		
-		queryTables = [Tables.Item, Tables.Document]
+		queryTables = [Tables.Item, Tables.Document, Tables.Country]
 		
 		queryIteration(index: 0)
 	}
@@ -122,6 +124,10 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			if let doc = Document(JSON: row) {
 				docs.append(doc)
 			}
+		case .Country:
+			if let country = Country(JSON: row) {
+				countries.append(country)
+			}
 		}
 	}
 	
@@ -155,6 +161,8 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			dbTableVC.items = items
 		case .Document:
 			dbTableVC.docs = docs
+		case .Country:
+			dbTableVC.countries = countries
 		}
 		
 		dbTableVC.tableView.tableColumns.first?.title = tables[row].rawValue

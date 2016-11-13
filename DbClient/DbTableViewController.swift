@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import SwiftDate
 
 
 class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
@@ -18,6 +19,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	let dbListView = "DbListView"
 	var items: [Item] = []
 	var docs: [Document] = []
+	var countries: [Country] = []
 	var type: Tables! = Tables.Item
 	
 	override func viewDidLoad() {
@@ -36,6 +38,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return 220
 		case .Document:
 			return 280
+		case .Country:
+			return 120
 		}
 	}
 	
@@ -49,6 +53,9 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Document:
 			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configureDocumentView(docView: cellView, row: row)
+		case .Country:
+			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
+			return configureCountryView(countryView: cellView, row: row)
 		}
 	}
 	
@@ -75,9 +82,10 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	func configureDocumentView(docView: DbListView, row: Int) -> DbListView {
 		let doc = docs[row]
 		
+		unhideAllLabels(cellView: docView)
 		docView.firstLabel.addAttributedString(Document.Attributes.docId, dataString: doc.docId?.description)
 		docView.secondLabel.addAttributedString(Document.Attributes.docNumber, dataString: doc.docNumber?.description)
-		docView.thirdLabel.addAttributedString(Document.Attributes.docDate, dataString: doc.docDate?.description)
+		docView.thirdLabel.addAttributedString(Document.Attributes.docDate, dataString: doc.docDate?.inLocalRegion().string(dateStyle: .medium, timeStyle: .short))
 		docView.fourthLabel.addAttributedString(Document.Attributes.docValue, dataString: doc.docValue?.description)
 		docView.fifthLabel.addAttributedString(Document.Attributes.docBeforeId, dataString: doc.docBeforeId?.description)
 		docView.sixthLabel.addAttributedString(Document.Attributes.partnerId, dataString: doc.partnerId?.description)
@@ -88,12 +96,42 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	}
 	
 	
+	func configureCountryView(countryView: DbListView, row: Int) -> DbListView {
+		let country = countries[row]
+		
+		countryView.firstLabel.addAttributedString(Country.Attributes.name, dataString: country.name)
+		countryView.secondLabel.addAttributedString(Country.Attributes.code, dataString: country.code?.description)
+		countryView.thirdLabel.addAttributedString(Country.Attributes.mark, dataString: country.mark)
+		countryView.fourthLabel.addAttributedString(Country.Attributes.iso3, dataString: country.iso3)
+		countryView.fifthLabel.isHidden = true
+		countryView.sixthLabel.isHidden = true
+		countryView.seventhLabel.isHidden = true
+		countryView.eighthLabel.isHidden = true
+		
+		return countryView
+	}
+	
+	
+	func unhideAllLabels(cellView: DbListView) {
+		cellView.firstLabel.isHidden = false
+		cellView.secondLabel.isHidden = false
+		cellView.thirdLabel.isHidden = false
+		cellView.fourthLabel.isHidden = false
+		cellView.fifthLabel.isHidden = false
+		cellView.sixthLabel.isHidden = false
+		cellView.seventhLabel.isHidden = false
+		cellView.eighthLabel.isHidden = false
+	}
+	
+	
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		switch type! {
 		case .Item:
 			return items.count
 		case .Document:
 			return docs.count
+		case .Country:
+			return countries.count
 		}
 	}
 }
