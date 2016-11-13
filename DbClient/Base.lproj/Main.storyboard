@@ -692,7 +692,7 @@
                                     <rect key="frame" x="1" y="0.0" width="138" height="269"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="1000" headerView="HsQ-I2-Ok4" viewBased="YES" id="gB8-us-0gE">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="1000" headerView="HsQ-I2-Ok4" viewBased="YES" id="gB8-us-0gE">
                                             <rect key="frame" x="0.0" y="0.0" width="1003" height="246"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>

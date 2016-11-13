@@ -22,6 +22,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	var countries: [Country] = []
 	var users: [User] = []
 	var places: [Place] = []
+	var people: [Person] = []
 	var type: Tables! = Tables.Item
 	
 	override func viewDidLoad() {
@@ -46,6 +47,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return 80
 		case .Place:
 			return 180
+		case .Person:
+			return 100
 		}
 	}
 	
@@ -68,6 +71,9 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Place:
 			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configurePlaceView(placeView: cellView, row: row)
+		case .Person:
+			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
+			return configurePersonView(personView: cellView, row: row)
 		}
 	}
 	
@@ -142,6 +148,23 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	}
 	
 	
+	func configurePersonView(personView: DbListView, row: Int) -> DbListView {
+		let person = people[row]
+		
+		unhideAllLabels(cellView: personView)
+		personView.firstLabel.addAttributedString(Person.Attributes.firstName, dataString: person.firstName)
+		personView.secondLabel.addAttributedString(Person.Attributes.lastName, dataString: person.lastName)
+		personView.thirdLabel.addAttributedString(Person.Attributes.id, dataString: person.id?.description)
+		personView.fourthLabel.isHidden = true
+		personView.fifthLabel.isHidden = true
+		personView.sixthLabel.isHidden = true
+		personView.seventhLabel.isHidden = true
+		personView.eighthLabel.isHidden = true
+		
+		return personView
+	}
+	
+	
 	func configurePlaceView(placeView: DbListView, row: Int) -> DbListView {
 		let place = places[row]
 		
@@ -183,6 +206,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return users.count
 		case .Place:
 			return places.count
+		case .Person:
+			return people.count
 		}
 	}
 }
