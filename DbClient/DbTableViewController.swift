@@ -16,6 +16,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	let dbItemView = "DbItemView"
 	var items: [Item] = []
+	var docs: [Document] = []
 	var type: Tables! = Tables.Item
 	
 	override func viewDidLoad() {
@@ -65,7 +66,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Item:
 			return items.count
 		case .Document:
-			return 0
+			return docs.count
 		}
 	}
 }

@@ -29,7 +29,9 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	
 	var client: SQLClient?
 	var items: [Item] = []
+	var docs: [Document] = []
 	var tables: [Tables] = []
+	var queryTables: [Tables] = []
 	var dbTableVC: DbTableViewController!
 
 	
@@ -74,19 +76,28 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	
 	func executeQueries() {
 		
-		let tables = [Tables.Item]
+		queryTables = [Tables.Item, Tables.Document]
 		
-		for table in tables {
-			client?.execute(selectQuery + table.rawValue, completion: { [weak self] (dbData) in
-				if let data = dbData {
-					self?.proccessQuery(data: data, type: table)
-					self?.tables.append(table)
-					self?.tableView.reloadData()
-				} else {
-					print("No data")
+		queryIteration(index: 0)
+	}
+	
+	
+	func queryIteration(index: Int) {
+		let table = queryTables[index]
+		
+		client?.execute(selectQuery + table.rawValue, completion: { [weak self] (dbData) in
+			guard let `self` = self else { return }
+			if let data = dbData {
+				self.proccessQuery(data: data, type: table)
+				self.tables.append(table)
+				self.tableView.reloadData()
+				if index < self.queryTables.count-1 {
+					self.queryIteration(index: index + 1)
 				}
-			})
-		}
+			} else {
+				print("No data")
+			}
+		})
 	}
 	
 	
@@ -105,10 +116,12 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 		switch type {
 		case .Item:
 			if let item = Item(JSON: row) {
-				self.items.append(item)
+				items.append(item)
 			}
 		case .Document:
-			break
+			if let doc = Document(JSON: row) {
+				docs.append(doc)
+			}
 		}
 	}
 	
@@ -147,7 +160,13 @@ class DbConnectViewController: NSViewController, SQLClientDelegate, NSTableViewD
 	
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		dbTableVC.items = items
+		switch tables[row] {
+		case .Item:
+			dbTableVC.items = items
+		case .Document:
+			dbTableVC.docs = docs
+		}
+		
 		dbTableVC.tableView.tableColumns.first?.title = tables[row].rawValue
 		dbTableVC.type = tables[row]
 		dbTableVC.tableView.reloadData()

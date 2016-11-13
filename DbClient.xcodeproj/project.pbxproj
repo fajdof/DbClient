@@ -23,6 +23,7 @@
 		755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DF9611DD74D34004F4D94 /* DbNameView.swift */; };
 		755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 755DF9631DD74D80004F4D94 /* DbNameView.xib */; };
 		75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A719021DD8A7E700F93547 /* GeneralExtensions.swift */; };
+		75A719051DD8AB1E00F93547 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A719041DD8AB1E00F93547 /* Document.swift */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		755DF9611DD74D34004F4D94 /* DbNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbNameView.swift; sourceTree = "<group>"; };
 		755DF9631DD74D80004F4D94 /* DbNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbNameView.xib; sourceTree = "<group>"; };
 		75A719021DD8A7E700F93547 /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
+		75A719041DD8AB1E00F93547 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				752871051DCFD17A000BBCDE /* Item.swift */,
+				75A719041DD8AB1E00F93547 /* Document.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
 				752EF9CC1DCE36A6000B6C42 /* SQLClient.m in Sources */,
+				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
