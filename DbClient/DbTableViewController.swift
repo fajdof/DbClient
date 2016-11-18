@@ -23,6 +23,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	var users: [User] = []
 	var places: [Place] = []
 	var people: [Person] = []
+	var partners: [Partner] = []
 	var type: Tables! = Tables.Item
 	
 	override func viewDidLoad() {
@@ -49,6 +50,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return 180
 		case .Person:
 			return 100
+		case .Partner:
+			return 200
 		}
 	}
 	
@@ -74,6 +77,9 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Person:
 			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configurePersonView(personView: cellView, row: row)
+		case .Partner:
+			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
+			return configurePartnerView(partnerView: cellView, row: row)
 		}
 	}
 	
@@ -182,6 +188,23 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	}
 	
 	
+	func configurePartnerView(partnerView: DbListView, row: Int) -> DbListView {
+		let partner = partners[row]
+		
+		unhideAllLabels(cellView: partnerView)
+		partnerView.firstLabel.addAttributedString(Partner.Attributes.partnerAddress, dataString: partner.partnerAddress)
+		partnerView.secondLabel.addAttributedString(Partner.Attributes.partnerAddressId, dataString: partner.partnerAddressId?.description)
+		partnerView.thirdLabel.addAttributedString(Partner.Attributes.shipmentAddress, dataString: partner.shipmentAddress)
+		partnerView.fourthLabel.addAttributedString(Partner.Attributes.shipmentAddressId, dataString: partner.shipmentAddressId?.description)
+		partnerView.fifthLabel.addAttributedString(Partner.Attributes.oib, dataString: partner.oib)
+		partnerView.sixthLabel.addAttributedString(Partner.Attributes.type, dataString: partner.type)
+		partnerView.seventhLabel.addAttributedString(Partner.Attributes.partnerId, dataString: partner.partnerId?.description)
+		partnerView.eighthLabel.isHidden = true
+		
+		return partnerView
+	}
+	
+	
 	func unhideAllLabels(cellView: DbListView) {
 		cellView.firstLabel.isHidden = false
 		cellView.secondLabel.isHidden = false
@@ -208,6 +231,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return places.count
 		case .Person:
 			return people.count
+		case .Partner:
+			return partners.count
 		}
 	}
 }

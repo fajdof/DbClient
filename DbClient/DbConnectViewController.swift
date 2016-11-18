@@ -16,6 +16,7 @@ enum Tables: String {
 	case User = "Korisnik"
 	case Place = "Mjesto"
 	case Person = "Osoba"
+	case Partner = "Partner"
 }
 
 class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
@@ -38,6 +39,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var users: [User] = []
 	var places: [Place] = []
 	var people: [Person] = []
+	var partners: [Partner] = []
 	var tables: [Tables] = []
 	var queryTables: [Tables] = []
 	var dbTableVC: DbTableViewController!
@@ -87,7 +89,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func executeQueries() {
 		
-		queryTables = [Tables.Item, Tables.Document, Tables.Country, Tables.User, Tables.Place, Tables.Person]
+		queryTables = [Tables.Item, Tables.Document, Tables.Country, Tables.User, Tables.Place, Tables.Person, Tables.Partner]
 		
 		queryIteration(index: 0)
 	}
@@ -149,6 +151,10 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			if let person = Person(JSON: row) {
 				people.append(person)
 			}
+		case .Partner:
+			if let partner = Partner(JSON: row) {
+				partners.append(partner)
+			}
 		}
 	}
 	
@@ -190,6 +196,8 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			dbTableVC.places = places
 		case .Person:
 			dbTableVC.people = people
+		case .Partner:
+			dbTableVC.partners = partners
 		}
 		
 		dbTableVC.tableView.tableColumns.first?.title = tables[row].rawValue
