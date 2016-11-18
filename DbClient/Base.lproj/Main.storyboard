@@ -693,14 +693,14 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="1000" headerView="HsQ-I2-Ok4" viewBased="YES" id="gB8-us-0gE">
-                                            <rect key="frame" x="0.0" y="0.0" width="1003" height="246"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="303" height="246"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="1000" minWidth="40" maxWidth="1000" id="v54-Gz-6cf">
+                                                <tableColumn width="300" minWidth="40" maxWidth="300" id="v54-Gz-6cf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Tablica">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -726,7 +726,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="HsQ-I2-Ok4">
-                                    <rect key="frame" x="0.0" y="0.0" width="1003" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="303" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>

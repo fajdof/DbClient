@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7527E9851DDF9D75003925BE /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9841DDF9D75003925BE /* Partner.swift */; };
+		7527E9871DDFAC48003925BE /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9861DDFAC48003925BE /* Unit.swift */; };
+		7527E98B1DDFB1E1003925BE /* Sysdiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E98A1DDFB1E1003925BE /* Sysdiagram.swift */; };
+		7527E98D1DDFB64C003925BE /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E98C1DDFB64C003925BE /* Company.swift */; };
 		752871021DCFB225000BBCDE /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 752871011DCFB225000BBCDE /* libiconv.2.4.0.tbd */; };
 		752871041DCFB22D000BBCDE /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 752871031DCFB22D000BBCDE /* libiconv.2.tbd */; };
 		752871061DCFD17A000BBCDE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752871051DCFD17A000BBCDE /* Item.swift */; };
@@ -38,6 +41,9 @@
 		060F834505056EF9ECFAC506 /* Pods-DbClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.debug.xcconfig"; sourceTree = "<group>"; };
 		336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.release.xcconfig"; sourceTree = "<group>"; };
 		7527E9841DDF9D75003925BE /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
+		7527E9861DDFAC48003925BE /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		7527E98A1DDFB1E1003925BE /* Sysdiagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sysdiagram.swift; sourceTree = "<group>"; };
+		7527E98C1DDFB64C003925BE /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		752871011DCFB225000BBCDE /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
 		752871031DCFB22D000BBCDE /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		752871051DCFD17A000BBCDE /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -160,6 +166,9 @@
 				75F48C541DD910DA00FFB063 /* Place.swift */,
 				75F48C561DD914AB00FFB063 /* Person.swift */,
 				7527E9841DDF9D75003925BE /* Partner.swift */,
+				7527E9861DDFAC48003925BE /* Unit.swift */,
+				7527E98A1DDFB1E1003925BE /* Sysdiagram.swift */,
+				7527E98C1DDFB64C003925BE /* Company.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -353,10 +362,13 @@
 				7527E9851DDF9D75003925BE /* Partner.swift in Sources */,
 				75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */,
 				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
+				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,
 				75F48C571DD914AB00FFB063 /* Person.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
+				7527E98B1DDFB1E1003925BE /* Sysdiagram.swift in Sources */,
+				7527E98D1DDFB64C003925BE /* Company.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				75F48C531DD90DC300FFB063 /* User.swift in Sources */,

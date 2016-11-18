@@ -24,6 +24,9 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	var places: [Place] = []
 	var people: [Person] = []
 	var partners: [Partner] = []
+	var units: [Unit] = []
+	var sysdiagrams: [Sysdiagram] = []
+	var companies: [Company] = []
 	var type: Tables! = Tables.Item
 	
 	override func viewDidLoad() {
@@ -52,34 +55,42 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return 100
 		case .Partner:
 			return 200
+		case .Unit:
+			return 180
+		case .Sysdiagram:
+			return 160
+		case .Company:
+			return 120
 		}
 	}
 	
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		
+		let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
+		
 		switch type! {
 		case .Item:
-			let cellView = tableView.make(withIdentifier: dbItemView, owner: self) as! DbItemView
-			return configureItemView(itemView: cellView, row: row)
+			let itemView = tableView.make(withIdentifier: dbItemView, owner: self) as! DbItemView
+			return configureItemView(itemView: itemView, row: row)
 		case .Document:
-			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configureDocumentView(docView: cellView, row: row)
 		case .Country:
-			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configureCountryView(countryView: cellView, row: row)
 		case .User:
-			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configureUserView(userView: cellView, row: row)
 		case .Place:
-			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configurePlaceView(placeView: cellView, row: row)
 		case .Person:
-			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configurePersonView(personView: cellView, row: row)
 		case .Partner:
-			let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 			return configurePartnerView(partnerView: cellView, row: row)
+		case .Unit:
+			return configureUnitView(unitView: cellView, row: row)
+		case .Sysdiagram:
+			return configureSysdiagramView(sysView: cellView, row: row)
+		case .Company:
+			return configureCompanyView(companyView: cellView, row: row)
 		}
 	}
 	
@@ -205,6 +216,57 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	}
 	
 	
+	func configureUnitView(unitView: DbListView, row: Int) -> DbListView {
+		let unit = units[row]
+		
+		unhideAllLabels(cellView: unitView)
+		unitView.firstLabel.addAttributedString(Unit.Attributes.docId, dataString: unit.docId?.description)
+		unitView.secondLabel.addAttributedString(Unit.Attributes.unitId, dataString: unit.unitId?.description)
+		unitView.thirdLabel.addAttributedString(Unit.Attributes.itemPrice, dataString: unit.itemPrice?.description)
+		unitView.fourthLabel.addAttributedString(Unit.Attributes.itemQuantity, dataString: unit.itemQuantity?.description)
+		unitView.fifthLabel.addAttributedString(Unit.Attributes.itemCode, dataString: unit.itemCode?.description)
+		unitView.sixthLabel.addAttributedString(Unit.Attributes.discount, dataString: unit.discount?.description)
+		unitView.seventhLabel.isHidden = true
+		unitView.eighthLabel.isHidden = true
+		
+		return unitView
+	}
+	
+	
+	func configureSysdiagramView(sysView: DbListView, row: Int) -> DbListView {
+		let sys = sysdiagrams[row]
+		
+		unhideAllLabels(cellView: sysView)
+		sysView.firstLabel.addAttributedString(Sysdiagram.Attributes.definition, dataString: sys.definition?.description)
+		sysView.secondLabel.addAttributedString(Sysdiagram.Attributes.diagramId, dataString: sys.diagramId?.description)
+		sysView.thirdLabel.addAttributedString(Sysdiagram.Attributes.name, dataString: sys.name)
+		sysView.fourthLabel.addAttributedString(Sysdiagram.Attributes.principalId, dataString: sys.principalId?.description)
+		sysView.fifthLabel.addAttributedString(Sysdiagram.Attributes.version, dataString: sys.version?.description)
+		sysView.sixthLabel.isHidden = true
+		sysView.seventhLabel.isHidden = true
+		sysView.eighthLabel.isHidden = true
+		
+		return sysView
+	}
+	
+	
+	func configureCompanyView(companyView: DbListView, row: Int) -> DbListView {
+		let company = companies[row]
+		
+		unhideAllLabels(cellView: companyView)
+		companyView.firstLabel.addAttributedString(Company.Attributes.companyId, dataString: company.companyId?.description)
+		companyView.secondLabel.addAttributedString(Company.Attributes.name, dataString: company.name)
+		companyView.thirdLabel.addAttributedString(Company.Attributes.registryNumber, dataString: company.registryNumber)
+		companyView.fourthLabel.isHidden = true
+		companyView.fifthLabel.isHidden = true
+		companyView.sixthLabel.isHidden = true
+		companyView.seventhLabel.isHidden = true
+		companyView.eighthLabel.isHidden = true
+		
+		return companyView
+	}
+	
+	
 	func unhideAllLabels(cellView: DbListView) {
 		cellView.firstLabel.isHidden = false
 		cellView.secondLabel.isHidden = false
@@ -233,6 +295,12 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return people.count
 		case .Partner:
 			return partners.count
+		case .Unit:
+			return units.count
+		case .Sysdiagram:
+			return sysdiagrams.count
+		case .Company:
+			return companies.count
 		}
 	}
 }

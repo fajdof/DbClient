@@ -17,6 +17,9 @@ enum Tables: String {
 	case Place = "Mjesto"
 	case Person = "Osoba"
 	case Partner = "Partner"
+	case Unit = "Stavka"
+	case Sysdiagram = "sysdiagrams"
+	case Company = "Tvrtka"
 }
 
 class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
@@ -40,6 +43,10 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var places: [Place] = []
 	var people: [Person] = []
 	var partners: [Partner] = []
+	var units: [Unit] = []
+	var sysdiagrams: [Sysdiagram] = []
+	var companies: [Company] = []
+	
 	var tables: [Tables] = []
 	var queryTables: [Tables] = []
 	var dbTableVC: DbTableViewController!
@@ -89,7 +96,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func executeQueries() {
 		
-		queryTables = [Tables.Item, Tables.Document, Tables.Country, Tables.User, Tables.Place, Tables.Person, Tables.Partner]
+		queryTables = [Tables.Item, Tables.Document, Tables.Country, Tables.User, Tables.Place, Tables.Person, Tables.Partner, Tables.Unit, Tables.Sysdiagram, Tables.Company]
 		
 		queryIteration(index: 0)
 	}
@@ -155,6 +162,18 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			if let partner = Partner(JSON: row) {
 				partners.append(partner)
 			}
+		case .Unit:
+			if let unit = Unit(JSON: row) {
+				units.append(unit)
+			}
+		case .Sysdiagram:
+			if let sysdiagram = Sysdiagram(JSON: row) {
+				sysdiagrams.append(sysdiagram)
+			}
+		case .Company:
+			if let company = Company(JSON: row) {
+				companies.append(company)
+			}
 		}
 	}
 	
@@ -198,6 +217,12 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			dbTableVC.people = people
 		case .Partner:
 			dbTableVC.partners = partners
+		case .Unit:
+			dbTableVC.units = units
+		case .Sysdiagram:
+			dbTableVC.sysdiagrams = sysdiagrams
+		case .Company:
+			dbTableVC.companies = companies
 		}
 		
 		dbTableVC.tableView.tableColumns.first?.title = tables[row].rawValue
