@@ -87,7 +87,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			if completed {
 				self.executeQueries()
 			} else {
-				print("Connection failure")
+				self.showAlert(alertString: "Neuspješno spajanje na bazu", infoString: "Provjerite postavke spajanja.")
 			}
 			
 		})
@@ -115,7 +115,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 					self.queryIteration(index: index + 1)
 				}
 			} else {
-				print("No data")
+				self.showTableAlert(table: table)
 			}
 		})
 	}
@@ -230,6 +230,30 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		dbTableVC.tableView.reloadData()
 		
 		return true
+	}
+	
+	
+	func showTableAlert(table: Tables) {
+		let alert = NSAlert()
+		alert.addButton(withTitle: "OK")
+		alert.messageText = "Neuspješno dohvaćanje tablice " + table.rawValue
+		alert.informativeText = "Provjerite da li tablica postoji na serveru."
+		alert.alertStyle = .warning
+		if let window = view.window {
+			alert.beginSheetModal(for: window, completionHandler: nil)
+		}
+	}
+	
+	
+	func showAlert(alertString: String, infoString: String) {
+		let alert = NSAlert()
+		alert.addButton(withTitle: "OK")
+		alert.messageText = alertString
+		alert.informativeText = infoString
+		alert.alertStyle = .warning
+		if let window = view.window {
+			alert.beginSheetModal(for: window, completionHandler: nil)
+		}
 	}
 
 }
