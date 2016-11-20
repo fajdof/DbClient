@@ -48,13 +48,13 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Place:
 			return 180
 		case .Person:
-			return 100
+			return 260
 		case .Partner:
 			return 200
 		case .Unit:
 			return 180
 		case .Company:
-			return 120
+			return 280
 		}
 	}
 	
@@ -142,14 +142,14 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		let person = people[row]
 		
 		unhideAllLabels(cellView: personView)
-		personView.firstLabel.addAttributedString(Person.Attributes.firstName, dataString: person.firstName)
-		personView.secondLabel.addAttributedString(Person.Attributes.lastName, dataString: person.lastName)
-		personView.thirdLabel.addAttributedString(Person.Attributes.id, dataString: person.id?.description)
-		personView.fourthLabel.isHidden = true
-		personView.fifthLabel.isHidden = true
-		personView.sixthLabel.isHidden = true
-		personView.seventhLabel.isHidden = true
-		personView.eighthLabel.isHidden = true
+		personView.firstLabel.addAttributedString(Person.PersonAttributes.firstName, dataString: person.firstName)
+		personView.secondLabel.addAttributedString(Person.PersonAttributes.lastName, dataString: person.lastName)
+		personView.thirdLabel.addAttributedString(Person.PersonAttributes.id, dataString: person.id?.description)
+		personView.fourthLabel.addAttributedString(Person.Attributes.oib, dataString: person.oib)
+		personView.fifthLabel.addAttributedString(Person.Attributes.partnerAddress, dataString: person.partnerAddress)
+		personView.sixthLabel.addAttributedString(Person.Attributes.partnerAddressId, dataString: person.partnerAddressId?.description)
+		personView.seventhLabel.addAttributedString(Person.Attributes.shipmentAddress, dataString: person.shipmentAddress)
+		personView.eighthLabel.addAttributedString(Person.Attributes.shipmentAddressId, dataString: person.shipmentAddressId?.description)
 		
 		return personView
 	}
@@ -210,14 +210,14 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		let company = companies[row]
 		
 		unhideAllLabels(cellView: companyView)
-		companyView.firstLabel.addAttributedString(Company.Attributes.companyId, dataString: company.companyId?.description)
-		companyView.secondLabel.addAttributedString(Company.Attributes.name, dataString: company.name)
-		companyView.thirdLabel.addAttributedString(Company.Attributes.registryNumber, dataString: company.registryNumber)
-		companyView.fourthLabel.isHidden = true
-		companyView.fifthLabel.isHidden = true
-		companyView.sixthLabel.isHidden = true
-		companyView.seventhLabel.isHidden = true
-		companyView.eighthLabel.isHidden = true
+		companyView.firstLabel.addAttributedString(Company.CompanyAttributes.companyId, dataString: company.companyId?.description)
+		companyView.secondLabel.addAttributedString(Company.CompanyAttributes.name, dataString: company.name)
+		companyView.thirdLabel.addAttributedString(Company.CompanyAttributes.registryNumber, dataString: company.registryNumber)
+		companyView.fourthLabel.addAttributedString(Company.Attributes.oib, dataString: company.oib)
+		companyView.fifthLabel.addAttributedString(Company.Attributes.partnerAddress, dataString: company.partnerAddress)
+		companyView.sixthLabel.addAttributedString(Company.Attributes.partnerAddressId, dataString: company.partnerAddressId?.description)
+		companyView.seventhLabel.addAttributedString(Company.Attributes.shipmentAddress, dataString: company.shipmentAddress)
+		companyView.eighthLabel.addAttributedString(Company.Attributes.shipmentAddressId, dataString: company.shipmentAddressId?.description)
 		
 		return companyView
 	}

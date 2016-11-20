@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Person: Partner {
 	
-	struct Attributes {
+	struct PersonAttributes {
 		static let firstName = "Ime: "
 		static let id = "Id: "
 		static let lastName = "Prezime: "

@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Company: Partner {
 	
-	struct Attributes {
+	struct CompanyAttributes {
 		static let companyId = "Id tvrtke: "
 		static let registryNumber = "Matični broj tvrtke: "
 		static let name = "Naziv tvrtke: "
