@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Person: Mappable {
+class Person: Partner {
 	
 	struct Attributes {
 		static let firstName = "Ime: "
@@ -21,11 +21,7 @@ class Person: Mappable {
 	var id: Int?
 	var lastName: String?
 	
-	required init?(map: Map) {
-		
-	}
-	
-	func mapping(map: Map) {
+	override func mapping(map: Map) {
 		firstName <- map["ImeOsobe"]
 		id <- map["IdOsobe"]
 		lastName <- map["PrezimeOsobe"]

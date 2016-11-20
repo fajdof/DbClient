@@ -26,6 +26,8 @@ class Unit: Mappable {
 	var itemQuantity: Double?
 	var discount: Double?
 	var itemCode: Int?
+	var item: Item?
+	var document: Document?
 	
 	required init?(map: Map) {
 		

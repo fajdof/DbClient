@@ -13,7 +13,7 @@ class Item: Mappable {
 	
 	struct Attributes {
 		static let price = "Cijena: "
-		static let unit = "Jedinica mjere: "
+		static let measUnit = "Jedinica mjere: "
 		static let name = "Naziv: "
 		static let code = "Šifra: "
 		static let text = "Tekst: "
@@ -21,12 +21,13 @@ class Item: Mappable {
 	}
 	
 	var price: Double?
-	var unit: String?
+	var measUnit: String?
 	var name: String?
 	var code: Int?
 	var image: Data?
 	var text: String?
 	var secU: NSNumber?
+	var units: [Unit] = []
 	
 	required init?(map: Map) {
 		
@@ -34,7 +35,7 @@ class Item: Mappable {
 	
 	func mapping(map: Map) {
 		price <- map["CijArtikla"]
-		unit <- map["JedMjere"]
+		measUnit <- map["JedMjere"]
 		text <- map["TekstArtikla"]
 		name <- map["NazArtikla"]
 		code <- map["SifArtikla"]

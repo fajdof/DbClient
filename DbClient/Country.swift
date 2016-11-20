@@ -22,6 +22,7 @@ class Country: Mappable {
 	var name: String?
 	var mark: String?
 	var code: Int?
+	var places: [Place] = []
 	
 	required init?(map: Map) {
 		

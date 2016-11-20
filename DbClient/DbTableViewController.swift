@@ -20,12 +20,10 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	var items: [Item] = []
 	var docs: [Document] = []
 	var countries: [Country] = []
-	var users: [User] = []
 	var places: [Place] = []
 	var people: [Person] = []
 	var partners: [Partner] = []
 	var units: [Unit] = []
-	var sysdiagrams: [Sysdiagram] = []
 	var companies: [Company] = []
 	var type: Tables! = Tables.Item
 	
@@ -47,8 +45,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return 280
 		case .Country:
 			return 120
-		case .User:
-			return 80
 		case .Place:
 			return 180
 		case .Person:
@@ -57,8 +53,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return 200
 		case .Unit:
 			return 180
-		case .Sysdiagram:
-			return 160
 		case .Company:
 			return 120
 		}
@@ -77,8 +71,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return configureDocumentView(docView: cellView, row: row)
 		case .Country:
 			return configureCountryView(countryView: cellView, row: row)
-		case .User:
-			return configureUserView(userView: cellView, row: row)
 		case .Place:
 			return configurePlaceView(placeView: cellView, row: row)
 		case .Person:
@@ -87,8 +79,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return configurePartnerView(partnerView: cellView, row: row)
 		case .Unit:
 			return configureUnitView(unitView: cellView, row: row)
-		case .Sysdiagram:
-			return configureSysdiagramView(sysView: cellView, row: row)
 		case .Company:
 			return configureCompanyView(companyView: cellView, row: row)
 		}
@@ -101,7 +91,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		itemView.codeLabel.addAttributedString(Item.Attributes.code, dataString: item.code?.description)
 		itemView.descLabel.addAttributedString(Item.Attributes.text, dataString: item.text)
 		itemView.priceLabel.addAttributedString(Item.Attributes.price, dataString: item.price?.description)
-		itemView.unitLabel.addAttributedString(Item.Attributes.unit, dataString: item.unit)
+		itemView.unitLabel.addAttributedString(Item.Attributes.measUnit, dataString: item.measUnit)
 		itemView.ZULabel.addAttributedString(Item.Attributes.secU, dataString: item.secU?.description)
 		itemView.nameLabel.addAttributedString(Item.Attributes.name, dataString: item.name)
 		if let imageData = item.image {
@@ -145,23 +135,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		countryView.eighthLabel.isHidden = true
 		
 		return countryView
-	}
-	
-	
-	func configureUserView(userView: DbListView, row: Int) -> DbListView {
-		let user = users[row]
-		
-		unhideAllLabels(cellView: userView)
-		userView.firstLabel.addAttributedString(User.Attributes.username, dataString: user.username)
-		userView.secondLabel.addAttributedString(User.Attributes.password, dataString: user.password)
-		userView.thirdLabel.isHidden = true
-		userView.fourthLabel.isHidden = true
-		userView.fifthLabel.isHidden = true
-		userView.sixthLabel.isHidden = true
-		userView.seventhLabel.isHidden = true
-		userView.eighthLabel.isHidden = true
-		
-		return userView
 	}
 	
 	
@@ -233,23 +206,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	}
 	
 	
-	func configureSysdiagramView(sysView: DbListView, row: Int) -> DbListView {
-		let sys = sysdiagrams[row]
-		
-		unhideAllLabels(cellView: sysView)
-		sysView.firstLabel.addAttributedString(Sysdiagram.Attributes.definition, dataString: sys.definition?.description)
-		sysView.secondLabel.addAttributedString(Sysdiagram.Attributes.diagramId, dataString: sys.diagramId?.description)
-		sysView.thirdLabel.addAttributedString(Sysdiagram.Attributes.name, dataString: sys.name)
-		sysView.fourthLabel.addAttributedString(Sysdiagram.Attributes.principalId, dataString: sys.principalId?.description)
-		sysView.fifthLabel.addAttributedString(Sysdiagram.Attributes.version, dataString: sys.version?.description)
-		sysView.sixthLabel.isHidden = true
-		sysView.seventhLabel.isHidden = true
-		sysView.eighthLabel.isHidden = true
-		
-		return sysView
-	}
-	
-	
 	func configureCompanyView(companyView: DbListView, row: Int) -> DbListView {
 		let company = companies[row]
 		
@@ -287,8 +243,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return docs.count
 		case .Country:
 			return countries.count
-		case .User:
-			return users.count
 		case .Place:
 			return places.count
 		case .Person:
@@ -297,8 +251,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return partners.count
 		case .Unit:
 			return units.count
-		case .Sysdiagram:
-			return sysdiagrams.count
 		case .Company:
 			return companies.count
 		}

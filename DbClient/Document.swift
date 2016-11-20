@@ -30,6 +30,9 @@ class Document: Mappable {
 	var docValue: Double?
 	var tax: Double?
 	var docVr: String?
+	var units: [Unit] = []
+	var partner: Partner?
+	var docBefore: Document?
 	
 	required init?(map: Map) {
 		

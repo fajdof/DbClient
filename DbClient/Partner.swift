@@ -28,6 +28,9 @@ class Partner: Mappable {
 	var partnerId: Int?
 	var oib: String?
 	var type: String?
+	var shipmentPlace: Place?
+	var partnerPlace: Place?
+	var docs: [Document] = []
 	
 	required init?(map: Map) {
 		
