@@ -733,8 +733,16 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="rux-7i-bJP">
                                 <rect key="frame" x="140" y="0.0" width="340" height="270"/>
                             </customView>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="8" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="IgA-FI-efP">
+                                <rect key="frame" x="215" y="110" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="B2t-34-ajc"/>
+                                    <constraint firstAttribute="width" constant="50" id="pB8-n7-PDE"/>
+                                </constraints>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="IgA-FI-efP" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="6xy-zh-dOA"/>
                             <constraint firstItem="a6G-DS-2Vf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="L9u-WO-JaQ"/>
                             <constraint firstItem="rux-7i-bJP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Le9-ma-F86"/>
                             <constraint firstItem="rux-7i-bJP" firstAttribute="leading" secondItem="a6G-DS-2Vf" secondAttribute="trailing" id="Mw5-eH-9N7"/>
@@ -743,10 +751,12 @@
                             <constraint firstItem="a6G-DS-2Vf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="gHE-64-0Up"/>
                             <constraint firstAttribute="bottom" secondItem="a6G-DS-2Vf" secondAttribute="bottom" id="o1M-hx-f00"/>
                             <constraint firstAttribute="bottom" secondItem="rux-7i-bJP" secondAttribute="bottom" id="p0x-yv-x2t"/>
+                            <constraint firstItem="IgA-FI-efP" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="psO-tL-KsO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="childView" destination="rux-7i-bJP" id="Gcp-lU-5WC"/>
+                        <outlet property="progressIndicator" destination="IgA-FI-efP" id="Pp2-9t-uwC"/>
                         <outlet property="tableView" destination="gB8-us-0gE" id="9L4-RM-zdX"/>
                     </connections>
                 </viewController>

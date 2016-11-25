@@ -9,7 +9,11 @@
 import Foundation
 import ObjectMapper
 
-class Partner: Mappable {
+func == (lhs: Partner, rhs: Partner) -> Bool {
+	return lhs.partnerId == rhs.partnerId
+}
+
+class Partner: Mappable, Hashable {
 	
 	struct Attributes {
 		static let shipmentAddress = "Adresa isporuke: "
@@ -44,5 +48,9 @@ class Partner: Mappable {
 		partnerId <- map["IdPartnera"]
 		oib <- map["OIB"]
 		type <- map["TipPartnera"]
+	}
+	
+	var hashValue: Int {
+		return partnerId!
 	}
 }

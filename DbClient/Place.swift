@@ -25,7 +25,7 @@ class Place: Mappable {
 	var postalCode: Int?
 	var postalName: String?
 	var country: Country?
-	var partners: [Partner] = []
+	var partners: Set<Partner> = []
 	
 	required init?(map: Map) {
 		

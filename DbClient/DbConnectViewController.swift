@@ -22,6 +22,7 @@ enum Tables: String {
 
 class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	
+	@IBOutlet weak var progressIndicator: NSProgressIndicator!
 	@IBOutlet weak var tableView: NSTableView!
 	@IBOutlet weak var childView: NSView!
 	
@@ -43,6 +44,12 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var units: [Unit] = []
 	var companies: [Company] = []
 	
+	var idsToItems: [Int: Item] = [:]
+	var idsToCountries: [String: Country] = [:]
+	var idsToPlaces: [Int: Place] = [:]
+	var idsToDocs: [Int: Document] = [:]
+	var idsToPartners: [Int: Partner] = [:]
+	
 	var tables: [Tables] = []
 	var queryTables: [Tables] = []
 	var dbTableVC: DbTableViewController!
@@ -54,6 +61,8 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.register(NSNib(nibNamed: dbNameView, bundle: nil), forIdentifier: dbNameView)
+		progressIndicator.isHidden = true
+		progressIndicator.controlTint = .blueControlTint
 		
 		connectToSqlServer()
 		
@@ -81,9 +90,11 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			guard let `self` = self else { return }
 			
 			if completed {
+				self.progressIndicator.isHidden = false
 				self.executeQueries()
 			} else {
 				self.showAlert(alertString: "Neuspješno spajanje na bazu", infoString: "Provjerite postavke spajanja.")
+				self.progressIndicator.isHidden = true
 			}
 			
 		})
@@ -109,18 +120,19 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 				self.tableView.reloadData()
 				if index < self.queryTables.count-1 {
 					self.queryIteration(index: index + 1)
+					self.incrementProgress()
 				} else {
-					self.connectUnitsAndItems()
+					self.connectUnitsWithItemsAndDocs()
 					self.connectCountriesAndPlaces()
 					self.connectPlacesAndPartners()
-					self.connectUnitsAndDocuments()
-					self.connectPartnersAndDocuments()
-					self.connectDocuments()
+					self.connectDocsWithPartnersAndPreviousDocs()
 					self.addPartnerPropertiesToPerson()
 					self.addPartnerPropertiesToCompany()
+					self.incrementProgress()
 				}
 			} else {
 				self.showTableAlert(table: table)
+				self.progressIndicator.isHidden = true
 			}
 		})
 	}
@@ -142,18 +154,30 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		case .Item:
 			if let item = Item(JSON: row) {
 				items.append(item)
+				if let code = item.code {
+					idsToItems[code] = item
+				}
 			}
 		case .Document:
 			if let doc = Document(JSON: row) {
 				docs.append(doc)
+				if let docId = doc.docId {
+					idsToDocs[docId] = doc
+				}
 			}
 		case .Country:
 			if let country = Country(JSON: row) {
 				countries.append(country)
+				if let mark = country.mark {
+					idsToCountries[mark] = country
+				}
 			}
 		case .Place:
 			if let place = Place(JSON: row) {
 				places.append(place)
+				if let id = place.id {
+					idsToPlaces[id] = place
+				}
 			}
 		case .Person:
 			if let person = Person(JSON: row) {
@@ -162,6 +186,9 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		case .Partner:
 			if let partner = Partner(JSON: row) {
 				partners.append(partner)
+				if let partnerId = partner.partnerId {
+					idsToPartners[partnerId] = partner
+				}
 			}
 		case .Unit:
 			if let unit = Unit(JSON: row) {
@@ -250,16 +277,24 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	}
 	
 	
-	func connectUnitsAndItems() {
+	func connectUnitsWithItemsAndDocs() {
 		DispatchQueue.global().async { [weak self] in
 			guard let `self` = self else { return }
-			for item in self.items {
-				for unit in self.units {
-					if unit.itemCode == item.code {
-						item.units.append(unit)
-						unit.item = item
-					}
+			for unit in self.units {
+				if let itemCode = unit.itemCode {
+					let item = self.idsToItems[itemCode]
+					unit.item = item
+					item?.units.append(unit)
 				}
+				
+				if let docId = unit.docId {
+					let doc = self.idsToDocs[docId]
+					unit.document = doc
+					doc?.units.append(unit)
+				}
+			}
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
 			}
 		}
 	}
@@ -268,13 +303,15 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	func connectCountriesAndPlaces() {
 		DispatchQueue.global().async { [weak self] in
 			guard let `self` = self else { return }
-			for country in self.countries {
-				for place in self.places {
-					if place.countryCode == country.mark {
-						country.places.append(place)
-						place.country = country
-					}
+			for place in self.places {
+				if let countryCode = place.countryCode {
+					let country = self.idsToCountries[countryCode]
+					place.country = country
+					country?.places.append(place)
 				}
+			}
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
 			}
 		}
 	}
@@ -283,69 +320,42 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	func connectPlacesAndPartners() {
 		DispatchQueue.global().async { [weak self] in
 			guard let `self` = self else { return }
-			for place in self.places {
-				for partner in self.partners {
-					if partner.partnerAddressId == place.id {
-						place.partners.append(partner)
-						partner.partnerPlace = place
-					}
-					if partner.shipmentAddressId == place.id {
-						partner.shipmentPlace = place
-						if !place.partners.contains(where: { (thePartner) -> Bool in
-							if thePartner.partnerId == partner.partnerId {
-								return true
-							} else {
-								return false
-							}
-						}) {
-							place.partners.append(partner)
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	
-	func connectUnitsAndDocuments() {
-		DispatchQueue.global().async { [weak self] in
-			guard let `self` = self else { return }
-			for doc in self.docs {
-				for unit in self.units {
-					if unit.docId == doc.docId {
-						doc.units.append(unit)
-						unit.document = doc
-					}
-				}
-			}
-		}
-	}
-	
-	
-	func connectPartnersAndDocuments() {
-		DispatchQueue.global().async { [weak self] in
-			guard let `self` = self else { return }
 			for partner in self.partners {
-				for doc in self.docs {
-					if doc.partnerId == partner.partnerId {
-						partner.docs.append(doc)
-						doc.partner = partner
-					}
+				if let partnerAddressId = partner.partnerAddressId {
+					let partnerPlace = self.idsToPlaces[partnerAddressId]
+					partner.partnerPlace = partnerPlace
+					partnerPlace?.partners.insert(partner)
 				}
+				if let shipmentAddressId = partner.shipmentAddressId {
+					let shipmentPlace = self.idsToPlaces[shipmentAddressId]
+					partner.shipmentPlace = shipmentPlace
+					shipmentPlace?.partners.insert(partner)
+				}
+			}
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
 			}
 		}
 	}
 	
 	
-	func connectDocuments() {
+	func connectDocsWithPartnersAndPreviousDocs() {
 		DispatchQueue.global().async { [weak self] in
 			guard let `self` = self else { return }
 			for doc in self.docs {
-				for beforeDoc in self.docs {
-					if doc.docBeforeId == beforeDoc.docId {
-						doc.docBefore = beforeDoc
-					}
+				if let partnerId = doc.partnerId {
+					let partner = self.idsToPartners[partnerId]
+					doc.partner = partner
+					partner?.docs.append(doc)
 				}
+				
+				if let docBeforeId = doc.docBeforeId {
+					let doc = self.idsToDocs[docBeforeId]
+					doc?.docBefore = doc
+				}
+			}
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
 			}
 		}
 	}
@@ -355,11 +365,14 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		DispatchQueue.global().async { [weak self] in
 			guard let `self` = self else { return }
 			for person in self.people {
-				for partner in self.partners {
-					if partner.partnerId == person.id {
+				if let id = person.id {
+					if let partner = self.idsToPartners[id] {
 						self.addPartnerProperties(to: person, partnerOrigin: partner)
 					}
 				}
+			}
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
 			}
 		}
 	}
@@ -369,11 +382,14 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		DispatchQueue.global().async { [weak self] in
 			guard let `self` = self else { return }
 			for company in self.companies {
-				for partner in self.partners {
-					if partner.partnerId == company.companyId {
+				if let id = company.companyId {
+					if let partner = self.idsToPartners[id] {
 						self.addPartnerProperties(to: company, partnerOrigin: partner)
 					}
 				}
+			}
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
 			}
 		}
 	}
@@ -389,6 +405,14 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		partnerObject.shipmentPlace = partnerOrigin.shipmentPlace
 		partnerObject.partnerPlace = partnerOrigin.partnerPlace
 		partnerObject.type = partnerOrigin.type
+	}
+	
+	
+	func incrementProgress() {
+		progressIndicator.increment(by: 1)
+		if progressIndicator.doubleValue == progressIndicator.maxValue {
+			progressIndicator.isHidden = true
+		}
 	}
 
 }
