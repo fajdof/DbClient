@@ -38,12 +38,6 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var units: [Unit] = []
 	var companies: [Company] = []
 	
-	var idsToItems: [Int: Item] = [:]
-	var idsToCountries: [String: Country] = [:]
-	var idsToPlaces: [Int: Place] = [:]
-	var idsToDocs: [Int: Document] = [:]
-	var idsToPartners: [Int: Partner] = [:]
-	
 	var tables: [Tables] = []
 	var queryTables: [Tables] = []
 	var dbTableVC: DbTableViewController!
@@ -118,27 +112,21 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func makeConnections() {
 		viewModel.connectUnitsWithItemsAndDocs { [weak self] in
-			self?.tableView.reloadData()
 			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.connectCountriesAndPlaces { [weak self] in
-			self?.tableView.reloadData()
 			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.connectPlacesAndPartners { [weak self] in
-			self?.tableView.reloadData()
 			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.connectDocsWithPartnersAndPreviousDocs { [weak self] in
-			self?.tableView.reloadData()
 			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.addPartnerPropertiesToPerson { [weak self] in
-			self?.tableView.reloadData()
 			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.addPartnerPropertiesToCompany { [weak self] in
-			self?.tableView.reloadData()
 			self?.dbTableVC.tableView.reloadData()
 		}
 	}
