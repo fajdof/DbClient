@@ -119,21 +119,27 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	func makeConnections() {
 		viewModel.connectUnitsWithItemsAndDocs { [weak self] in
 			self?.tableView.reloadData()
+			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.connectCountriesAndPlaces { [weak self] in
 			self?.tableView.reloadData()
+			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.connectPlacesAndPartners { [weak self] in
 			self?.tableView.reloadData()
+			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.connectDocsWithPartnersAndPreviousDocs { [weak self] in
 			self?.tableView.reloadData()
+			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.addPartnerPropertiesToPerson { [weak self] in
 			self?.tableView.reloadData()
+			self?.dbTableVC.tableView.reloadData()
 		}
 		viewModel.addPartnerPropertiesToCompany { [weak self] in
 			self?.tableView.reloadData()
+			self?.dbTableVC.tableView.reloadData()
 		}
 	}
 	
