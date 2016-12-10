@@ -33,6 +33,8 @@ class DbTablePresenter {
 	func configureDocumentView(docView: DbListView, doc: Document) -> DbListView {
 		
 		unhideAllLabels(cellView: docView)
+		unhideAllButtons(cellView: docView)
+		
 		docView.firstLabel.addAttributedString(Document.Attributes.docId, dataString: doc.docId?.description)
 		docView.secondLabel.addAttributedString(Document.Attributes.docNumber, dataString: doc.docNumber?.description)
 		docView.thirdLabel.addAttributedString(Document.Attributes.docDate, dataString: doc.docDate?.inLocalRegion().string(dateStyle: .medium, timeStyle: .short))
@@ -41,6 +43,22 @@ class DbTablePresenter {
 		docView.sixthLabel.addAttributedString(Document.Attributes.partnerId, dataString: doc.partnerId?.description)
 		docView.seventhLabel.addAttributedString(Document.Attributes.docVr, dataString: doc.docVr)
 		docView.eighthLabel.addAttributedString(Document.Attributes.tax, dataString: doc.tax?.description)
+		
+		if doc.partner != nil {
+			docView.firstButton.title = "Partner"
+			docView.firstButton.type = Tables.Partner
+			docView.firstButton.partners = [doc.partner!]
+		} else {
+			docView.firstButton.isHidden = true
+		}
+		if doc.units.count != 0 {
+			docView.secondButton.title = "Stavke"
+			docView.secondButton.type = Tables.Unit
+			docView.secondButton.units = doc.units
+		} else {
+			docView.secondButton.isHidden = true
+		}
+		docView.thirdButton.isHidden = true
 		
 		return docView
 	}
@@ -151,6 +169,13 @@ class DbTablePresenter {
 		cellView.sixthLabel.isHidden = false
 		cellView.seventhLabel.isHidden = false
 		cellView.eighthLabel.isHidden = false
-	}	
+	}
+	
+	
+	func unhideAllButtons(cellView: DbListView) {
+		cellView.firstButton.isHidden = false
+		cellView.secondButton.isHidden = false
+		cellView.thirdButton.isHidden = false
+	}
 	
 }

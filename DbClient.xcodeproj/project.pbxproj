@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518E66A1DE8ED59001C452A /* DbConnectViewModel.swift */; };
+		752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524525F1DFC5710009EACBE /* DisclosureButton.swift */; };
 		7527B62F1DE98F9000E1B531 /* DbTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527B62E1DE98F9000E1B531 /* DbTablePresenter.swift */; };
 		7527E9851DDF9D75003925BE /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9841DDF9D75003925BE /* Partner.swift */; };
 		7527E9871DDFAC48003925BE /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9861DDFAC48003925BE /* Unit.swift */; };
@@ -41,6 +42,7 @@
 		060F834505056EF9ECFAC506 /* Pods-DbClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.debug.xcconfig"; sourceTree = "<group>"; };
 		336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.release.xcconfig"; sourceTree = "<group>"; };
 		7518E66A1DE8ED59001C452A /* DbConnectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbConnectViewModel.swift; sourceTree = "<group>"; };
+		7524525F1DFC5710009EACBE /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
 		7527B62E1DE98F9000E1B531 /* DbTablePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbTablePresenter.swift; sourceTree = "<group>"; };
 		7527E9841DDF9D75003925BE /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		7527E9861DDFAC48003925BE /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				75A7190A1DD8B72A00F93547 /* DbListView.xib */,
 				753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */,
 				75A7190C1DD8B73700F93547 /* DbListView.swift */,
+				7524525F1DFC5710009EACBE /* DisclosureButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				75F48C571DD914AB00FFB063 /* Person.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
+				752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
 				7527B62F1DE98F9000E1B531 /* DbTablePresenter.swift in Sources */,
 				7527E98D1DDFB64C003925BE /* Company.swift in Sources */,

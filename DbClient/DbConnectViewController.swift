@@ -22,6 +22,8 @@ enum Tables: String {
 
 class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	
+	@IBOutlet weak var tableViewLeading: NSLayoutConstraint!
+	@IBOutlet weak var tableViewTrailing: NSLayoutConstraint!
 	@IBOutlet weak var progressIndicator: NSProgressIndicator!
 	@IBOutlet weak var tableView: NSTableView!
 	@IBOutlet weak var childView: NSView!
@@ -40,7 +42,8 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	var tables: [Tables] = []
 	var queryTables: [Tables] = []
-	var dbTableVC: DbTableViewController!
+	var dbTableVC1: DbTableViewController!
+	var dbTableVC2: DbTableViewController!
 	let viewModel = DbConnectViewModel()
 
 	
@@ -59,15 +62,21 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	
 	func addDbTableAsChild() {
-		dbTableVC = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
-		addChildViewController(dbTableVC)
-		childView.addSubview(dbTableVC.view)
+		dbTableVC1 = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
+		addChildViewController(dbTableVC1)
+		childView.addSubview(dbTableVC1.view)
+		
+		dbTableVC2 = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
+		addChildViewController(dbTableVC2)
+		childView.addSubview(dbTableVC2.view)
 	}
 	
 	
 	override func viewDidLayout() {
 		super.viewDidLayout()
-		dbTableVC.view.frame = CGRect(origin: CGPoint.zero, size: childView.frame.size)
+		dbTableVC1.view.frame = CGRect(origin: CGPoint.zero, size: childView.frame.size)
+		
+		dbTableVC2.view.frame = CGRect(origin: CGPoint(x: childView.frame.size.width, y: 0), size: childView.frame.size)
 	}
 	
 	
@@ -112,22 +121,22 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func makeConnections() {
 		viewModel.connectUnitsWithItemsAndDocs { [weak self] in
-			self?.dbTableVC.tableView.reloadData()
+			self?.dbTableVC1.tableView.reloadData()
 		}
 		viewModel.connectCountriesAndPlaces { [weak self] in
-			self?.dbTableVC.tableView.reloadData()
+			self?.dbTableVC1.tableView.reloadData()
 		}
 		viewModel.connectPlacesAndPartners { [weak self] in
-			self?.dbTableVC.tableView.reloadData()
+			self?.dbTableVC1.tableView.reloadData()
 		}
 		viewModel.connectDocsWithPartnersAndPreviousDocs { [weak self] in
-			self?.dbTableVC.tableView.reloadData()
+			self?.dbTableVC1.tableView.reloadData()
 		}
 		viewModel.addPartnerPropertiesToPerson { [weak self] in
-			self?.dbTableVC.tableView.reloadData()
+			self?.dbTableVC1.tableView.reloadData()
 		}
 		viewModel.addPartnerPropertiesToCompany { [weak self] in
-			self?.dbTableVC.tableView.reloadData()
+			self?.dbTableVC1.tableView.reloadData()
 		}
 	}
 	
@@ -156,28 +165,29 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+		
 		switch tables[row] {
 		case .Item:
-			dbTableVC.items = items
+			dbTableVC1.items = items
 		case .Document:
-			dbTableVC.docs = docs
+			dbTableVC1.docs = docs
 		case .Country:
-			dbTableVC.countries = countries
+			dbTableVC1.countries = countries
 		case .Place:
-			dbTableVC.places = places
+			dbTableVC1.places = places
 		case .Person:
-			dbTableVC.people = people
+			dbTableVC1.people = people
 		case .Partner:
-			dbTableVC.partners = partners
+			dbTableVC1.partners = partners
 		case .Unit:
-			dbTableVC.units = units
+			dbTableVC1.units = units
 		case .Company:
-			dbTableVC.companies = companies
+			dbTableVC1.companies = companies
 		}
 		
-		dbTableVC.tableView.tableColumns.first?.title = tables[row].rawValue
-		dbTableVC.type = tables[row]
-		dbTableVC.tableView.reloadData()
+		dbTableVC1.tableView.tableColumns.first?.title = tables[row].rawValue
+		dbTableVC1.type = tables[row]
+		dbTableVC1.tableView.reloadData()
 		
 		return true
 	}

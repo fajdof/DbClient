@@ -687,9 +687,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="1002" horizontalPageScroll="10" verticalLineScroll="1002" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6G-DS-2Vf">
-                                <rect key="frame" x="0.0" y="0.0" width="140" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="270"/>
                                 <clipView key="contentView" id="UEO-9v-0ge">
-                                    <rect key="frame" x="1" y="0.0" width="138" height="269"/>
+                                    <rect key="frame" x="1" y="0.0" width="298" height="269"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="1000" headerView="HsQ-I2-Ok4" viewBased="YES" id="gB8-us-0gE">
@@ -717,12 +717,15 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="WHP-MF-M7X"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="NPI-Zr-V2E">
-                                    <rect key="frame" x="1" y="253" width="138" height="16"/>
+                                    <rect key="frame" x="1" y="253" width="298" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="oMk-Ca-m0d">
-                                    <rect key="frame" x="123" y="23" width="16" height="246"/>
+                                    <rect key="frame" x="283" y="23" width="16" height="246"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="HsQ-I2-Ok4">
@@ -731,7 +734,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="rux-7i-bJP">
-                                <rect key="frame" x="140" y="0.0" width="340" height="270"/>
+                                <rect key="frame" x="300" y="0.0" width="180" height="270"/>
                             </customView>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="8" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="IgA-FI-efP">
                                 <rect key="frame" x="215" y="110" width="50" height="50"/>
@@ -746,7 +749,6 @@
                             <constraint firstItem="a6G-DS-2Vf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="L9u-WO-JaQ"/>
                             <constraint firstItem="rux-7i-bJP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Le9-ma-F86"/>
                             <constraint firstItem="rux-7i-bJP" firstAttribute="leading" secondItem="a6G-DS-2Vf" secondAttribute="trailing" id="Mw5-eH-9N7"/>
-                            <constraint firstItem="rux-7i-bJP" firstAttribute="width" secondItem="a6G-DS-2Vf" secondAttribute="width" constant="200" id="XlA-P6-tCz"/>
                             <constraint firstAttribute="trailing" secondItem="rux-7i-bJP" secondAttribute="trailing" id="cdJ-2T-6I4"/>
                             <constraint firstItem="a6G-DS-2Vf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="gHE-64-0Up"/>
                             <constraint firstAttribute="bottom" secondItem="a6G-DS-2Vf" secondAttribute="bottom" id="o1M-hx-f00"/>
@@ -758,6 +760,8 @@
                         <outlet property="childView" destination="rux-7i-bJP" id="Gcp-lU-5WC"/>
                         <outlet property="progressIndicator" destination="IgA-FI-efP" id="Pp2-9t-uwC"/>
                         <outlet property="tableView" destination="gB8-us-0gE" id="9L4-RM-zdX"/>
+                        <outlet property="tableViewLeading" destination="L9u-WO-JaQ" id="Zpc-eo-gzY"/>
+                        <outlet property="tableViewTrailing" destination="Mw5-eH-9N7" id="oGW-VK-7km"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -836,15 +840,32 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w8j-FY-PcZ">
+                                <rect key="frame" x="-2" y="271" width="81" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="OxS-Ex-REt"/>
+                                    <constraint firstAttribute="width" constant="69" id="svS-8k-8Ou"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Nazad" bezelStyle="rounded" image="NSGoLeftTemplate" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="hfb-TQ-Qjo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="goBack:" target="0N0-pO-X5Z" id="Zwf-4Y-KUg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sbG-LB-QXF" firstAttribute="top" secondItem="IJh-gS-TFb" secondAttribute="top" id="4Hk-Lr-c6A"/>
                             <constraint firstAttribute="trailing" secondItem="sbG-LB-QXF" secondAttribute="trailing" id="99X-X7-Xez"/>
                             <constraint firstItem="sbG-LB-QXF" firstAttribute="leading" secondItem="IJh-gS-TFb" secondAttribute="leading" id="WLd-0b-xnk"/>
+                            <constraint firstItem="w8j-FY-PcZ" firstAttribute="leading" secondItem="IJh-gS-TFb" secondAttribute="leading" constant="4" id="oif-w6-Sfy"/>
                             <constraint firstAttribute="bottom" secondItem="sbG-LB-QXF" secondAttribute="bottom" id="qPS-Hk-UrC"/>
+                            <constraint firstItem="w8j-FY-PcZ" firstAttribute="top" secondItem="IJh-gS-TFb" secondAttribute="top" constant="1" id="s2a-4V-VF5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="w8j-FY-PcZ" id="nqh-bg-FEO"/>
                         <outlet property="tableView" destination="V2w-q9-Fqh" id="vST-zo-A1O"/>
                     </connections>
                 </viewController>
@@ -853,4 +874,7 @@
             <point key="canvasLocation" x="623" y="670"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSGoLeftTemplate" width="9" height="12"/>
+    </resources>
 </document>

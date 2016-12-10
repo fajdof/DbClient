@@ -14,6 +14,7 @@ import SwiftDate
 class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	
 	@IBOutlet weak var tableView: NSTableView!
+	@IBOutlet weak var backButton: NSButton!
 	
 	let dbItemView = "DbItemView"
 	let dbListView = "DbListView"
@@ -35,6 +36,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		tableView.delegate = self
 		tableView.register(NSNib(nibNamed: dbItemView, bundle: nil), forIdentifier: dbItemView)
 		tableView.register(NSNib(nibNamed: dbListView, bundle: nil), forIdentifier: dbListView)
+		backButton.isHidden = true
 	}
 	
 	
@@ -43,7 +45,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Item:
 			return 220
 		case .Document:
-			return 280
+			return 300
 		case .Country:
 			return 120
 		case .Place:
@@ -63,6 +65,13 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		
 		let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
+		
+		cellView.firstButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+		cellView.firstButton.target = self
+		cellView.secondButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+		cellView.secondButton.target = self
+		cellView.thirdButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+		cellView.thirdButton.target = self
 		
 		switch type! {
 		case .Item:
@@ -106,4 +115,81 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return companies.count
 		}
 	}
+	
+	
+	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+		
+		guard let parentVC = parent as? DbConnectViewController else {
+			return true
+		}
+		
+		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: parentVC.childView.frame.size.width/2, backButtonHidden: false, button: nil)
+		
+		return true
+	}
+	
+	
+	@IBAction func goBack(_ sender: NSButton) {
+		guard let parentVC = parent as? DbConnectViewController else {
+			return
+		}
+		
+		makeDirectionalAnimation(parentLeadingConstant: 0, dbTableVC2OriginX: parentVC.childView.frame.size.width, backButtonHidden: true, button: nil)
+	}
+	
+	
+	func makeDirectionalAnimation(parentLeadingConstant: CGFloat, dbTableVC2OriginX: CGFloat, backButtonHidden: Bool, button: DisclosureButton?) {
+		guard let parentVC = parent as? DbConnectViewController else {
+			return
+		}
+		
+		view.layoutSubtreeIfNeeded()
+		parentVC.tableViewLeading.constant = parentLeadingConstant
+		
+		NSAnimationContext.runAnimationGroup({ [weak self] (context) in
+			guard let `self` = self else { return }
+			context.duration = 0.25
+			context.allowsImplicitAnimation = true
+			parentVC.view.updateConstraints()
+			parentVC.view.layoutSubtreeIfNeeded()
+			parentVC.dbTableVC2.view.frame.origin.x = dbTableVC2OriginX
+			self.backButton.isHidden = backButtonHidden
+			}, completionHandler: { [weak self] in
+				guard let `self` = self else { return }
+				if let disclosureButton = button {
+					switch disclosureButton.type! {
+					case .Item:
+						parentVC.dbTableVC2.items = disclosureButton.items
+					case .Document:
+						parentVC.dbTableVC2.docs =  disclosureButton.docs
+					case .Country:
+						parentVC.dbTableVC2.countries =  disclosureButton.countries
+					case .Place:
+						parentVC.dbTableVC2.places =  disclosureButton.places
+					case .Person:
+						parentVC.dbTableVC2.people =  disclosureButton.people
+					case .Partner:
+						parentVC.dbTableVC2.partners =  disclosureButton.partners
+					case .Unit:
+						parentVC.dbTableVC2.units =  disclosureButton.units
+					case .Company:
+						parentVC.dbTableVC2.companies =  disclosureButton.companies
+					}
+					
+					parentVC.dbTableVC2.tableView.tableColumns.first?.title = disclosureButton.type.rawValue
+					parentVC.dbTableVC2.type = disclosureButton.type
+					parentVC.dbTableVC2.tableView.reloadData()
+				}
+		})
+	}
+	
+	
+	func disclosureButtonPressed(sender: DisclosureButton) {
+		guard let parentVC = parent as? DbConnectViewController else {
+			return
+		}
+		
+		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: parentVC.childView.frame.size.width/2, backButtonHidden: false, button: sender)
+	}
+	
 }
