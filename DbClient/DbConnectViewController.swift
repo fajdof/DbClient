@@ -203,7 +203,15 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		case .Person:
 			dbTableVC1.people = people
 		case .Partner:
-			dbTableVC1.partners = partners
+			dbTableVC1.partners = partners.map({ (partner) -> Partner in
+				if let company = self.viewModel.idsToCompanies[partner.partnerId!] {
+					return company
+				}
+				if let person = self.viewModel.idsToPeople[partner.partnerId!] {
+					return person
+				}
+				return partner
+			})
 		case .Unit:
 			dbTableVC1.units = units
 		case .Company:

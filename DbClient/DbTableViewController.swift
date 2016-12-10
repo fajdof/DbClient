@@ -53,7 +53,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Person:
 			return 320
 		case .Partner:
-			return 300
+			return 320
 		case .Unit:
 			return 240
 		case .Company:
@@ -96,6 +96,12 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Person:
 			return presenter.configurePersonView(personView: cellView, person: people[row], shouldAddButtons: shouldAddButtons)
 		case .Partner:
+			if let company = partners[row] as? Company {
+				return presenter.configureCompanyView(companyView: cellView, company: company, shouldAddButtons: shouldAddButtons)
+			}
+			if let person = partners[row] as? Person {
+				return presenter.configurePersonView(personView: cellView, person: person, shouldAddButtons: shouldAddButtons)
+			}
 			return presenter.configurePartnerView(partnerView: cellView, partner: partners[row], shouldAddButtons: shouldAddButtons)
 		case .Unit:
 			return presenter.configureUnitView(unitView: cellView, unit: units[row], shouldAddButtons: shouldAddButtons)
