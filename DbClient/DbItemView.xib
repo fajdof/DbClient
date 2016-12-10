@@ -23,10 +23,10 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="g4e-gK-rpH"/>
                 </imageView>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a57-p1-8PV">
-                    <rect key="frame" x="92" y="49" width="50" height="142"/>
+                    <rect key="frame" x="92" y="34.5" width="84" height="171"/>
                     <subviews>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3W9-or-9Xo">
-                            <rect key="frame" x="-2" y="125" width="54" height="17"/>
+                            <rect key="frame" x="-2" y="154" width="54" height="17"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="V06-rO-qDf">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -34,7 +34,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="D1M-K6-bgH">
-                            <rect key="frame" x="-2" y="100" width="54" height="17"/>
+                            <rect key="frame" x="-2" y="129" width="54" height="17"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="2qG-4o-cm5">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -42,7 +42,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BpB-mp-JxT">
-                            <rect key="frame" x="-2" y="75" width="54" height="17"/>
+                            <rect key="frame" x="-2" y="104" width="54" height="17"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="wBR-fk-6yi">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -50,7 +50,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TJ9-1i-sOj">
-                            <rect key="frame" x="-2" y="50" width="54" height="17"/>
+                            <rect key="frame" x="-2" y="79" width="54" height="17"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="6aG-la-l5v">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -58,7 +58,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Aix-oI-WNm">
-                            <rect key="frame" x="-2" y="25" width="54" height="17"/>
+                            <rect key="frame" x="-2" y="54" width="54" height="17"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="tUF-Hs-h3G">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -66,13 +66,23 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6Qg-IZ-b5y">
-                            <rect key="frame" x="-2" y="0.0" width="54" height="17"/>
+                            <rect key="frame" x="-2" y="29" width="54" height="17"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="jgZ-mg-fVH">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9bq-oy-I7O" customClass="DisclosureButton" customModule="DbClient" customModuleProvider="target">
+                            <rect key="frame" x="-6" y="-7" width="96" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="mjF-Gq-NIi"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSGoRightTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PdM-fr-oqH">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
                     </subviews>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -81,8 +91,10 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
@@ -103,6 +115,7 @@
                 <outlet property="ZULabel" destination="6Qg-IZ-b5y" id="cQV-qQ-05U"/>
                 <outlet property="codeLabel" destination="Aix-oI-WNm" id="fvn-uI-gZQ"/>
                 <outlet property="descLabel" destination="D1M-K6-bgH" id="zA0-Zv-6iP"/>
+                <outlet property="disclosureButton" destination="9bq-oy-I7O" id="yq5-uW-oav"/>
                 <outlet property="imageView" destination="j4N-LO-t2a" id="HGQ-Rs-ctV"/>
                 <outlet property="itemImageView" destination="j4N-LO-t2a" id="O0R-5j-nuv"/>
                 <outlet property="nameLabel" destination="3W9-or-9Xo" id="CCj-xc-Ngz"/>
@@ -114,5 +127,6 @@
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSGoRightTemplate" width="9" height="12"/>
     </resources>
 </document>

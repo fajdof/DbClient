@@ -43,26 +43,29 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch type! {
 		case .Item:
-			return 220
+			return 240
 		case .Document:
 			return 300
 		case .Country:
-			return 120
+			return 150
 		case .Place:
-			return 180
+			return 220
 		case .Person:
-			return 260
+			return 320
 		case .Partner:
-			return 200
+			return 300
 		case .Unit:
-			return 180
+			return 240
 		case .Company:
-			return 280
+			return 320
 		}
 	}
 	
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+		guard let parentVC = parent as? DbConnectViewController else {
+			return NSView()
+		}
 		
 		let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 		
@@ -73,24 +76,31 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		cellView.thirdButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
 		cellView.thirdButton.target = self
 		
+		var shouldAddButtons: Bool = true
+		if self == parentVC.dbTableVC2 {
+			shouldAddButtons = false
+		}
+		
 		switch type! {
 		case .Item:
 			let itemView = tableView.make(withIdentifier: dbItemView, owner: self) as! DbItemView
-			return presenter.configureItemView(itemView: itemView, item: items[row])
+			itemView.disclosureButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+			itemView.disclosureButton.target = self
+			return presenter.configureItemView(itemView: itemView, item: items[row], shouldAddButtons: shouldAddButtons)
 		case .Document:
-			return presenter.configureDocumentView(docView: cellView, doc: docs[row])
+			return presenter.configureDocumentView(docView: cellView, doc: docs[row], shouldAddButtons: shouldAddButtons)
 		case .Country:
-			return presenter.configureCountryView(countryView: cellView, country: countries[row])
+			return presenter.configureCountryView(countryView: cellView, country: countries[row], shouldAddButtons: shouldAddButtons)
 		case .Place:
-			return presenter.configurePlaceView(placeView: cellView, place: places[row])
+			return presenter.configurePlaceView(placeView: cellView, place: places[row], shouldAddButtons: shouldAddButtons)
 		case .Person:
-			return presenter.configurePersonView(personView: cellView, person: people[row])
+			return presenter.configurePersonView(personView: cellView, person: people[row], shouldAddButtons: shouldAddButtons)
 		case .Partner:
-			return presenter.configurePartnerView(partnerView: cellView, partner: partners[row])
+			return presenter.configurePartnerView(partnerView: cellView, partner: partners[row], shouldAddButtons: shouldAddButtons)
 		case .Unit:
-			return presenter.configureUnitView(unitView: cellView, unit: units[row])
+			return presenter.configureUnitView(unitView: cellView, unit: units[row], shouldAddButtons: shouldAddButtons)
 		case .Company:
-			return presenter.configureCompanyView(companyView: cellView, company: companies[row])
+			return presenter.configureCompanyView(companyView: cellView, company: companies[row], shouldAddButtons: shouldAddButtons)
 		}
 	}
 	
@@ -118,14 +128,16 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		
 		guard let parentVC = parent as? DbConnectViewController else {
 			return true
 		}
 		
-		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: parentVC.childView.frame.size.width/2, backButtonHidden: false, button: nil)
+		if self == parentVC.dbTableVC2 {
+			return true
+		} else {
+			return false
+		}
 		
-		return true
 	}
 	
 	
@@ -135,6 +147,15 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		}
 		
 		makeDirectionalAnimation(parentLeadingConstant: 0, dbTableVC2OriginX: parentVC.childView.frame.size.width, backButtonHidden: true, button: nil)
+	}
+	
+	
+	func disclosureButtonPressed(sender: DisclosureButton) {
+		guard let parentVC = parent as? DbConnectViewController else {
+			return
+		}
+		
+		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: parentVC.childView.frame.size.width/2, backButtonHidden: false, button: sender)
 	}
 	
 	
@@ -155,41 +176,54 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			parentVC.dbTableVC2.view.frame.origin.x = dbTableVC2OriginX
 			self.backButton.isHidden = backButtonHidden
 			}, completionHandler: { [weak self] in
-				guard let `self` = self else { return }
-				if let disclosureButton = button {
-					switch disclosureButton.type! {
-					case .Item:
-						parentVC.dbTableVC2.items = disclosureButton.items
-					case .Document:
-						parentVC.dbTableVC2.docs =  disclosureButton.docs
-					case .Country:
-						parentVC.dbTableVC2.countries =  disclosureButton.countries
-					case .Place:
-						parentVC.dbTableVC2.places =  disclosureButton.places
-					case .Person:
-						parentVC.dbTableVC2.people =  disclosureButton.people
-					case .Partner:
-						parentVC.dbTableVC2.partners =  disclosureButton.partners
-					case .Unit:
-						parentVC.dbTableVC2.units =  disclosureButton.units
-					case .Company:
-						parentVC.dbTableVC2.companies =  disclosureButton.companies
-					}
-					
-					parentVC.dbTableVC2.tableView.tableColumns.first?.title = disclosureButton.type.rawValue
-					parentVC.dbTableVC2.type = disclosureButton.type
-					parentVC.dbTableVC2.tableView.reloadData()
+				if backButtonHidden {
+					self?.emptyDbTableVC2(parentVC: parentVC)
 				}
+				self?.populateDbTableVC2(button: button, parentVC: parentVC)
 		})
 	}
 	
 	
-	func disclosureButtonPressed(sender: DisclosureButton) {
-		guard let parentVC = parent as? DbConnectViewController else {
-			return
+	func populateDbTableVC2(button: DisclosureButton?, parentVC: DbConnectViewController) {
+		if let disclosureButton = button {
+			switch disclosureButton.type! {
+			case .Item:
+				parentVC.dbTableVC2.items = disclosureButton.items
+			case .Document:
+				parentVC.dbTableVC2.docs =  disclosureButton.docs
+			case .Country:
+				parentVC.dbTableVC2.countries =  disclosureButton.countries
+			case .Place:
+				parentVC.dbTableVC2.places =  disclosureButton.places
+			case .Person:
+				parentVC.dbTableVC2.people =  disclosureButton.people
+			case .Partner:
+				parentVC.dbTableVC2.partners =  disclosureButton.partners
+			case .Unit:
+				parentVC.dbTableVC2.units =  disclosureButton.units
+			case .Company:
+				parentVC.dbTableVC2.companies =  disclosureButton.companies
+			}
+			
+			parentVC.dbTableVC2.tableView.tableColumns.first?.title = disclosureButton.type.rawValue
+			parentVC.dbTableVC2.type = disclosureButton.type
+			parentVC.dbTableVC2.tableView.reloadData()
 		}
+	}
+	
+	
+	func emptyDbTableVC2(parentVC: DbConnectViewController) {
 		
-		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: parentVC.childView.frame.size.width/2, backButtonHidden: false, button: sender)
+		parentVC.dbTableVC2.items = []
+		parentVC.dbTableVC2.docs = []
+		parentVC.dbTableVC2.countries = []
+		parentVC.dbTableVC2.places = []
+		parentVC.dbTableVC2.people = []
+		parentVC.dbTableVC2.partners = []
+		parentVC.dbTableVC2.units = []
+		parentVC.dbTableVC2.companies = []
+		
+		parentVC.dbTableVC2.tableView.reloadData()
 	}
 	
 }

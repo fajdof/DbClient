@@ -20,6 +20,23 @@ enum Tables: String {
 	case Company = "Tvrtka"
 }
 
+enum TablePlurals: String {
+	case Places = "Mjesta"
+	case Companies = "Tvrtke"
+	case Units = "Stavke"
+	case Documents = "Dokumenti"
+	case Partners = "Partneri"
+}
+
+enum Places: String {
+	case ShipmentPlace = "Mjesto isporuke"
+	case PartnerPlace = "Mjesto partnera"
+}
+
+enum DocBefore: String {
+	case Doc = "Prethodni dokument"
+}
+
 class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	
 	@IBOutlet weak var tableViewLeading: NSLayoutConstraint!

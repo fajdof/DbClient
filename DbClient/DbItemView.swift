@@ -11,6 +11,7 @@ import AppKit
 
 class DbItemView: NSTableCellView {
 	
+	@IBOutlet weak var disclosureButton: DisclosureButton!
 	@IBOutlet weak var unitLabel: NSTextField!
 	@IBOutlet weak var ZULabel: NSTextField!
 	@IBOutlet weak var codeLabel: NSTextField!

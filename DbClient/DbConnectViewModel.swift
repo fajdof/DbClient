@@ -31,6 +31,8 @@ class DbConnectViewModel {
 	var idsToPlaces: [Int: Place] = [:]
 	var idsToDocs: [Int: Document] = [:]
 	var idsToPartners: [Int: Partner] = [:]
+	var idsToCompanies: [Int: Company] = [:]
+	var idsToPeople: [Int: Person] = [:]
 	
 	var client: SQLClient?
 	
@@ -102,6 +104,9 @@ class DbConnectViewModel {
 		case .Person:
 			if let person = Person(JSON: row) {
 				people.append(person)
+				if let id = person.id {
+					idsToPeople[id] = person
+				}
 			}
 		case .Partner:
 			if let partner = Partner(JSON: row) {
@@ -117,6 +122,9 @@ class DbConnectViewModel {
 		case .Company:
 			if let company = Company(JSON: row) {
 				companies.append(company)
+				if let id = company.companyId {
+					idsToCompanies[id] = company
+				}
 			}
 		}
 	}
@@ -190,7 +198,12 @@ class DbConnectViewModel {
 			for doc in self.docs {
 				if let partnerId = doc.partnerId {
 					let partner = self.idsToPartners[partnerId]
-					doc.partner = partner
+					if let company = self.idsToCompanies[partnerId] {
+						doc.partner = company
+					}
+					if let person = self.idsToPeople[partnerId] {
+						doc.partner = person
+					}
 					partner?.docs.append(doc)
 				}
 				
