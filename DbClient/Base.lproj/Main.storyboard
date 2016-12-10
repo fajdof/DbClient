@@ -840,7 +840,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w8j-FY-PcZ">
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w8j-FY-PcZ">
                                 <rect key="frame" x="-2" y="271" width="81" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="OxS-Ex-REt"/>

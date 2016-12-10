@@ -155,7 +155,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return
 		}
 		
-		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: parentVC.childView.frame.size.width/2, backButtonHidden: false, button: sender)
+		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: self.view.window!.frame.size.width/2, backButtonHidden: false, button: sender)
 	}
 	
 	
@@ -174,12 +174,19 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			parentVC.view.updateConstraints()
 			parentVC.view.layoutSubtreeIfNeeded()
 			parentVC.dbTableVC2.view.frame.origin.x = dbTableVC2OriginX
+			if backButtonHidden {
+				self.view.frame.size.width = self.view.window!.frame.size.width - 300
+			} else {
+				self.view.frame.size.width = self.view.window!.frame.size.width/2
+			}
 			self.backButton.isHidden = backButtonHidden
 			}, completionHandler: { [weak self] in
+				
+				self?.populateDbTableVC2(button: button, parentVC: parentVC)
+				
 				if backButtonHidden {
 					self?.emptyDbTableVC2(parentVC: parentVC)
 				}
-				self?.populateDbTableVC2(button: button, parentVC: parentVC)
 		})
 	}
 	

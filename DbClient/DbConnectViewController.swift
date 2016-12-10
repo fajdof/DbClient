@@ -92,8 +92,16 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	override func viewDidLayout() {
 		super.viewDidLayout()
 		dbTableVC1.view.frame = CGRect(origin: CGPoint.zero, size: childView.frame.size)
+		dbTableVC1.tableView.reloadData()
+		if dbTableVC1.backButton.isHidden == false {
+			dbTableVC1.view.frame.size.width = self.view.window!.frame.size.width/2
+		}
 		
-		dbTableVC2.view.frame = CGRect(origin: CGPoint(x: childView.frame.size.width, y: 0), size: childView.frame.size)
+		if dbTableVC1.backButton.isHidden == true {
+			dbTableVC2.view.frame = CGRect(origin: CGPoint(x: childView.frame.size.width, y: 0), size: childView.frame.size)
+		} else {
+			dbTableVC2.view.frame = CGRect(origin: CGPoint(x: childView.frame.size.width/2, y: 0), size: childView.frame.size)
+		}
 	}
 	
 	
@@ -205,6 +213,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		dbTableVC1.tableView.tableColumns.first?.title = tables[row].rawValue
 		dbTableVC1.type = tables[row]
 		dbTableVC1.tableView.reloadData()
+		dbTableVC1.tableView.scrollRowToVisible(0)
 		
 		return true
 	}
