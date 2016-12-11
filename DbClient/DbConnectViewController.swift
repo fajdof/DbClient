@@ -74,11 +74,11 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		
 		executeQueries()
 		
-		addDbTableAsChild()
+		addDbTablesAsChildren()
 	}
 	
 	
-	func addDbTableAsChild() {
+	func addDbTablesAsChildren() {
 		dbTableVC1 = storyboard?.instantiateController(withIdentifier: dbTableViewController) as! DbTableViewController
 		addChildViewController(dbTableVC1)
 		childView.addSubview(dbTableVC1.view)
