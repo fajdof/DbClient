@@ -29,6 +29,9 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	var type: Tables! = Tables.Item
 	let presenter = DbTablePresenter()
 	
+	let offset = 20
+	var currentOffset: Int = 0
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -37,6 +40,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		tableView.register(NSNib(nibNamed: dbItemView, bundle: nil), forIdentifier: dbItemView)
 		tableView.register(NSNib(nibNamed: dbListView, bundle: nil), forIdentifier: dbListView)
 		backButton.isHidden = true
+		currentOffset = offset
 	}
 	
 	
@@ -114,21 +118,21 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		switch type! {
 		case .Item:
-			return items.count
+			return items.count < currentOffset ? items.count : currentOffset
 		case .Document:
-			return docs.count
+			return docs.count < currentOffset ? docs.count : currentOffset
 		case .Country:
-			return countries.count
+			return countries.count < currentOffset ? countries.count : currentOffset
 		case .Place:
-			return places.count
+			return places.count < currentOffset ? places.count : currentOffset
 		case .Person:
-			return people.count
+			return people.count < currentOffset ? people.count : currentOffset
 		case .Partner:
-			return partners.count
+			return partners.count < currentOffset ? partners.count : currentOffset
 		case .Unit:
-			return units.count
+			return units.count < currentOffset ? units.count : currentOffset
 		case .Company:
-			return companies.count
+			return companies.count < currentOffset ? companies.count : currentOffset
 		}
 	}
 	
@@ -144,6 +148,14 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return false
 		}
 		
+	}
+	
+	
+	func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
+		if row > currentOffset - offset/2 {
+			currentOffset = currentOffset + offset
+			tableView.reloadData()
+		}
 	}
 	
 	
@@ -236,6 +248,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		parentVC.dbTableVC2.units = []
 		parentVC.dbTableVC2.companies = []
 		
+		parentVC.dbTableVC2.currentOffset = 20
 		parentVC.dbTableVC2.tableView.reloadData()
 	}
 	

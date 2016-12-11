@@ -220,6 +220,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		
 		dbTableVC1.tableView.tableColumns.first?.title = tables[row].rawValue
 		dbTableVC1.type = tables[row]
+		dbTableVC1.currentOffset = 20
 		dbTableVC1.tableView.reloadData()
 		dbTableVC1.tableView.scrollRowToVisible(0)
 		

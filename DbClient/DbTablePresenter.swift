@@ -208,6 +208,8 @@ class DbTablePresenter {
 	func configurePartnerView(partnerView: DbListView, partner: Partner, shouldAddButtons: Bool) -> DbListView {
 		
 		unhideAllLabels(cellView: partnerView)
+		unhideAllButtons(cellView: partnerView)
+		
 		partnerView.firstLabel.addAttributedString(Partner.Attributes.partnerAddress, dataString: partner.partnerAddress)
 		partnerView.secondLabel.addAttributedString(Partner.Attributes.partnerAddressId, dataString: partner.partnerAddressId?.description)
 		partnerView.thirdLabel.addAttributedString(Partner.Attributes.shipmentAddress, dataString: partner.shipmentAddress)
@@ -250,6 +252,8 @@ class DbTablePresenter {
 	func configureUnitView(unitView: DbListView, unit: Unit, shouldAddButtons: Bool) -> DbListView {
 		
 		unhideAllLabels(cellView: unitView)
+		unhideAllButtons(cellView: unitView)
+		
 		unitView.firstLabel.addAttributedString(Unit.Attributes.docId, dataString: unit.docId?.description)
 		unitView.secondLabel.addAttributedString(Unit.Attributes.unitId, dataString: unit.unitId?.description)
 		unitView.thirdLabel.addAttributedString(Unit.Attributes.itemPrice, dataString: unit.itemPrice?.description)
@@ -268,9 +272,9 @@ class DbTablePresenter {
 				unitView.firstButton.isHidden = true
 			}
 			if let item = unit.item {
-				unitView.firstButton.title = Tables.Item.rawValue
-				unitView.firstButton.type = Tables.Item
-				unitView.firstButton.items = [item]
+				unitView.secondButton.title = Tables.Item.rawValue
+				unitView.secondButton.type = Tables.Item
+				unitView.secondButton.items = [item]
 			} else {
 				unitView.secondButton.isHidden = true
 			}
