@@ -11,6 +11,10 @@ import Cocoa
 
 
 class DbTablePresenter {
+    
+    func toggleAddButton(button: NSButton, hidden: Bool) {
+        button.isHidden = hidden
+    }
 	
 	func configureItemView(itemView: DbItemView, item: Item, shouldAddButtons: Bool) -> DbItemView {
 		

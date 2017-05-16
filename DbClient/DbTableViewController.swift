@@ -15,6 +15,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	@IBOutlet weak var tableView: NSTableView!
 	@IBOutlet weak var backButton: NSButton!
+    @IBOutlet weak var addButton: NSButton!
 	
 	let dbItemView = "DbItemView"
 	let dbListView = "DbListView"
@@ -41,6 +42,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		tableView.register(NSNib(nibNamed: dbListView, bundle: nil), forIdentifier: dbListView)
 		backButton.isHidden = true
 		currentOffset = offset
+        
+        presenter.toggleAddButton(button: addButton, hidden: true)
 	}
 	
 	
@@ -138,15 +141,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		guard let parentVC = parent as? DbConnectViewController else {
-			return true
-		}
 		
-		if self == parentVC.dbTableVC2 {
-			return true
-		} else {
-			return false
-		}
+        return true
 		
 	}
 	
@@ -157,7 +153,24 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			tableView.reloadData()
 		}
 	}
-	
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+        let deleteAction = NSTableViewRowAction(style: .destructive, title: "Izbriši") { (action, row) in
+            print("deleted")
+        }
+        let editAction = NSTableViewRowAction(style: .regular, title: "Uredi") { (action, row) in
+            print("save")
+        }
+        let addAction = NSTableViewRowAction(style: .regular, title: "Dodaj stavku") { (action, row) in
+            print("add")
+        }
+        addAction.backgroundColor = NSColor.green
+        
+        return [addAction, editAction, deleteAction]
+    }
+    
+    func tableView(_ tableView: NSTableView, shouldEdit tableColumn: NSTableColumn?, row: Int) -> Bool {
+        return true
+    }
 	
 	@IBAction func goBack(_ sender: NSButton) {
 		guard let parentVC = parent as? DbConnectViewController else {

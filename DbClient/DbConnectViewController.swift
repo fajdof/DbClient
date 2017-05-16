@@ -223,6 +223,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		dbTableVC1.currentOffset = 20
 		dbTableVC1.tableView.reloadData()
 		dbTableVC1.tableView.scrollRowToVisible(0)
+        dbTableVC1.presenter.toggleAddButton(button: dbTableVC1.addButton, hidden: false)
 		
 		return true
 	}

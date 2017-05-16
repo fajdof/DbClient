@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -775,11 +775,11 @@
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="1002" horizontalPageScroll="10" verticalLineScroll="1002" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-LB-QXF">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                                <clipView key="contentView" id="lBP-uz-GYa">
+                                <clipView key="contentView" drawsBackground="NO" id="lBP-uz-GYa">
                                     <rect key="frame" x="1" y="0.0" width="448" height="299"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="1000" headerView="JkE-co-wj8" viewBased="YES" id="V2w-q9-Fqh">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="1000" headerView="JkE-co-wj8" viewBased="YES" id="V2w-q9-Fqh">
                                             <rect key="frame" x="0.0" y="0.0" width="503" height="276"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -804,7 +804,7 @@
                                                             <rect key="frame" x="1" y="1" width="500" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="08w-sC-RN0">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08w-sC-RN0">
                                                                     <rect key="frame" x="0.0" y="0.0" width="500" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="YHC-Ee-iNi">
@@ -823,6 +823,7 @@
                                             </tableColumns>
                                         </tableView>
                                     </subviews>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="8DM-Nh-BNs">
                                     <rect key="frame" x="1" y="283" width="448" height="16"/>
@@ -851,17 +852,31 @@
                                     <action selector="goBack:" target="0N0-pO-X5Z" id="Zwf-4Y-KUg"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kk7-SR-fVB">
+                                <rect key="frame" x="139" y="271" width="112" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="TiN-QE-ySd"/>
+                                    <constraint firstAttribute="width" constant="100" id="jqk-gN-dQy"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Dodaj" bezelStyle="rounded" image="NSAddTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hYd-zf-Ogr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sbG-LB-QXF" firstAttribute="top" secondItem="IJh-gS-TFb" secondAttribute="top" id="4Hk-Lr-c6A"/>
                             <constraint firstAttribute="trailing" secondItem="sbG-LB-QXF" secondAttribute="trailing" id="99X-X7-Xez"/>
+                            <constraint firstItem="Kk7-SR-fVB" firstAttribute="leading" secondItem="w8j-FY-PcZ" secondAttribute="trailing" constant="72" id="LZU-ik-kFr"/>
                             <constraint firstItem="sbG-LB-QXF" firstAttribute="leading" secondItem="IJh-gS-TFb" secondAttribute="leading" id="WLd-0b-xnk"/>
+                            <constraint firstItem="Kk7-SR-fVB" firstAttribute="top" secondItem="IJh-gS-TFb" secondAttribute="top" constant="1" id="l7l-LG-Xze"/>
                             <constraint firstItem="w8j-FY-PcZ" firstAttribute="leading" secondItem="IJh-gS-TFb" secondAttribute="leading" constant="4" id="oif-w6-Sfy"/>
                             <constraint firstAttribute="bottom" secondItem="sbG-LB-QXF" secondAttribute="bottom" id="qPS-Hk-UrC"/>
                             <constraint firstItem="w8j-FY-PcZ" firstAttribute="top" secondItem="IJh-gS-TFb" secondAttribute="top" constant="1" id="s2a-4V-VF5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="Kk7-SR-fVB" id="S2l-ZC-YfK"/>
                         <outlet property="backButton" destination="w8j-FY-PcZ" id="nqh-bg-FEO"/>
                         <outlet property="tableView" destination="V2w-q9-Fqh" id="vST-zo-A1O"/>
                     </connections>
@@ -872,6 +887,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
     </resources>
 </document>
