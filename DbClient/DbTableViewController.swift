@@ -196,19 +196,22 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
     
     
     func editPressed(sender: NSButton) {
-        let editVC = storyboard?.instantiateController(withIdentifier: "EditViewController") as! EditViewController
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let editVC = modalStoryboard.instantiateController(withIdentifier: "EditViewController") as! EditViewController
         presentViewControllerAsModalWindow(editVC)
     }
     
     
     func deletePressed(sender: NSButton) {
-        let editVC = storyboard?.instantiateController(withIdentifier: "EditViewController") as! EditViewController
-        presentViewControllerAsModalWindow(editVC)
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let confirmVC = modalStoryboard.instantiateController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+        presentViewControllerAsModalWindow(confirmVC)
     }
     
     
     func addPressed(sender: NSButton) {
-        let editVC = storyboard?.instantiateController(withIdentifier: "EditViewController") as! EditViewController
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let editVC = modalStoryboard.instantiateController(withIdentifier: "EditViewController") as! EditViewController
         presentViewControllerAsModalWindow(editVC)
     }
 	
