@@ -4,6 +4,7 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -884,6 +885,362 @@
                 <customObject id="reL-bW-5Em" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="623" y="670"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="9S0-U5-wtc">
+            <objects>
+                <windowController id="9bu-yX-cpr" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="KuL-c2-dQU">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                    </window>
+                    <connections>
+                        <segue destination="gXl-eJ-QgH" kind="relationship" relationship="window.shadowedContentViewController" id="qdE-MK-aD2"/>
+                    </connections>
+                </windowController>
+                <customObject id="aAm-bh-t4F" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1115" y="798"/>
+        </scene>
+        <!--Edit View Controller-->
+        <scene sceneID="3H3-n5-mjP">
+            <objects>
+                <viewController storyboardIdentifier="EditViewController" id="gXl-eJ-QgH" customClass="EditViewController" customModule="DbClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="0Y1-zU-Dx7">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="456"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fillProportionally" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J81-Gq-wRM">
+                                <rect key="frame" x="0.0" y="64" width="480" height="376"/>
+                                <subviews>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tKh-pk-e1q">
+                                        <rect key="frame" x="16" y="336" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dP-lV-E8G">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="Sme-MT-J8m">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5f-ZY-haj">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="65P-iH-w3b">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="COL-i4-ITY"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCS-bF-YcU">
+                                        <rect key="frame" x="16" y="288" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-fB-yXt">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="N45-na-0N8">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-Cq-9Cg">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="aWy-I7-8S2">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="FL6-pu-WC8"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kfz-K0-qXs">
+                                        <rect key="frame" x="16" y="240" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqo-6K-clR">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="3qj-kD-25n">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7n-pJ-0b5">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="sDg-bZ-G2c">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="cxL-of-htr"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OA2-gx-8pl">
+                                        <rect key="frame" x="16" y="192" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B87-j3-OZK">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="g0a-Ln-9JX">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiU-dw-ejZ">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="lSM-Yd-omf">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="xKl-vZ-3n8"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-jP-EvW">
+                                        <rect key="frame" x="16" y="144" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-xh-KDK">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="Sb1-Pj-koV">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQ2-Qj-3dA">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="tZU-nJ-6Ar">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="iLe-yr-57L"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6G-18-V0C">
+                                        <rect key="frame" x="16" y="96" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwA-65-fp4">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="Pw9-b8-94A">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehd-Vk-gdS">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="5n6-hc-zHg">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lLI-Vu-dag">
+                                        <rect key="frame" x="16" y="48" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhi-Ai-cFb">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="ef5-el-p9F">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpU-Jy-19k">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="dMP-IR-txJ">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSs-Di-vpU">
+                                        <rect key="frame" x="16" y="0.0" width="448" height="40"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZF-oe-hAl">
+                                                <rect key="frame" x="-2" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="sD1-FL-zag">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJY-Rb-OO2">
+                                                <rect key="frame" x="226" y="11.5" width="224" height="17"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="tE0-wG-qmF">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="9QS-hO-JAT"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="t6G-18-V0C" firstAttribute="height" secondItem="tKh-pk-e1q" secondAttribute="height" id="0vl-UD-yEx"/>
+                                    <constraint firstAttribute="trailing" secondItem="kfz-K0-qXs" secondAttribute="trailing" constant="16" id="1Dx-IU-1a0"/>
+                                    <constraint firstItem="OA2-gx-8pl" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="3Wy-0L-lGp"/>
+                                    <constraint firstAttribute="trailing" secondItem="lLI-Vu-dag" secondAttribute="trailing" constant="16" id="9jl-3G-hEx"/>
+                                    <constraint firstItem="PCS-bF-YcU" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="CjZ-Bo-lZK"/>
+                                    <constraint firstItem="t6G-18-V0C" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="EEA-bB-nn2"/>
+                                    <constraint firstItem="OA2-gx-8pl" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="Em1-ni-fzq"/>
+                                    <constraint firstItem="t6G-18-V0C" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="JpX-yn-NJH"/>
+                                    <constraint firstAttribute="trailing" secondItem="PCS-bF-YcU" secondAttribute="trailing" constant="16" id="Jro-cq-Dok"/>
+                                    <constraint firstAttribute="trailing" secondItem="t6G-18-V0C" secondAttribute="trailing" constant="16" id="LCe-PP-4UA"/>
+                                    <constraint firstItem="tKh-pk-e1q" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="ORL-8q-HRu"/>
+                                    <constraint firstAttribute="trailing" secondItem="6ww-jP-EvW" secondAttribute="trailing" constant="16" id="OzX-Ih-9h4"/>
+                                    <constraint firstAttribute="trailing" secondItem="tKh-pk-e1q" secondAttribute="trailing" constant="16" id="PbV-gQ-8i9"/>
+                                    <constraint firstItem="kSs-Di-vpU" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="QJ2-gm-XsT"/>
+                                    <constraint firstItem="PCS-bF-YcU" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="QSk-vR-Oie"/>
+                                    <constraint firstItem="tKh-pk-e1q" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="TZr-Wv-Yvm"/>
+                                    <constraint firstItem="kfz-K0-qXs" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="Vi8-TE-ChG"/>
+                                    <constraint firstItem="kfz-K0-qXs" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="WT1-PP-HN2"/>
+                                    <constraint firstAttribute="trailing" secondItem="kSs-Di-vpU" secondAttribute="trailing" constant="16" id="Xig-4v-uQa"/>
+                                    <constraint firstItem="tKh-pk-e1q" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="bsl-dw-ht3"/>
+                                    <constraint firstAttribute="trailing" secondItem="OA2-gx-8pl" secondAttribute="trailing" constant="16" id="dDI-uz-Ptt"/>
+                                    <constraint firstItem="kSs-Di-vpU" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="eu2-Tt-r3Z"/>
+                                    <constraint firstItem="6ww-jP-EvW" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="ezz-Ag-mb4"/>
+                                    <constraint firstItem="lLI-Vu-dag" firstAttribute="height" secondItem="tKh-pk-e1q" secondAttribute="height" id="i6h-4A-qfb"/>
+                                    <constraint firstItem="lLI-Vu-dag" firstAttribute="leading" secondItem="J81-Gq-wRM" secondAttribute="leading" constant="16" id="mcs-sb-vwW"/>
+                                    <constraint firstItem="lLI-Vu-dag" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="sPw-LX-efm"/>
+                                    <constraint firstItem="6ww-jP-EvW" firstAttribute="centerX" secondItem="J81-Gq-wRM" secondAttribute="centerX" id="xYe-F0-toA"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gZX-Sg-1kg">
+                                <rect key="frame" x="184.5" y="17" width="112" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="ZpL-OB-YGB"/>
+                                    <constraint firstAttribute="width" constant="100" id="gna-tu-QGr"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Spremi" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hh7-QR-7yB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="J81-Gq-wRM" secondAttribute="trailing" id="3m9-7w-25M"/>
+                            <constraint firstItem="gZX-Sg-1kg" firstAttribute="centerX" secondItem="0Y1-zU-Dx7" secondAttribute="centerX" id="WGg-gw-QPI"/>
+                            <constraint firstAttribute="bottom" secondItem="gZX-Sg-1kg" secondAttribute="bottom" constant="24" id="byN-uL-sUL"/>
+                            <constraint firstItem="gZX-Sg-1kg" firstAttribute="top" secondItem="J81-Gq-wRM" secondAttribute="bottom" constant="16" id="k6C-2e-raE"/>
+                            <constraint firstItem="J81-Gq-wRM" firstAttribute="top" secondItem="0Y1-zU-Dx7" secondAttribute="top" constant="16" id="oz3-UG-yM7"/>
+                            <constraint firstItem="J81-Gq-wRM" firstAttribute="leading" secondItem="0Y1-zU-Dx7" secondAttribute="leading" id="u5o-nY-CgA"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="Wcq-Wh-O8y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="791"/>
         </scene>
     </scenes>
     <resources>

@@ -123,7 +123,7 @@
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLK-d2-Zl7">
                             <rect key="frame" x="-6" y="67" width="112" height="32"/>
-                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSTrashEmpty" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tJF-98-YjY">
+                            <buttonCell key="cell" type="push" title="Izbriši" bezelStyle="rounded" image="NSTrashEmpty" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tJF-98-YjY">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -133,7 +133,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="nHO-CO-otR"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSIconViewTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="k7Z-pU-cP3">
+                            <buttonCell key="cell" type="push" title="Uredi" bezelStyle="rounded" image="NSIconViewTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="k7Z-pU-cP3">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -143,7 +143,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="bdF-Ur-mFe"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSAddTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zo1-6m-yG1">
+                            <buttonCell key="cell" type="push" title="Dodaj" bezelStyle="rounded" image="NSAddTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zo1-6m-yG1">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -180,9 +180,12 @@
             </constraints>
             <connections>
                 <outlet property="ZULabel" destination="6Qg-IZ-b5y" id="cQV-qQ-05U"/>
+                <outlet property="addButton" destination="Elc-HX-B2O" id="LeZ-IN-3Mp"/>
                 <outlet property="codeLabel" destination="Aix-oI-WNm" id="fvn-uI-gZQ"/>
+                <outlet property="deleteButton" destination="SLK-d2-Zl7" id="AjG-ef-hUa"/>
                 <outlet property="descLabel" destination="D1M-K6-bgH" id="zA0-Zv-6iP"/>
                 <outlet property="disclosureButton" destination="9bq-oy-I7O" id="yq5-uW-oav"/>
+                <outlet property="editButton" destination="fCE-ah-H6W" id="SUU-cm-efD"/>
                 <outlet property="imageView" destination="j4N-LO-t2a" id="HGQ-Rs-ctV"/>
                 <outlet property="itemImageView" destination="j4N-LO-t2a" id="O0R-5j-nuv"/>
                 <outlet property="nameLabel" destination="3W9-or-9Xo" id="CCj-xc-Ngz"/>

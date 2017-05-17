@@ -11,6 +11,9 @@ import AppKit
 
 class DbItemView: NSTableCellView {
 	
+    @IBOutlet weak var addButton: NSButton!
+    @IBOutlet weak var editButton: NSButton!
+    @IBOutlet weak var deleteButton: NSButton!
 	@IBOutlet weak var disclosureButton: DisclosureButton!
 	@IBOutlet weak var unitLabel: NSTextField!
 	@IBOutlet weak var ZULabel: NSTextField!

@@ -76,12 +76,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		
 		let cellView = tableView.make(withIdentifier: dbListView, owner: self) as! DbListView
 		
-		cellView.firstButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
-		cellView.firstButton.target = self
-		cellView.secondButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
-		cellView.secondButton.target = self
-		cellView.thirdButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
-		cellView.thirdButton.target = self
+		connectButtons(cellView: cellView)
 		
 		var shouldAddButtons: Bool = true
 		if self == parentVC.dbTableVC2 {
@@ -91,8 +86,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		switch type! {
 		case .Item:
 			let itemView = tableView.make(withIdentifier: dbItemView, owner: self) as! DbItemView
-			itemView.disclosureButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
-			itemView.disclosureButton.target = self
+			connectItemButtons(itemView: itemView)
 			return presenter.configureItemView(itemView: itemView, item: items[row], shouldAddButtons: shouldAddButtons)
 		case .Document:
 			return presenter.configureDocumentView(docView: cellView, doc: docs[row], shouldAddButtons: shouldAddButtons)
@@ -116,6 +110,34 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			return presenter.configureCompanyView(companyView: cellView, company: companies[row], shouldAddButtons: shouldAddButtons)
 		}
 	}
+    
+    
+    func connectButtons(cellView: DbListView) {
+        cellView.firstButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+        cellView.firstButton.target = self
+        cellView.secondButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+        cellView.secondButton.target = self
+        cellView.thirdButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+        cellView.thirdButton.target = self
+        cellView.editButton.action = #selector(DbTableViewController.editPressed(sender:))
+        cellView.editButton.target = self
+        cellView.deleteButton.action = #selector(DbTableViewController.deletePressed(sender:))
+        cellView.deleteButton.target = self
+        cellView.addButton.action = #selector(DbTableViewController.addPressed(sender:))
+        cellView.addButton.target = self
+    }
+    
+    
+    func connectItemButtons(itemView: DbItemView) {
+        itemView.disclosureButton.action = #selector(DbTableViewController.disclosureButtonPressed(sender:))
+        itemView.disclosureButton.target = self
+        itemView.editButton.action = #selector(DbTableViewController.editPressed(sender:))
+        itemView.editButton.target = self
+        itemView.deleteButton.action = #selector(DbTableViewController.deletePressed(sender:))
+        itemView.deleteButton.target = self
+        itemView.addButton.action = #selector(DbTableViewController.addPressed(sender:))
+        itemView.addButton.target = self
+    }
 	
 	
 	func numberOfRows(in tableView: NSTableView) -> Int {
@@ -153,24 +175,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			tableView.reloadData()
 		}
 	}
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
-        let deleteAction = NSTableViewRowAction(style: .destructive, title: "Izbriši") { (action, row) in
-            print("deleted")
-        }
-        let editAction = NSTableViewRowAction(style: .regular, title: "Uredi") { (action, row) in
-            print("save")
-        }
-        let addAction = NSTableViewRowAction(style: .regular, title: "Dodaj stavku") { (action, row) in
-            print("add")
-        }
-        addAction.backgroundColor = NSColor.green
-        
-        return [addAction, editAction, deleteAction]
-    }
     
-    func tableView(_ tableView: NSTableView, shouldEdit tableColumn: NSTableColumn?, row: Int) -> Bool {
-        return true
-    }
 	
 	@IBAction func goBack(_ sender: NSButton) {
 		guard let parentVC = parent as? DbConnectViewController else {
@@ -188,6 +193,24 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		
 		makeDirectionalAnimation(parentLeadingConstant: -parentVC.tableView.frame.size.width, dbTableVC2OriginX: self.view.window!.frame.size.width/2, backButtonHidden: false, button: sender)
 	}
+    
+    
+    func editPressed(sender: NSButton) {
+        let editVC = storyboard?.instantiateController(withIdentifier: "EditViewController") as! EditViewController
+        presentViewControllerAsModalWindow(editVC)
+    }
+    
+    
+    func deletePressed(sender: NSButton) {
+        let editVC = storyboard?.instantiateController(withIdentifier: "EditViewController") as! EditViewController
+        presentViewControllerAsModalWindow(editVC)
+    }
+    
+    
+    func addPressed(sender: NSButton) {
+        let editVC = storyboard?.instantiateController(withIdentifier: "EditViewController") as! EditViewController
+        presentViewControllerAsModalWindow(editVC)
+    }
 	
 	
 	func makeDirectionalAnimation(parentLeadingConstant: CGFloat, dbTableVC2OriginX: CGFloat, backButtonHidden: Bool, button: DisclosureButton?) {
