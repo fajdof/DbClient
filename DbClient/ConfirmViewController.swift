@@ -12,6 +12,9 @@ import Cocoa
 
 class ConfirmViewController: NSViewController {
     
+    @IBOutlet weak var confirmLabel: NSTextField!
+    @IBOutlet weak var yesButton: NSButton!
+    @IBOutlet weak var noButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

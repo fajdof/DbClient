@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750242FE1ECF122100C1326A /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750242FD1ECF122100C1326A /* EditButton.swift */; };
+		750243001ECF1D1200C1326A /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750242FF1ECF1D1200C1326A /* EditPresenter.swift */; };
 		750434651ECC31A800A13176 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750434641ECC31A800A13176 /* EditViewController.swift */; };
 		7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750434691ECC47D400A13176 /* Modal.storyboard */; };
 		7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504346C1ECC497200A13176 /* ConfirmViewController.swift */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		060F834505056EF9ECFAC506 /* Pods-DbClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.debug.xcconfig"; sourceTree = "<group>"; };
 		336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.release.xcconfig"; sourceTree = "<group>"; };
+		750242FD1ECF122100C1326A /* EditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		750242FF1ECF1D1200C1326A /* EditPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
 		750434641ECC31A800A13176 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		750434691ECC47D400A13176 /* Modal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		7504346C1ECC497200A13176 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				750434641ECC31A800A13176 /* EditViewController.swift */,
+				750242FF1ECF1D1200C1326A /* EditPresenter.swift */,
 			);
 			name = EditScene;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 				753D6EE21DD72FFF0027EDA7 /* DbItemView.swift */,
 				75A7190C1DD8B73700F93547 /* DbListView.swift */,
 				7524525F1DFC5710009EACBE /* DisclosureButton.swift */,
+				750242FD1ECF122100C1326A /* EditButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -389,7 +395,9 @@
 				750434651ECC31A800A13176 /* EditViewController.swift in Sources */,
 				75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */,
 				75F48C551DD910DA00FFB063 /* Place.swift in Sources */,
+				750242FE1ECF122100C1326A /* EditButton.swift in Sources */,
 				7527E9851DDF9D75003925BE /* Partner.swift in Sources */,
+				750243001ECF1D1200C1326A /* EditPresenter.swift in Sources */,
 				75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */,
 				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
 				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,

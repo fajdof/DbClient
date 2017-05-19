@@ -121,14 +121,14 @@
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Gs-Jx-mhP">
                     <rect key="frame" x="16" y="72" width="100" height="95"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLK-d2-Zl7">
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLK-d2-Zl7" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
                             <rect key="frame" x="-6" y="67" width="112" height="32"/>
                             <buttonCell key="cell" type="push" title="Izbriši" bezelStyle="rounded" image="NSTrashEmpty" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tJF-98-YjY">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fCE-ah-H6W">
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fCE-ah-H6W" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
                             <rect key="frame" x="-6" y="30" width="112" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="nHO-CO-otR"/>
@@ -138,7 +138,7 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Elc-HX-B2O">
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Elc-HX-B2O" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
                             <rect key="frame" x="-6" y="-7" width="112" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="bdF-Ur-mFe"/>
