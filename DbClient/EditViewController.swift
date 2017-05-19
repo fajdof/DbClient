@@ -58,9 +58,34 @@ class EditViewController: NSViewController {
         
         switch originButton.type! {
         case .Item:
-            let item = originButton.item
-            presenter.configureWithItem(item: item)
-        default:
+            if let item = originButton.item {
+                presenter.configureWithItem(item: item)
+            }
+        case .Company:
+            if let company = originButton.company {
+                presenter.configureWithCompany(company: company)
+            }
+        case .Country:
+            if let country = originButton.country {
+                self.presenter.configureWithCountry(country: country)
+            }
+        case .Person:
+            if let person = originButton.person {
+                self.presenter.configureWithPerson(person: person)
+            }
+        case .Document:
+            if let document = originButton.doc {
+                self.presenter.configureWithDocument(doc: document)
+            }
+        case .Place:
+            if let place = originButton.place {
+                self.presenter.configureWithPlace(place: place)
+            }
+        case .Unit:
+            if let unit = originButton.unit {
+                self.presenter.configureWithUnit(unit: unit)
+            }
+        case .Partner:
             break
         }
     }
