@@ -100,11 +100,47 @@ class EditPresenter {
     }
     
     func configureWithDocument(doc: Document) {
+        viewController.firstStaticLabel.stringValue = Document.Attributes.docId
+        viewController.firstLabel.stringValue = doc.docId?.description ?? ""
+        viewController.secondStaticLabel.stringValue = Document.Attributes.docNumber
+        viewController.secondLabel.stringValue = doc.docNumber?.description ?? ""
+        viewController.thirdStaticLabel.stringValue = Document.Attributes.docDate
+        viewController.thirdLabel.stringValue = doc.docDate?.inLocalRegion().string(dateStyle: .medium, timeStyle: .short) ?? ""
+        viewController.fourthStaticLabel.stringValue = Document.Attributes.docValue
+        viewController.fourthLabel.stringValue = doc.docValue?.description ?? ""
+        viewController.fifthStaticLabel.stringValue = Document.Attributes.docBeforeId
+        viewController.fifthLabel.stringValue = doc.docBeforeId?.description ?? ""
+        viewController.sixthStaticLabel.stringValue = Document.Attributes.partnerId
+        viewController.sixthLabel.stringValue = doc.partnerId?.description ?? ""
+        viewController.seventhStaticLabel.stringValue = Document.Attributes.docVr
+        viewController.seventhLabel.stringValue = doc.docVr ?? ""
+        viewController.eightStaticLabel.stringValue = Document.Attributes.tax
+        viewController.eightLabel.stringValue = doc.tax?.description ?? ""
         
+        viewController.ninthStackView.isHidden = true
+        viewController.tenthStackView.isHidden = true
+        viewController.eleventhStackView.isHidden = true
     }
     
     func configureWithUnit(unit: Unit) {
+        viewController.firstStaticLabel.stringValue = Unit.Attributes.docId
+        viewController.firstLabel.stringValue = unit.docId?.description ?? ""
+        viewController.secondStaticLabel.stringValue = Unit.Attributes.unitId
+        viewController.secondLabel.stringValue = unit.unitId?.description ?? ""
+        viewController.thirdStaticLabel.stringValue = Unit.Attributes.itemPrice
+        viewController.thirdLabel.stringValue = unit.itemPrice?.description ?? ""
+        viewController.fourthStaticLabel.stringValue = Unit.Attributes.itemQuantity
+        viewController.fourthLabel.stringValue = unit.itemQuantity?.description ?? ""
+        viewController.fifthLabel.stringValue = Unit.Attributes.itemCode
+        viewController.fifthLabel.stringValue = unit.itemCode?.description ?? ""
+        viewController.sixthStaticLabel.stringValue = Unit.Attributes.discount
+        viewController.sixthLabel.stringValue = unit.discount?.description ?? ""
         
+        viewController.seventhStackView.isHidden = true
+        viewController.eightStackView.isHidden = true
+        viewController.ninthStackView.isHidden = true
+        viewController.tenthStackView.isHidden = true
+        viewController.eleventhStackView.isHidden = true
     }
     
     func configureWithPlace(place: Place) {
@@ -116,7 +152,7 @@ class EditPresenter {
         viewController.thirdLabel.stringValue = place.id?.description ?? ""
         viewController.fourthStaticLabel.stringValue = Place.Attributes.postalCode
         viewController.fourthLabel.stringValue = place.postalCode?.description ?? ""
-        viewController.fifthLabel.stringValue = Place.Attributes.postalName
+        viewController.fifthStaticLabel.stringValue = Place.Attributes.postalName
         viewController.fifthLabel.stringValue = place.postalName ?? ""
         
         viewController.sixthStackView.isHidden = true

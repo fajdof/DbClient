@@ -52,7 +52,7 @@ class EditViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Tables.Item.rawValue
+        title = originButton.type.rawValue
         
         presenter.viewController = self
         

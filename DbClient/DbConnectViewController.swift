@@ -255,7 +255,9 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func updateTableView(table: Tables) {
 		updateDataSource(type: table)
-		tables.append(table)
+        if table != Tables.Partner {
+            tables.append(table)
+        }
 		tableView.reloadData()
 		incrementProgress()
 	}
