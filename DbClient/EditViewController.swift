@@ -91,8 +91,13 @@ class EditViewController: NSViewController {
             saveButton.action = #selector(EditViewController.updatePerson)
         case .Document:
             if let document = originButton.doc {
-                self.presenter.configureWithDocument(doc: document)
-                saveButton.action = #selector(EditViewController.updateDocument)
+                if originButton.subType == Tables.Unit {
+                    self.presenter.configureWithUnit(unit: nil)
+                    saveButton.action = #selector(EditViewController.addUnit)
+                } else {
+                    self.presenter.configureWithDocument(doc: document)
+                    saveButton.action = #selector(EditViewController.updateDocument)
+                }
             } else {
                 self.presenter.configureWithDocument(doc: nil)
                 saveButton.action = #selector(EditViewController.addDocument)
@@ -295,6 +300,10 @@ class EditViewController: NSViewController {
     }
     
     func updateUnit() {
+        
+    }
+    
+    func addUnit() {
         
     }
     

@@ -45,4 +45,17 @@ class ConfirmViewModel {
         })
     }
     
+    func deleteDocument(doc: Document, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Document.rawValue
+        query = query + whereClause + "IdDokumenta = '\(doc.docId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

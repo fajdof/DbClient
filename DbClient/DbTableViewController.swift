@@ -135,6 +135,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
         cellView.editButton.type = type
         cellView.addButton.type = type
         cellView.deleteButton.type = type
+        cellView.addButton.isHidden = false
         
         switch type! {
         case .Item:
@@ -145,6 +146,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.editButton.doc = docs[row]
             cellView.addButton.doc = docs[row]
             cellView.deleteButton.doc = docs[row]
+            cellView.addButton.subType = Tables.Unit
         case .Country:
             cellView.editButton.country = countries[row]
             cellView.addButton.country = countries[row]
@@ -301,6 +303,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
     func addPressed(sender: EditButton) {
         let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
         let editVC = modalStoryboard.instantiateController(withIdentifier: "EditViewController") as! EditViewController
+        editVC.originButton = sender
+        editVC.connectVC = parent as! DbConnectViewController
         presentViewControllerAsModalWindow(editVC)
     }
 	

@@ -92,7 +92,15 @@ class ConfirmViewController: NSViewController {
     }
     
     func deleteDocument() {
+        let initDict: [String: Any] = ["IdDokumenta" : originButton.doc!.docId!]
+        guard let doc = Document(JSON: initDict) else { return }
         
+        viewModel.deleteDocument(doc: doc) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func deletePlace() {

@@ -21,5 +21,6 @@ class EditButton: NSButton {
     var unit: Unit?
     var company: Company?
     var type: Tables! = Tables.Item
+    var subType: Tables! = Tables.Item
     
 }

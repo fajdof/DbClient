@@ -162,23 +162,21 @@ class EditPresenter {
     }
     
     func configureWithUnit(unit: Unit?) {
-        viewController.firstStaticLabel.stringValue = Unit.Attributes.docId
-        viewController.firstLabel.stringValue = unit?.docId?.description ?? ""
-        viewController.secondStaticLabel.stringValue = Unit.Attributes.unitId
-        viewController.secondLabel.stringValue = unit?.unitId?.description ?? ""
-        viewController.thirdStaticLabel.stringValue = Unit.Attributes.itemPrice
-        viewController.thirdLabel.stringValue = unit?.itemPrice?.description ?? ""
-        viewController.fourthStaticLabel.stringValue = Unit.Attributes.itemQuantity
-        viewController.fourthLabel.stringValue = unit?.itemQuantity?.description ?? ""
-        viewController.fifthLabel.stringValue = Unit.Attributes.itemCode
-        viewController.fifthLabel.stringValue = unit?.itemCode?.description ?? ""
-        viewController.sixthStaticLabel.stringValue = Unit.Attributes.discount
-        viewController.sixthLabel.stringValue = unit?.discount?.description ?? ""
+        viewController.firstStaticLabel.stringValue = Unit.Attributes.itemPrice
+        viewController.firstLabel.stringValue = unit?.itemPrice?.description ?? ""
+        viewController.secondStaticLabel.stringValue = Unit.Attributes.itemQuantity
+        viewController.secondLabel.stringValue = unit?.itemQuantity?.description ?? ""
+        viewController.thirdStaticLabel.stringValue = Unit.Attributes.itemCode
+        viewController.thirdLabel.stringValue = unit?.itemCode?.description ?? ""
+        viewController.fourthStaticLabel.stringValue = Unit.Attributes.discount
+        viewController.fourthLabel.stringValue = unit?.discount?.description ?? ""
         
         if unit != nil {
             
         }
         
+        viewController.fifthStackView.isHidden = true
+        viewController.sixthStackView.isHidden = true
         viewController.seventhStackView.isHidden = true
         viewController.eightStackView.isHidden = true
         viewController.ninthStackView.isHidden = true
