@@ -40,6 +40,7 @@
 		75F48C511DD9081500FFB063 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C501DD9081500FFB063 /* Country.swift */; };
 		75F48C551DD910DA00FFB063 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C541DD910DA00FFB063 /* Place.swift */; };
 		75F48C571DD914AB00FFB063 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C561DD914AB00FFB063 /* Person.swift */; };
+		75F956581ED0302400923C92 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956571ED0302400923C92 /* EditViewModel.swift */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		75F48C501DD9081500FFB063 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		75F48C541DD910DA00FFB063 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		75F48C561DD914AB00FFB063 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		75F956571ED0302400923C92 /* EditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 		750434631ECC318700A13176 /* EditScene */ = {
 			isa = PBXGroup;
 			children = (
+				75F956571ED0302400923C92 /* EditViewModel.swift */,
 				750434641ECC31A800A13176 /* EditViewController.swift */,
 				750242FF1ECF1D1200C1326A /* EditPresenter.swift */,
 			);
@@ -403,6 +406,7 @@
 				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,
 				7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */,
 				75F48C571DD914AB00FFB063 /* Person.swift in Sources */,
+				75F956581ED0302400923C92 /* EditViewModel.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
 				752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */,

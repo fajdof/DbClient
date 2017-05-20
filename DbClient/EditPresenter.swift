@@ -32,6 +32,9 @@ class EditPresenter {
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        
+        viewController.firstLabel.isEditable = false
+        viewController.firstLabel.isBezeled = false
     }
     
     func configureWithCompany(company: Company) {

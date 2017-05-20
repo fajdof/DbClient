@@ -47,7 +47,9 @@ class EditViewController: NSViewController {
     @IBOutlet weak var eleventhStackView: NSStackView!
     
     var originButton: EditButton!
-    var presenter = EditPresenter()
+    let presenter = EditPresenter()
+    let viewModel = EditViewModel()
+    weak var connectVC: DbConnectViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,32 +63,86 @@ class EditViewController: NSViewController {
             if let item = originButton.item {
                 presenter.configureWithItem(item: item)
             }
+            saveButton.action = #selector(EditViewController.updateItem)
         case .Company:
             if let company = originButton.company {
                 presenter.configureWithCompany(company: company)
             }
+            saveButton.action = #selector(EditViewController.updateCompany)
         case .Country:
             if let country = originButton.country {
                 self.presenter.configureWithCountry(country: country)
             }
+            saveButton.action = #selector(EditViewController.updateCountry)
         case .Person:
             if let person = originButton.person {
                 self.presenter.configureWithPerson(person: person)
             }
+            saveButton.action = #selector(EditViewController.updatePerson)
         case .Document:
             if let document = originButton.doc {
                 self.presenter.configureWithDocument(doc: document)
             }
+            saveButton.action = #selector(EditViewController.updateDocument)
         case .Place:
             if let place = originButton.place {
                 self.presenter.configureWithPlace(place: place)
             }
+            saveButton.action = #selector(EditViewController.updatePlace)
         case .Unit:
             if let unit = originButton.unit {
                 self.presenter.configureWithUnit(unit: unit)
             }
+            saveButton.action = #selector(EditViewController.updateUnit)
         case .Partner:
             break
         }
     }
+    
+    func updateItem() {
+        let initDict: [String: Any] = ["SifArtikla" : originButton.item.code!]
+        guard let item = Item(JSON: initDict) else { return }
+        
+        item.text = secondLabel.stringValue
+        item.measUnit = fourthLabel.stringValue
+        item.name = sixthLabel.stringValue
+        
+        if let price = Double(thirdLabel.stringValue) {
+            item.price = price
+        }
+        if let secU = Int(fifthLabel.stringValue) {
+            item.secU = NSNumber(integerLiteral: secU)
+        }
+        
+        viewModel.updateItem(item: item) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func updateCompany() {
+        
+    }
+    
+    func updateCountry() {
+        
+    }
+    
+    func updatePerson() {
+        
+    }
+    
+    func updateDocument() {
+        
+    }
+    
+    func updatePlace() {
+        
+    }
+    
+    func updateUnit() {
+        
+    }
+    
 }

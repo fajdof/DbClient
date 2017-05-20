@@ -112,14 +112,20 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 			guard let `self` = self else { return }
 			
 			if completed {
-				self.progressIndicator.isHidden = false
-				self.queryIteration(index: 0)
+				self.startQueryIterations()
 			} else {
 				self.showAlert(alertString: "Neuspješno spajanje na bazu", infoString: "Provjerite postavke spajanja.")
 				self.progressIndicator.isHidden = true
 			}
 		})
 	}
+    
+    
+    func startQueryIterations() {
+        progressIndicator.isHidden = false
+        progressIndicator.doubleValue = 0
+        queryIteration(index: 0)
+    }
 	
 	
 	func queryIteration(index: Int) {
@@ -255,7 +261,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func updateTableView(table: Tables) {
 		updateDataSource(type: table)
-        if table != Tables.Partner {
+        if table != Tables.Partner && table != Tables.Unit {
             tables.append(table)
         }
 		tableView.reloadData()

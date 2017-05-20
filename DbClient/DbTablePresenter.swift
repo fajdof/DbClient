@@ -30,15 +30,7 @@ class DbTablePresenter {
 			itemView.itemImageView.image = nil
 		}
 		
-		if shouldAddButtons {
-			if item.units.count != 0 {
-				itemView.disclosureButton.title = TablePlurals.Units.rawValue
-				itemView.disclosureButton.type = Tables.Unit
-				itemView.disclosureButton.units = item.units
-			}
-		} else {
-			itemView.disclosureButton.isHidden = true
-		}
+        itemView.disclosureButton.isHidden = true
 		
 		return itemView
 	}
@@ -193,13 +185,7 @@ class DbTablePresenter {
 			} else {
 				placeView.firstButton.isHidden = true
 			}
-			if place.partners.count != 0 {
-				placeView.secondButton.title = TablePlurals.Partners.rawValue
-				placeView.secondButton.type = Tables.Partner
-				placeView.secondButton.partners = Array(place.partners)
-			} else {
-				placeView.secondButton.isHidden = true
-			}
+			placeView.secondButton.isHidden = true
 			placeView.thirdButton.isHidden = true
 		} else {
 			hideAllButtons(cellView: placeView)

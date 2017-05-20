@@ -277,6 +277,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
         let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
         let editVC = modalStoryboard.instantiateController(withIdentifier: "EditViewController") as! EditViewController
         editVC.originButton = sender
+        editVC.connectVC = parent as! DbConnectViewController
         presentViewControllerAsModalWindow(editVC)
     }
     
