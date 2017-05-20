@@ -16,6 +16,9 @@ class EditViewModel {
     let whereClause = " WHERE "
     let colon = ", "
     
+    let insert = "INSERT INTO "
+    let values = " VALUES "
+    
     var client: SQLClient?
     
     init() {
@@ -43,6 +46,26 @@ class EditViewModel {
             completion(dbData)
         })
     }
+    
+    
+    func addItem(item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = insert + Tables.Item.rawValue + " (CijArtikla, JedMjere, NazArtikla, TekstArtikla, SifArtikla, ZastUsluga)" + values
+        query = query + "(" + "\(item.price ?? 0)"
+        query = query + colon + "'\(item.measUnit ?? "")'"
+        query = query + colon + "'\(item.name ?? "")'"
+        query = query + colon + "'\(item.text ?? "")'"
+        query = query + colon + "\(item.code ?? 0)"
+        query = query + colon + "\(item.secU ?? NSNumber(integerLiteral: 0))" + ")"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+
     
     
     

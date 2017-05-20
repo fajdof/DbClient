@@ -62,8 +62,11 @@ class EditViewController: NSViewController {
         case .Item:
             if let item = originButton.item {
                 presenter.configureWithItem(item: item)
+                saveButton.action = #selector(EditViewController.updateItem)
+            } else {
+                presenter.configureWithItem(item: nil)
+                saveButton.action = #selector(EditViewController.addItem)
             }
-            saveButton.action = #selector(EditViewController.updateItem)
         case .Company:
             if let company = originButton.company {
                 presenter.configureWithCompany(company: company)
@@ -97,10 +100,18 @@ class EditViewController: NSViewController {
         case .Partner:
             break
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(EditViewController.error(notification:)), name: NSNotification.Name.SQLClientError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditViewController.message(notification:)), name: NSNotification.Name.SQLClientMessage, object: nil)
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        NotificationCenter.default.removeObserver(self)
     }
     
     func updateItem() {
-        let initDict: [String: Any] = ["SifArtikla" : originButton.item.code!]
+        let initDict: [String: Any] = ["SifArtikla" : originButton.item!.code!]
         guard let item = Item(JSON: initDict) else { return }
         
         item.text = secondLabel.stringValue
@@ -115,6 +126,32 @@ class EditViewController: NSViewController {
         }
         
         viewModel.updateItem(item: item) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addItem() {
+        let initDict: [String: Any] = [:]
+        guard let item = Item(JSON: initDict) else { return }
+        
+        item.text = secondLabel.stringValue
+        item.measUnit = fourthLabel.stringValue
+        item.name = sixthLabel.stringValue
+        
+        if let price = Double(thirdLabel.stringValue) {
+            item.price = price
+        }
+        if let secU = Int(fifthLabel.stringValue) {
+            item.secU = NSNumber(integerLiteral: secU)
+        }
+        if let code = Int(firstLabel.stringValue) {
+            item.code = code
+        }
+        
+        viewModel.addItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -144,6 +181,27 @@ class EditViewController: NSViewController {
     
     func updateUnit() {
         
+    }
+    
+    func error(notification: Notification) {
+        let _ = notification.userInfo?[SQLClientMessageKey]
+    }
+    
+    func message(notification: Notification) {
+        if let message = notification.userInfo?[SQLClientMessageKey] as? String {
+            self.connectVC.showAlert(alertString: "Error", infoString: message)
+        }
+    }
+    
+    func showAlert(alertString: String, infoString: String) {
+        let alert = NSAlert()
+        alert.addButton(withTitle: "OK")
+        alert.messageText = alertString
+        alert.informativeText = infoString
+        alert.alertStyle = .warning
+        if let window = view.window {
+            alert.beginSheetModal(for: window, completionHandler: nil)
+        }
     }
     
 }

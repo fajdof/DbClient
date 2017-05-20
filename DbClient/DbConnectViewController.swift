@@ -298,7 +298,9 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	func updateDataSource(type: Tables) {
 		switch type {
 		case .Item:
-			items = viewModel.items
+			items = viewModel.items.sorted(by: { (fItem, sItem) -> Bool in
+                return fItem.code! < sItem.code!
+            })
 		case .Country:
 			countries = viewModel.countries
 		case .Company:

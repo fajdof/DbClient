@@ -60,7 +60,7 @@ class ConfirmViewController: NSViewController {
     }
     
     func deleteItem() {
-        let initDict: [String: Any] = ["SifArtikla" : originButton.item.code!]
+        let initDict: [String: Any] = ["SifArtikla" : originButton.item!.code!]
         guard let item = Item(JSON: initDict) else { return }
         
         viewModel.deleteItem(item: item) { [weak self] (data) in

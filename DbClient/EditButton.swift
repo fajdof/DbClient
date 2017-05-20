@@ -12,14 +12,14 @@ import Cocoa
 
 class EditButton: NSButton {
     
-    var item: Item!
-    var doc: Document!
-    var country: Country!
-    var place: Place!
-    var person: Person!
-    var partner: Partner!
-    var unit: Unit!
-    var company: Company!
+    var item: Item?
+    var doc: Document?
+    var country: Country?
+    var place: Place?
+    var person: Person?
+    var partner: Partner?
+    var unit: Unit?
+    var company: Company?
     var type: Tables! = Tables.Item
     
 }

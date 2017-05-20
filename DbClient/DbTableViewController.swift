@@ -44,6 +44,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		currentOffset = offset
         
         presenter.toggleAddButton(button: addButton, hidden: true)
+        addButton.action = #selector(DbTableViewController.addNew)
+        addButton.target = self
 	}
 	
 	
@@ -372,5 +374,16 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		parentVC.dbTableVC2.currentOffset = 20
 		parentVC.dbTableVC2.tableView.reloadData()
 	}
+    
+    
+    func addNew() {
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let editVC = modalStoryboard.instantiateController(withIdentifier: "EditViewController") as! EditViewController
+        let fakeButton = EditButton()
+        fakeButton.type = type
+        editVC.originButton = fakeButton
+        editVC.connectVC = parent as! DbConnectViewController
+        presentViewControllerAsModalWindow(editVC)
+    }
 	
 }
