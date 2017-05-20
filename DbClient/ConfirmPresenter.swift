@@ -20,7 +20,24 @@ class ConfirmPresenter {
     func setupButtons() {
         viewController.noButton.title = no
         viewController.yesButton.title = yes
-        viewController.confirmLabel.stringValue = areYouSure + viewController.originButton.type.rawValue + "?"
+        switch viewController.originButton.type! {
+        case .Item:
+            viewController.confirmLabel.stringValue = areYouSure + (viewController.originButton.item!.name ?? viewController.originButton.type.rawValue) + "?"
+        case .Company:
+            viewController.confirmLabel.stringValue = areYouSure + (viewController.originButton.type.rawValue) + "?"
+        case .Country:
+            viewController.confirmLabel.stringValue = areYouSure + (viewController.originButton.country!.name ?? viewController.originButton.type.rawValue) + "?"
+        case .Person:
+            viewController.confirmLabel.stringValue = areYouSure + (viewController.originButton.type.rawValue) + "?"
+        case .Document:
+            viewController.confirmLabel.stringValue = areYouSure + (viewController.originButton.type.rawValue) + "?"
+        case .Place:
+            viewController.confirmLabel.stringValue = areYouSure + (viewController.originButton.type.rawValue) + "?"
+        case .Unit:
+            viewController.confirmLabel.stringValue = areYouSure + (viewController.originButton.type.rawValue) + "?"
+        case .Partner:
+            break
+        }
     }
     
 }
