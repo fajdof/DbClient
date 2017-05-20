@@ -103,5 +103,49 @@ class EditViewModel {
     }
     
     
+    func updateDocument(doc: Document, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = update + Tables.Document.rawValue + set
+        query = query + "VrDokumenta = '\(doc.docVr!)'"
+        if let docNumber = doc.docNumber {
+            query = query + colon + "BrDokumenta = \(docNumber)"
+        }
+        if let docDate = doc.docDate {
+            let dateString = docDate.string(custom: "YYYYMMdd hh:mm:ss a")
+            query = query + colon + "DatDokumenta = '\(dateString)'"
+        }
+        if let docValue = doc.docValue {
+            query = query + colon + "IznosDokumenta = \(docValue)"
+        }
+        if let tax = doc.tax {
+            query = query + colon + "PostoPorez = \(tax)"
+        }
+        query = query + whereClause + "IdDokumenta = '\(doc.docId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    
+//    func addDocument(doc: Document, completion: @escaping (_ dbData: [Any]?) -> ()) {
+//        
+//        var query = insert + Tables.Document.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
+//        query = query + "(" + "'\(country.iso3 ?? "")'"
+//        query = query + colon + "'\(country.name ?? "")'"
+//        query = query + colon + "\(country.code ?? 0)"
+//        query = query + colon + "'\(country.mark ?? "")'" + ")"
+//        
+//        dump(query)
+//        
+//        client?.execute(query, completion: { (dbData) in
+//            
+//            completion(dbData)
+//        })
+//    }
+    
     
 }

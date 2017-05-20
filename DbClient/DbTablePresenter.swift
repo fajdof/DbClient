@@ -46,20 +46,21 @@ class DbTablePresenter {
 		docView.secondLabel.addAttributedString(Document.Attributes.docNumber, dataString: doc.docNumber?.description)
 		docView.thirdLabel.addAttributedString(Document.Attributes.docDate, dataString: doc.docDate?.inLocalRegion().string(dateStyle: .medium, timeStyle: .short))
 		docView.fourthLabel.addAttributedString(Document.Attributes.docValue, dataString: doc.docValue?.description)
-		docView.fifthLabel.addAttributedString(Document.Attributes.docBeforeId, dataString: doc.docBeforeId?.description)
-		docView.sixthLabel.addAttributedString(Document.Attributes.partnerId, dataString: doc.partnerId?.description)
-		docView.seventhLabel.addAttributedString(Document.Attributes.docVr, dataString: doc.docVr)
-		docView.eighthLabel.addAttributedString(Document.Attributes.tax, dataString: doc.tax?.description)
+		docView.fifthLabel.addAttributedString(Document.Attributes.docVr, dataString: doc.docVr)
+		docView.sixthLabel.addAttributedString(Document.Attributes.tax, dataString: doc.tax?.description)
+        docView.seventhLabel.isHidden = true
+        docView.eighthLabel.isHidden = true
+        docView.addButton.title = "Dodaj stavku"
 		
 		if shouldAddButtons {
 			if let partner = doc.partner {
 				if let company = partner as? Company {
-					docView.firstButton.title = Tables.Company.rawValue
+					docView.firstButton.title = Tables.Partner.rawValue
 					docView.firstButton.type = Tables.Company
 					docView.firstButton.companies = [company]
 				}
 				if let person = partner as? Person {
-					docView.firstButton.title = Tables.Person.rawValue
+					docView.firstButton.title = Tables.Partner.rawValue
 					docView.firstButton.type = Tables.Person
 					docView.firstButton.people = [person]
 				}

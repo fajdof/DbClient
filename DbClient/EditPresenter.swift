@@ -37,6 +37,7 @@ class EditPresenter {
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.twelvethStackView.isHidden = true
     }
     
     func configureWithCompany(company: Company?) {
@@ -64,6 +65,7 @@ class EditPresenter {
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.twelvethStackView.isHidden = true
     }
     
     func configureWithPerson(person: Person?) {
@@ -91,6 +93,7 @@ class EditPresenter {
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.twelvethStackView.isHidden = true
     }
     
     func configureWithCountry(country: Country?) {
@@ -115,6 +118,7 @@ class EditPresenter {
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.twelvethStackView.isHidden = true
     }
     
     func configureWithDocument(doc: Document?) {
@@ -122,23 +126,23 @@ class EditPresenter {
         viewController.firstLabel.stringValue = doc?.docId?.description ?? ""
         viewController.secondStaticLabel.stringValue = Document.Attributes.docNumber
         viewController.secondLabel.stringValue = doc?.docNumber?.description ?? ""
-        viewController.thirdStaticLabel.stringValue = Document.Attributes.docDate
-        viewController.thirdLabel.stringValue = doc?.docDate?.inLocalRegion().string(dateStyle: .medium, timeStyle: .short) ?? ""
-        viewController.fourthStaticLabel.stringValue = Document.Attributes.docValue
-        viewController.fourthLabel.stringValue = doc?.docValue?.description ?? ""
-        viewController.fifthStaticLabel.stringValue = Document.Attributes.docBeforeId
-        viewController.fifthLabel.stringValue = doc?.docBeforeId?.description ?? ""
-        viewController.sixthStaticLabel.stringValue = Document.Attributes.partnerId
-        viewController.sixthLabel.stringValue = doc?.partnerId?.description ?? ""
-        viewController.seventhStaticLabel.stringValue = Document.Attributes.docVr
-        viewController.seventhLabel.stringValue = doc?.docVr ?? ""
-        viewController.eightStaticLabel.stringValue = Document.Attributes.tax
-        viewController.eightLabel.stringValue = doc?.tax?.description ?? ""
+        viewController.thirdStaticLabel.stringValue = Document.Attributes.docValue
+        viewController.thirdLabel.stringValue = doc?.docValue?.description ?? ""
+        viewController.fourthStaticLabel.stringValue = Document.Attributes.docVr
+        viewController.fourthLabel.stringValue = doc?.docVr ?? ""
+        viewController.fifthStaticLabel.stringValue = Document.Attributes.tax
+        viewController.fifthLabel.stringValue = doc?.tax?.description ?? ""
+        viewController.twelvethStaticLabel.stringValue = Document.Attributes.docDate
+        viewController.datePicker.dateValue = doc?.docDate ?? Date()
         
         if doc != nil {
-            
+            viewController.firstLabel.isEditable = false
+            viewController.firstLabel.isBezeled = false
         }
         
+        viewController.sixthStackView.isHidden = true
+        viewController.seventhStackView.isHidden = true
+        viewController.eightStackView.isHidden = true
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
@@ -167,6 +171,7 @@ class EditPresenter {
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.twelvethStackView.isHidden = true
     }
     
     func configureWithPlace(place: Place?) {
@@ -191,6 +196,7 @@ class EditPresenter {
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.twelvethStackView.isHidden = true
     }
     
 }

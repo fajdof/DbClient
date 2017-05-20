@@ -45,6 +45,9 @@ class EditViewController: NSViewController {
     @IBOutlet weak var eleventhStaticLabel: NSTextField!
     @IBOutlet weak var eleventhLabel: NSTextField!
     @IBOutlet weak var eleventhStackView: NSStackView!
+    @IBOutlet weak var twelvethStaticLabel: NSTextField!
+    @IBOutlet weak var twelvethStackView: NSStackView!
+    @IBOutlet weak var datePicker: NSDatePicker!
     
     var originButton: EditButton!
     let presenter = EditPresenter()
@@ -208,7 +211,28 @@ class EditViewController: NSViewController {
     }
     
     func updateDocument() {
+        let initDict: [String: Any] = ["IdDokumenta" : originButton.doc!.docId!]
+        guard let doc = Document(JSON: initDict) else { return }
         
+        if let tax = Double(fifthLabel.stringValue) {
+            doc.tax = tax
+        }
+        if let docNumber = Int(secondLabel.stringValue) {
+            doc.docNumber = docNumber
+        }
+        if let docValue = Double(thirdLabel.stringValue) {
+            doc.docValue = docValue
+        }
+        
+        doc.docDate = datePicker.dateValue
+        doc.docVr = fourthLabel.stringValue
+        
+        viewModel.updateDocument(doc: doc) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func updatePlace() {
