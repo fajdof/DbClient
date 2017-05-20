@@ -75,8 +75,11 @@ class EditViewController: NSViewController {
         case .Country:
             if let country = originButton.country {
                 self.presenter.configureWithCountry(country: country)
+                saveButton.action = #selector(EditViewController.updateCountry)
+            } else {
+                self.presenter.configureWithCountry(country: nil)
+                saveButton.action = #selector(EditViewController.addCountry)
             }
-            saveButton.action = #selector(EditViewController.updateCountry)
         case .Person:
             if let person = originButton.person {
                 self.presenter.configureWithPerson(person: person)
@@ -164,7 +167,40 @@ class EditViewController: NSViewController {
     }
     
     func updateCountry() {
+        let initDict: [String: Any] = ["OznDrzave" : originButton.country!.mark!]
+        guard let country = Country(JSON: initDict) else { return }
         
+        if let code = Int(secondLabel.stringValue) {
+            country.code = code
+        }
+        country.name = firstLabel.stringValue
+        country.iso3 = fourthLabel.stringValue
+        
+        viewModel.updateCountry(country: country) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addCountry() {
+        let initDict: [String: Any] = [:]
+        guard let country = Country(JSON: initDict) else { return }
+        
+        if let code = Int(secondLabel.stringValue) {
+            country.code = code
+        }
+        country.name = firstLabel.stringValue
+        country.mark = thirdLabel.stringValue
+        country.iso3 = fourthLabel.stringValue
+        
+        viewModel.addCountry(country: country) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func updatePerson() {

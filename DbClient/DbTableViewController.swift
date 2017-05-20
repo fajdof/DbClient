@@ -145,6 +145,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.editButton.country = countries[row]
             cellView.addButton.country = countries[row]
             cellView.deleteButton.country = countries[row]
+            cellView.addButton.isHidden = true
         case .Place:
             cellView.editButton.place = places[row]
             cellView.addButton.place = places[row]

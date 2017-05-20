@@ -104,7 +104,8 @@ class EditPresenter {
         viewController.fourthLabel.stringValue = country?.iso3 ?? ""
         
         if country != nil {
-            
+            viewController.thirdLabel.isBezeled = false
+            viewController.thirdLabel.isEditable = false
         }
         
         viewController.fifthStackView.isHidden = true

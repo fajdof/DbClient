@@ -32,4 +32,17 @@ class ConfirmViewModel {
         })
     }
     
+    func deleteCountry(country: Country, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Country.rawValue
+        query = query + whereClause + "OznDrzave = '\(country.mark!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

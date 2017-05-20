@@ -76,7 +76,15 @@ class ConfirmViewController: NSViewController {
     }
     
     func deleteCountry() {
+        let initDict: [String: Any] = ["OznDrzave" : originButton.country!.mark!]
+        guard let country = Country(JSON: initDict) else { return }
         
+        viewModel.deleteCountry(country: country) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func deletePerson() {

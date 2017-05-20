@@ -302,7 +302,9 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
                 return fItem.code! < sItem.code!
             })
 		case .Country:
-			countries = viewModel.countries
+			countries = viewModel.countries.sorted(by: { (fCountry, sCountry) -> Bool in
+                return fCountry.mark! < sCountry.mark!
+            })
 		case .Company:
 			companies = viewModel.companies
 		case .Document:
