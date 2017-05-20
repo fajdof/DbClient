@@ -252,6 +252,12 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
             dbTableVC1.companies = companies
         }
         
+        if table == Tables.Document {
+            dbTableVC1.addButton.action = #selector(DbTableViewController.addNewDoc)
+        } else {
+            dbTableVC1.addButton.action = #selector(DbTableViewController.addNew)
+        }
+        
         dbTableVC1.tableView.tableColumns.first?.title = table.rawValue
         dbTableVC1.type = table
         dbTableVC1.currentOffset = 20
@@ -306,13 +312,19 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
                 return fCountry.mark! < sCountry.mark!
             })
 		case .Company:
-			companies = viewModel.companies
+			companies = viewModel.companies.sorted(by: { (fCompany, sCompany) -> Bool in
+                return fCompany.companyId! < sCompany.companyId!
+            })
 		case .Document:
-			docs = viewModel.docs
+			docs = viewModel.docs.sorted(by: { (fDoc, sDoc) -> Bool in
+                return fDoc.docId! > sDoc.docId!
+            })
 		case .Partner:
 			partners = viewModel.partners
 		case .Person:
-			people = viewModel.people
+			people = viewModel.people.sorted(by: { (fPerson, sPerson) -> Bool in
+                return fPerson.id! > sPerson.id!
+            })
 		case .Unit:
 			units = viewModel.units
 		case .Place:

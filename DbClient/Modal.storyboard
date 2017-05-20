@@ -646,5 +646,64 @@
             </objects>
             <point key="canvasLocation" x="2214" y="740"/>
         </scene>
+        <!--Choose View Controller-->
+        <scene sceneID="Ahl-dS-eLT">
+            <objects>
+                <viewController storyboardIdentifier="ChooseViewController" id="8MG-h8-Oxo" customClass="ChooseViewController" customModule="DbClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="wec-Tt-fHm">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="153"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAh-Y5-1Ga">
+                                <rect key="frame" x="179" y="76" width="92" height="17"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" id="q9Y-T8-gj2">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1yh-gp-Lel">
+                                <rect key="frame" x="229" y="17" width="92" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="EHa-gg-pPQ"/>
+                                    <constraint firstAttribute="width" constant="80" id="Zhv-5g-NHq"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1uq-bQ-CYg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uAN-50-Z3I">
+                                <rect key="frame" x="129" y="17" width="92" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="1fe-y5-ubk"/>
+                                    <constraint firstAttribute="width" constant="80" id="bgl-gQ-IeR"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Z7-nY-5gt">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1yh-gp-Lel" firstAttribute="centerX" secondItem="wec-Tt-fHm" secondAttribute="centerX" constant="50" id="0Et-Yc-Jva"/>
+                            <constraint firstItem="YAh-Y5-1Ga" firstAttribute="centerX" secondItem="wec-Tt-fHm" secondAttribute="centerX" id="Veg-EX-0xg"/>
+                            <constraint firstItem="uAN-50-Z3I" firstAttribute="top" secondItem="YAh-Y5-1Ga" secondAttribute="bottom" constant="24" id="amH-b3-qeJ"/>
+                            <constraint firstItem="uAN-50-Z3I" firstAttribute="centerX" secondItem="wec-Tt-fHm" secondAttribute="centerX" constant="-50" id="eRT-pn-Skq"/>
+                            <constraint firstItem="YAh-Y5-1Ga" firstAttribute="centerY" secondItem="wec-Tt-fHm" secondAttribute="centerY" constant="-8" id="l0D-Ea-meo"/>
+                            <constraint firstItem="YAh-Y5-1Ga" firstAttribute="top" secondItem="wec-Tt-fHm" secondAttribute="top" constant="60" id="qjI-CQ-1fl"/>
+                            <constraint firstItem="1yh-gp-Lel" firstAttribute="top" secondItem="YAh-Y5-1Ga" secondAttribute="bottom" constant="24" id="quB-bO-Pni"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chooseLabel" destination="YAh-Y5-1Ga" id="QbY-2Z-O8c"/>
+                        <outlet property="companyButton" destination="1yh-gp-Lel" id="Lib-Wo-N4s"/>
+                        <outlet property="personButton" destination="uAN-50-Z3I" id="4Yu-M3-RLn"/>
+                    </connections>
+                </viewController>
+                <customObject id="0aG-wq-QdG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2212" y="1075.5"/>
+        </scene>
     </scenes>
 </document>

@@ -53,6 +53,7 @@ class EditViewController: NSViewController {
     let presenter = EditPresenter()
     let viewModel = EditViewModel()
     weak var connectVC: DbConnectViewController!
+    var isPerson: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,8 +92,11 @@ class EditViewController: NSViewController {
         case .Document:
             if let document = originButton.doc {
                 self.presenter.configureWithDocument(doc: document)
+                saveButton.action = #selector(EditViewController.updateDocument)
+            } else {
+                self.presenter.configureWithDocument(doc: nil)
+                saveButton.action = #selector(EditViewController.addDocument)
             }
-            saveButton.action = #selector(EditViewController.updateDocument)
         case .Place:
             if let place = originButton.place {
                 self.presenter.configureWithPlace(place: place)
@@ -228,6 +232,57 @@ class EditViewController: NSViewController {
         doc.docVr = fourthLabel.stringValue
         
         viewModel.updateDocument(doc: doc) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addDocument() {
+        let initDict: [String: Any] = [:]
+        guard let doc = Document(JSON: initDict) else { return }
+        
+        if let tax = Double(fifthLabel.stringValue) {
+            doc.tax = tax
+        }
+        if let docNumber = Int(secondLabel.stringValue) {
+            doc.docNumber = docNumber
+        }
+        if let docValue = Double(thirdLabel.stringValue) {
+            doc.docValue = docValue
+        }
+        if let docId = Int(firstLabel.stringValue) {
+            doc.docId = docId
+        }
+        
+        doc.docDate = datePicker.dateValue
+        doc.docVr = fourthLabel.stringValue
+        
+        var company: Company?
+        var person: Person?
+        
+        if isPerson {
+            person = Person(JSON: initDict)
+            person?.firstName = seventhLabel.stringValue
+            person?.lastName = eightLabel.stringValue
+            person?.oib = ninthLabel.stringValue
+            person?.type = "O"
+            if let personId = Int(sixthLabel.stringValue) {
+                person?.id = personId
+            }
+        } else {
+            company = Company(JSON: initDict)
+            company?.name = seventhLabel.stringValue
+            company?.registryNumber = eightLabel.stringValue
+            company?.oib = ninthLabel.stringValue
+            company?.type = "T"
+            if let companyId = Int(sixthLabel.stringValue) {
+                company?.companyId = companyId
+            }
+        }
+        
+        viewModel.addDocument(doc: doc, company: company, person: person) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()

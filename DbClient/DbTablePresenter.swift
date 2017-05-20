@@ -131,9 +131,7 @@ class DbTablePresenter {
 		personView.thirdLabel.addAttributedString(Person.PersonAttributes.id, dataString: person.id?.description)
 		personView.fourthLabel.addAttributedString(Person.Attributes.oib, dataString: person.oib)
 		personView.fifthLabel.addAttributedString(Person.Attributes.partnerAddress, dataString: person.partnerAddress)
-		personView.sixthLabel.addAttributedString(Person.Attributes.partnerAddressId, dataString: person.partnerAddressId?.description)
-		personView.seventhLabel.addAttributedString(Person.Attributes.shipmentAddress, dataString: person.shipmentAddress)
-		personView.eighthLabel.addAttributedString(Person.Attributes.shipmentAddressId, dataString: person.shipmentAddressId?.description)
+		personView.sixthLabel.addAttributedString(Person.Attributes.shipmentAddress, dataString: person.shipmentAddress)
 		
 		if shouldAddButtons {
 			if let partnerPlace = person.partnerPlace {
@@ -160,6 +158,9 @@ class DbTablePresenter {
 		} else {
 			hideAllButtons(cellView: personView)
 		}
+        
+        personView.seventhLabel.isHidden = true
+        personView.eighthLabel.isHidden = true
 		
 		return personView
 	}
@@ -287,9 +288,7 @@ class DbTablePresenter {
 		companyView.thirdLabel.addAttributedString(Company.CompanyAttributes.registryNumber, dataString: company.registryNumber)
 		companyView.fourthLabel.addAttributedString(Company.Attributes.oib, dataString: company.oib)
 		companyView.fifthLabel.addAttributedString(Company.Attributes.partnerAddress, dataString: company.partnerAddress)
-		companyView.sixthLabel.addAttributedString(Company.Attributes.partnerAddressId, dataString: company.partnerAddressId?.description)
-		companyView.seventhLabel.addAttributedString(Company.Attributes.shipmentAddress, dataString: company.shipmentAddress)
-		companyView.eighthLabel.addAttributedString(Company.Attributes.shipmentAddressId, dataString: company.shipmentAddressId?.description)
+		companyView.sixthLabel.addAttributedString(Company.Attributes.shipmentAddress, dataString: company.shipmentAddress)
 		
 		if shouldAddButtons {
 			if let partnerPlace = company.partnerPlace {
@@ -317,6 +316,9 @@ class DbTablePresenter {
 			hideAllButtons(cellView: companyView)
 		}
 		
+        companyView.seventhLabel.isHidden = true
+        companyView.eighthLabel.isHidden = true
+        
 		return companyView
 	}
 	

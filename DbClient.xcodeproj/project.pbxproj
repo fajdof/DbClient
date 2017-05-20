@@ -43,6 +43,8 @@
 		75F956581ED0302400923C92 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956571ED0302400923C92 /* EditViewModel.swift */; };
 		75F9565A1ED0424800923C92 /* ConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956591ED0424800923C92 /* ConfirmViewModel.swift */; };
 		75F9565C1ED0425900923C92 /* ConfirmPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9565B1ED0425900923C92 /* ConfirmPresenter.swift */; };
+		75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9565E1ED08F8700923C92 /* ChooseViewController.swift */; };
+		75F956611ED0905800923C92 /* ChoosePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956601ED0905800923C92 /* ChoosePresenter.swift */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,8 @@
 		75F956571ED0302400923C92 /* EditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		75F956591ED0424800923C92 /* ConfirmViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewModel.swift; sourceTree = "<group>"; };
 		75F9565B1ED0425900923C92 /* ConfirmPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPresenter.swift; sourceTree = "<group>"; };
+		75F9565E1ED08F8700923C92 /* ChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
+		75F956601ED0905800923C92 /* ChoosePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosePresenter.swift; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,6 +178,7 @@
 				75A719021DD8A7E700F93547 /* GeneralExtensions.swift */,
 				753D6EE11DD72F7A0027EDA7 /* DbConnectScene */,
 				755DF95E1DD74998004F4D94 /* DbTableViewScene */,
+				75F9565D1ED08F6700923C92 /* ChooseScene */,
 				7504346B1ECC495600A13176 /* ConfirmScene */,
 				750434631ECC318700A13176 /* EditScene */,
 				753D6EE01DD72F6E0027EDA7 /* Models */,
@@ -273,6 +278,15 @@
 				75F48C4C1DD8C3BF00FFB063 /* tds_sysdep_public.h */,
 			);
 			name = SQLClient;
+			sourceTree = "<group>";
+		};
+		75F9565D1ED08F6700923C92 /* ChooseScene */ = {
+			isa = PBXGroup;
+			children = (
+				75F9565E1ED08F8700923C92 /* ChooseViewController.swift */,
+				75F956601ED0905800923C92 /* ChoosePresenter.swift */,
+			);
+			name = ChooseScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,10 +435,12 @@
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
 				7527B62F1DE98F9000E1B531 /* DbTablePresenter.swift in Sources */,
 				75F9565C1ED0425900923C92 /* ConfirmPresenter.swift in Sources */,
+				75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */,
 				7527E98D1DDFB64C003925BE /* Company.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
+				75F956611ED0905800923C92 /* ChoosePresenter.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
 			);

@@ -131,21 +131,53 @@ class EditViewModel {
     }
     
     
-//    func addDocument(doc: Document, completion: @escaping (_ dbData: [Any]?) -> ()) {
-//        
-//        var query = insert + Tables.Document.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
-//        query = query + "(" + "'\(country.iso3 ?? "")'"
-//        query = query + colon + "'\(country.name ?? "")'"
-//        query = query + colon + "\(country.code ?? 0)"
-//        query = query + colon + "'\(country.mark ?? "")'" + ")"
-//        
-//        dump(query)
-//        
-//        client?.execute(query, completion: { (dbData) in
-//            
-//            completion(dbData)
-//        })
-//    }
+    func addDocument(doc: Document, company: Company?, person: Person?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = ""
+        
+        if let `person` = person {
+            query = "SET IDENTITY_INSERT Partner ON; "
+            query = query + insert + Tables.Partner.rawValue + " (IdPartnera, TipPartnera, OIB)" + values
+            query = query + "(" + "\(person.id ?? 0)"
+            query = query + colon + "'\(person.type ?? "")'"
+            query = query + colon + "'\(person.oib ?? "")'" + "); "
+            query = query + "SET IDENTITY_INSERT Partner OFF; "
+            
+            query = query + insert + Tables.Person.rawValue + " (IdOsobe, ImeOsobe, PrezimeOsobe)" + values
+            query = query + "(" + "\(person.id ?? 0)"
+            query = query + colon + "'\(person.firstName ?? "")'"
+            query = query + colon + "'\(person.lastName ?? "")'" + "); "
+        }
+        
+        if let `company` = company {
+            query = "SET IDENTITY_INSERT Partner ON; "
+            query = query + insert + Tables.Partner.rawValue + " (IdPartnera, TipPartnera, OIB)" + values
+            query = query + "(" + "\(company.companyId ?? 0)"
+            query = query + colon + "'\(company.type ?? "")'"
+            query = query + colon + "'\(company.oib ?? "")'" + "); "
+            query = query + "SET IDENTITY_INSERT Partner OFF; "
+            
+            query = query + insert + Tables.Company.rawValue + " (IdTvrtke, NazivTvrtke, MatBrTvrtke)" + values
+            query = query + "(" + "\(company.companyId ?? 0)"
+            query = query + colon + "'\(company.name ?? "")'"
+            query = query + colon + "'\(company.registryNumber ?? "")'" + "); "
+        }
+        
+        query = query + insert + Tables.Document.rawValue + " (VrDokumenta, BrDokumenta, DatDokumenta, IznosDokumenta, IdPartnera, PostoPorez)" + values
+        query = query + "(" + "'\(doc.docVr ?? "")'"
+        query = query + colon + "\(doc.docNumber ?? 0)"
+        query = query + colon + "'\(doc.docDate?.string(custom: "YYYYMMdd hh:mm:ss a") ?? "")'"
+        query = query + colon + "\(doc.docValue ?? 0)"
+        query = query + colon + "\(company?.companyId ?? (person?.id ?? 0))"
+        query = query + colon + "\(doc.tax ?? 0)" + ")"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
     
     
 }

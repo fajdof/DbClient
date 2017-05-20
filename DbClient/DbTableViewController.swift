@@ -44,7 +44,11 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		currentOffset = offset
         
         presenter.toggleAddButton(button: addButton, hidden: true)
-        addButton.action = #selector(DbTableViewController.addNew)
+        if type == Tables.Document {
+            addButton.action = #selector(DbTableViewController.addNewDoc)
+        } else {
+            addButton.action = #selector(DbTableViewController.addNew)
+        }
         addButton.target = self
 	}
 	
@@ -60,13 +64,13 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		case .Place:
 			return 220
 		case .Person:
-			return 320
+			return 300
 		case .Partner:
 			return 320
 		case .Unit:
 			return 240
 		case .Company:
-			return 320
+			return 300
 		}
 	}
 	
@@ -385,6 +389,17 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
         editVC.originButton = fakeButton
         editVC.connectVC = parent as! DbConnectViewController
         presentViewControllerAsModalWindow(editVC)
+    }
+    
+    
+    func addNewDoc() {
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let chooseVC = modalStoryboard.instantiateController(withIdentifier: "ChooseViewController") as! ChooseViewController
+        let fakeButton = EditButton()
+        fakeButton.type = type
+        chooseVC.originButton = fakeButton
+        chooseVC.connectVC = parent as! DbConnectViewController
+        presentViewControllerAsModalWindow(chooseVC)
     }
 	
 }

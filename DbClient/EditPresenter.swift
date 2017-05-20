@@ -136,16 +136,29 @@ class EditPresenter {
         viewController.datePicker.dateValue = doc?.docDate ?? Date()
         
         if doc != nil {
-            viewController.firstLabel.isEditable = false
-            viewController.firstLabel.isBezeled = false
+            viewController.sixthStackView.isHidden = true
+            viewController.seventhStackView.isHidden = true
+            viewController.eightStackView.isHidden = true
+            viewController.ninthStackView.isHidden = true
+        } else {
+            viewController.firstStackView.isHidden = true
+            if viewController.isPerson {
+                viewController.sixthStaticLabel.stringValue = Person.PersonAttributes.id
+                viewController.seventhStaticLabel.stringValue = Person.PersonAttributes.firstName
+                viewController.eightStaticLabel.stringValue = Person.PersonAttributes.lastName
+                viewController.ninthStaticLabel.stringValue = Person.Attributes.oib
+            } else {
+                viewController.sixthStaticLabel.stringValue = Company.CompanyAttributes.companyId
+                viewController.seventhStaticLabel.stringValue = Company.CompanyAttributes.name
+                viewController.eightStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
+                viewController.ninthStaticLabel.stringValue = Company.Attributes.oib
+            }
         }
         
-        viewController.sixthStackView.isHidden = true
-        viewController.seventhStackView.isHidden = true
-        viewController.eightStackView.isHidden = true
-        viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.firstLabel.isEditable = false
+        viewController.firstLabel.isBezeled = false
     }
     
     func configureWithUnit(unit: Unit?) {
