@@ -558,25 +558,25 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iAz-zb-6fg">
-                                <rect key="frame" x="230" y="18" width="90" height="38"/>
+                                <rect key="frame" x="229" y="17" width="92" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Hrg-oU-oMy"/>
                                     <constraint firstAttribute="height" constant="28" id="q6N-XR-Qve"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jre-3Z-hzY">
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jre-3Z-hzY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lxO-LU-gZ9">
-                                <rect key="frame" x="130" y="18" width="90" height="38"/>
+                                <rect key="frame" x="129" y="17" width="92" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="PMm-tv-Y8D"/>
                                     <constraint firstAttribute="height" constant="28" id="hgl-mV-TrV"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HY3-ye-lVc">
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HY3-ye-lVc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                         </subviews>

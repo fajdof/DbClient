@@ -31,6 +31,7 @@ class DbTablePresenter {
 		}
 		
         itemView.disclosureButton.isHidden = true
+        itemView.addButton.isHidden = true
 		
 		return itemView
 	}

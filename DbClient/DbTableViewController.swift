@@ -285,6 +285,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
     func deletePressed(sender: EditButton) {
         let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
         let confirmVC = modalStoryboard.instantiateController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+        confirmVC.originButton = sender
+        confirmVC.connectVC = parent as! DbConnectViewController
         presentViewControllerAsModalWindow(confirmVC)
     }
     
