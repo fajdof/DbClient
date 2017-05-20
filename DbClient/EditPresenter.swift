@@ -166,21 +166,26 @@ class EditPresenter {
         viewController.firstLabel.stringValue = unit?.itemPrice?.description ?? ""
         viewController.secondStaticLabel.stringValue = Unit.Attributes.itemQuantity
         viewController.secondLabel.stringValue = unit?.itemQuantity?.description ?? ""
-        viewController.thirdStaticLabel.stringValue = Unit.Attributes.itemCode
-        viewController.thirdLabel.stringValue = unit?.itemCode?.description ?? ""
-        viewController.fourthStaticLabel.stringValue = Unit.Attributes.discount
-        viewController.fourthLabel.stringValue = unit?.discount?.description ?? ""
+        viewController.thirdStaticLabel.stringValue = Unit.Attributes.discount
+        viewController.thirdLabel.stringValue = unit?.discount?.description ?? ""
         
         if unit != nil {
-            
+            viewController.fifthStackView.isHidden = true
+            viewController.sixthStackView.isHidden = true
+            viewController.seventhStackView.isHidden = true
+            viewController.eightStackView.isHidden = true
+            viewController.ninthStackView.isHidden = true
+            viewController.tenthStackView.isHidden = true
+        } else {
+            viewController.fifthStaticLabel.stringValue = "Šifra artikla:"
+            viewController.sixthStaticLabel.stringValue = Item.Attributes.text
+            viewController.seventhStaticLabel.stringValue = Item.Attributes.price
+            viewController.eightStaticLabel.stringValue = Item.Attributes.measUnit
+            viewController.ninthStaticLabel.stringValue = Item.Attributes.secU
+            viewController.tenthStaticLabel.stringValue = Item.Attributes.name
         }
-        
-        viewController.fifthStackView.isHidden = true
-        viewController.sixthStackView.isHidden = true
-        viewController.seventhStackView.isHidden = true
-        viewController.eightStackView.isHidden = true
-        viewController.ninthStackView.isHidden = true
-        viewController.tenthStackView.isHidden = true
+    
+        viewController.fourthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
     }

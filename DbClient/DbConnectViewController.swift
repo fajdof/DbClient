@@ -293,7 +293,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func updateTableView(table: Tables) {
 		updateDataSource(type: table)
-        if table != Tables.Partner {
+        if table != Tables.Partner && table != Tables.Unit {
             tables.append(table)
         }
 		tableView.reloadData()

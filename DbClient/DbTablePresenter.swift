@@ -247,7 +247,6 @@ class DbTablePresenter {
 		unhideAllLabels(cellView: unitView)
 		unhideAllButtons(cellView: unitView)
 		
-		unitView.firstLabel.addAttributedString(Unit.Attributes.docId, dataString: unit.docId?.description)
 		unitView.secondLabel.addAttributedString(Unit.Attributes.unitId, dataString: unit.unitId?.description)
 		unitView.thirdLabel.addAttributedString(Unit.Attributes.itemPrice, dataString: unit.itemPrice?.description)
 		unitView.fourthLabel.addAttributedString(Unit.Attributes.itemQuantity, dataString: unit.itemQuantity?.description)
@@ -275,6 +274,8 @@ class DbTablePresenter {
 		} else {
 			hideAllButtons(cellView: unitView)
 		}
+        
+        unitView.firstLabel.isHidden = true
 		
 		return unitView
 	}

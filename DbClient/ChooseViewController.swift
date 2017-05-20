@@ -27,6 +27,8 @@ class ChooseViewController: NSViewController {
         presenter.viewController = self
         presenter.setUp()
         
+        title = Tables.Document.rawValue
+        
         companyButton.action = #selector(ChooseViewController.companyPressed)
         personButton.action = #selector(ChooseViewController.personPressed)
         companyButton.target = self

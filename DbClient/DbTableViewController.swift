@@ -168,6 +168,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.editButton.unit = units[row]
             cellView.addButton.unit = units[row]
             cellView.deleteButton.unit = units[row]
+            cellView.addButton.isHidden = true
         case .Company:
             cellView.editButton.company = companies[row]
             cellView.addButton.company = companies[row]

@@ -304,7 +304,41 @@ class EditViewController: NSViewController {
     }
     
     func addUnit() {
+        let initDict: [String: Any] = [:]
+        guard let unit = Unit(JSON: initDict) else { return }
         
+        if let itemPrice = Double(firstLabel.stringValue) {
+            unit.itemPrice = itemPrice
+        }
+        if let itemQuantity = Double(secondLabel.stringValue) {
+            unit.itemQuantity = itemQuantity
+        }
+        if let discount = Double(thirdLabel.stringValue) {
+            unit.discount = discount
+        }
+        
+        guard let item = Item(JSON: initDict) else { return }
+        
+        item.text = sixthLabel.stringValue
+        item.measUnit = eightLabel.stringValue
+        item.name = tenthLabel.stringValue
+        
+        if let price = Double(seventhLabel.stringValue) {
+            item.price = price
+        }
+        if let secU = Int(ninthLabel.stringValue) {
+            item.secU = NSNumber(integerLiteral: secU)
+        }
+        if let code = Int(fifthLabel.stringValue) {
+            item.code = code
+        }
+        
+        viewModel.addUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func error(notification: Notification) {
