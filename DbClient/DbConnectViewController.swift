@@ -126,6 +126,26 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
         progressIndicator.doubleValue = 0
         queryIteration(index: 0)
     }
+    
+    
+    func emptyDatasource() {
+        tables = []
+        viewModel.items = []
+        viewModel.companies = []
+        viewModel.countries = []
+        viewModel.docs = []
+        viewModel.units = []
+        viewModel.places = []
+        viewModel.people = []
+        viewModel.partners = []
+        viewModel.idsToCompanies = [:]
+        viewModel.idsToDocs = [:]
+        viewModel.idsToItems = [:]
+        viewModel.idsToPeople = [:]
+        viewModel.idsToPlaces = [:]
+        viewModel.idsToPartners = [:]
+        viewModel.idsToCountries = [:]
+    }
 	
 	
 	func queryIteration(index: Int) {
@@ -197,42 +217,48 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		
-		switch tables[row] {
-		case .Item:
-			dbTableVC1.items = items
-		case .Document:
-			dbTableVC1.docs = docs
-		case .Country:
-			dbTableVC1.countries = countries
-		case .Place:
-			dbTableVC1.places = places
-		case .Person:
-			dbTableVC1.people = people
-		case .Partner:
-			dbTableVC1.partners = partners.map({ (partner) -> Partner in
-				if let company = self.viewModel.idsToCompanies[partner.partnerId!] {
-					return company
-				}
-				if let person = self.viewModel.idsToPeople[partner.partnerId!] {
-					return person
-				}
-				return partner
-			})
-		case .Unit:
-			dbTableVC1.units = units
-		case .Company:
-			dbTableVC1.companies = companies
-		}
-		
-		dbTableVC1.tableView.tableColumns.first?.title = tables[row].rawValue
-		dbTableVC1.type = tables[row]
-		dbTableVC1.currentOffset = 20
-		dbTableVC1.tableView.reloadData()
-		dbTableVC1.tableView.scrollRowToVisible(0)
-        dbTableVC1.presenter.toggleAddButton(button: dbTableVC1.addButton, hidden: false)
+		populateTableVC(withTable: tables[row])
 		
 		return true
 	}
+    
+    
+    func populateTableVC(withTable table: Tables) {
+        
+        switch table {
+        case .Item:
+            dbTableVC1.items = items
+        case .Document:
+            dbTableVC1.docs = docs
+        case .Country:
+            dbTableVC1.countries = countries
+        case .Place:
+            dbTableVC1.places = places
+        case .Person:
+            dbTableVC1.people = people
+        case .Partner:
+            dbTableVC1.partners = partners.map({ (partner) -> Partner in
+                if let company = self.viewModel.idsToCompanies[partner.partnerId!] {
+                    return company
+                }
+                if let person = self.viewModel.idsToPeople[partner.partnerId!] {
+                    return person
+                }
+                return partner
+            })
+        case .Unit:
+            dbTableVC1.units = units
+        case .Company:
+            dbTableVC1.companies = companies
+        }
+        
+        dbTableVC1.tableView.tableColumns.first?.title = table.rawValue
+        dbTableVC1.type = table
+        dbTableVC1.currentOffset = 20
+        dbTableVC1.tableView.reloadData()
+        dbTableVC1.tableView.scrollRowToVisible(0)
+        dbTableVC1.presenter.toggleAddButton(button: dbTableVC1.addButton, hidden: false)
+    }
 	
 	
 	func showTableAlert(table: Tables) {
@@ -295,6 +321,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		progressIndicator.increment(by: 1)
 		if progressIndicator.doubleValue == progressIndicator.maxValue {
 			progressIndicator.isHidden = true
+            populateTableVC(withTable: dbTableVC1.type)
 		}
 	}
 

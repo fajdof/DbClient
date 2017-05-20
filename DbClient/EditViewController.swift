@@ -117,6 +117,7 @@ class EditViewController: NSViewController {
         viewModel.updateItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
+            self.connectVC.emptyDatasource()
             self.connectVC.startQueryIterations()
         }
     }
