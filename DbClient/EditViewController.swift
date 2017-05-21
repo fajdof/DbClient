@@ -96,8 +96,11 @@ class EditViewController: NSViewController {
         case .Person:
             if let person = originButton.person {
                 self.presenter.configureWithPerson(person: person)
+                saveButton.action = #selector(EditViewController.updatePerson)
+            } else {
+                self.presenter.configureWithPerson(person: nil)
+                saveButton.action = #selector(EditViewController.addPerson)
             }
-            saveButton.action = #selector(EditViewController.updatePerson)
         case .Document:
             if let document = originButton.doc {
                 if originButton.subType == Tables.Unit {
@@ -261,7 +264,42 @@ class EditViewController: NSViewController {
     }
     
     func updatePerson() {
+        let initDict: [String: Any] = ["IdOsobe" : originButton.person!.id!]
+        guard let person = Person(JSON: initDict) else { return }
         
+        person.firstName = firstLabel.stringValue
+        person.lastName = secondLabel.stringValue
+        person.oib = fourthLabel.stringValue
+        person.partnerAddress = fifthLabel.stringValue
+        person.shipmentAddress = seventhLabel.stringValue
+        
+        viewModel.updatePerson(person: person) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addPerson() {
+        let initDict: [String: Any] = [:]
+        guard let person = Person(JSON: initDict) else { return }
+        
+        person.firstName = firstLabel.stringValue
+        person.lastName = secondLabel.stringValue
+        person.oib = fourthLabel.stringValue
+        person.partnerAddress = fifthLabel.stringValue
+        person.shipmentAddress = seventhLabel.stringValue
+        if let personId = Int(thirdLabel.stringValue) {
+            person.id = personId
+        }
+        
+        viewModel.addPerson(person: person) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func updateDocument() {

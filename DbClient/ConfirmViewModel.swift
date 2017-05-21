@@ -97,4 +97,17 @@ class ConfirmViewModel {
         })
     }
     
+    func deletePerson(person: Person, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Person.rawValue
+        query = query + whereClause + "IdOsobe = '\(person.id!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }
