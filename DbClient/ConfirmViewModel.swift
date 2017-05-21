@@ -71,4 +71,17 @@ class ConfirmViewModel {
         })
     }
     
+    func deletePlace(place: Place, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Place.rawValue
+        query = query + whereClause + "IdMjesta = '\(place.id!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

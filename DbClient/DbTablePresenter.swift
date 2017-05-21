@@ -102,6 +102,8 @@ class DbTablePresenter {
 		countryView.sixthLabel.isHidden = true
 		countryView.seventhLabel.isHidden = true
 		countryView.eighthLabel.isHidden = true
+        
+        countryView.addButton.title = "Dodaj mjesto"
 		
 		if shouldAddButtons {
 			if country.places.count != 0 {
@@ -173,12 +175,13 @@ class DbTablePresenter {
 		
 		placeView.firstLabel.addAttributedString(Place.Attributes.name, dataString: place.name)
 		placeView.secondLabel.addAttributedString(Place.Attributes.countryCode, dataString: place.countryCode)
-		placeView.thirdLabel.addAttributedString(Place.Attributes.id, dataString: place.id?.description)
 		placeView.fourthLabel.addAttributedString(Place.Attributes.postalCode, dataString: place.postalCode?.description)
 		placeView.fifthLabel.addAttributedString(Place.Attributes.postalName, dataString: place.postalName)
 		placeView.sixthLabel.isHidden = true
 		placeView.seventhLabel.isHidden = true
 		placeView.eighthLabel.isHidden = true
+        placeView.thirdLabel.isHidden = true
+        placeView.secondLabel.isHidden = true
 		
 		if shouldAddButtons {
 			if let country = place.country {

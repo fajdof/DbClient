@@ -78,8 +78,14 @@ class EditViewController: NSViewController {
             saveButton.action = #selector(EditViewController.updateCompany)
         case .Country:
             if let country = originButton.country {
-                self.presenter.configureWithCountry(country: country)
-                saveButton.action = #selector(EditViewController.updateCountry)
+                if originButton.subType == Tables.Place {
+                    self.presenter.configureWithPlace(place: nil)
+                    saveButton.action = #selector(EditViewController.addPlace)
+                    title = Tables.Place.rawValue
+                } else {
+                    self.presenter.configureWithCountry(country: country)
+                    saveButton.action = #selector(EditViewController.updateCountry)
+                }
             } else {
                 self.presenter.configureWithCountry(country: nil)
                 saveButton.action = #selector(EditViewController.addCountry)
@@ -94,6 +100,7 @@ class EditViewController: NSViewController {
                 if originButton.subType == Tables.Unit {
                     self.presenter.configureWithUnit(unit: nil)
                     saveButton.action = #selector(EditViewController.addUnit)
+                    title = Tables.Unit.rawValue
                 } else {
                     self.presenter.configureWithDocument(doc: document)
                     saveButton.action = #selector(EditViewController.updateDocument)
@@ -296,7 +303,40 @@ class EditViewController: NSViewController {
     }
     
     func updatePlace() {
+        let initDict: [String: Any] = ["IdMjesta" : originButton.place!.id!]
+        guard let place = Place(JSON: initDict) else { return }
         
+        place.name = firstLabel.stringValue
+        if let postalCode = Int(fourthLabel.stringValue) {
+            place.postalCode = postalCode
+        }
+        place.postalName = fifthLabel.stringValue
+        
+        viewModel.updatePlace(place: place) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+
+    }
+    
+    func addPlace() {
+        let initDict: [String: Any] = [:]
+        guard let place = Place(JSON: initDict) else { return }
+        
+        place.name = firstLabel.stringValue
+        if let postalCode = Int(fourthLabel.stringValue) {
+            place.postalCode = postalCode
+        }
+        place.postalName = fifthLabel.stringValue
+        
+        viewModel.addPlace(place: place, countryMark: originButton.country!.mark!) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func updateUnit() {

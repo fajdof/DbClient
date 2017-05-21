@@ -104,7 +104,15 @@ class ConfirmViewController: NSViewController {
     }
     
     func deletePlace() {
+        let initDict: [String: Any] = ["IdMjesta" : originButton.place!.id!]
+        guard let place = Place(JSON: initDict) else { return }
         
+        viewModel.deletePlace(place: place) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func deleteUnit() {

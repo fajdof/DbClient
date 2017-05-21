@@ -227,4 +227,40 @@ class EditViewModel {
     }
     
     
+    func addPlace(place: Place, countryMark: String?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = insert + Tables.Place.rawValue + " (NazMjesta, OznDrzave, PostBrMjesta, PostNazMjesta)" + values
+        query = query + "(" + "'\(place.name ?? "")'"
+        query = query + colon + "'\(countryMark ?? "")'"
+        query = query + colon + "\(place.postalCode ?? 0)"
+        query = query + colon + "'\(place.postalName ?? "")'" + ")"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    
+    func updatePlace(place: Place, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = update + Tables.Place.rawValue + set
+        query = query + "NazMjesta = '\(place.name!)'"
+        if let postalCode = place.postalCode {
+            query = query + colon + "PostBrMjesta = \(postalCode)"
+        }
+        query = query + colon + "PostNazMjesta = '\(place.postalName!)'"
+        query = query + whereClause + "IdMjesta = '\(place.id!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    
 }

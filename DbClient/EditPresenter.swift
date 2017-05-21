@@ -193,10 +193,6 @@ class EditPresenter {
     func configureWithPlace(place: Place?) {
         viewController.firstStaticLabel.stringValue = Place.Attributes.name
         viewController.firstLabel.stringValue = place?.name ?? ""
-        viewController.secondStaticLabel.stringValue = Place.Attributes.countryCode
-        viewController.secondLabel.stringValue = place?.countryCode ?? ""
-        viewController.thirdStaticLabel.stringValue = Place.Attributes.id
-        viewController.thirdLabel.stringValue = place?.id?.description ?? ""
         viewController.fourthStaticLabel.stringValue = Place.Attributes.postalCode
         viewController.fourthLabel.stringValue = place?.postalCode?.description ?? ""
         viewController.fifthStaticLabel.stringValue = Place.Attributes.postalName
@@ -206,6 +202,8 @@ class EditPresenter {
             
         }
         
+        viewController.thirdStackView.isHidden = true
+        viewController.secondStackView.isHidden = true
         viewController.sixthStackView.isHidden = true
         viewController.seventhStackView.isHidden = true
         viewController.eightStackView.isHidden = true
