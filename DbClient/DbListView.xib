@@ -15,10 +15,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="56E-bO-LOb">
-                    <rect key="frame" x="0.0" y="0.0" width="148" height="280"/>
+                    <rect key="frame" x="0.0" y="0.0" width="168" height="280"/>
                     <subviews>
                         <colorWell bordered="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9T-FZ-xCk">
-                            <rect key="frame" x="0.0" y="0.0" width="132" height="280"/>
+                            <rect key="frame" x="0.0" y="0.0" width="152" height="280"/>
                             <color key="color" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </colorWell>
                     </subviews>
@@ -30,7 +30,7 @@
                     </constraints>
                 </customView>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HgG-oI-c6h">
-                    <rect key="frame" x="148" y="0.0" width="284" height="279"/>
+                    <rect key="frame" x="168" y="0.0" width="264" height="279"/>
                     <subviews>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-R3-axz">
                             <rect key="frame" x="-2" y="262" width="92" height="17"/>
@@ -155,17 +155,17 @@
                     </customSpacing>
                 </stackView>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6F-k2-5pF">
-                    <rect key="frame" x="16" y="92" width="100" height="95"/>
+                    <rect key="frame" x="16" y="92" width="120" height="95"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mt3-98-fNC" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
-                            <rect key="frame" x="-6" y="67" width="112" height="32"/>
+                            <rect key="frame" x="2.5" y="67" width="115" height="32"/>
                             <buttonCell key="cell" type="push" title="Izbriši" bezelStyle="rounded" image="NSTrashEmpty" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hvr-To-5wc">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lTt-Qo-Hf1" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
-                            <rect key="frame" x="-6" y="30" width="112" height="32"/>
+                            <rect key="frame" x="4" y="30" width="112" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="K2f-yP-Uca"/>
                             </constraints>
@@ -175,9 +175,9 @@
                             </buttonCell>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="biC-aZ-iuk" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
-                            <rect key="frame" x="-6" y="-7" width="112" height="32"/>
+                            <rect key="frame" x="-6" y="-7" width="132" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="76X-ps-H0s"/>
+                                <constraint firstAttribute="width" constant="120" id="76X-ps-H0s"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="Dodaj" bezelStyle="rounded" image="NSAddTemplate" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cO2-Ce-tOu">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -186,7 +186,7 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="AcX-tA-Hen"/>
+                        <constraint firstAttribute="width" constant="120" id="AcX-tA-Hen"/>
                     </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>

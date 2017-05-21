@@ -74,8 +74,11 @@ class EditViewController: NSViewController {
         case .Company:
             if let company = originButton.company {
                 presenter.configureWithCompany(company: company)
+                saveButton.action = #selector(EditViewController.updateCompany)
+            } else {
+                presenter.configureWithCompany(company: nil)
+                saveButton.action = #selector(EditViewController.addCompany)
             }
-            saveButton.action = #selector(EditViewController.updateCompany)
         case .Country:
             if let country = originButton.country {
                 if originButton.subType == Tables.Place {
@@ -182,7 +185,42 @@ class EditViewController: NSViewController {
     }
     
     func updateCompany() {
+        let initDict: [String: Any] = ["IdTvrtke" : originButton.company!.companyId!]
+        guard let company = Company(JSON: initDict) else { return }
         
+        company.registryNumber = thirdLabel.stringValue
+        company.name = secondLabel.stringValue
+        company.oib = fourthLabel.stringValue
+        company.partnerAddress = fifthLabel.stringValue
+        company.shipmentAddress = seventhLabel.stringValue
+        
+        viewModel.updateCompany(company: company) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addCompany() {
+        let initDict: [String: Any] = [:]
+        guard let company = Company(JSON: initDict) else { return }
+        
+        company.registryNumber = thirdLabel.stringValue
+        company.name = secondLabel.stringValue
+        company.oib = fourthLabel.stringValue
+        company.partnerAddress = fifthLabel.stringValue
+        company.shipmentAddress = seventhLabel.stringValue
+        if let companyId = Int(firstLabel.stringValue) {
+            company.companyId = companyId
+        }
+        
+        viewModel.addCompany(company: company) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func updateCountry() {

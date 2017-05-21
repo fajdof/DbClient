@@ -134,6 +134,7 @@ class DbTablePresenter {
 		personView.fourthLabel.addAttributedString(Person.Attributes.oib, dataString: person.oib)
 		personView.fifthLabel.addAttributedString(Person.Attributes.partnerAddress, dataString: person.partnerAddress)
 		personView.sixthLabel.addAttributedString(Person.Attributes.shipmentAddress, dataString: person.shipmentAddress)
+        personView.addButton.title = "Dodaj dokument"
 		
 		if shouldAddButtons {
 			if let partnerPlace = person.partnerPlace {
@@ -287,12 +288,15 @@ class DbTablePresenter {
 	func configureCompanyView(companyView: DbListView, company: Company, shouldAddButtons: Bool) -> DbListView {
 		
 		unhideAllLabels(cellView: companyView)
+        unhideAllButtons(cellView: companyView)
+        
 		companyView.firstLabel.addAttributedString(Company.CompanyAttributes.companyId, dataString: company.companyId?.description)
 		companyView.secondLabel.addAttributedString(Company.CompanyAttributes.name, dataString: company.name)
 		companyView.thirdLabel.addAttributedString(Company.CompanyAttributes.registryNumber, dataString: company.registryNumber)
 		companyView.fourthLabel.addAttributedString(Company.Attributes.oib, dataString: company.oib)
 		companyView.fifthLabel.addAttributedString(Company.Attributes.partnerAddress, dataString: company.partnerAddress)
 		companyView.sixthLabel.addAttributedString(Company.Attributes.shipmentAddress, dataString: company.shipmentAddress)
+        companyView.addButton.title = "Dodaj dokument"
 		
 		if shouldAddButtons {
 			if let partnerPlace = company.partnerPlace {

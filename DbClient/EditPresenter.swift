@@ -51,17 +51,16 @@ class EditPresenter {
         viewController.fourthLabel.stringValue = company?.oib ?? ""
         viewController.fifthStaticLabel.stringValue = Company.Attributes.partnerAddress
         viewController.fifthLabel.stringValue = company?.partnerAddress ?? ""
-        viewController.sixthStaticLabel.stringValue = Company.Attributes.partnerAddressId
-        viewController.sixthLabel.stringValue = company?.partnerAddressId?.description ?? ""
         viewController.seventhStaticLabel.stringValue = Company.Attributes.shipmentAddress
         viewController.seventhLabel.stringValue = company?.shipmentAddress ?? ""
-        viewController.eightStaticLabel.stringValue = Company.Attributes.shipmentAddressId
-        viewController.eightLabel.stringValue = company?.shipmentAddressId?.description ?? ""
         
         if company != nil {
-            
+            viewController.firstLabel.isEditable = false
+            viewController.firstLabel.isBezeled = false
         }
         
+        viewController.sixthStackView.isHidden = true
+        viewController.eightStackView.isHidden = true
         viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
