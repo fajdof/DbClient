@@ -58,4 +58,17 @@ class ConfirmViewModel {
         })
     }
     
+    func deleteUnit(unit: Unit, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Unit.rawValue
+        query = query + whereClause + "IdStavke = '\(unit.unitId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

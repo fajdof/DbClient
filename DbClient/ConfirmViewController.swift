@@ -108,7 +108,15 @@ class ConfirmViewController: NSViewController {
     }
     
     func deleteUnit() {
+        let initDict: [String: Any] = ["IdStavke" : originButton.unit!.unitId!]
+        guard let unit = Unit(JSON: initDict) else { return }
         
+        viewModel.deleteUnit(unit: unit) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func exit() {

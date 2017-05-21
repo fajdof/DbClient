@@ -206,4 +206,25 @@ class EditViewModel {
     }
     
     
+    func updateUnit(unit: Unit, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = update + Tables.Unit.rawValue + set
+        query = query + "JedCijArtikla = \(unit.itemPrice ?? 0)"
+        if let itemQuantity = unit.itemQuantity {
+            query = query + colon + "KolArtikla = \(itemQuantity)"
+        }
+        if let discount = unit.discount {
+            query = query + colon + "PostoRabat = \(discount)"
+        }
+        query = query + whereClause + "IdStavke = '\(unit.unitId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    
 }
