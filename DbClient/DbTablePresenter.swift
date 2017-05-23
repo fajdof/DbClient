@@ -24,10 +24,12 @@ class DbTablePresenter {
 		itemView.unitLabel.addAttributedString(Item.Attributes.measUnit, dataString: item.measUnit)
 		itemView.ZULabel.addAttributedString(Item.Attributes.secU, dataString: item.secU?.description)
 		itemView.nameLabel.addAttributedString(Item.Attributes.name, dataString: item.name)
+        
+        itemView.itemImageView.image = NSImage(named: "placeholder")
 		if let imageData = item.image {
-			itemView.itemImageView.image = NSImage(data: imageData)
-		} else {
-			itemView.itemImageView.image = nil
+            if let image = NSImage(data: imageData), image.isValid {
+                itemView.itemImageView.image = image
+            }
 		}
 		
         itemView.disclosureButton.isHidden = true
@@ -71,8 +73,12 @@ class DbTablePresenter {
 				docView.secondButton.title = TablePlurals.Units.rawValue
 				docView.secondButton.type = Tables.Unit
 				docView.secondButton.units = doc.units
+                docView.secondButton.isEnabled = true
+                docView.secondButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				docView.secondButton.isHidden = true
+				docView.secondButton.title = "Nema stavaka"
+                docView.secondButton.isEnabled = false
+                docView.secondButton.image = nil
 			}
 			if let docBefore = doc.docBefore {
 				docView.thirdButton.title = DocBefore.Doc.rawValue
@@ -110,8 +116,12 @@ class DbTablePresenter {
 				countryView.firstButton.title = TablePlurals.Places.rawValue
 				countryView.firstButton.type = Tables.Place
 				countryView.firstButton.places = country.places
+                countryView.firstButton.isEnabled = true
+                countryView.firstButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				countryView.firstButton.isHidden = true
+				countryView.firstButton.isEnabled = false
+                countryView.firstButton.image = nil
+                countryView.firstButton.title = "Nema mjesta"
 			}
 			countryView.secondButton.isHidden = true
 			countryView.thirdButton.isHidden = true
@@ -141,22 +151,34 @@ class DbTablePresenter {
 				personView.firstButton.title = Places.PartnerPlace.rawValue
 				personView.firstButton.type = Tables.Place
 				personView.firstButton.places = [partnerPlace]
+                personView.firstButton.isEnabled = true
+                personView.firstButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				personView.firstButton.isHidden = true
+				personView.firstButton.isEnabled = false
+                personView.firstButton.image = nil
+                personView.firstButton.title = "Nema mjesta partnera"
 			}
 			if let shipmentPlace = person.shipmentPlace {
 				personView.secondButton.title = Places.ShipmentPlace.rawValue
 				personView.secondButton.type = Tables.Place
 				personView.secondButton.places = [shipmentPlace]
+                personView.secondButton.isEnabled = true
+                personView.secondButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				personView.secondButton.isHidden = true
+                personView.secondButton.isEnabled = false
+                personView.secondButton.image = nil
+                personView.secondButton.title = "Nema mjesta isporuke"
 			}
 			if person.docs.count != 0 {
 				personView.thirdButton.title = TablePlurals.Documents.rawValue
 				personView.thirdButton.type = Tables.Document
-				personView.thirdButton.docs = person.docs
+                personView.thirdButton.docs = person.docs
+                personView.thirdButton.isEnabled = true
+                personView.thirdButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				personView.thirdButton.isHidden = true
+                personView.thirdButton.isEnabled = false
+                personView.thirdButton.image = nil
+                personView.thirdButton.title = "Nema dokumenata"
 			}
 		} else {
 			hideAllButtons(cellView: personView)
@@ -303,22 +325,34 @@ class DbTablePresenter {
 				companyView.firstButton.title = Places.PartnerPlace.rawValue
 				companyView.firstButton.type = Tables.Place
 				companyView.firstButton.places = [partnerPlace]
+                companyView.firstButton.isEnabled = true
+                companyView.firstButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				companyView.firstButton.isHidden = true
+                companyView.firstButton.isEnabled = false
+                companyView.firstButton.image = nil
+                companyView.firstButton.title = "Nema mjesta partnera"
 			}
 			if let shipmentPlace = company.shipmentPlace {
 				companyView.secondButton.title = Places.ShipmentPlace.rawValue
 				companyView.secondButton.type = Tables.Place
 				companyView.secondButton.places = [shipmentPlace]
+                companyView.secondButton.isEnabled = true
+                companyView.secondButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				companyView.secondButton.isHidden = true
+                companyView.secondButton.isEnabled = false
+                companyView.secondButton.image = nil
+                companyView.secondButton.title = "Nema mjesta isporuke"
 			}
 			if company.docs.count != 0 {
 				companyView.thirdButton.title = TablePlurals.Documents.rawValue
 				companyView.thirdButton.type = Tables.Document
 				companyView.thirdButton.docs = company.docs
+                companyView.thirdButton.isEnabled = true
+                companyView.thirdButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				companyView.thirdButton.isHidden = true
+                companyView.thirdButton.isEnabled = false
+                companyView.thirdButton.image = nil
+                companyView.thirdButton.title = "Nema dokumenata"
 			}
 		} else {
 			hideAllButtons(cellView: companyView)

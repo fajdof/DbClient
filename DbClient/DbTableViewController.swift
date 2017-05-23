@@ -56,21 +56,21 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch type! {
 		case .Item:
-			return 240
+			return 200
 		case .Document:
-			return 300
+			return 260
 		case .Country:
 			return 150
 		case .Place:
-			return 220
+			return 120
 		case .Person:
-			return 300
+			return 280
 		case .Partner:
 			return 320
 		case .Unit:
-			return 240
+			return 170
 		case .Company:
-			return 300
+			return 280
 		}
 	}
 	

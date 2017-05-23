@@ -11,6 +11,7 @@ import Cocoa
 
 class EditViewController: NSViewController {
     
+    @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var firstStaticLabel: NSTextField!
     @IBOutlet weak var firstLabel: NSTextField!
@@ -61,6 +62,8 @@ class EditViewController: NSViewController {
         title = originButton.type.rawValue
         
         presenter.viewController = self
+        
+        cancelButton.action = #selector(EditViewController.cancelButtonPressed)
         
         switch originButton.type! {
         case .Item:
@@ -494,6 +497,10 @@ class EditViewController: NSViewController {
         if let window = view.window {
             alert.beginSheetModal(for: window, completionHandler: nil)
         }
+    }
+    
+    func cancelButtonPressed() {
+        dismiss(self)
     }
     
 }

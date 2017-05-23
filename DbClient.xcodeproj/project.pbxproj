@@ -45,6 +45,7 @@
 		75F9565C1ED0425900923C92 /* ConfirmPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9565B1ED0425900923C92 /* ConfirmPresenter.swift */; };
 		75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9565E1ED08F8700923C92 /* ChooseViewController.swift */; };
 		75F956611ED0905800923C92 /* ChoosePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956601ED0905800923C92 /* ChoosePresenter.swift */; };
+		75F9D6E21ED433150061C1A6 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F9D6E11ED433150061C1A6 /* placeholder.png */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		75F9565B1ED0425900923C92 /* ConfirmPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPresenter.swift; sourceTree = "<group>"; };
 		75F9565E1ED08F8700923C92 /* ChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
 		75F956601ED0905800923C92 /* ChoosePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosePresenter.swift; sourceTree = "<group>"; };
+		75F9D6E11ED433150061C1A6 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,6 +189,7 @@
 				752EF9B31DCE33E2000B6C42 /* Main.storyboard */,
 				750434691ECC47D400A13176 /* Modal.storyboard */,
 				752EF9B61DCE33E2000B6C42 /* Info.plist */,
+				75F9D6E11ED433150061C1A6 /* placeholder.png */,
 			);
 			path = DbClient;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				753D6EE51DD730490027EDA7 /* DbItemView.xib in Resources */,
 				755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */,
 				752EF9B21DCE33E2000B6C42 /* Assets.xcassets in Resources */,
+				75F9D6E21ED433150061C1A6 /* placeholder.png in Resources */,
 				7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */,
 				752EF9B51DCE33E2000B6C42 /* Main.storyboard in Resources */,
 			);

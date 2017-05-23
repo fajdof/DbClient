@@ -523,7 +523,7 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gZX-Sg-1kg">
-                                <rect key="frame" x="344" y="17" width="112" height="35"/>
+                                <rect key="frame" x="404" y="17" width="112" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="ZpL-OB-YGB"/>
                                     <constraint firstAttribute="width" constant="100" id="gna-tu-QGr"/>
@@ -533,10 +533,26 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Re4-NX-vF3">
+                                <rect key="frame" x="284" y="17" width="112" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="4ks-pC-nbS"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="9Cf-gL-lYs"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="GgZ-ug-fCu"/>
+                                    <constraint firstAttribute="width" constant="100" id="nPp-hJ-bdv"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Odustani" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2W8-vZ-xwt">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="J81-Gq-wRM" secondAttribute="trailing" id="3m9-7w-25M"/>
-                            <constraint firstItem="gZX-Sg-1kg" firstAttribute="centerX" secondItem="0Y1-zU-Dx7" secondAttribute="centerX" id="WGg-gw-QPI"/>
+                            <constraint firstAttribute="bottom" secondItem="Re4-NX-vF3" secondAttribute="bottom" constant="24" id="BpZ-br-Zft"/>
+                            <constraint firstItem="Re4-NX-vF3" firstAttribute="top" secondItem="J81-Gq-wRM" secondAttribute="bottom" constant="16" id="Qm5-AW-Y6x"/>
+                            <constraint firstItem="Re4-NX-vF3" firstAttribute="centerX" secondItem="0Y1-zU-Dx7" secondAttribute="centerX" constant="-60" id="TK3-eY-Chm"/>
+                            <constraint firstItem="gZX-Sg-1kg" firstAttribute="centerX" secondItem="0Y1-zU-Dx7" secondAttribute="centerX" constant="60" id="WGg-gw-QPI"/>
                             <constraint firstAttribute="bottom" secondItem="gZX-Sg-1kg" secondAttribute="bottom" constant="24" id="byN-uL-sUL"/>
                             <constraint firstItem="gZX-Sg-1kg" firstAttribute="top" secondItem="J81-Gq-wRM" secondAttribute="bottom" constant="16" id="k6C-2e-raE"/>
                             <constraint firstItem="J81-Gq-wRM" firstAttribute="top" secondItem="0Y1-zU-Dx7" secondAttribute="top" constant="16" id="oz3-UG-yM7"/>
@@ -544,6 +560,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="Re4-NX-vF3" id="l2H-OY-dRG"/>
                         <outlet property="datePicker" destination="Viy-Ea-ODi" id="FT8-MV-PMh"/>
                         <outlet property="eightLabel" destination="xJY-Rb-OO2" id="TcS-0h-c1C"/>
                         <outlet property="eightStackView" destination="kSs-Di-vpU" id="ZiL-rm-Znk"/>

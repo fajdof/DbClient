@@ -318,7 +318,7 @@ class EditViewModel {
         query = query + "OIB = '\(person.oib!)'"
         query = query + colon + "AdrIsporuke = '\(person.shipmentAddress!)'"
         query = query + colon + "AdrPartnera = '\(person.partnerAddress!)'"
-        query = query + whereClause + "IdPartnera = '\(person.companyId!)'; "
+        query = query + whereClause + "IdPartnera = '\(person.id!)'; "
         
         query = query + update + Tables.Person.rawValue + set
         query = query + "ImeOsobe = '\(person.firstName!)'"
