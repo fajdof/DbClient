@@ -131,11 +131,23 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
         cellView.deleteButton.target = self
         cellView.addButton.action = #selector(DbTableViewController.addPressed(sender:))
         cellView.addButton.target = self
+        cellView.addShipmentButton.action = #selector(DbTableViewController.addPressed(sender:))
+        cellView.addShipmentButton.target = self
+        cellView.addDocButton.action = #selector(DbTableViewController.addPressed(sender:))
+        cellView.addDocButton.target = self
         
         cellView.editButton.type = type
         cellView.addButton.type = type
         cellView.deleteButton.type = type
+        cellView.addShipmentButton.type = type
+        cellView.addDocButton.type = type
         cellView.addButton.isHidden = false
+        cellView.addButton.isEnabled = true
+        cellView.addShipmentButton.isHidden = true
+        cellView.addDocButton.isHidden = true
+        cellView.addShipmentButton.isHidden = true
+        cellView.addDocButton.isHidden = true
+        cellView.addShipmentButton.isEnabled = true
         cellView.addButton.isEnabled = true
         
         switch type! {
@@ -158,15 +170,31 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.addButton.place = places[row]
             cellView.deleteButton.place = places[row]
             cellView.addButton.isHidden = true
+            if let parentVC = parent as? DbConnectViewController {
+                if parentVC.dbTableVC1.type == Tables.Person || parentVC.dbTableVC1.type == Tables.Company {
+                    cellView.deleteButton.subType = Tables.Partner
+                }
+            }
         case .Person:
             cellView.editButton.person = people[row]
             cellView.addButton.person = people[row]
             cellView.deleteButton.person = people[row]
+            cellView.addShipmentButton.person = people[row]
+            cellView.addDocButton.person = people[row]
             if people[row].partnerAddressId == nil {
                 cellView.addButton.subType = Tables.Place
             } else {
                 cellView.addButton.isEnabled = false
             }
+            if people[row].shipmentAddressId == nil {
+                cellView.addShipmentButton.subType = Tables.Place
+                cellView.addShipmentButton.shipment = true
+            } else {
+                cellView.addShipmentButton.isEnabled = false
+                cellView.addShipmentButton.shipment = false
+            }
+            cellView.addShipmentButton.isHidden = false
+            cellView.addDocButton.isHidden = false
         case .Partner:
             cellView.editButton.partner = partners[row]
             cellView.addButton.partner = partners[row]
@@ -180,11 +208,22 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.editButton.company = companies[row]
             cellView.addButton.company = companies[row]
             cellView.deleteButton.company = companies[row]
+            cellView.addShipmentButton.company = companies[row]
+            cellView.addDocButton.company = companies[row]
             if companies[row].partnerAddressId == nil {
                 cellView.addButton.subType = Tables.Place
             } else {
                 cellView.addButton.isEnabled = false
             }
+            if companies[row].shipmentAddressId == nil {
+                cellView.addShipmentButton.subType = Tables.Place
+                cellView.addShipmentButton.shipment = true
+            } else {
+                cellView.addShipmentButton.isEnabled = false
+                cellView.addShipmentButton.shipment = false
+            }
+            cellView.addShipmentButton.isHidden = false
+            cellView.addDocButton.isHidden = false
         }
     }
     

@@ -22,5 +22,5 @@ class EditButton: NSButton {
     var company: Company?
     var type: Tables! = Tables.Item
     var subType: Tables! = Tables.Item
-    
+    var shipment: Bool = false
 }

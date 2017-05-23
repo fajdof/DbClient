@@ -512,7 +512,7 @@ class EditViewController: NSViewController {
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
         
-        viewModel.addPlaceToPerson(place: place, country: country, partnerId: partnerId) { [weak self] (data) in
+        viewModel.addPlaceToPerson(place: place, country: country, partnerId: partnerId, shipment: originButton.shipment) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()

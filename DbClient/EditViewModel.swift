@@ -359,7 +359,7 @@ class EditViewModel {
     }
     
     
-    func addPlaceToPerson(place: Place, country: Country, partnerId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+    func addPlaceToPerson(place: Place, country: Country, partnerId: Int?, shipment: Bool, completion: @escaping (_ dbData: [Any]?) -> ()) {
         
         var query = insert + Tables.Country.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
         query = query + "(" + "'\(country.iso3 ?? "")'"
@@ -377,7 +377,11 @@ class EditViewModel {
         query = query + "SET IDENTITY_INSERT Mjesto OFF; "
         
         query = query + update + Tables.Partner.rawValue + set
-        query = query + "IdMjestaPartnera = '\(place.id!)'"
+        if shipment {
+            query = query + "IdMjestaIsporuke = '\(place.id!)'"
+        } else {
+            query = query + "IdMjestaPartnera = '\(place.id!)'"
+        }
         query = query + whereClause + "IdPartnera = '\(partnerId!)'"
         
         dump(query)

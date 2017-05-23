@@ -12,6 +12,8 @@ import Cocoa
 
 class DbListView: NSTableCellView {
 	
+    @IBOutlet weak var addDocButton: EditButton!
+    @IBOutlet weak var addShipmentButton: EditButton!
     @IBOutlet weak var addButtonWidth: NSLayoutConstraint!
     @IBOutlet weak var addButton: EditButton!
     @IBOutlet weak var editButton: EditButton!

@@ -155,17 +155,17 @@
                     </customSpacing>
                 </stackView>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6F-k2-5pF">
-                    <rect key="frame" x="16" y="92" width="150" height="95"/>
+                    <rect key="frame" x="16" y="55" width="150" height="169"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mt3-98-fNC" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
-                            <rect key="frame" x="17.5" y="67" width="115" height="32"/>
+                            <rect key="frame" x="17.5" y="141" width="115" height="32"/>
                             <buttonCell key="cell" type="push" title="Izbriši" bezelStyle="rounded" image="NSTrashEmpty" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hvr-To-5wc">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lTt-Qo-Hf1" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
-                            <rect key="frame" x="19" y="30" width="112" height="32"/>
+                            <rect key="frame" x="19" y="104" width="112" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="K2f-yP-Uca"/>
                             </constraints>
@@ -175,11 +175,31 @@
                             </buttonCell>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="biC-aZ-iuk" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
-                            <rect key="frame" x="-6" y="-7" width="162" height="32"/>
+                            <rect key="frame" x="-6" y="67" width="162" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="76X-ps-H0s"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="Dodaj" bezelStyle="rounded" image="NSAddTemplate" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cO2-Ce-tOu">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P0M-L8-0vL" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
+                            <rect key="frame" x="-6" y="30" width="162" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="Tf8-LB-X7i"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="Dodaj mjesto isporuke" bezelStyle="rounded" image="NSAddTemplate" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GRY-cx-6Dz">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lGV-lD-dY2" customClass="EditButton" customModule="DbClient" customModuleProvider="target">
+                            <rect key="frame" x="-6" y="-7" width="162" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="m0U-yD-HKt"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="Dodaj dokument" bezelStyle="rounded" image="NSAddTemplate" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cac-Yb-PWH">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -192,8 +212,12 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
@@ -214,6 +238,8 @@
             <connections>
                 <outlet property="addButton" destination="biC-aZ-iuk" id="mIz-at-XOL"/>
                 <outlet property="addButtonWidth" destination="76X-ps-H0s" id="M4C-Yn-hMI"/>
+                <outlet property="addDocButton" destination="lGV-lD-dY2" id="JJ3-36-uCe"/>
+                <outlet property="addShipmentButton" destination="P0M-L8-0vL" id="Zxg-53-TlG"/>
                 <outlet property="deleteButton" destination="Mt3-98-fNC" id="ZbL-Se-0JZ"/>
                 <outlet property="editButton" destination="lTt-Qo-Hf1" id="Gwe-De-Stf"/>
                 <outlet property="eighthLabel" destination="dFa-4B-Fne" id="4ba-mX-qJc"/>
