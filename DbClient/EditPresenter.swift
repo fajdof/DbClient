@@ -188,24 +188,35 @@ class EditPresenter {
         viewController.twelvethStackView.isHidden = true
     }
     
-    func configureWithPlace(place: Place?) {
+    func configureWithPlace(place: Place?, withId: Bool) {
         viewController.firstStaticLabel.stringValue = Place.Attributes.name
         viewController.firstLabel.stringValue = place?.name ?? ""
         viewController.fourthStaticLabel.stringValue = Place.Attributes.postalCode
         viewController.fourthLabel.stringValue = place?.postalCode?.description ?? ""
         viewController.fifthStaticLabel.stringValue = Place.Attributes.postalName
         viewController.fifthLabel.stringValue = place?.postalName ?? ""
+        viewController.thirdStaticLabel.stringValue = Place.Attributes.id
+        viewController.thirdLabel.stringValue = place?.id?.description ?? ""
         
-        if place != nil {
-            
+        if withId {
+            viewController.sixthStaticLabel.stringValue = "Naziv države: "
+            viewController.seventhStaticLabel.stringValue = "Šifra države: "
+            viewController.eightStaticLabel.stringValue = "Oznaka države: "
+            viewController.ninthStaticLabel.stringValue = "ISO3 države: "
+            viewController.thirdStackView.isHidden = false
+            viewController.sixthStackView.isHidden = false
+            viewController.seventhStackView.isHidden = false
+            viewController.eightStackView.isHidden = false
+            viewController.ninthStackView.isHidden = false
+        } else {
+            viewController.thirdStackView.isHidden = true
+            viewController.sixthStackView.isHidden = true
+            viewController.seventhStackView.isHidden = true
+            viewController.eightStackView.isHidden = true
+            viewController.ninthStackView.isHidden = true
         }
         
-        viewController.thirdStackView.isHidden = true
         viewController.secondStackView.isHidden = true
-        viewController.sixthStackView.isHidden = true
-        viewController.seventhStackView.isHidden = true
-        viewController.eightStackView.isHidden = true
-        viewController.ninthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true

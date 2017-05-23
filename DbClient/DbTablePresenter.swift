@@ -53,6 +53,7 @@ class DbTablePresenter {
         docView.seventhLabel.isHidden = true
         docView.eighthLabel.isHidden = true
         docView.addButton.title = "Dodaj stavku"
+        docView.addButtonWidth.constant = 100
 		
 		if shouldAddButtons {
 			if let partner = doc.partner {
@@ -110,6 +111,7 @@ class DbTablePresenter {
 		countryView.eighthLabel.isHidden = true
         
         countryView.addButton.title = "Dodaj mjesto"
+        countryView.addButtonWidth.constant = 100
 		
 		if shouldAddButtons {
 			if country.places.count != 0 {
@@ -144,7 +146,8 @@ class DbTablePresenter {
 		personView.fourthLabel.addAttributedString(Person.Attributes.oib, dataString: person.oib)
 		personView.fifthLabel.addAttributedString(Person.Attributes.partnerAddress, dataString: person.partnerAddress)
 		personView.sixthLabel.addAttributedString(Person.Attributes.shipmentAddress, dataString: person.shipmentAddress)
-        personView.addButton.title = "Dodaj dokument"
+        personView.addButton.title = "Dodaj mjesto partnera"
+        personView.addButtonWidth.constant = 150
 		
 		if shouldAddButtons {
 			if let partnerPlace = person.partnerPlace {
@@ -318,7 +321,8 @@ class DbTablePresenter {
 		companyView.fourthLabel.addAttributedString(Company.Attributes.oib, dataString: company.oib)
 		companyView.fifthLabel.addAttributedString(Company.Attributes.partnerAddress, dataString: company.partnerAddress)
 		companyView.sixthLabel.addAttributedString(Company.Attributes.shipmentAddress, dataString: company.shipmentAddress)
-        companyView.addButton.title = "Dodaj dokument"
+        companyView.addButton.title = "Dodaj mjesto partnera"
+        companyView.addButtonWidth.constant = 150
 		
 		if shouldAddButtons {
 			if let partnerPlace = company.partnerPlace {

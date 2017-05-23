@@ -136,6 +136,7 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
         cellView.addButton.type = type
         cellView.deleteButton.type = type
         cellView.addButton.isHidden = false
+        cellView.addButton.isEnabled = true
         
         switch type! {
         case .Item:
@@ -161,6 +162,11 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.editButton.person = people[row]
             cellView.addButton.person = people[row]
             cellView.deleteButton.person = people[row]
+            if people[row].partnerAddressId == nil {
+                cellView.addButton.subType = Tables.Place
+            } else {
+                cellView.addButton.isEnabled = false
+            }
         case .Partner:
             cellView.editButton.partner = partners[row]
             cellView.addButton.partner = partners[row]
@@ -174,6 +180,11 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.editButton.company = companies[row]
             cellView.addButton.company = companies[row]
             cellView.deleteButton.company = companies[row]
+            if companies[row].partnerAddressId == nil {
+                cellView.addButton.subType = Tables.Place
+            } else {
+                cellView.addButton.isEnabled = false
+            }
         }
     }
     

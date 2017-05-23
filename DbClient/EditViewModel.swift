@@ -359,4 +359,34 @@ class EditViewModel {
     }
     
     
+    func addPlaceToPerson(place: Place, country: Country, partnerId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = insert + Tables.Country.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
+        query = query + "(" + "'\(country.iso3 ?? "")'"
+        query = query + colon + "'\(country.name ?? "")'"
+        query = query + colon + "\(country.code ?? 0)"
+        query = query + colon + "'\(country.mark ?? "")'" + "); "
+        
+        query = query + "SET IDENTITY_INSERT Mjesto ON; "
+        query = query + insert + Tables.Place.rawValue + " (NazMjesta, IdMjesta, OznDrzave,  PostBrMjesta, PostNazMjesta)" + values
+        query = query + "(" + "'\(place.name ?? "")'"
+        query = query + colon + "\(place.id ?? 0)"
+        query = query + colon + "'\(country.mark ?? "")'"
+        query = query + colon + "\(place.postalCode ?? 0)"
+        query = query + colon + "'\(place.postalName ?? "")'" + "); "
+        query = query + "SET IDENTITY_INSERT Mjesto OFF; "
+        
+        query = query + update + Tables.Partner.rawValue + set
+        query = query + "IdMjestaPartnera = '\(place.id!)'"
+        query = query + whereClause + "IdPartnera = '\(partnerId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    
 }

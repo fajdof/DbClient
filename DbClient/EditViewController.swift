@@ -76,8 +76,14 @@ class EditViewController: NSViewController {
             }
         case .Company:
             if let company = originButton.company {
-                presenter.configureWithCompany(company: company)
-                saveButton.action = #selector(EditViewController.updateCompany)
+                if originButton.subType == Tables.Place {
+                    self.presenter.configureWithPlace(place: nil, withId: true)
+                    saveButton.action = #selector(EditViewController.addPlaceToPartner)
+                    title = Tables.Place.rawValue
+                } else {
+                    presenter.configureWithCompany(company: company)
+                    saveButton.action = #selector(EditViewController.updateCompany)
+                }
             } else {
                 presenter.configureWithCompany(company: nil)
                 saveButton.action = #selector(EditViewController.addCompany)
@@ -85,7 +91,7 @@ class EditViewController: NSViewController {
         case .Country:
             if let country = originButton.country {
                 if originButton.subType == Tables.Place {
-                    self.presenter.configureWithPlace(place: nil)
+                    self.presenter.configureWithPlace(place: nil, withId: false)
                     saveButton.action = #selector(EditViewController.addPlace)
                     title = Tables.Place.rawValue
                 } else {
@@ -98,8 +104,14 @@ class EditViewController: NSViewController {
             }
         case .Person:
             if let person = originButton.person {
-                self.presenter.configureWithPerson(person: person)
-                saveButton.action = #selector(EditViewController.updatePerson)
+                if originButton.subType == Tables.Place {
+                    self.presenter.configureWithPlace(place: nil, withId: true)
+                    saveButton.action = #selector(EditViewController.addPlaceToPartner)
+                    title = Tables.Place.rawValue
+                } else {
+                    self.presenter.configureWithPerson(person: person)
+                    saveButton.action = #selector(EditViewController.updatePerson)
+                }
             } else {
                 self.presenter.configureWithPerson(person: nil)
                 saveButton.action = #selector(EditViewController.addPerson)
@@ -120,7 +132,7 @@ class EditViewController: NSViewController {
             }
         case .Place:
             if let place = originButton.place {
-                self.presenter.configureWithPlace(place: place)
+                self.presenter.configureWithPlace(place: place, withId: false)
             }
             saveButton.action = #selector(EditViewController.updatePlace)
         case .Unit:
@@ -471,6 +483,36 @@ class EditViewController: NSViewController {
         }
         
         viewModel.addUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addPlaceToPartner() {
+        let initDict: [String: Any] = [:]
+        guard let place = Place(JSON: initDict) else { return }
+        guard let country = Country(JSON: initDict) else { return }
+        
+        place.name = firstLabel.stringValue
+        if let postalCode = Int(fourthLabel.stringValue) {
+            place.postalCode = postalCode
+        }
+        place.postalName = fifthLabel.stringValue
+        if let id = Int(thirdLabel.stringValue) {
+            place.id = id
+        }
+        country.name = sixthLabel.stringValue
+        if let code = Int(seventhLabel.stringValue) {
+            country.code = code
+        }
+        country.mark = eightLabel.stringValue
+        country.iso3 = ninthLabel.stringValue
+        
+        let partnerId = originButton.person?.id ?? originButton.company!.companyId!
+        
+        viewModel.addPlaceToPerson(place: place, country: country, partnerId: partnerId) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
