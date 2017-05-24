@@ -119,7 +119,7 @@ class EditPresenter {
         viewController.twelvethStackView.isHidden = true
     }
     
-    func configureWithDocument(doc: Document?) {
+    func configureWithDocument(doc: Document?, fromPartner: Bool) {
         viewController.firstStaticLabel.stringValue = Document.Attributes.docId
         viewController.firstLabel.stringValue = doc?.docId?.description ?? ""
         viewController.secondStaticLabel.stringValue = Document.Attributes.docNumber
@@ -133,11 +133,16 @@ class EditPresenter {
         viewController.twelvethStaticLabel.stringValue = Document.Attributes.docDate
         viewController.datePicker.dateValue = doc?.docDate ?? Date()
         
-        if doc != nil {
+        if doc != nil || fromPartner {
             viewController.sixthStackView.isHidden = true
             viewController.seventhStackView.isHidden = true
             viewController.eightStackView.isHidden = true
             viewController.ninthStackView.isHidden = true
+            viewController.firstLabel.isEditable = false
+            viewController.firstLabel.isBezeled = false
+            if fromPartner {
+                viewController.firstStackView.isHidden = true
+            }
         } else {
             viewController.firstStackView.isHidden = true
             if viewController.isPerson {
@@ -155,8 +160,6 @@ class EditPresenter {
         
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
-        viewController.firstLabel.isEditable = false
-        viewController.firstLabel.isBezeled = false
     }
     
     func configureWithUnit(unit: Unit?) {

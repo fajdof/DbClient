@@ -338,6 +338,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		if progressIndicator.doubleValue == progressIndicator.maxValue {
 			progressIndicator.isHidden = true
             populateTableVC(withTable: dbTableVC1.type)
+            dbTableVC2.emptyDbTableVC2(parentVC: self)
 		}
 	}
 

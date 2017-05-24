@@ -43,6 +43,7 @@ class DbTablePresenter {
 		
 		unhideAllLabels(cellView: docView)
 		unhideAllButtons(cellView: docView)
+        docView.addButton.isHidden = false
 		
 		docView.firstLabel.addAttributedString(Document.Attributes.docId, dataString: doc.docId?.description)
 		docView.secondLabel.addAttributedString(Document.Attributes.docNumber, dataString: doc.docNumber?.description)
@@ -57,6 +58,8 @@ class DbTablePresenter {
 		
 		if shouldAddButtons {
 			if let partner = doc.partner {
+                docView.firstButton.isEnabled = true
+                docView.firstButton.image = NSImage(named: NSImageNameGoRightTemplate)
 				if let company = partner as? Company {
 					docView.firstButton.title = Tables.Partner.rawValue
 					docView.firstButton.type = Tables.Company
@@ -90,6 +93,7 @@ class DbTablePresenter {
 			}
 		} else {
 			hideAllButtons(cellView: docView)
+            docView.addButton.isHidden = true
 		}
 		
 		return docView

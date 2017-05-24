@@ -359,7 +359,7 @@ class EditViewModel {
     }
     
     
-    func addPlaceToPerson(place: Place, country: Country, partnerId: Int?, shipment: Bool, completion: @escaping (_ dbData: [Any]?) -> ()) {
+    func addPlaceToPartner(place: Place, country: Country, partnerId: Int?, shipment: Bool, completion: @escaping (_ dbData: [Any]?) -> ()) {
         
         var query = insert + Tables.Country.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
         query = query + "(" + "'\(country.iso3 ?? "")'"
@@ -383,6 +383,25 @@ class EditViewModel {
             query = query + "IdMjestaPartnera = '\(place.id!)'"
         }
         query = query + whereClause + "IdPartnera = '\(partnerId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    
+    func addDocToPartner(doc: Document, partnerId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = insert + Tables.Document.rawValue + " (VrDokumenta, BrDokumenta, DatDokumenta, IznosDokumenta, IdPartnera, PostoPorez)" + values
+        query = query + "(" + "'\(doc.docVr ?? "")'"
+        query = query + colon + "\(doc.docNumber ?? 0)"
+        query = query + colon + "'\(doc.docDate?.string(custom: "YYYYMMdd hh:mm:ss a") ?? "")'"
+        query = query + colon + "\(doc.docValue ?? 0)"
+        query = query + colon + "\(partnerId ?? 0)"
+        query = query + colon + "\(doc.tax ?? 0)" + ")"
         
         dump(query)
         

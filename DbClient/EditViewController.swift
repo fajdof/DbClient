@@ -81,8 +81,13 @@ class EditViewController: NSViewController {
                     saveButton.action = #selector(EditViewController.addPlaceToPartner)
                     title = Tables.Place.rawValue
                 } else {
-                    presenter.configureWithCompany(company: company)
-                    saveButton.action = #selector(EditViewController.updateCompany)
+                    if originButton.subType == Tables.Document {
+                        presenter.configureWithDocument(doc: nil, fromPartner: true)
+                        saveButton.action = #selector(EditViewController.addDocToPartner)
+                    } else {
+                        presenter.configureWithCompany(company: company)
+                        saveButton.action = #selector(EditViewController.updateCompany)
+                    }
                 }
             } else {
                 presenter.configureWithCompany(company: nil)
@@ -109,8 +114,13 @@ class EditViewController: NSViewController {
                     saveButton.action = #selector(EditViewController.addPlaceToPartner)
                     title = Tables.Place.rawValue
                 } else {
-                    self.presenter.configureWithPerson(person: person)
-                    saveButton.action = #selector(EditViewController.updatePerson)
+                    if originButton.subType == Tables.Document {
+                        presenter.configureWithDocument(doc: nil, fromPartner: true)
+                        saveButton.action = #selector(EditViewController.addDocToPartner)
+                    } else {
+                        self.presenter.configureWithPerson(person: person)
+                        saveButton.action = #selector(EditViewController.updatePerson)
+                    }
                 }
             } else {
                 self.presenter.configureWithPerson(person: nil)
@@ -123,11 +133,11 @@ class EditViewController: NSViewController {
                     saveButton.action = #selector(EditViewController.addUnit)
                     title = Tables.Unit.rawValue
                 } else {
-                    self.presenter.configureWithDocument(doc: document)
+                    self.presenter.configureWithDocument(doc: document, fromPartner: false)
                     saveButton.action = #selector(EditViewController.updateDocument)
                 }
             } else {
-                self.presenter.configureWithDocument(doc: nil)
+                self.presenter.configureWithDocument(doc: nil, fromPartner: false)
                 saveButton.action = #selector(EditViewController.addDocument)
             }
         case .Place:
@@ -512,7 +522,37 @@ class EditViewController: NSViewController {
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
         
-        viewModel.addPlaceToPerson(place: place, country: country, partnerId: partnerId, shipment: originButton.shipment) { [weak self] (data) in
+        viewModel.addPlaceToPartner(place: place, country: country, partnerId: partnerId, shipment: originButton.shipment) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addDocToPartner() {
+        let initDict: [String: Any] = [:]
+        guard let doc = Document(JSON: initDict) else { return }
+        
+        if let tax = Double(fifthLabel.stringValue) {
+            doc.tax = tax
+        }
+        if let docNumber = Int(secondLabel.stringValue) {
+            doc.docNumber = docNumber
+        }
+        if let docValue = Double(thirdLabel.stringValue) {
+            doc.docValue = docValue
+        }
+        if let docId = Int(firstLabel.stringValue) {
+            doc.docId = docId
+        }
+        
+        doc.docDate = datePicker.dateValue
+        doc.docVr = fourthLabel.stringValue
+        
+        let partnerId = originButton.person?.id ?? originButton.company!.companyId!
+        
+        viewModel.addDocToPartner(doc: doc, partnerId: partnerId) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
