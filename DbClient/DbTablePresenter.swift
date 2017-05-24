@@ -39,11 +39,12 @@ class DbTablePresenter {
 	}
 	
 	
-	func configureDocumentView(docView: DbListView, doc: Document, shouldAddButtons: Bool) -> DbListView {
+	func configureDocumentView(docView: DbListView, doc: Document, shouldAddButtons: Bool, shouldHideDelete: Bool) -> DbListView {
 		
 		unhideAllLabels(cellView: docView)
 		unhideAllButtons(cellView: docView)
         docView.addButton.isHidden = false
+        docView.addDocButton.isHidden = false
 		
 		docView.firstLabel.addAttributedString(Document.Attributes.docId, dataString: doc.docId?.description)
 		docView.secondLabel.addAttributedString(Document.Attributes.docNumber, dataString: doc.docNumber?.description)
@@ -88,12 +89,20 @@ class DbTablePresenter {
 				docView.thirdButton.title = DocBefore.Doc.rawValue
 				docView.thirdButton.type = Tables.Document
 				docView.thirdButton.docs = [docBefore]
+                docView.thirdButton.isEnabled = true
+                docView.thirdButton.image = NSImage(named: NSImageNameGoRightTemplate)
 			} else {
-				docView.thirdButton.isHidden = true
+                docView.thirdButton.title = "Nema prethodnog dokumenta"
+				docView.thirdButton.isEnabled = false
+                docView.thirdButton.image = nil
 			}
 		} else {
 			hideAllButtons(cellView: docView)
             docView.addButton.isHidden = true
+            docView.addDocButton.isHidden = true
+            if shouldHideDelete {
+                docView.deleteButton.isHidden = true
+            }
 		}
 		
 		return docView
@@ -156,7 +165,7 @@ class DbTablePresenter {
 		personView.fifthLabel.addAttributedString(Person.Attributes.partnerAddress, dataString: person.partnerAddress)
 		personView.sixthLabel.addAttributedString(Person.Attributes.shipmentAddress, dataString: person.shipmentAddress)
         personView.addButton.title = "Dodaj mjesto partnera"
-        personView.addButtonWidth.constant = 150
+        personView.addButtonWidth.constant = 155
 		
 		if shouldAddButtons {
 			if let partnerPlace = person.partnerPlace {
@@ -198,6 +207,10 @@ class DbTablePresenter {
 			}
 		} else {
 			hideAllButtons(cellView: personView)
+            personView.addButton.isHidden = true
+            personView.addDocButton.isHidden = true
+            personView.addShipmentButton.isHidden = true
+            personView.deleteButton.isHidden = true
 		}
         
         personView.seventhLabel.isHidden = true
@@ -340,7 +353,7 @@ class DbTablePresenter {
 		companyView.fifthLabel.addAttributedString(Company.Attributes.partnerAddress, dataString: company.partnerAddress)
 		companyView.sixthLabel.addAttributedString(Company.Attributes.shipmentAddress, dataString: company.shipmentAddress)
         companyView.addButton.title = "Dodaj mjesto partnera"
-        companyView.addButtonWidth.constant = 150
+        companyView.addButtonWidth.constant = 155
 		
 		if shouldAddButtons {
 			if let partnerPlace = company.partnerPlace {
@@ -382,6 +395,10 @@ class DbTablePresenter {
 			}
 		} else {
 			hideAllButtons(cellView: companyView)
+            companyView.addButton.isHidden = true
+            companyView.addDocButton.isHidden = true
+            companyView.addShipmentButton.isHidden = true
+            companyView.deleteButton.isHidden = true
 		}
 		
         companyView.seventhLabel.isHidden = true

@@ -225,4 +225,21 @@ class EditPresenter {
         viewController.twelvethStackView.isHidden = true
     }
     
+    
+    func configureWithDocId() {
+        viewController.firstStaticLabel.stringValue = "Id prethodnog dokumenta: "
+        
+        viewController.secondStackView.isHidden = true
+        viewController.thirdStackView.isHidden = true
+        viewController.fourthStackView.isHidden = true
+        viewController.fifthStackView.isHidden = true
+        viewController.sixthStackView.isHidden = true
+        viewController.seventhStackView.isHidden = true
+        viewController.eightStackView.isHidden = true
+        viewController.ninthStackView.isHidden = true
+        viewController.tenthStackView.isHidden = true
+        viewController.eleventhStackView.isHidden = true
+        viewController.twelvethStackView.isHidden = true
+    }
+    
 }

@@ -412,4 +412,19 @@ class EditViewModel {
     }
     
     
+    func addBeforeDoc(docId: Int?, beforeDocId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = update + Tables.Document.rawValue + set
+        query = query + "IdPrethDokumenta = '\(beforeDocId ?? 0)'"
+        query = query + whereClause + "IdDokumenta = '\(docId ?? 0)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+
+    }
+    
 }

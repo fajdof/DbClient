@@ -133,8 +133,13 @@ class EditViewController: NSViewController {
                     saveButton.action = #selector(EditViewController.addUnit)
                     title = Tables.Unit.rawValue
                 } else {
-                    self.presenter.configureWithDocument(doc: document, fromPartner: false)
-                    saveButton.action = #selector(EditViewController.updateDocument)
+                    if originButton.subType == Tables.Document {
+                        self.presenter.configureWithDocId()
+                        saveButton.action = #selector(EditViewController.addBeforeDoc)
+                    } else {
+                        self.presenter.configureWithDocument(doc: document, fromPartner: false)
+                        saveButton.action = #selector(EditViewController.updateDocument)
+                    }
                 }
             } else {
                 self.presenter.configureWithDocument(doc: nil, fromPartner: false)
@@ -557,6 +562,19 @@ class EditViewController: NSViewController {
             self.dismiss(self)
             self.connectVC.emptyDatasource()
             self.connectVC.startQueryIterations()
+        }
+    }
+    
+    func addBeforeDoc() {
+        if let beforeDocId = Int(firstLabel.stringValue) {
+            viewModel.addBeforeDoc(docId: originButton.doc?.docId, beforeDocId: beforeDocId) { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            }
+        } else {
+            showAlert(alertString: "Error", infoString: "Please enter valid document id")
         }
     }
     

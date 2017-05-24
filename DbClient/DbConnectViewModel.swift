@@ -208,8 +208,8 @@ class DbConnectViewModel {
 				}
 				
 				if let docBeforeId = doc.docBeforeId {
-					let doc = self.idsToDocs[docBeforeId]
-					doc?.docBefore = doc
+					let docBefore = self.idsToDocs[docBeforeId]
+					doc.docBefore = docBefore
 				}
 			}
 			DispatchQueue.main.async {

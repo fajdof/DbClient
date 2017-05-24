@@ -97,7 +97,11 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			connectItemButtons(itemView: itemView, row: row)
 			return presenter.configureItemView(itemView: itemView, item: items[row], shouldAddButtons: shouldAddButtons)
 		case .Document:
-			return presenter.configureDocumentView(docView: cellView, doc: docs[row], shouldAddButtons: shouldAddButtons)
+            if parentVC.dbTableVC1.type == Tables.Document {
+                return presenter.configureDocumentView(docView: cellView, doc: docs[row], shouldAddButtons: shouldAddButtons, shouldHideDelete: true)
+            } else {
+                return presenter.configureDocumentView(docView: cellView, doc: docs[row], shouldAddButtons: shouldAddButtons, shouldHideDelete: false)
+            }
 		case .Country:
 			return presenter.configureCountryView(countryView: cellView, country: countries[row], shouldAddButtons: shouldAddButtons)
 		case .Place:
@@ -143,14 +147,14 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
         cellView.deleteButton.type = type
         cellView.addShipmentButton.type = type
         cellView.addDocButton.type = type
+        cellView.deleteButton.isHidden = false
         cellView.addButton.isHidden = false
         cellView.addButton.isEnabled = true
         cellView.addShipmentButton.isHidden = true
         cellView.addDocButton.isHidden = true
-        cellView.addShipmentButton.isHidden = true
-        cellView.addDocButton.isHidden = true
         cellView.addShipmentButton.isEnabled = true
-        cellView.addButton.isEnabled = true
+        cellView.addDocButton.title = "Dodaj dokument"
+        cellView.addDocButton.isEnabled = true
         
         switch type! {
         case .Item:
@@ -161,7 +165,16 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
             cellView.editButton.doc = docs[row]
             cellView.addButton.doc = docs[row]
             cellView.deleteButton.doc = docs[row]
+            cellView.addDocButton.doc = docs[row]
             cellView.addButton.subType = Tables.Unit
+            cellView.addDocButton.isHidden = false
+            cellView.addDocButton.title = "Dodaj preth. dokument"
+            if docs[row].docBefore == nil {
+                cellView.addDocButton.subType = Tables.Document
+                cellView.addDocButton.isEnabled = true
+            } else {
+                cellView.addDocButton.isEnabled = false
+            }
         case .Country:
             cellView.editButton.country = countries[row]
             cellView.addButton.country = countries[row]
