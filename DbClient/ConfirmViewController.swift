@@ -20,7 +20,8 @@ class ConfirmViewController: NSViewController {
     let presenter = ConfirmPresenter()
     let viewModel = ConfirmViewModel()
     weak var connectVC: DbConnectViewController!
-    var partnerId: Int!
+    var partnerId: Int?
+    var shipment: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,9 +150,16 @@ class ConfirmViewController: NSViewController {
     }
     
     func deletePlaceFromPartner() {
-        let initDict: [String: Any] = ["IdMjesta" : originButton.place!.id!]
-        guard let place = Place(JSON: initDict) else { return }
+        guard let `shipment` = shipment, let `partnerId` = partnerId else {
+            return
+        }
         
+        viewModel.removePlaceFromPartner(shipment: shipment, partnerId: partnerId) { [weak self] (data) in
+            guard let `self` = self else { return }
+            self.dismiss(self)
+            self.connectVC.emptyDatasource()
+            self.connectVC.startQueryIterations()
+        }
     }
     
     func exit() {

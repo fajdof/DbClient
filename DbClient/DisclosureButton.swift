@@ -21,5 +21,8 @@ class DisclosureButton: NSButton {
 	var units: [Unit] = []
 	var companies: [Company] = []
 	var type: Tables! = Tables.Item
+    
+    var partnerId: Int?
+    var shipment: Bool?
 	
 }

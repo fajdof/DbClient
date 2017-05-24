@@ -143,6 +143,11 @@ class DbTablePresenter {
 		
 		unhideAllLabels(cellView: personView)
 		unhideAllButtons(cellView: personView)
+        
+        personView.firstButton.partnerId = nil
+        personView.firstButton.shipment = nil
+        personView.secondButton.partnerId = nil
+        personView.secondButton.shipment = nil
 		
 		personView.firstLabel.addAttributedString(Person.PersonAttributes.firstName, dataString: person.firstName)
 		personView.secondLabel.addAttributedString(Person.PersonAttributes.lastName, dataString: person.lastName)
@@ -160,6 +165,8 @@ class DbTablePresenter {
 				personView.firstButton.places = [partnerPlace]
                 personView.firstButton.isEnabled = true
                 personView.firstButton.image = NSImage(named: NSImageNameGoRightTemplate)
+                personView.firstButton.partnerId = person.id
+                personView.firstButton.shipment = false
 			} else {
 				personView.firstButton.isEnabled = false
                 personView.firstButton.image = nil
@@ -171,6 +178,8 @@ class DbTablePresenter {
 				personView.secondButton.places = [shipmentPlace]
                 personView.secondButton.isEnabled = true
                 personView.secondButton.image = NSImage(named: NSImageNameGoRightTemplate)
+                personView.secondButton.partnerId = person.id
+                personView.secondButton.shipment = true
 			} else {
                 personView.secondButton.isEnabled = false
                 personView.secondButton.image = nil
@@ -319,6 +328,11 @@ class DbTablePresenter {
 		unhideAllLabels(cellView: companyView)
         unhideAllButtons(cellView: companyView)
         
+        companyView.firstButton.partnerId = nil
+        companyView.firstButton.shipment = nil
+        companyView.secondButton.partnerId = nil
+        companyView.secondButton.shipment = nil
+        
 		companyView.firstLabel.addAttributedString(Company.CompanyAttributes.companyId, dataString: company.companyId?.description)
 		companyView.secondLabel.addAttributedString(Company.CompanyAttributes.name, dataString: company.name)
 		companyView.thirdLabel.addAttributedString(Company.CompanyAttributes.registryNumber, dataString: company.registryNumber)
@@ -335,6 +349,8 @@ class DbTablePresenter {
 				companyView.firstButton.places = [partnerPlace]
                 companyView.firstButton.isEnabled = true
                 companyView.firstButton.image = NSImage(named: NSImageNameGoRightTemplate)
+                companyView.firstButton.partnerId = company.companyId
+                companyView.firstButton.shipment = false
 			} else {
                 companyView.firstButton.isEnabled = false
                 companyView.firstButton.image = nil
@@ -346,6 +362,8 @@ class DbTablePresenter {
 				companyView.secondButton.places = [shipmentPlace]
                 companyView.secondButton.isEnabled = true
                 companyView.secondButton.image = NSImage(named: NSImageNameGoRightTemplate)
+                companyView.secondButton.partnerId = company.companyId
+                companyView.secondButton.shipment = true
 			} else {
                 companyView.secondButton.isEnabled = false
                 companyView.secondButton.image = nil

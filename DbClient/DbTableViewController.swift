@@ -29,6 +29,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 	var companies: [Company] = []
 	var type: Tables! = Tables.Item
 	let presenter = DbTablePresenter()
+    var partnerId: Int?
+    var shipment: Bool?
 	
 	let offset = 20
 	var currentOffset: Int = 0
@@ -350,6 +352,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
         let confirmVC = modalStoryboard.instantiateController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
         confirmVC.originButton = sender
         confirmVC.connectVC = parent as! DbConnectViewController
+        confirmVC.partnerId = partnerId
+        confirmVC.shipment = shipment
         presentViewControllerAsModalWindow(confirmVC)
     }
     
@@ -419,6 +423,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 			parentVC.dbTableVC2.tableView.tableColumns.first?.title = disclosureButton.type.rawValue
 			parentVC.dbTableVC2.type = disclosureButton.type
 			parentVC.dbTableVC2.tableView.reloadData()
+            parentVC.dbTableVC2.partnerId = disclosureButton.partnerId
+            parentVC.dbTableVC2.shipment = disclosureButton.shipment
 		}
 	}
 	
@@ -436,6 +442,8 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
 		
 		parentVC.dbTableVC2.currentOffset = 20
 		parentVC.dbTableVC2.tableView.reloadData()
+        parentVC.dbTableVC2.partnerId = nil
+        parentVC.dbTableVC2.shipment = nil
 	}
     
     

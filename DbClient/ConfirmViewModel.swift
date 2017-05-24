@@ -12,6 +12,8 @@ import Foundation
 class ConfirmViewModel {
     let deleteFrom = "DELETE FROM "
     let whereClause = " WHERE "
+    let update = "UPDATE "
+    let set = " SET "
     
     var client: SQLClient?
     
@@ -101,6 +103,24 @@ class ConfirmViewModel {
         
         var query = deleteFrom + Tables.Person.rawValue
         query = query + whereClause + "IdOsobe = '\(person.id!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func removePlaceFromPartner(shipment: Bool, partnerId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = update + Tables.Partner.rawValue + set
+        if shipment {
+            query = query + "IdMjestaIsporuke = NULL"
+        } else {
+            query = query + "IdMjestaPartnera = NULL"
+        }
+        query = query + whereClause + "IdPartnera = '\(partnerId!)'; "
         
         dump(query)
         
