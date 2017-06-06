@@ -17,19 +17,28 @@ class ConfirmViewController: NSViewController {
     @IBOutlet weak var noButton: NSButton!
     
     var originButton: EditButton!
-    let presenter = ConfirmPresenter()
-    let viewModel = ConfirmViewModel()
     weak var connectVC: DbConnectViewController!
     var partnerId: Int?
     var shipment: Bool?
+    
+    let areYouSure = "Jeste li sigurni da želite izbrisati "
+    let yes = "Da"
+    let no = "Ne"
+    let deleteFrom = "DELETE FROM "
+    let whereClause = " WHERE "
+    let update = "UPDATE "
+    let set = " SET "
+    
+    var client: SQLClient?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = originButton.type.rawValue
         
-        presenter.viewController = self
-        presenter.setupButtons()
+        client = SQLClient.sharedInstance()
+        
+        setupButtons()
         
         switch originButton.type! {
         case .Item:
@@ -69,7 +78,7 @@ class ConfirmViewController: NSViewController {
         let initDict: [String: Any] = ["SifArtikla" : originButton.item!.code!]
         guard let item = Item(JSON: initDict) else { return }
         
-        viewModel.deleteItem(item: item) { [weak self] (data) in
+        executeDeleteItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -81,7 +90,7 @@ class ConfirmViewController: NSViewController {
         let initDict: [String: Any] = ["IdTvrtke" : originButton.company!.companyId!]
         guard let company = Company(JSON: initDict) else { return }
         
-        viewModel.deleteCompany(company: company) { [weak self] (data) in
+        executeDeleteCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -93,7 +102,7 @@ class ConfirmViewController: NSViewController {
         let initDict: [String: Any] = ["OznDrzave" : originButton.country!.mark!]
         guard let country = Country(JSON: initDict) else { return }
         
-        viewModel.deleteCountry(country: country) { [weak self] (data) in
+        executeDeleteCountry(country: country) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -105,7 +114,7 @@ class ConfirmViewController: NSViewController {
         let initDict: [String: Any] = ["IdOsobe" : originButton.person!.id!]
         guard let person = Person(JSON: initDict) else { return }
         
-        viewModel.deletePerson(person: person) { [weak self] (data) in
+        executeDeletePerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -117,7 +126,7 @@ class ConfirmViewController: NSViewController {
         let initDict: [String: Any] = ["IdDokumenta" : originButton.doc!.docId!]
         guard let doc = Document(JSON: initDict) else { return }
         
-        viewModel.deleteDocument(doc: doc) { [weak self] (data) in
+        executeDeleteDocument(doc: doc) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -129,7 +138,7 @@ class ConfirmViewController: NSViewController {
         let initDict: [String: Any] = ["IdMjesta" : originButton.place!.id!]
         guard let place = Place(JSON: initDict) else { return }
         
-        viewModel.deletePlace(place: place) { [weak self] (data) in
+        executeDeletePlace(place: place) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -141,7 +150,7 @@ class ConfirmViewController: NSViewController {
         let initDict: [String: Any] = ["IdStavke" : originButton.unit!.unitId!]
         guard let unit = Unit(JSON: initDict) else { return }
         
-        viewModel.deleteUnit(unit: unit) { [weak self] (data) in
+        executeDeleteUnit(unit: unit) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -154,7 +163,7 @@ class ConfirmViewController: NSViewController {
             return
         }
         
-        viewModel.removePlaceFromPartner(shipment: shipment, partnerId: partnerId) { [weak self] (data) in
+        executeRemovePlaceFromPartner(shipment: shipment, partnerId: partnerId) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
             self.connectVC.emptyDatasource()
@@ -185,6 +194,138 @@ class ConfirmViewController: NSViewController {
         if let window = view.window {
             alert.beginSheetModal(for: window, completionHandler: nil)
         }
+    }
+    
+    func setupButtons() {
+        noButton.title = no
+        yesButton.title = yes
+        switch originButton.type! {
+        case .Item:
+            confirmLabel.stringValue = areYouSure + (originButton.item!.name ?? originButton.type.rawValue) + "?"
+        case .Company:
+            confirmLabel.stringValue = areYouSure + (originButton.type.rawValue) + "?"
+        case .Country:
+            confirmLabel.stringValue = areYouSure + (originButton.country!.name ?? originButton.type.rawValue) + "?"
+        case .Person:
+            confirmLabel.stringValue = areYouSure + (originButton.type.rawValue) + "?"
+        case .Document:
+            confirmLabel.stringValue = areYouSure + (originButton.type.rawValue) + "?"
+        case .Place:
+            confirmLabel.stringValue = areYouSure + (originButton.type.rawValue) + "?"
+        case .Unit:
+            confirmLabel.stringValue = areYouSure + (originButton.type.rawValue) + "?"
+        case .Partner:
+            break
+        }
+    }
+    
+    func executeDeleteItem(item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Item.rawValue
+        query = query + whereClause + "SifArtikla = '\(item.code!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func executeDeleteCountry(country: Country, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Country.rawValue
+        query = query + whereClause + "OznDrzave = '\(country.mark!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func executeDeleteDocument(doc: Document, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Document.rawValue
+        query = query + whereClause + "IdDokumenta = '\(doc.docId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func executeDeleteUnit(unit: Unit, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Unit.rawValue
+        query = query + whereClause + "IdStavke = '\(unit.unitId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func executeDeletePlace(place: Place, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Place.rawValue
+        query = query + whereClause + "IdMjesta = '\(place.id!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func executeDeleteCompany(company: Company, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Company.rawValue
+        query = query + whereClause + "IdTvrtke = '\(company.companyId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func executeDeletePerson(person: Person, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Person.rawValue
+        query = query + whereClause + "IdOsobe = '\(person.id!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    func executeRemovePlaceFromPartner(shipment: Bool, partnerId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = update + Tables.Partner.rawValue + set
+        if shipment {
+            query = query + "IdMjestaIsporuke = NULL"
+        } else {
+            query = query + "IdMjestaPartnera = NULL"
+        }
+        query = query + whereClause + "IdPartnera = '\(partnerId!)'; "
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
     }
     
 }

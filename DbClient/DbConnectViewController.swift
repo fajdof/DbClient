@@ -61,11 +61,28 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var queryTables: [Tables] = []
 	var dbTableVC1: DbTableViewController!
 	var dbTableVC2: DbTableViewController!
-	let viewModel = DbConnectViewModel()
+    
+    let hostName = "rppp.fer.hr:3000"
+    let username = "rppp"
+    let password = "r3p##2011"
+    let dbName = "Firma"
+    let selectQuery = "SELECT * FROM "
+    
+    var idsToItems: [Int: Item] = [:]
+    var idsToCountries: [String: Country] = [:]
+    var idsToPlaces: [Int: Place] = [:]
+    var idsToDocs: [Int: Document] = [:]
+    var idsToPartners: [Int: Partner] = [:]
+    var idsToCompanies: [Int: Company] = [:]
+    var idsToPeople: [Int: Person] = [:]
+    
+    var client: SQLClient?
 
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        client = SQLClient.sharedInstance()
 		
 		tableView.dataSource = self
 		tableView.delegate = self
@@ -108,7 +125,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	func executeQueries() {
 		queryTables = [Tables.Item, Tables.Document, Tables.Country, Tables.Place, Tables.Person, Tables.Partner, Tables.Unit, Tables.Company]
 		
-		viewModel.connectToSqlServer(completion: { [weak self] completed in
+		connectToSqlServer(completion: { [weak self] completed in
 			guard let `self` = self else { return }
 			
 			if completed {
@@ -130,32 +147,32 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
     
     func emptyDatasource() {
         tables = []
-        viewModel.items = []
-        viewModel.companies = []
-        viewModel.countries = []
-        viewModel.docs = []
-        viewModel.units = []
-        viewModel.places = []
-        viewModel.people = []
-        viewModel.partners = []
-        viewModel.idsToCompanies = [:]
-        viewModel.idsToDocs = [:]
-        viewModel.idsToItems = [:]
-        viewModel.idsToPeople = [:]
-        viewModel.idsToPlaces = [:]
-        viewModel.idsToPartners = [:]
-        viewModel.idsToCountries = [:]
+        items = []
+        companies = []
+        countries = []
+        docs = []
+        units = []
+        places = []
+        people = []
+        partners = []
+        idsToCompanies = [:]
+        idsToDocs = [:]
+        idsToItems = [:]
+        idsToPeople = [:]
+        idsToPlaces = [:]
+        idsToPartners = [:]
+        idsToCountries = [:]
     }
 	
 	
 	func queryIteration(index: Int) {
 		let table = queryTables[index]
 		
-		viewModel.executeQuery(table: table, completion: { [weak self] (dbData) in
+		executeQuery(table: table, completion: { [weak self] (dbData) in
 			guard let `self` = self else { return }
 			
 			if let data = dbData {
-				self.viewModel.proccessQuery(data: data, type: table)
+				self.proccessQuery(data: data, type: table)
 				self.updateTableView(table: table)
 				if index < self.queryTables.count-1 {
 					self.queryIteration(index: index + 1)
@@ -171,22 +188,22 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	
 	func makeConnections() {
-		viewModel.connectUnitsWithItemsAndDocs { [weak self] in
+		connectUnitsWithItemsAndDocs { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		viewModel.connectCountriesAndPlaces { [weak self] in
+		connectCountriesAndPlaces { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		viewModel.connectPlacesAndPartners { [weak self] in
+		connectPlacesAndPartners { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		viewModel.connectDocsWithPartnersAndPreviousDocs { [weak self] in
+		connectDocsWithPartnersAndPreviousDocs { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		viewModel.addPartnerPropertiesToPerson { [weak self] in
+		addPartnerPropertiesToPerson { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		viewModel.addPartnerPropertiesToCompany { [weak self] in
+		addPartnerPropertiesToCompany { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
 	}
@@ -238,10 +255,10 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
             dbTableVC1.people = people
         case .Partner:
             dbTableVC1.partners = partners.map({ (partner) -> Partner in
-                if let company = self.viewModel.idsToCompanies[partner.partnerId!] {
+                if let company = self.idsToCompanies[partner.partnerId!] {
                     return company
                 }
-                if let person = self.viewModel.idsToPeople[partner.partnerId!] {
+                if let person = self.idsToPeople[partner.partnerId!] {
                     return person
                 }
                 return partner
@@ -263,7 +280,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
         dbTableVC1.currentOffset = 20
         dbTableVC1.tableView.reloadData()
         dbTableVC1.tableView.scrollRowToVisible(0)
-        dbTableVC1.presenter.toggleAddButton(button: dbTableVC1.addButton, hidden: false)
+        dbTableVC1.toggleAddButton(button: dbTableVC1.addButton, hidden: false)
     }
 	
 	
@@ -304,31 +321,37 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	func updateDataSource(type: Tables) {
 		switch type {
 		case .Item:
-			items = viewModel.items.sorted(by: { (fItem, sItem) -> Bool in
+			items = items.sorted(by: { (fItem, sItem) -> Bool in
                 return fItem.code! < sItem.code!
             })
 		case .Country:
-			countries = viewModel.countries.sorted(by: { (fCountry, sCountry) -> Bool in
+			countries = countries.sorted(by: { (fCountry, sCountry) -> Bool in
                 return fCountry.mark! < sCountry.mark!
             })
 		case .Company:
-			companies = viewModel.companies.sorted(by: { (fCompany, sCompany) -> Bool in
+			companies = companies.sorted(by: { (fCompany, sCompany) -> Bool in
                 return fCompany.companyId! < sCompany.companyId!
             })
 		case .Document:
-			docs = viewModel.docs.sorted(by: { (fDoc, sDoc) -> Bool in
+			docs = docs.sorted(by: { (fDoc, sDoc) -> Bool in
                 return fDoc.docId! > sDoc.docId!
             })
 		case .Partner:
-			partners = viewModel.partners
+			partners = partners.sorted(by: { (fPartner, sPartner) -> Bool in
+                return fPartner.partnerId! > sPartner.partnerId!
+            })
 		case .Person:
-			people = viewModel.people.sorted(by: { (fPerson, sPerson) -> Bool in
+			people = people.sorted(by: { (fPerson, sPerson) -> Bool in
                 return fPerson.id! > sPerson.id!
             })
 		case .Unit:
-			units = viewModel.units
+			units = units.sorted(by: { (fUnit, sUnit) -> Bool in
+                return fUnit.unitId! > sUnit.unitId!
+            })
 		case .Place:
-			places = viewModel.places
+			places = places.sorted(by: { (fPlace, sPlace) -> Bool in
+                return fPlace.id! > sPlace.id!
+            })
 		}
 	}
 	
@@ -341,6 +364,230 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
             dbTableVC2.emptyDbTableVC2(parentVC: self)
 		}
 	}
+    
+    func connectToSqlServer(completion: @escaping (_ completed: Bool) -> ()) {
+        
+        client?.connect(hostName, username: username, password: password, database: dbName, completion: { (completed) in
+            
+            completion(completed)
+        })
+    }
+    
+    
+    func executeQuery(table: Tables,  completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        client?.execute(selectQuery + table.rawValue, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
+    
+    
+    func proccessQuery(data: [Any], type: Tables) {
+        for table in data {
+            if let tab = table as? Array<Dictionary<String, AnyObject>> {
+                for row in tab {
+                    parseRow(row: row, type: type)
+                }
+            }
+        }
+    }
+    
+    
+    func parseRow(row: Dictionary<String, AnyObject>, type: Tables) {
+        switch type {
+        case .Item:
+            if let item = Item(JSON: row) {
+                items.append(item)
+                if let code = item.code {
+                    idsToItems[code] = item
+                }
+            }
+        case .Document:
+            if let doc = Document(JSON: row) {
+                docs.append(doc)
+                if let docId = doc.docId {
+                    idsToDocs[docId] = doc
+                }
+            }
+        case .Country:
+            if let country = Country(JSON: row) {
+                countries.append(country)
+                if let mark = country.mark {
+                    idsToCountries[mark] = country
+                }
+            }
+        case .Place:
+            if let place = Place(JSON: row) {
+                places.append(place)
+                if let id = place.id {
+                    idsToPlaces[id] = place
+                }
+            }
+        case .Person:
+            if let person = Person(JSON: row) {
+                people.append(person)
+                if let id = person.id {
+                    idsToPeople[id] = person
+                }
+            }
+        case .Partner:
+            if let partner = Partner(JSON: row) {
+                partners.append(partner)
+                if let partnerId = partner.partnerId {
+                    idsToPartners[partnerId] = partner
+                }
+            }
+        case .Unit:
+            if let unit = Unit(JSON: row) {
+                units.append(unit)
+            }
+        case .Company:
+            if let company = Company(JSON: row) {
+                companies.append(company)
+                if let id = company.companyId {
+                    idsToCompanies[id] = company
+                }
+            }
+        }
+    }
+    
+    
+    func connectUnitsWithItemsAndDocs(completion: @escaping () -> ()) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            for unit in self.units {
+                if let itemCode = unit.itemCode {
+                    let item = self.idsToItems[itemCode]
+                    unit.item = item
+                    item?.units.append(unit)
+                }
+                
+                if let docId = unit.docId {
+                    let doc = self.idsToDocs[docId]
+                    unit.document = doc
+                    doc?.units.append(unit)
+                }
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    
+    func connectCountriesAndPlaces(completion: @escaping () -> ()) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            for place in self.places {
+                if let countryCode = place.countryCode {
+                    let country = self.idsToCountries[countryCode]
+                    place.country = country
+                    country?.places.append(place)
+                }
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    
+    func connectPlacesAndPartners(completion: @escaping () -> ()) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            for partner in self.partners {
+                if let partnerAddressId = partner.partnerAddressId {
+                    let partnerPlace = self.idsToPlaces[partnerAddressId]
+                    partner.partnerPlace = partnerPlace
+                    partnerPlace?.partners.insert(partner)
+                }
+                if let shipmentAddressId = partner.shipmentAddressId {
+                    let shipmentPlace = self.idsToPlaces[shipmentAddressId]
+                    partner.shipmentPlace = shipmentPlace
+                    shipmentPlace?.partners.insert(partner)
+                }
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    
+    func connectDocsWithPartnersAndPreviousDocs(completion: @escaping () -> ()) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            for doc in self.docs {
+                if let partnerId = doc.partnerId {
+                    let partner = self.idsToPartners[partnerId]
+                    if let company = self.idsToCompanies[partnerId] {
+                        doc.partner = company
+                    }
+                    if let person = self.idsToPeople[partnerId] {
+                        doc.partner = person
+                    }
+                    partner?.docs.append(doc)
+                }
+                
+                if let docBeforeId = doc.docBeforeId {
+                    let docBefore = self.idsToDocs[docBeforeId]
+                    doc.docBefore = docBefore
+                }
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    
+    func addPartnerPropertiesToPerson(completion: @escaping () -> ()) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            for person in self.people {
+                if let id = person.id {
+                    if let partner = self.idsToPartners[id] {
+                        self.addPartnerProperties(to: person, partnerOrigin: partner)
+                    }
+                }
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    
+    func addPartnerPropertiesToCompany(completion: @escaping () -> ()) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            for company in self.companies {
+                if let id = company.companyId {
+                    if let partner = self.idsToPartners[id] {
+                        self.addPartnerProperties(to: company, partnerOrigin: partner)
+                    }
+                }
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    
+    func addPartnerProperties(to partnerObject: Partner, partnerOrigin: Partner) {
+        partnerObject.oib = partnerOrigin.oib
+        partnerObject.docs = partnerOrigin.docs
+        partnerObject.partnerAddress = partnerOrigin.partnerAddress
+        partnerObject.partnerAddressId = partnerOrigin.partnerAddressId
+        partnerObject.shipmentAddress = partnerOrigin.shipmentAddress
+        partnerObject.shipmentAddressId = partnerOrigin.shipmentAddressId
+        partnerObject.shipmentPlace = partnerOrigin.shipmentPlace
+        partnerObject.partnerPlace = partnerOrigin.partnerPlace
+        partnerObject.type = partnerOrigin.type
+    }
 
 }
 

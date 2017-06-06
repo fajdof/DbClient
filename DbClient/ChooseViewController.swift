@@ -16,23 +16,27 @@ class ChooseViewController: NSViewController {
     @IBOutlet weak var companyButton: NSButton!
     @IBOutlet weak var personButton: NSButton!
     
-    let presenter = ChoosePresenter()
     var doc: Document!
     var originButton: EditButton!
     weak var connectVC: DbConnectViewController!
+    let choosePartnerType = "Odaberite vrstu partnera"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.viewController = self
-        presenter.setUp()
-        
         title = Tables.Document.rawValue
+        setUp()
         
         companyButton.action = #selector(ChooseViewController.companyPressed)
         personButton.action = #selector(ChooseViewController.personPressed)
         companyButton.target = self
         personButton.target = self
+    }
+    
+    func setUp() {
+        chooseLabel.stringValue = choosePartnerType
+        companyButton.title = Tables.Company.rawValue
+        personButton.title = Tables.Person.rawValue
     }
     
     func personPressed() {

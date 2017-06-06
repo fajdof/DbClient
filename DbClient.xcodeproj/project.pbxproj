@@ -8,13 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		750242FE1ECF122100C1326A /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750242FD1ECF122100C1326A /* EditButton.swift */; };
-		750243001ECF1D1200C1326A /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750242FF1ECF1D1200C1326A /* EditPresenter.swift */; };
 		750434651ECC31A800A13176 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750434641ECC31A800A13176 /* EditViewController.swift */; };
 		7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750434691ECC47D400A13176 /* Modal.storyboard */; };
 		7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504346C1ECC497200A13176 /* ConfirmViewController.swift */; };
-		7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518E66A1DE8ED59001C452A /* DbConnectViewModel.swift */; };
 		752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524525F1DFC5710009EACBE /* DisclosureButton.swift */; };
-		7527B62F1DE98F9000E1B531 /* DbTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527B62E1DE98F9000E1B531 /* DbTablePresenter.swift */; };
 		7527E9851DDF9D75003925BE /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9841DDF9D75003925BE /* Partner.swift */; };
 		7527E9871DDFAC48003925BE /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9861DDFAC48003925BE /* Unit.swift */; };
 		7527E98D1DDFB64C003925BE /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E98C1DDFB64C003925BE /* Company.swift */; };
@@ -40,11 +37,7 @@
 		75F48C511DD9081500FFB063 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C501DD9081500FFB063 /* Country.swift */; };
 		75F48C551DD910DA00FFB063 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C541DD910DA00FFB063 /* Place.swift */; };
 		75F48C571DD914AB00FFB063 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C561DD914AB00FFB063 /* Person.swift */; };
-		75F956581ED0302400923C92 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956571ED0302400923C92 /* EditViewModel.swift */; };
-		75F9565A1ED0424800923C92 /* ConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956591ED0424800923C92 /* ConfirmViewModel.swift */; };
-		75F9565C1ED0425900923C92 /* ConfirmPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9565B1ED0425900923C92 /* ConfirmPresenter.swift */; };
 		75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9565E1ED08F8700923C92 /* ChooseViewController.swift */; };
-		75F956611ED0905800923C92 /* ChoosePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F956601ED0905800923C92 /* ChoosePresenter.swift */; };
 		75F9D6E21ED433150061C1A6 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F9D6E11ED433150061C1A6 /* placeholder.png */; };
 		7EB93D24C1656D763862807F /* Pods_DbClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C4A93000542E98453F59 /* Pods_DbClient.framework */; };
 /* End PBXBuildFile section */
@@ -53,13 +46,10 @@
 		060F834505056EF9ECFAC506 /* Pods-DbClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.debug.xcconfig"; sourceTree = "<group>"; };
 		336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.release.xcconfig"; sourceTree = "<group>"; };
 		750242FD1ECF122100C1326A /* EditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
-		750242FF1ECF1D1200C1326A /* EditPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
 		750434641ECC31A800A13176 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		750434691ECC47D400A13176 /* Modal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		7504346C1ECC497200A13176 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
-		7518E66A1DE8ED59001C452A /* DbConnectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbConnectViewModel.swift; sourceTree = "<group>"; };
 		7524525F1DFC5710009EACBE /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
-		7527B62E1DE98F9000E1B531 /* DbTablePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbTablePresenter.swift; sourceTree = "<group>"; };
 		7527E9841DDF9D75003925BE /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		7527E9861DDFAC48003925BE /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		7527E98C1DDFB64C003925BE /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -100,11 +90,7 @@
 		75F48C501DD9081500FFB063 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		75F48C541DD910DA00FFB063 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		75F48C561DD914AB00FFB063 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		75F956571ED0302400923C92 /* EditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
-		75F956591ED0424800923C92 /* ConfirmViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewModel.swift; sourceTree = "<group>"; };
-		75F9565B1ED0425900923C92 /* ConfirmPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPresenter.swift; sourceTree = "<group>"; };
 		75F9565E1ED08F8700923C92 /* ChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
-		75F956601ED0905800923C92 /* ChoosePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosePresenter.swift; sourceTree = "<group>"; };
 		75F9D6E11ED433150061C1A6 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		C417C4A93000542E98453F59 /* Pods_DbClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,9 +123,7 @@
 		750434631ECC318700A13176 /* EditScene */ = {
 			isa = PBXGroup;
 			children = (
-				75F956571ED0302400923C92 /* EditViewModel.swift */,
 				750434641ECC31A800A13176 /* EditViewController.swift */,
-				750242FF1ECF1D1200C1326A /* EditPresenter.swift */,
 			);
 			name = EditScene;
 			sourceTree = "<group>";
@@ -147,9 +131,7 @@
 		7504346B1ECC495600A13176 /* ConfirmScene */ = {
 			isa = PBXGroup;
 			children = (
-				75F956591ED0424800923C92 /* ConfirmViewModel.swift */,
 				7504346C1ECC497200A13176 /* ConfirmViewController.swift */,
-				75F9565B1ED0425900923C92 /* ConfirmPresenter.swift */,
 			);
 			name = ConfirmScene;
 			sourceTree = "<group>";
@@ -223,7 +205,6 @@
 		753D6EE11DD72F7A0027EDA7 /* DbConnectScene */ = {
 			isa = PBXGroup;
 			children = (
-				7518E66A1DE8ED59001C452A /* DbConnectViewModel.swift */,
 				752EF9AF1DCE33E2000B6C42 /* DbConnectViewController.swift */,
 				755DF9651DD74DA0004F4D94 /* Views */,
 			);
@@ -247,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				755DF95C1DD74994004F4D94 /* DbTableViewController.swift */,
-				7527B62E1DE98F9000E1B531 /* DbTablePresenter.swift */,
 				753D6EE61DD730520027EDA7 /* Views */,
 			);
 			name = DbTableViewScene;
@@ -287,7 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				75F9565E1ED08F8700923C92 /* ChooseViewController.swift */,
-				75F956601ED0905800923C92 /* ChoosePresenter.swift */,
 			);
 			name = ChooseScene;
 			sourceTree = "<group>";
@@ -424,27 +403,20 @@
 				75F48C551DD910DA00FFB063 /* Place.swift in Sources */,
 				750242FE1ECF122100C1326A /* EditButton.swift in Sources */,
 				7527E9851DDF9D75003925BE /* Partner.swift in Sources */,
-				750243001ECF1D1200C1326A /* EditPresenter.swift in Sources */,
 				75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */,
 				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
 				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,
-				7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */,
-				75F9565A1ED0424800923C92 /* ConfirmViewModel.swift in Sources */,
 				75F48C571DD914AB00FFB063 /* Person.swift in Sources */,
-				75F956581ED0302400923C92 /* EditViewModel.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
 				752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */,
 				7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
-				7527B62F1DE98F9000E1B531 /* DbTablePresenter.swift in Sources */,
-				75F9565C1ED0425900923C92 /* ConfirmPresenter.swift in Sources */,
 				75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */,
 				7527E98D1DDFB64C003925BE /* Company.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
-				75F956611ED0905800923C92 /* ChoosePresenter.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
 			);
