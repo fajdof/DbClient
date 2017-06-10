@@ -36,6 +36,14 @@
 		75A7190B1DD8B72A00F93547 /* DbListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7190A1DD8B72A00F93547 /* DbListView.xib */; };
 		75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7190C1DD8B73700F93547 /* DbListView.swift */; };
 		75B59BF51EEC270500AA6EFC /* IdGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BF41EEC270500AA6EFC /* IdGeneratorService.swift */; };
+		75B59BF81EEC335C00AA6EFC /* ItemReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BF71EEC335C00AA6EFC /* ItemReqValidator.swift */; };
+		75B59BFA1EEC337300AA6EFC /* DocumentReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BF91EEC337300AA6EFC /* DocumentReqValidator.swift */; };
+		75B59BFC1EEC338F00AA6EFC /* CountryReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BFB1EEC338F00AA6EFC /* CountryReqValidator.swift */; };
+		75B59BFE1EEC33A200AA6EFC /* PlaceReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BFD1EEC33A200AA6EFC /* PlaceReqValidator.swift */; };
+		75B59C001EEC33B400AA6EFC /* PersonReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BFF1EEC33B400AA6EFC /* PersonReqValidator.swift */; };
+		75B59C021EEC33C100AA6EFC /* UnitReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59C011EEC33C100AA6EFC /* UnitReqValidator.swift */; };
+		75B59C041EEC33D800AA6EFC /* CompanyReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59C031EEC33D800AA6EFC /* CompanyReqValidator.swift */; };
+		75B59C061EEC3F6900AA6EFC /* Requiredable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59C051EEC3F6900AA6EFC /* Requiredable.swift */; };
 		75F48C4D1DD8C3BF00FFB063 /* libsybdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F48C431DD8C3BE00FFB063 /* libsybdb.a */; };
 		75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C461DD8C3BE00FFB063 /* SQLClient.m */; };
 		75F48C511DD9081500FFB063 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C501DD9081500FFB063 /* Country.swift */; };
@@ -85,6 +93,14 @@
 		75A7190A1DD8B72A00F93547 /* DbListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbListView.xib; sourceTree = "<group>"; };
 		75A7190C1DD8B73700F93547 /* DbListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbListView.swift; sourceTree = "<group>"; };
 		75B59BF41EEC270500AA6EFC /* IdGeneratorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdGeneratorService.swift; sourceTree = "<group>"; };
+		75B59BF71EEC335C00AA6EFC /* ItemReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemReqValidator.swift; sourceTree = "<group>"; };
+		75B59BF91EEC337300AA6EFC /* DocumentReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentReqValidator.swift; sourceTree = "<group>"; };
+		75B59BFB1EEC338F00AA6EFC /* CountryReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryReqValidator.swift; sourceTree = "<group>"; };
+		75B59BFD1EEC33A200AA6EFC /* PlaceReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceReqValidator.swift; sourceTree = "<group>"; };
+		75B59BFF1EEC33B400AA6EFC /* PersonReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonReqValidator.swift; sourceTree = "<group>"; };
+		75B59C011EEC33C100AA6EFC /* UnitReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitReqValidator.swift; sourceTree = "<group>"; };
+		75B59C031EEC33D800AA6EFC /* CompanyReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyReqValidator.swift; sourceTree = "<group>"; };
+		75B59C051EEC3F6900AA6EFC /* Requiredable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requiredable.swift; sourceTree = "<group>"; };
 		75F48C3F1DD8C3BE00FFB063 /* bkpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bkpublic.h; sourceTree = "<group>"; };
 		75F48C401DD8C3BE00FFB063 /* cspublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cspublic.h; sourceTree = "<group>"; };
 		75F48C411DD8C3BE00FFB063 /* cstypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstypes.h; sourceTree = "<group>"; };
@@ -219,6 +235,7 @@
 				7527E9841DDF9D75003925BE /* Partner.swift */,
 				7527E9861DDFAC48003925BE /* Unit.swift */,
 				7527E98C1DDFB64C003925BE /* Company.swift */,
+				75B59BF61EEC331D00AA6EFC /* RequiredValidators */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -263,6 +280,21 @@
 				755DF9611DD74D34004F4D94 /* DbNameView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		75B59BF61EEC331D00AA6EFC /* RequiredValidators */ = {
+			isa = PBXGroup;
+			children = (
+				75B59C051EEC3F6900AA6EFC /* Requiredable.swift */,
+				75B59BF71EEC335C00AA6EFC /* ItemReqValidator.swift */,
+				75B59BF91EEC337300AA6EFC /* DocumentReqValidator.swift */,
+				75B59BFB1EEC338F00AA6EFC /* CountryReqValidator.swift */,
+				75B59BFD1EEC33A200AA6EFC /* PlaceReqValidator.swift */,
+				75B59BFF1EEC33B400AA6EFC /* PersonReqValidator.swift */,
+				75B59C011EEC33C100AA6EFC /* UnitReqValidator.swift */,
+				75B59C031EEC33D800AA6EFC /* CompanyReqValidator.swift */,
+			);
+			name = RequiredValidators;
 			sourceTree = "<group>";
 		};
 		75F48C4F1DD8C3C500FFB063 /* SQLClient */ = {
@@ -428,23 +460,31 @@
 				750242FE1ECF122100C1326A /* EditButton.swift in Sources */,
 				7527E9851DDF9D75003925BE /* Partner.swift in Sources */,
 				750243001ECF1D1200C1326A /* EditPresenter.swift in Sources */,
+				75B59C001EEC33B400AA6EFC /* PersonReqValidator.swift in Sources */,
 				75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */,
 				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
+				75B59C041EEC33D800AA6EFC /* CompanyReqValidator.swift in Sources */,
+				75B59C021EEC33C100AA6EFC /* UnitReqValidator.swift in Sources */,
 				75B59BF51EEC270500AA6EFC /* IdGeneratorService.swift in Sources */,
 				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,
 				7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */,
 				75F9565A1ED0424800923C92 /* ConfirmViewModel.swift in Sources */,
+				75B59BFE1EEC33A200AA6EFC /* PlaceReqValidator.swift in Sources */,
 				75F48C571DD914AB00FFB063 /* Person.swift in Sources */,
 				75F956581ED0302400923C92 /* EditViewModel.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
 				752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */,
+				75B59BFA1EEC337300AA6EFC /* DocumentReqValidator.swift in Sources */,
 				7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
 				7527B62F1DE98F9000E1B531 /* DbTablePresenter.swift in Sources */,
+				75B59BF81EEC335C00AA6EFC /* ItemReqValidator.swift in Sources */,
+				75B59BFC1EEC338F00AA6EFC /* CountryReqValidator.swift in Sources */,
 				75F9565C1ED0425900923C92 /* ConfirmPresenter.swift in Sources */,
 				75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */,
 				7527E98D1DDFB64C003925BE /* Company.swift in Sources */,
+				75B59C061EEC3F6900AA6EFC /* Requiredable.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,

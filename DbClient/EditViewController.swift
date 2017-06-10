@@ -184,6 +184,10 @@ class EditViewController: NSViewController {
             item.secU = NSNumber(integerLiteral: secU)
         }
         
+        guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
+            return
+        }
+        
         viewModel.updateItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
@@ -207,6 +211,10 @@ class EditViewController: NSViewController {
             item.secU = NSNumber(integerLiteral: secU)
         }
         item.code = generatorService.generateIdForItem(items: connectVC.items)
+        
+        guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
+            return
+        }
         
         viewModel.addItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -586,6 +594,15 @@ class EditViewController: NSViewController {
         if let window = view.window {
             alert.beginSheetModal(for: window, completionHandler: nil)
         }
+    }
+    
+    func requirementsSatisfied(reqValidator: Requiredable) -> Bool {
+        guard reqValidator.requirementFulfilled() else {
+            showAlert(alertString: "Potrebno je ispuniti sva obavezna polja", infoString: "")
+            return false
+        }
+        
+        return true
     }
     
     func cancelButtonPressed() {
