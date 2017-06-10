@@ -213,9 +213,7 @@ class EditViewController: NSViewController {
         if let secU = Int(fifthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
         }
-        if let code = Int(firstLabel.stringValue) {
-            item.code = code
-        }
+        item.code = IdGeneratorService.generateIdForItem(items: connectVC.items)
         
         executeAddItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -252,9 +250,7 @@ class EditViewController: NSViewController {
         company.oib = fourthLabel.stringValue
         company.partnerAddress = fifthLabel.stringValue
         company.shipmentAddress = seventhLabel.stringValue
-        if let companyId = Int(firstLabel.stringValue) {
-            company.companyId = companyId
-        }
+        company.companyId = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
         
         executeAddCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -328,9 +324,7 @@ class EditViewController: NSViewController {
         person.oib = fourthLabel.stringValue
         person.partnerAddress = fifthLabel.stringValue
         person.shipmentAddress = seventhLabel.stringValue
-        if let personId = Int(thirdLabel.stringValue) {
-            person.id = personId
-        }
+        person.id = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
         
         executeAddPerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -378,9 +372,6 @@ class EditViewController: NSViewController {
         if let docValue = Double(thirdLabel.stringValue) {
             doc.docValue = docValue
         }
-        if let docId = Int(firstLabel.stringValue) {
-            doc.docId = docId
-        }
         
         doc.docDate = datePicker.dateValue
         doc.docVr = fourthLabel.stringValue
@@ -394,18 +385,14 @@ class EditViewController: NSViewController {
             person?.lastName = eightLabel.stringValue
             person?.oib = ninthLabel.stringValue
             person?.type = "O"
-            if let personId = Int(sixthLabel.stringValue) {
-                person?.id = personId
-            }
+            person?.id = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
         } else {
             company = Company(JSON: initDict)
             company?.name = seventhLabel.stringValue
             company?.registryNumber = eightLabel.stringValue
             company?.oib = ninthLabel.stringValue
             company?.type = "T"
-            if let companyId = Int(sixthLabel.stringValue) {
-                company?.companyId = companyId
-            }
+            company?.companyId = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
         }
         
         executeAddDocument(doc: doc, company: company, person: person) { [weak self] (data) in
@@ -501,9 +488,7 @@ class EditViewController: NSViewController {
         if let secU = Int(ninthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
         }
-        if let code = Int(fifthLabel.stringValue) {
-            item.code = code
-        }
+        item.code = IdGeneratorService.generateIdForItem(items: connectVC.items)
         
         executeAddUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -612,25 +597,18 @@ class EditViewController: NSViewController {
     }
     
     func configureWithItem(item: Item?) {
-        
-        firstStaticLabel.stringValue = Item.Attributes.code
         secondStaticLabel.stringValue = Item.Attributes.text
         thirdStaticLabel.stringValue = Item.Attributes.price
         fourthStaticLabel.stringValue = Item.Attributes.measUnit
         fifthStaticLabel.stringValue = Item.Attributes.secU
         sixthStaticLabel.stringValue = Item.Attributes.name
-        firstLabel.stringValue = item?.code?.description ?? ""
         secondLabel.stringValue = item?.text ?? ""
         thirdLabel.stringValue = item?.price?.description ?? ""
         fourthLabel.stringValue = item?.measUnit ?? ""
         fifthLabel.stringValue = item?.secU?.description ?? ""
         sixthLabel.stringValue = item?.name ?? ""
         
-        if item != nil {
-            firstLabel.isEditable = false
-            firstLabel.isBezeled = false
-        }
-        
+        firstStackView.isHidden = true
         seventhStackView.isHidden = true
         eightStackView.isHidden = true
         ninthStackView.isHidden = true
@@ -640,8 +618,6 @@ class EditViewController: NSViewController {
     }
     
     func configureWithCompany(company: Company?) {
-        firstStaticLabel.stringValue = Company.CompanyAttributes.companyId
-        firstLabel.stringValue = company?.companyId?.description ?? ""
         secondStaticLabel.stringValue = Company.CompanyAttributes.name
         secondLabel.stringValue = company?.name ?? ""
         thirdStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
@@ -653,11 +629,7 @@ class EditViewController: NSViewController {
         seventhStaticLabel.stringValue = Company.Attributes.shipmentAddress
         seventhLabel.stringValue = company?.shipmentAddress ?? ""
         
-        if company != nil {
-            firstLabel.isEditable = false
-            firstLabel.isBezeled = false
-        }
-        
+        firstStackView.isHidden = true
         sixthStackView.isHidden = true
         eightStackView.isHidden = true
         ninthStackView.isHidden = true
@@ -671,8 +643,6 @@ class EditViewController: NSViewController {
         firstLabel.stringValue = person?.firstName ?? ""
         secondStaticLabel.stringValue = Person.PersonAttributes.lastName
         secondLabel.stringValue = person?.lastName ?? ""
-        thirdStaticLabel.stringValue = Person.PersonAttributes.id
-        thirdLabel.stringValue = person?.id?.description ?? ""
         fourthStaticLabel.stringValue = Person.Attributes.oib
         fourthLabel.stringValue = person?.oib ?? ""
         fifthStaticLabel.stringValue = Person.Attributes.partnerAddress
@@ -680,11 +650,7 @@ class EditViewController: NSViewController {
         seventhStaticLabel.stringValue = Person.Attributes.shipmentAddress
         seventhLabel.stringValue = person?.shipmentAddress ?? ""
         
-        if person != nil {
-            thirdLabel.isEditable = false
-            thirdLabel.isBezeled = false
-        }
-        
+        thirdStackView.isHidden = true
         sixthStackView.isHidden = true
         eightStackView.isHidden = true
         ninthStackView.isHidden = true
@@ -733,7 +699,6 @@ class EditViewController: NSViewController {
         datePicker.dateValue = doc?.docDate ?? Date()
         
         if doc != nil || fromPartner {
-            sixthStackView.isHidden = true
             seventhStackView.isHidden = true
             eightStackView.isHidden = true
             ninthStackView.isHidden = true
@@ -745,18 +710,17 @@ class EditViewController: NSViewController {
         } else {
             firstStackView.isHidden = true
             if isPerson {
-                sixthStaticLabel.stringValue = Person.PersonAttributes.id
                 seventhStaticLabel.stringValue = Person.PersonAttributes.firstName
                 eightStaticLabel.stringValue = Person.PersonAttributes.lastName
                 ninthStaticLabel.stringValue = Person.Attributes.oib
             } else {
-                sixthStaticLabel.stringValue = Company.CompanyAttributes.companyId
                 seventhStaticLabel.stringValue = Company.CompanyAttributes.name
                 eightStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
                 ninthStaticLabel.stringValue = Company.Attributes.oib
             }
         }
         
+        sixthStackView.isHidden = true
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
     }
@@ -770,14 +734,12 @@ class EditViewController: NSViewController {
         thirdLabel.stringValue = unit?.discount?.description ?? ""
         
         if unit != nil {
-            fifthStackView.isHidden = true
             sixthStackView.isHidden = true
             seventhStackView.isHidden = true
             eightStackView.isHidden = true
             ninthStackView.isHidden = true
             tenthStackView.isHidden = true
         } else {
-            fifthStaticLabel.stringValue = "Šifra artikla:"
             sixthStaticLabel.stringValue = Item.Attributes.text
             seventhStaticLabel.stringValue = Item.Attributes.price
             eightStaticLabel.stringValue = Item.Attributes.measUnit
@@ -785,6 +747,7 @@ class EditViewController: NSViewController {
             tenthStaticLabel.stringValue = Item.Attributes.name
         }
         
+        fifthStackView.isHidden = true
         fourthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true

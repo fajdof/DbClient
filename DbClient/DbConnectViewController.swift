@@ -322,7 +322,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		switch type {
 		case .Item:
 			items = items.sorted(by: { (fItem, sItem) -> Bool in
-                return fItem.code! < sItem.code!
+                return fItem.code! > sItem.code!
             })
 		case .Country:
 			countries = countries.sorted(by: { (fCountry, sCountry) -> Bool in
@@ -330,7 +330,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
             })
 		case .Company:
 			companies = companies.sorted(by: { (fCompany, sCompany) -> Bool in
-                return fCompany.companyId! < sCompany.companyId!
+                return fCompany.companyId! > sCompany.companyId!
             })
 		case .Document:
 			docs = docs.sorted(by: { (fDoc, sDoc) -> Bool in
