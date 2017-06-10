@@ -11,7 +11,7 @@ import Foundation
 
 class IdGeneratorService {
     
-    static func generateIdForPartner(partners: [Partner]) -> Int {
+    func generateIdForPartner(partners: [Partner]) -> Int {
         let id = partners.map({ (partner) -> Int in
             return partner.partnerId!
         }).max()! + 1
@@ -19,7 +19,7 @@ class IdGeneratorService {
         return id
     }
     
-    static func generateIdForItem(items: [Item]) -> Int {
+    func generateIdForItem(items: [Item]) -> Int {
         let code = items.map({ (item) -> Int in
             return item.code!
         }).max()! + 1

@@ -63,6 +63,7 @@ class EditViewController: NSViewController {
     let values = " VALUES "
     
     var client: SQLClient?
+    let generatorService = IdGeneratorService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -213,7 +214,7 @@ class EditViewController: NSViewController {
         if let secU = Int(fifthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
         }
-        item.code = IdGeneratorService.generateIdForItem(items: connectVC.items)
+        item.code = generatorService.generateIdForItem(items: connectVC.items)
         
         executeAddItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -250,7 +251,7 @@ class EditViewController: NSViewController {
         company.oib = fourthLabel.stringValue
         company.partnerAddress = fifthLabel.stringValue
         company.shipmentAddress = seventhLabel.stringValue
-        company.companyId = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
+        company.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
         
         executeAddCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -324,7 +325,7 @@ class EditViewController: NSViewController {
         person.oib = fourthLabel.stringValue
         person.partnerAddress = fifthLabel.stringValue
         person.shipmentAddress = seventhLabel.stringValue
-        person.id = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
+        person.id = generatorService.generateIdForPartner(partners: connectVC.partners)
         
         executeAddPerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -385,14 +386,14 @@ class EditViewController: NSViewController {
             person?.lastName = eightLabel.stringValue
             person?.oib = ninthLabel.stringValue
             person?.type = "O"
-            person?.id = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
+            person?.id = generatorService.generateIdForPartner(partners: connectVC.partners)
         } else {
             company = Company(JSON: initDict)
             company?.name = seventhLabel.stringValue
             company?.registryNumber = eightLabel.stringValue
             company?.oib = ninthLabel.stringValue
             company?.type = "T"
-            company?.companyId = IdGeneratorService.generateIdForPartner(partners: connectVC.partners)
+            company?.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
         }
         
         executeAddDocument(doc: doc, company: company, person: person) { [weak self] (data) in
@@ -488,7 +489,7 @@ class EditViewController: NSViewController {
         if let secU = Int(ninthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
         }
-        item.code = IdGeneratorService.generateIdForItem(items: connectVC.items)
+        item.code = generatorService.generateIdForItem(items: connectVC.items)
         
         executeAddUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
             guard let `self` = self else { return }
