@@ -11,14 +11,15 @@ import Foundation
 class EditPresenter {
     
     weak var viewController: EditViewController!
+    let required = " *"
     
     func configureWithItem(item: Item?) {
         
         viewController.secondStaticLabel.stringValue = Item.Attributes.text
-        viewController.thirdStaticLabel.stringValue = Item.Attributes.price
-        viewController.fourthStaticLabel.stringValue = Item.Attributes.measUnit
-        viewController.fifthStaticLabel.stringValue = Item.Attributes.secU
-        viewController.sixthStaticLabel.stringValue = Item.Attributes.name
+        viewController.thirdStaticLabel.stringValue = Item.Attributes.price + required
+        viewController.fourthStaticLabel.stringValue = Item.Attributes.measUnit + required
+        viewController.fifthStaticLabel.stringValue = Item.Attributes.secU + required
+        viewController.sixthStaticLabel.stringValue = Item.Attributes.name + required
         viewController.secondLabel.stringValue = item?.text ?? ""
         viewController.thirdLabel.stringValue = item?.price?.description ?? ""
         viewController.fourthLabel.stringValue = item?.measUnit ?? ""
@@ -35,11 +36,11 @@ class EditPresenter {
     }
     
     func configureWithCompany(company: Company?) {
-        viewController.secondStaticLabel.stringValue = Company.CompanyAttributes.name
+        viewController.secondStaticLabel.stringValue = Company.CompanyAttributes.name + required
         viewController.secondLabel.stringValue = company?.name ?? ""
-        viewController.thirdStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
+        viewController.thirdStaticLabel.stringValue = Company.CompanyAttributes.registryNumber + required
         viewController.thirdLabel.stringValue = company?.registryNumber ?? ""
-        viewController.fourthStaticLabel.stringValue = Company.Attributes.oib
+        viewController.fourthStaticLabel.stringValue = Company.Attributes.oib + required
         viewController.fourthLabel.stringValue = company?.oib ?? ""
         viewController.fifthStaticLabel.stringValue = Company.Attributes.partnerAddress
         viewController.fifthLabel.stringValue = company?.partnerAddress ?? ""
@@ -56,11 +57,11 @@ class EditPresenter {
     }
     
     func configureWithPerson(person: Person?) {
-        viewController.firstStaticLabel.stringValue = Person.PersonAttributes.firstName
+        viewController.firstStaticLabel.stringValue = Person.PersonAttributes.firstName + required
         viewController.firstLabel.stringValue = person?.firstName ?? ""
-        viewController.secondStaticLabel.stringValue = Person.PersonAttributes.lastName
+        viewController.secondStaticLabel.stringValue = Person.PersonAttributes.lastName + required
         viewController.secondLabel.stringValue = person?.lastName ?? ""
-        viewController.fourthStaticLabel.stringValue = Person.Attributes.oib
+        viewController.fourthStaticLabel.stringValue = Person.Attributes.oib + required
         viewController.fourthLabel.stringValue = person?.oib ?? ""
         viewController.fifthStaticLabel.stringValue = Person.Attributes.partnerAddress
         viewController.fifthLabel.stringValue = person?.partnerAddress ?? ""
@@ -77,13 +78,13 @@ class EditPresenter {
     }
     
     func configureWithCountry(country: Country?) {
-        viewController.firstStaticLabel.stringValue = Country.Attributes.name
+        viewController.firstStaticLabel.stringValue = Country.Attributes.name + required
         viewController.firstLabel.stringValue = country?.name ?? ""
-        viewController.secondStaticLabel.stringValue = Country.Attributes.code
+        viewController.secondStaticLabel.stringValue = Country.Attributes.code + required
         viewController.secondLabel.stringValue = country?.code?.description ?? ""
-        viewController.thirdStaticLabel.stringValue = Country.Attributes.mark
+        viewController.thirdStaticLabel.stringValue = Country.Attributes.mark + required
         viewController.thirdLabel.stringValue = country?.mark ?? ""
-        viewController.fourthStaticLabel.stringValue = Country.Attributes.iso3
+        viewController.fourthStaticLabel.stringValue = Country.Attributes.iso3 + required
         viewController.fourthLabel.stringValue = country?.iso3 ?? ""
         
         if country != nil {
@@ -102,17 +103,17 @@ class EditPresenter {
     }
     
     func configureWithDocument(doc: Document?, fromPartner: Bool) {
-        viewController.firstStaticLabel.stringValue = Document.Attributes.docId
+        viewController.firstStaticLabel.stringValue = Document.Attributes.docId + required
         viewController.firstLabel.stringValue = doc?.docId?.description ?? ""
-        viewController.secondStaticLabel.stringValue = Document.Attributes.docNumber
+        viewController.secondStaticLabel.stringValue = Document.Attributes.docNumber + required
         viewController.secondLabel.stringValue = doc?.docNumber?.description ?? ""
-        viewController.thirdStaticLabel.stringValue = Document.Attributes.docValue
+        viewController.thirdStaticLabel.stringValue = Document.Attributes.docValue + required
         viewController.thirdLabel.stringValue = doc?.docValue?.description ?? ""
         viewController.fourthStaticLabel.stringValue = Document.Attributes.docVr
         viewController.fourthLabel.stringValue = doc?.docVr ?? ""
-        viewController.fifthStaticLabel.stringValue = Document.Attributes.tax
+        viewController.fifthStaticLabel.stringValue = Document.Attributes.tax + required
         viewController.fifthLabel.stringValue = doc?.tax?.description ?? ""
-        viewController.twelvethStaticLabel.stringValue = Document.Attributes.docDate
+        viewController.twelvethStaticLabel.stringValue = Document.Attributes.docDate + required
         viewController.datePicker.dateValue = doc?.docDate ?? Date()
         
         if doc != nil || fromPartner {
@@ -127,13 +128,13 @@ class EditPresenter {
         } else {
             viewController.firstStackView.isHidden = true
             if viewController.isPerson {
-                viewController.seventhStaticLabel.stringValue = Person.PersonAttributes.firstName
-                viewController.eightStaticLabel.stringValue = Person.PersonAttributes.lastName
-                viewController.ninthStaticLabel.stringValue = Person.Attributes.oib
+                viewController.seventhStaticLabel.stringValue = Person.PersonAttributes.firstName + required
+                viewController.eightStaticLabel.stringValue = Person.PersonAttributes.lastName + required
+                viewController.ninthStaticLabel.stringValue = Person.Attributes.oib + required
             } else {
-                viewController.seventhStaticLabel.stringValue = Company.CompanyAttributes.name
-                viewController.eightStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
-                viewController.ninthStaticLabel.stringValue = Company.Attributes.oib
+                viewController.seventhStaticLabel.stringValue = Company.CompanyAttributes.name + required
+                viewController.eightStaticLabel.stringValue = Company.CompanyAttributes.registryNumber + required
+                viewController.ninthStaticLabel.stringValue = Company.Attributes.oib + required
             }
         }
         
@@ -143,11 +144,11 @@ class EditPresenter {
     }
     
     func configureWithUnit(unit: Unit?) {
-        viewController.firstStaticLabel.stringValue = Unit.Attributes.itemPrice
+        viewController.firstStaticLabel.stringValue = Unit.Attributes.itemPrice + required
         viewController.firstLabel.stringValue = unit?.itemPrice?.description ?? ""
-        viewController.secondStaticLabel.stringValue = Unit.Attributes.itemQuantity
+        viewController.secondStaticLabel.stringValue = Unit.Attributes.itemQuantity + required
         viewController.secondLabel.stringValue = unit?.itemQuantity?.description ?? ""
-        viewController.thirdStaticLabel.stringValue = Unit.Attributes.discount
+        viewController.thirdStaticLabel.stringValue = Unit.Attributes.discount + required
         viewController.thirdLabel.stringValue = unit?.discount?.description ?? ""
         
         if unit != nil {
@@ -158,10 +159,10 @@ class EditPresenter {
             viewController.tenthStackView.isHidden = true
         } else {
             viewController.sixthStaticLabel.stringValue = Item.Attributes.text
-            viewController.seventhStaticLabel.stringValue = Item.Attributes.price
-            viewController.eightStaticLabel.stringValue = Item.Attributes.measUnit
-            viewController.ninthStaticLabel.stringValue = Item.Attributes.secU
-            viewController.tenthStaticLabel.stringValue = Item.Attributes.name
+            viewController.seventhStaticLabel.stringValue = Item.Attributes.price + required
+            viewController.eightStaticLabel.stringValue = Item.Attributes.measUnit + required
+            viewController.ninthStaticLabel.stringValue = Item.Attributes.secU + required
+            viewController.tenthStaticLabel.stringValue = Item.Attributes.name + required
         }
     
         viewController.fifthStackView.isHidden = true
@@ -171,20 +172,20 @@ class EditPresenter {
     }
     
     func configureWithPlace(place: Place?, withId: Bool) {
-        viewController.firstStaticLabel.stringValue = Place.Attributes.name
+        viewController.firstStaticLabel.stringValue = Place.Attributes.name + required
         viewController.firstLabel.stringValue = place?.name ?? ""
-        viewController.fourthStaticLabel.stringValue = Place.Attributes.postalCode
+        viewController.fourthStaticLabel.stringValue = Place.Attributes.postalCode + required
         viewController.fourthLabel.stringValue = place?.postalCode?.description ?? ""
         viewController.fifthStaticLabel.stringValue = Place.Attributes.postalName
         viewController.fifthLabel.stringValue = place?.postalName ?? ""
-        viewController.thirdStaticLabel.stringValue = Place.Attributes.id
+        viewController.thirdStaticLabel.stringValue = Place.Attributes.id + required
         viewController.thirdLabel.stringValue = place?.id?.description ?? ""
         
         if withId {
-            viewController.sixthStaticLabel.stringValue = "Naziv države: "
-            viewController.seventhStaticLabel.stringValue = "Šifra države: "
-            viewController.eightStaticLabel.stringValue = "Oznaka države: "
-            viewController.ninthStaticLabel.stringValue = "ISO3 države: "
+            viewController.sixthStaticLabel.stringValue = "Naziv države: " + required
+            viewController.seventhStaticLabel.stringValue = "Šifra države: " + required
+            viewController.eightStaticLabel.stringValue = "Oznaka države: " + required
+            viewController.ninthStaticLabel.stringValue = "ISO3 države: " + required
             viewController.thirdStackView.isHidden = false
             viewController.sixthStackView.isHidden = false
             viewController.seventhStackView.isHidden = false
