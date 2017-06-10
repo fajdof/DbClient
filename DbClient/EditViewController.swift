@@ -55,6 +55,7 @@ class EditViewController: NSViewController {
     let viewModel = EditViewModel()
     weak var connectVC: DbConnectViewController!
     var isPerson: Bool = false
+    let generatorService = IdGeneratorService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -205,9 +206,7 @@ class EditViewController: NSViewController {
         if let secU = Int(fifthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
         }
-        if let code = Int(firstLabel.stringValue) {
-            item.code = code
-        }
+        item.code = generatorService.generateIdForItem(items: connectVC.items)
         
         viewModel.addItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -244,9 +243,7 @@ class EditViewController: NSViewController {
         company.oib = fourthLabel.stringValue
         company.partnerAddress = fifthLabel.stringValue
         company.shipmentAddress = seventhLabel.stringValue
-        if let companyId = Int(firstLabel.stringValue) {
-            company.companyId = companyId
-        }
+        company.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
         
         viewModel.addCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -320,9 +317,7 @@ class EditViewController: NSViewController {
         person.oib = fourthLabel.stringValue
         person.partnerAddress = fifthLabel.stringValue
         person.shipmentAddress = seventhLabel.stringValue
-        if let personId = Int(thirdLabel.stringValue) {
-            person.id = personId
-        }
+        person.id = generatorService.generateIdForPartner(partners: connectVC.partners)
         
         viewModel.addPerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -386,18 +381,14 @@ class EditViewController: NSViewController {
             person?.lastName = eightLabel.stringValue
             person?.oib = ninthLabel.stringValue
             person?.type = "O"
-            if let personId = Int(sixthLabel.stringValue) {
-                person?.id = personId
-            }
+            person?.id = generatorService.generateIdForPartner(partners: connectVC.partners)
         } else {
             company = Company(JSON: initDict)
             company?.name = seventhLabel.stringValue
             company?.registryNumber = eightLabel.stringValue
             company?.oib = ninthLabel.stringValue
             company?.type = "T"
-            if let companyId = Int(sixthLabel.stringValue) {
-                company?.companyId = companyId
-            }
+            company?.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
         }
         
         viewModel.addDocument(doc: doc, company: company, person: person) { [weak self] (data) in
@@ -493,9 +484,7 @@ class EditViewController: NSViewController {
         if let secU = Int(ninthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
         }
-        if let code = Int(fifthLabel.stringValue) {
-            item.code = code
-        }
+        item.code = generatorService.generateIdForItem(items: connectVC.items)
         
         viewModel.addUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
             guard let `self` = self else { return }

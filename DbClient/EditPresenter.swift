@@ -14,24 +14,18 @@ class EditPresenter {
     
     func configureWithItem(item: Item?) {
         
-        viewController.firstStaticLabel.stringValue = Item.Attributes.code
         viewController.secondStaticLabel.stringValue = Item.Attributes.text
         viewController.thirdStaticLabel.stringValue = Item.Attributes.price
         viewController.fourthStaticLabel.stringValue = Item.Attributes.measUnit
         viewController.fifthStaticLabel.stringValue = Item.Attributes.secU
         viewController.sixthStaticLabel.stringValue = Item.Attributes.name
-        viewController.firstLabel.stringValue = item?.code?.description ?? ""
         viewController.secondLabel.stringValue = item?.text ?? ""
         viewController.thirdLabel.stringValue = item?.price?.description ?? ""
         viewController.fourthLabel.stringValue = item?.measUnit ?? ""
         viewController.fifthLabel.stringValue = item?.secU?.description ?? ""
         viewController.sixthLabel.stringValue = item?.name ?? ""
         
-        if item != nil {
-            viewController.firstLabel.isEditable = false
-            viewController.firstLabel.isBezeled = false
-        }
-        
+        viewController.firstStackView.isHidden = true
         viewController.seventhStackView.isHidden = true
         viewController.eightStackView.isHidden = true
         viewController.ninthStackView.isHidden = true
@@ -41,8 +35,6 @@ class EditPresenter {
     }
     
     func configureWithCompany(company: Company?) {
-        viewController.firstStaticLabel.stringValue = Company.CompanyAttributes.companyId
-        viewController.firstLabel.stringValue = company?.companyId?.description ?? ""
         viewController.secondStaticLabel.stringValue = Company.CompanyAttributes.name
         viewController.secondLabel.stringValue = company?.name ?? ""
         viewController.thirdStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
@@ -54,11 +46,7 @@ class EditPresenter {
         viewController.seventhStaticLabel.stringValue = Company.Attributes.shipmentAddress
         viewController.seventhLabel.stringValue = company?.shipmentAddress ?? ""
         
-        if company != nil {
-            viewController.firstLabel.isEditable = false
-            viewController.firstLabel.isBezeled = false
-        }
-        
+        viewController.firstStackView.isHidden = true
         viewController.sixthStackView.isHidden = true
         viewController.eightStackView.isHidden = true
         viewController.ninthStackView.isHidden = true
@@ -72,8 +60,6 @@ class EditPresenter {
         viewController.firstLabel.stringValue = person?.firstName ?? ""
         viewController.secondStaticLabel.stringValue = Person.PersonAttributes.lastName
         viewController.secondLabel.stringValue = person?.lastName ?? ""
-        viewController.thirdStaticLabel.stringValue = Person.PersonAttributes.id
-        viewController.thirdLabel.stringValue = person?.id?.description ?? ""
         viewController.fourthStaticLabel.stringValue = Person.Attributes.oib
         viewController.fourthLabel.stringValue = person?.oib ?? ""
         viewController.fifthStaticLabel.stringValue = Person.Attributes.partnerAddress
@@ -81,11 +67,7 @@ class EditPresenter {
         viewController.seventhStaticLabel.stringValue = Person.Attributes.shipmentAddress
         viewController.seventhLabel.stringValue = person?.shipmentAddress ?? ""
         
-        if person != nil {
-            viewController.thirdLabel.isEditable = false
-            viewController.thirdLabel.isBezeled = false
-        }
-        
+        viewController.thirdStackView.isHidden = true
         viewController.sixthStackView.isHidden = true
         viewController.eightStackView.isHidden = true
         viewController.ninthStackView.isHidden = true
@@ -134,7 +116,6 @@ class EditPresenter {
         viewController.datePicker.dateValue = doc?.docDate ?? Date()
         
         if doc != nil || fromPartner {
-            viewController.sixthStackView.isHidden = true
             viewController.seventhStackView.isHidden = true
             viewController.eightStackView.isHidden = true
             viewController.ninthStackView.isHidden = true
@@ -146,18 +127,17 @@ class EditPresenter {
         } else {
             viewController.firstStackView.isHidden = true
             if viewController.isPerson {
-                viewController.sixthStaticLabel.stringValue = Person.PersonAttributes.id
                 viewController.seventhStaticLabel.stringValue = Person.PersonAttributes.firstName
                 viewController.eightStaticLabel.stringValue = Person.PersonAttributes.lastName
                 viewController.ninthStaticLabel.stringValue = Person.Attributes.oib
             } else {
-                viewController.sixthStaticLabel.stringValue = Company.CompanyAttributes.companyId
                 viewController.seventhStaticLabel.stringValue = Company.CompanyAttributes.name
                 viewController.eightStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
                 viewController.ninthStaticLabel.stringValue = Company.Attributes.oib
             }
         }
         
+        viewController.sixthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
     }
@@ -171,14 +151,12 @@ class EditPresenter {
         viewController.thirdLabel.stringValue = unit?.discount?.description ?? ""
         
         if unit != nil {
-            viewController.fifthStackView.isHidden = true
             viewController.sixthStackView.isHidden = true
             viewController.seventhStackView.isHidden = true
             viewController.eightStackView.isHidden = true
             viewController.ninthStackView.isHidden = true
             viewController.tenthStackView.isHidden = true
         } else {
-            viewController.fifthStaticLabel.stringValue = "Šifra artikla:"
             viewController.sixthStaticLabel.stringValue = Item.Attributes.text
             viewController.seventhStaticLabel.stringValue = Item.Attributes.price
             viewController.eightStaticLabel.stringValue = Item.Attributes.measUnit
@@ -186,6 +164,7 @@ class EditPresenter {
             viewController.tenthStaticLabel.stringValue = Item.Attributes.name
         }
     
+        viewController.fifthStackView.isHidden = true
         viewController.fourthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true

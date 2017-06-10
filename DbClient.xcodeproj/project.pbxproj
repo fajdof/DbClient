@@ -35,6 +35,7 @@
 		75A719051DD8AB1E00F93547 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A719041DD8AB1E00F93547 /* Document.swift */; };
 		75A7190B1DD8B72A00F93547 /* DbListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7190A1DD8B72A00F93547 /* DbListView.xib */; };
 		75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7190C1DD8B73700F93547 /* DbListView.swift */; };
+		75B59BF51EEC270500AA6EFC /* IdGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BF41EEC270500AA6EFC /* IdGeneratorService.swift */; };
 		75F48C4D1DD8C3BF00FFB063 /* libsybdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F48C431DD8C3BE00FFB063 /* libsybdb.a */; };
 		75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C461DD8C3BE00FFB063 /* SQLClient.m */; };
 		75F48C511DD9081500FFB063 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C501DD9081500FFB063 /* Country.swift */; };
@@ -83,6 +84,7 @@
 		75A719041DD8AB1E00F93547 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		75A7190A1DD8B72A00F93547 /* DbListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbListView.xib; sourceTree = "<group>"; };
 		75A7190C1DD8B73700F93547 /* DbListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbListView.swift; sourceTree = "<group>"; };
+		75B59BF41EEC270500AA6EFC /* IdGeneratorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdGeneratorService.swift; sourceTree = "<group>"; };
 		75F48C3F1DD8C3BE00FFB063 /* bkpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bkpublic.h; sourceTree = "<group>"; };
 		75F48C401DD8C3BE00FFB063 /* cspublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cspublic.h; sourceTree = "<group>"; };
 		75F48C411DD8C3BE00FFB063 /* cstypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstypes.h; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				752EF9D11DCE381E000B6C42 /* DbClient-Bridging-Header.h */,
 				752EF9AD1DCE33E2000B6C42 /* AppDelegate.swift */,
 				75A719021DD8A7E700F93547 /* GeneralExtensions.swift */,
+				75B59BF41EEC270500AA6EFC /* IdGeneratorService.swift */,
 				753D6EE11DD72F7A0027EDA7 /* DbConnectScene */,
 				755DF95E1DD74998004F4D94 /* DbTableViewScene */,
 				75F9565D1ED08F6700923C92 /* ChooseScene */,
@@ -427,6 +430,7 @@
 				750243001ECF1D1200C1326A /* EditPresenter.swift in Sources */,
 				75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */,
 				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
+				75B59BF51EEC270500AA6EFC /* IdGeneratorService.swift in Sources */,
 				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,
 				7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */,
 				75F9565A1ED0424800923C92 /* ConfirmViewModel.swift in Sources */,
