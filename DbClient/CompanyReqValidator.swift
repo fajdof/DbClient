@@ -20,7 +20,7 @@ class CompanyReqValidator: Requiredable {
     func requirementFulfilled() -> Bool {
         guard let registryNumber = company.registryNumber, let name = company.name, let oib = company.oib else { return false }
         
-        guard registryNumber.isEmpty, name.isEmpty, oib.isEmpty else {
+        guard registryNumber.isEmpty || name.isEmpty || oib.isEmpty else {
             return true
         }
         

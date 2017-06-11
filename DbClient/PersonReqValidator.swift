@@ -20,7 +20,7 @@ class PersonReqValidator: Requiredable {
     func requirementFulfilled() -> Bool {
         guard let firstName = person.firstName, let lastName = person.lastName, let oib = person.oib else { return false }
         
-        guard firstName.isEmpty, lastName.isEmpty, oib.isEmpty else {
+        guard firstName.isEmpty || lastName.isEmpty || oib.isEmpty else {
             return true
         }
         
