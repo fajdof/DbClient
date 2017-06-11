@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+
+class UnitReqValidator: Requiredable {
+    
+    var unit: Unit
+    
+    init(unit: Unit) {
+        self.unit = unit
+    }
+    
+    func requirementFulfilled() -> Bool {
+        
+        guard unit.discount == nil || unit.itemPrice == nil || unit.itemQuantity == nil else {
+            return true
+        }
+        
+        return false
+    }
+    
+}

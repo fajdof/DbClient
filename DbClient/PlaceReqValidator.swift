@@ -7,3 +7,24 @@
 //
 
 import Foundation
+
+
+class PlaceReqValidator: Requiredable {
+    
+    var place: Place
+    
+    init(place: Place) {
+        self.place = place
+    }
+    
+    func requirementFulfilled() -> Bool {
+        guard let name = place.name else { return false }
+        
+        guard name.isEmpty || place.postalCode == nil else {
+            return true
+        }
+        
+        return false
+    }
+    
+}

@@ -177,15 +177,22 @@ class EditViewController: NSViewController {
         item.measUnit = fourthLabel.stringValue
         item.name = sixthLabel.stringValue
         
-        if let price = Double(thirdLabel.stringValue) {
-            item.price = price
+        if thirdLabel.stringValue.isEmpty == false {
+            item.price = 0
         }
-        if let secU = Int(fifthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
+        if fifthLabel.stringValue.isEmpty == false {
+            item.secU = NSNumber(integerLiteral: 0)
         }
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
             return
+        }
+        
+        item.price = Double(thirdLabel.stringValue)
+        if let secU = Int(fifthLabel.stringValue) {
+            item.secU = NSNumber(integerLiteral: secU)
+        } else {
+            item.secU = nil
         }
         
         viewModel.updateItem(item: item) { [weak self] (data) in
@@ -203,17 +210,24 @@ class EditViewController: NSViewController {
         item.text = secondLabel.stringValue
         item.measUnit = fourthLabel.stringValue
         item.name = sixthLabel.stringValue
-        
-        if let price = Double(thirdLabel.stringValue) {
-            item.price = price
-        }
-        if let secU = Int(fifthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
-        }
         item.code = generatorService.generateIdForItem(items: connectVC.items)
+        
+        if thirdLabel.stringValue.isEmpty == false {
+            item.price = 0
+        }
+        if fifthLabel.stringValue.isEmpty == false {
+            item.secU = NSNumber(integerLiteral: 0)
+        }
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
             return
+        }
+        
+        item.price = Double(thirdLabel.stringValue)
+        if let secU = Int(fifthLabel.stringValue) {
+            item.secU = NSNumber(integerLiteral: secU)
+        } else {
+            item.secU = nil
         }
         
         viewModel.addItem(item: item) { [weak self] (data) in
@@ -234,6 +248,10 @@ class EditViewController: NSViewController {
         company.partnerAddress = fifthLabel.stringValue
         company.shipmentAddress = seventhLabel.stringValue
         
+        guard requirementsSatisfied(reqValidator: CompanyReqValidator(company: company)) else {
+            return
+        }
+        
         viewModel.updateCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
@@ -253,6 +271,10 @@ class EditViewController: NSViewController {
         company.shipmentAddress = seventhLabel.stringValue
         company.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
         
+        guard requirementsSatisfied(reqValidator: CompanyReqValidator(company: company)) else {
+            return
+        }
+        
         viewModel.addCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
@@ -265,11 +287,17 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = ["OznDrzave" : originButton.country!.mark!]
         guard let country = Country(JSON: initDict) else { return }
         
-        if let code = Int(secondLabel.stringValue) {
-            country.code = code
+        if secondLabel.stringValue.isEmpty == false {
+            country.code = 0
         }
         country.name = firstLabel.stringValue
         country.iso3 = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
+            return
+        }
+        
+        country.code = Int(secondLabel.stringValue)
         
         viewModel.updateCountry(country: country) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -283,12 +311,18 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let country = Country(JSON: initDict) else { return }
         
-        if let code = Int(secondLabel.stringValue) {
-            country.code = code
+        if secondLabel.stringValue.isEmpty == false {
+            country.code = 0
         }
         country.name = firstLabel.stringValue
         country.mark = thirdLabel.stringValue
         country.iso3 = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
+            return
+        }
+        
+        country.code = Int(secondLabel.stringValue)
         
         viewModel.addCountry(country: country) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -307,6 +341,10 @@ class EditViewController: NSViewController {
         person.oib = fourthLabel.stringValue
         person.partnerAddress = fifthLabel.stringValue
         person.shipmentAddress = seventhLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: PersonReqValidator(person: person)) else {
+            return
+        }
         
         viewModel.updatePerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -327,6 +365,10 @@ class EditViewController: NSViewController {
         person.shipmentAddress = seventhLabel.stringValue
         person.id = generatorService.generateIdForPartner(partners: connectVC.partners)
         
+        guard requirementsSatisfied(reqValidator: PersonReqValidator(person: person)) else {
+            return
+        }
+        
         viewModel.addPerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
@@ -339,18 +381,26 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = ["IdDokumenta" : originButton.doc!.docId!]
         guard let doc = Document(JSON: initDict) else { return }
         
-        if let tax = Double(fifthLabel.stringValue) {
-            doc.tax = tax
+        if fifthLabel.stringValue.isEmpty == false {
+            doc.tax = 0
         }
-        if let docNumber = Int(secondLabel.stringValue) {
-            doc.docNumber = docNumber
+        if secondLabel.stringValue.isEmpty == false {
+            doc.docNumber = 0
         }
-        if let docValue = Double(thirdLabel.stringValue) {
-            doc.docValue = docValue
+        if thirdLabel.stringValue.isEmpty == false {
+            doc.docValue = 0
         }
         
         doc.docDate = datePicker.dateValue
         doc.docVr = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: DocumentReqValidator(doc: doc)) else {
+            return
+        }
+        
+        doc.tax = Double(fifthLabel.stringValue)
+        doc.docNumber = Int(secondLabel.stringValue)
+        doc.docValue = Double(thirdLabel.stringValue)
         
         viewModel.updateDocument(doc: doc) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -364,21 +414,26 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let doc = Document(JSON: initDict) else { return }
         
-        if let tax = Double(fifthLabel.stringValue) {
-            doc.tax = tax
+        if fifthLabel.stringValue.isEmpty == false {
+            doc.tax = 0
         }
-        if let docNumber = Int(secondLabel.stringValue) {
-            doc.docNumber = docNumber
+        if secondLabel.stringValue.isEmpty == false {
+            doc.docNumber = 0
         }
-        if let docValue = Double(thirdLabel.stringValue) {
-            doc.docValue = docValue
-        }
-        if let docId = Int(firstLabel.stringValue) {
-            doc.docId = docId
+        if thirdLabel.stringValue.isEmpty == false {
+            doc.docValue = 0
         }
         
         doc.docDate = datePicker.dateValue
         doc.docVr = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: DocumentReqValidator(doc: doc)) else {
+            return
+        }
+        
+        doc.tax = Double(fifthLabel.stringValue)
+        doc.docNumber = Int(secondLabel.stringValue)
+        doc.docValue = Double(thirdLabel.stringValue)
         
         var company: Company?
         var person: Person?
@@ -390,6 +445,11 @@ class EditViewController: NSViewController {
             person?.oib = ninthLabel.stringValue
             person?.type = "O"
             person?.id = generatorService.generateIdForPartner(partners: connectVC.partners)
+            
+            guard requirementsSatisfied(reqValidator: PersonReqValidator(person: person!)) else {
+                return
+            }
+            
         } else {
             company = Company(JSON: initDict)
             company?.name = seventhLabel.stringValue
@@ -397,6 +457,11 @@ class EditViewController: NSViewController {
             company?.oib = ninthLabel.stringValue
             company?.type = "T"
             company?.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
+            
+            guard requirementsSatisfied(reqValidator: CompanyReqValidator(company: company!)) else {
+                return
+            }
+            
         }
         
         viewModel.addDocument(doc: doc, company: company, person: person) { [weak self] (data) in
@@ -412,10 +477,16 @@ class EditViewController: NSViewController {
         guard let place = Place(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
-        if let postalCode = Int(fourthLabel.stringValue) {
-            place.postalCode = postalCode
-        }
         place.postalName = fifthLabel.stringValue
+        if fourthLabel.stringValue.isEmpty == false {
+            place.postalCode = 0
+        }
+        
+        guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
+            return
+        }
+        
+        place.postalCode = Int(fourthLabel.stringValue)
         
         viewModel.updatePlace(place: place) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -431,10 +502,16 @@ class EditViewController: NSViewController {
         guard let place = Place(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
-        if let postalCode = Int(fourthLabel.stringValue) {
-            place.postalCode = postalCode
-        }
         place.postalName = fifthLabel.stringValue
+        if fourthLabel.stringValue.isEmpty == false {
+            place.postalCode = 0
+        }
+        
+        guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
+            return
+        }
+        
+        place.postalCode = Int(fourthLabel.stringValue)
         
         viewModel.addPlace(place: place, countryMark: originButton.country!.mark!) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -448,15 +525,23 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = ["IdStavke" : originButton.unit!.unitId!]
         guard let unit = Unit(JSON: initDict) else { return }
         
-        if let itemPrice = Double(firstLabel.stringValue) {
-            unit.itemPrice = itemPrice
+        if firstLabel.stringValue.isEmpty == false {
+            unit.itemPrice = 0
         }
-        if let itemQuantity = Double(secondLabel.stringValue) {
-            unit.itemQuantity = itemQuantity
+        if secondLabel.stringValue.isEmpty == false {
+            unit.itemQuantity = 0
         }
-        if let discount = Double(thirdLabel.stringValue) {
-            unit.discount = discount
+        if thirdLabel.stringValue.isEmpty == false {
+            unit.discount = 0
         }
+        
+        guard requirementsSatisfied(reqValidator: UnitReqValidator(unit: unit)) else {
+            return
+        }
+        
+        unit.itemPrice = Double(firstLabel.stringValue)
+        unit.itemQuantity = Double(secondLabel.stringValue)
+        unit.discount = Double(thirdLabel.stringValue)
         
         viewModel.updateUnit(unit: unit) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -470,15 +555,23 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let unit = Unit(JSON: initDict) else { return }
         
-        if let itemPrice = Double(firstLabel.stringValue) {
-            unit.itemPrice = itemPrice
+        if firstLabel.stringValue.isEmpty == false {
+            unit.itemPrice = 0
         }
-        if let itemQuantity = Double(secondLabel.stringValue) {
-            unit.itemQuantity = itemQuantity
+        if secondLabel.stringValue.isEmpty == false {
+            unit.itemQuantity = 0
         }
-        if let discount = Double(thirdLabel.stringValue) {
-            unit.discount = discount
+        if thirdLabel.stringValue.isEmpty == false {
+            unit.discount = 0
         }
+        
+        guard requirementsSatisfied(reqValidator: UnitReqValidator(unit: unit)) else {
+            return
+        }
+        
+        unit.itemPrice = Double(firstLabel.stringValue)
+        unit.itemQuantity = Double(secondLabel.stringValue)
+        unit.discount = Double(thirdLabel.stringValue)
         
         guard let item = Item(JSON: initDict) else { return }
         
@@ -486,13 +579,24 @@ class EditViewController: NSViewController {
         item.measUnit = eightLabel.stringValue
         item.name = tenthLabel.stringValue
         
-        if let price = Double(seventhLabel.stringValue) {
-            item.price = price
+        if seventhLabel.stringValue.isEmpty == false {
+            item.price = 0
         }
-        if let secU = Int(ninthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
+        if ninthLabel.stringValue.isEmpty == false {
+            item.secU = NSNumber(integerLiteral: 0)
         }
         item.code = generatorService.generateIdForItem(items: connectVC.items)
+        
+        guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
+            return
+        }
+        
+        item.price = Double(seventhLabel.stringValue)
+        if let secU = Int(ninthLabel.stringValue) {
+            item.secU = NSNumber(integerLiteral: secU)
+        } else {
+            item.secU = nil
+        }
         
         viewModel.addUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -508,19 +612,30 @@ class EditViewController: NSViewController {
         guard let country = Country(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
-        if let postalCode = Int(fourthLabel.stringValue) {
-            place.postalCode = postalCode
+        if fourthLabel.stringValue.isEmpty == false {
+            place.postalCode = 0
         }
         place.postalName = fifthLabel.stringValue
-        if let id = Int(thirdLabel.stringValue) {
-            place.id = id
+        if thirdLabel.stringValue.isEmpty == false {
+            place.id = 0
         }
         country.name = sixthLabel.stringValue
-        if let code = Int(seventhLabel.stringValue) {
-            country.code = code
+        if seventhLabel.stringValue.isEmpty == false {
+            country.code = 0
         }
         country.mark = eightLabel.stringValue
         country.iso3 = ninthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
+            return
+        }
+        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
+            return
+        }
+        
+        place.postalCode = Int(fourthLabel.stringValue)
+        place.id = Int(thirdLabel.stringValue)
+        country.code = Int(seventhLabel.stringValue)
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
         
@@ -536,21 +651,30 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let doc = Document(JSON: initDict) else { return }
         
-        if let tax = Double(fifthLabel.stringValue) {
-            doc.tax = tax
+        if fifthLabel.stringValue.isEmpty == false {
+            doc.tax = 0
         }
-        if let docNumber = Int(secondLabel.stringValue) {
-            doc.docNumber = docNumber
+        if secondLabel.stringValue.isEmpty == false {
+            doc.docNumber = 0
         }
-        if let docValue = Double(thirdLabel.stringValue) {
-            doc.docValue = docValue
+        if thirdLabel.stringValue.isEmpty == false {
+            doc.docValue = 0
         }
-        if let docId = Int(firstLabel.stringValue) {
-            doc.docId = docId
+        if firstLabel.stringValue.isEmpty == false {
+            doc.docId = 0
         }
         
         doc.docDate = datePicker.dateValue
         doc.docVr = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: DocumentReqValidator(doc: doc)) else {
+            return
+        }
+        
+        doc.tax = Double(fifthLabel.stringValue)
+        doc.docNumber = Int(secondLabel.stringValue)
+        doc.docValue = Double(thirdLabel.stringValue)
+        doc.docId = Int(firstLabel.stringValue)
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
         
