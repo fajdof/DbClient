@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class EditViewController: NSViewController {
+class EditViewController: NSViewController, ChooseCountryDelegate {
     
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var saveButton: NSButton!
@@ -49,6 +49,9 @@ class EditViewController: NSViewController {
     @IBOutlet weak var twelvethStaticLabel: NSTextField!
     @IBOutlet weak var twelvethStackView: NSStackView!
     @IBOutlet weak var datePicker: NSDatePicker!
+    @IBOutlet weak var listShowStackView: NSStackView!
+    @IBOutlet weak var listShowStaticLabel: NSTextField!
+    @IBOutlet weak var listShowButton: NSButton!
     
     var originButton: EditButton!
     weak var connectVC: DbConnectViewController!
@@ -66,6 +69,8 @@ class EditViewController: NSViewController {
     var client: SQLClient?
     let generatorService = IdGeneratorService()
     
+    var chosenCountry: Country?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,6 +79,11 @@ class EditViewController: NSViewController {
         client = SQLClient.sharedInstance()
         
         cancelButton.action = #selector(EditViewController.cancelButtonPressed)
+        cancelButton.target = self
+        saveButton.target = self
+        listShowButton.target = self
+        
+        chosenCountry = connectVC.countries.first
         
         switch originButton.type! {
         case .Item:
@@ -87,9 +97,10 @@ class EditViewController: NSViewController {
         case .Company:
             if let company = originButton.company {
                 if originButton.subType == Tables.Place {
-                    configureWithPlace(place: nil, withId: true)
+                    configureWithPlace(place: nil, withId: true, countryMark: connectVC.countries.first?.mark)
                     saveButton.action = #selector(EditViewController.addPlaceToPartner)
                     title = Tables.Place.rawValue
+                    listShowButton.action = #selector(EditViewController.showCountryList)
                 } else {
                     if originButton.subType == Tables.Document {
                         configureWithDocument(doc: nil, fromPartner: true)
@@ -106,7 +117,7 @@ class EditViewController: NSViewController {
         case .Country:
             if let country = originButton.country {
                 if originButton.subType == Tables.Place {
-                    configureWithPlace(place: nil, withId: false)
+                    configureWithPlace(place: nil, withId: false, countryMark: nil)
                     saveButton.action = #selector(EditViewController.addPlace)
                     title = Tables.Place.rawValue
                 } else {
@@ -120,9 +131,10 @@ class EditViewController: NSViewController {
         case .Person:
             if let person = originButton.person {
                 if originButton.subType == Tables.Place {
-                    configureWithPlace(place: nil, withId: true)
+                    configureWithPlace(place: nil, withId: true, countryMark: connectVC.countries.first?.mark)
                     saveButton.action = #selector(EditViewController.addPlaceToPartner)
                     title = Tables.Place.rawValue
+                    listShowButton.action = #selector(EditViewController.showCountryList)
                 } else {
                     if originButton.subType == Tables.Document {
                         configureWithDocument(doc: nil, fromPartner: true)
@@ -157,7 +169,7 @@ class EditViewController: NSViewController {
             }
         case .Place:
             if let place = originButton.place {
-                configureWithPlace(place: place, withId: false)
+                configureWithPlace(place: place, withId: false, countryMark: nil)
             }
             saveButton.action = #selector(EditViewController.updatePlace)
         case .Unit:
@@ -176,6 +188,19 @@ class EditViewController: NSViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func showCountryList() {
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let chooseVC = modalStoryboard.instantiateController(withIdentifier: "ChooseCountryViewController") as! ChooseCountryViewController
+        chooseVC.countries = connectVC.countries
+        chooseVC.delegate = self
+        presentViewControllerAsModalWindow(chooseVC)
+    }
+    
+    func countryChosen(country: Country) {
+        chosenCountry = country
+        listShowButton.title = country.mark ?? ""
     }
     
     func updateItem() {
@@ -618,7 +643,6 @@ class EditViewController: NSViewController {
     func addPlaceToPartner() {
         let initDict: [String: Any] = [:]
         guard let place = Place(JSON: initDict) else { return }
-        guard let country = Country(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
         if fourthLabel.stringValue.isEmpty == false {
@@ -628,25 +652,19 @@ class EditViewController: NSViewController {
         if thirdLabel.stringValue.isEmpty == false {
             place.id = 0
         }
-        country.name = sixthLabel.stringValue
-        if seventhLabel.stringValue.isEmpty == false {
-            country.code = 0
-        }
-        country.mark = eightLabel.stringValue
-        country.iso3 = ninthLabel.stringValue
         
         guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
             return
         }
-        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
-            return
-        }
         
         place.postalCode = Int(fourthLabel.stringValue)
-        place.id = Int(thirdLabel.stringValue)
-        country.code = Int(seventhLabel.stringValue)
+        place.id = generatorService.generateIdForPlace(places: connectVC.places)
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
+        
+        guard let country = chosenCountry else {
+            return
+        }
         
         executeAddPlaceToPartner(place: place, country: country, partnerId: partnerId, shipment: originButton.shipment) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -752,6 +770,7 @@ class EditViewController: NSViewController {
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
+        listShowStackView.isHidden = true
     }
     
     func configureWithCompany(company: Company?) {
@@ -773,6 +792,7 @@ class EditViewController: NSViewController {
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
+        listShowStackView.isHidden = true
     }
     
     func configureWithPerson(person: Person?) {
@@ -794,6 +814,7 @@ class EditViewController: NSViewController {
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
+        listShowStackView.isHidden = true
     }
     
     func configureWithCountry(country: Country?) {
@@ -819,6 +840,7 @@ class EditViewController: NSViewController {
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
+        listShowStackView.isHidden = true
     }
     
     func configureWithDocument(doc: Document?, fromPartner: Bool) {
@@ -860,6 +882,7 @@ class EditViewController: NSViewController {
         sixthStackView.isHidden = true
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
+        listShowStackView.isHidden = true
     }
     
     func configureWithUnit(unit: Unit?) {
@@ -888,9 +911,10 @@ class EditViewController: NSViewController {
         fourthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
+        listShowStackView.isHidden = true
     }
     
-    func configureWithPlace(place: Place?, withId: Bool) {
+    func configureWithPlace(place: Place?, withId: Bool, countryMark: String?) {
         firstStaticLabel.stringValue = Place.Attributes.name + required
         firstLabel.stringValue = place?.name ?? ""
         fourthStaticLabel.stringValue = Place.Attributes.postalCode + required
@@ -901,23 +925,18 @@ class EditViewController: NSViewController {
         thirdLabel.stringValue = place?.id?.description ?? ""
         
         if withId {
-            sixthStaticLabel.stringValue = "Naziv države: " + required
-            seventhStaticLabel.stringValue = "Šifra države: " + required
-            eightStaticLabel.stringValue = "Oznaka države: " + required
-            ninthStaticLabel.stringValue = "ISO3 države: " + required
-            thirdStackView.isHidden = false
-            sixthStackView.isHidden = false
-            seventhStackView.isHidden = false
-            eightStackView.isHidden = false
-            ninthStackView.isHidden = false
+            listShowStaticLabel.stringValue = "Oznaka države: " + required
+            listShowStackView.isHidden = false
+            listShowButton.title = countryMark ?? "Odaberite državu"
         } else {
-            thirdStackView.isHidden = true
-            sixthStackView.isHidden = true
-            seventhStackView.isHidden = true
-            eightStackView.isHidden = true
-            ninthStackView.isHidden = true
+            listShowStackView.isHidden = true
         }
         
+        thirdStackView.isHidden = true
+        eightStackView.isHidden = true
+        ninthStackView.isHidden = true
+        sixthStackView.isHidden = true
+        seventhStackView.isHidden = true
         secondStackView.isHidden = true
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
@@ -1277,13 +1296,7 @@ class EditViewController: NSViewController {
     
     func executeAddPlaceToPartner(place: Place, country: Country, partnerId: Int?, shipment: Bool, completion: @escaping (_ dbData: [Any]?) -> ()) {
         
-        var query = insert + Tables.Country.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
-        query = query + "(" + "'\(country.iso3 ?? "")'"
-        query = query + colon + "'\(country.name ?? "")'"
-        query = query + colon + "\(country.code ?? 0)"
-        query = query + colon + "'\(country.mark ?? "")'" + "); "
-        
-        query = query + "SET IDENTITY_INSERT Mjesto ON; "
+        var query = "SET IDENTITY_INSERT Mjesto ON; "
         query = query + insert + Tables.Place.rawValue + " (NazMjesta, IdMjesta, OznDrzave,  PostBrMjesta, PostNazMjesta)" + values
         query = query + "(" + "'\(place.name ?? "")'"
         query = query + colon + "\(place.id ?? 0)"

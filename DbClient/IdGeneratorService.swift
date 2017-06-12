@@ -27,4 +27,12 @@ class IdGeneratorService {
         return code
     }
     
+    func generateIdForPlace(places: [Place]) -> Int {
+        let id = places.map({ (place) -> Int in
+            return place.id!
+        }).max()! + 1
+        
+        return id
+    }
+    
 }

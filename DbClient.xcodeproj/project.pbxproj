@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		750242FE1ECF122100C1326A /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750242FD1ECF122100C1326A /* EditButton.swift */; };
 		750434651ECC31A800A13176 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750434641ECC31A800A13176 /* EditViewController.swift */; };
-		7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750434691ECC47D400A13176 /* Modal.storyboard */; };
 		7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504346C1ECC497200A13176 /* ConfirmViewController.swift */; };
 		750757111EEE806F002C52EB /* CompanyReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757101EEE806F002C52EB /* CompanyReqValidator.swift */; };
 		750757131EEE808B002C52EB /* ItemReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757121EEE808B002C52EB /* ItemReqValidator.swift */; };
@@ -41,6 +40,10 @@
 		75A7190B1DD8B72A00F93547 /* DbListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7190A1DD8B72A00F93547 /* DbListView.xib */; };
 		75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7190C1DD8B73700F93547 /* DbListView.swift */; };
 		75B59BF31EEC0AD900AA6EFC /* IdGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B59BF21EEC0AD900AA6EFC /* IdGeneratorService.swift */; };
+		75F2FBB11EEF0BEB0072A0D8 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F2FBB01EEF0BEB0072A0D8 /* Modal.storyboard */; };
+		75F2FBB31EEF0C050072A0D8 /* ChooseCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F2FBB21EEF0C050072A0D8 /* ChooseCountryViewController.swift */; };
+		75F2FBB71EEF0C260072A0D8 /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F2FBB61EEF0C260072A0D8 /* CountryView.xib */; };
+		75F2FBB91EEF0C310072A0D8 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F2FBB81EEF0C310072A0D8 /* CountryView.swift */; };
 		75F48C4D1DD8C3BF00FFB063 /* libsybdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F48C431DD8C3BE00FFB063 /* libsybdb.a */; };
 		75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C461DD8C3BE00FFB063 /* SQLClient.m */; };
 		75F48C511DD9081500FFB063 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F48C501DD9081500FFB063 /* Country.swift */; };
@@ -56,7 +59,6 @@
 		336BABC212A6FCBAD3489D9C /* Pods-DbClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DbClient/Pods-DbClient.release.xcconfig"; sourceTree = "<group>"; };
 		750242FD1ECF122100C1326A /* EditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		750434641ECC31A800A13176 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		750434691ECC47D400A13176 /* Modal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		7504346C1ECC497200A13176 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		750757101EEE806F002C52EB /* CompanyReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyReqValidator.swift; sourceTree = "<group>"; };
 		750757121EEE808B002C52EB /* ItemReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemReqValidator.swift; sourceTree = "<group>"; };
@@ -91,6 +93,10 @@
 		75A7190A1DD8B72A00F93547 /* DbListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbListView.xib; sourceTree = "<group>"; };
 		75A7190C1DD8B73700F93547 /* DbListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbListView.swift; sourceTree = "<group>"; };
 		75B59BF21EEC0AD900AA6EFC /* IdGeneratorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdGeneratorService.swift; sourceTree = "<group>"; };
+		75F2FBB01EEF0BEB0072A0D8 /* Modal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
+		75F2FBB21EEF0C050072A0D8 /* ChooseCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCountryViewController.swift; sourceTree = "<group>"; };
+		75F2FBB61EEF0C260072A0D8 /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryView.xib; sourceTree = "<group>"; };
+		75F2FBB81EEF0C310072A0D8 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 		75F48C3F1DD8C3BE00FFB063 /* bkpublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bkpublic.h; sourceTree = "<group>"; };
 		75F48C401DD8C3BE00FFB063 /* cspublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cspublic.h; sourceTree = "<group>"; };
 		75F48C411DD8C3BE00FFB063 /* cstypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstypes.h; sourceTree = "<group>"; };
@@ -199,11 +205,12 @@
 				75F9565D1ED08F6700923C92 /* ChooseScene */,
 				7504346B1ECC495600A13176 /* ConfirmScene */,
 				750434631ECC318700A13176 /* EditScene */,
+				75F2FBB41EEF0C090072A0D8 /* ChooseCountryScene */,
 				753D6EE01DD72F6E0027EDA7 /* Models */,
 				75F48C4F1DD8C3C500FFB063 /* SQLClient */,
 				752EF9B11DCE33E2000B6C42 /* Assets.xcassets */,
 				752EF9B31DCE33E2000B6C42 /* Main.storyboard */,
-				750434691ECC47D400A13176 /* Modal.storyboard */,
+				75F2FBB01EEF0BEB0072A0D8 /* Modal.storyboard */,
 				752EF9B61DCE33E2000B6C42 /* Info.plist */,
 				75F9D6E11ED433150061C1A6 /* placeholder.png */,
 			);
@@ -273,6 +280,24 @@
 			children = (
 				755DF9631DD74D80004F4D94 /* DbNameView.xib */,
 				755DF9611DD74D34004F4D94 /* DbNameView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		75F2FBB41EEF0C090072A0D8 /* ChooseCountryScene */ = {
+			isa = PBXGroup;
+			children = (
+				75F2FBB21EEF0C050072A0D8 /* ChooseCountryViewController.swift */,
+				75F2FBB51EEF0C190072A0D8 /* Views */,
+			);
+			name = ChooseCountryScene;
+			sourceTree = "<group>";
+		};
+		75F2FBB51EEF0C190072A0D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				75F2FBB61EEF0C260072A0D8 /* CountryView.xib */,
+				75F2FBB81EEF0C310072A0D8 /* CountryView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -373,8 +398,9 @@
 				755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */,
 				752EF9B21DCE33E2000B6C42 /* Assets.xcassets in Resources */,
 				75F9D6E21ED433150061C1A6 /* placeholder.png in Resources */,
-				7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */,
+				75F2FBB11EEF0BEB0072A0D8 /* Modal.storyboard in Resources */,
 				752EF9B51DCE33E2000B6C42 /* Main.storyboard in Resources */,
+				75F2FBB71EEF0C260072A0D8 /* CountryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +472,7 @@
 				75F48C571DD914AB00FFB063 /* Person.swift in Sources */,
 				752EF9AE1DCE33E2000B6C42 /* AppDelegate.swift in Sources */,
 				752871061DCFD17A000BBCDE /* Item.swift in Sources */,
+				75F2FBB31EEF0C050072A0D8 /* ChooseCountryViewController.swift in Sources */,
 				752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */,
 				7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
@@ -459,6 +486,7 @@
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
 				7507571B1EEE80D2002C52EB /* UnitReqValidator.swift in Sources */,
+				75F2FBB91EEF0C310072A0D8 /* CountryView.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
 				75B59BF31EEC0AD900AA6EFC /* IdGeneratorService.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
