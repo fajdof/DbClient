@@ -53,6 +53,7 @@ class EditViewController: NSViewController {
     var originButton: EditButton!
     weak var connectVC: DbConnectViewController!
     var isPerson: Bool = false
+    let required = " *"
     
     let update = "UPDATE "
     let set = " SET "
@@ -185,11 +186,22 @@ class EditViewController: NSViewController {
         item.measUnit = fourthLabel.stringValue
         item.name = sixthLabel.stringValue
         
-        if let price = Double(thirdLabel.stringValue) {
-            item.price = price
+        if thirdLabel.stringValue.isEmpty == false {
+            item.price = 0
         }
+        if fifthLabel.stringValue.isEmpty == false {
+            item.secU = NSNumber(integerLiteral: 0)
+        }
+        
+        guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
+            return
+        }
+        
+        item.price = Double(thirdLabel.stringValue)
         if let secU = Int(fifthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
+        } else {
+            item.secU = nil
         }
         
         executeUpdateItem(item: item) { [weak self] (data) in
@@ -207,14 +219,25 @@ class EditViewController: NSViewController {
         item.text = secondLabel.stringValue
         item.measUnit = fourthLabel.stringValue
         item.name = sixthLabel.stringValue
+        item.code = generatorService.generateIdForItem(items: connectVC.items)
         
-        if let price = Double(thirdLabel.stringValue) {
-            item.price = price
+        if thirdLabel.stringValue.isEmpty == false {
+            item.price = 0
         }
+        if fifthLabel.stringValue.isEmpty == false {
+            item.secU = NSNumber(integerLiteral: 0)
+        }
+        
+        guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
+            return
+        }
+        
+        item.price = Double(thirdLabel.stringValue)
         if let secU = Int(fifthLabel.stringValue) {
             item.secU = NSNumber(integerLiteral: secU)
+        } else {
+            item.secU = nil
         }
-        item.code = generatorService.generateIdForItem(items: connectVC.items)
         
         executeAddItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -233,6 +256,10 @@ class EditViewController: NSViewController {
         company.oib = fourthLabel.stringValue
         company.partnerAddress = fifthLabel.stringValue
         company.shipmentAddress = seventhLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: CompanyReqValidator(company: company)) else {
+            return
+        }
         
         executeUpdateCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -253,6 +280,10 @@ class EditViewController: NSViewController {
         company.shipmentAddress = seventhLabel.stringValue
         company.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
         
+        guard requirementsSatisfied(reqValidator: CompanyReqValidator(company: company)) else {
+            return
+        }
+        
         executeAddCompany(company: company) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
@@ -265,11 +296,17 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = ["OznDrzave" : originButton.country!.mark!]
         guard let country = Country(JSON: initDict) else { return }
         
-        if let code = Int(secondLabel.stringValue) {
-            country.code = code
+        if secondLabel.stringValue.isEmpty == false {
+            country.code = 0
         }
         country.name = firstLabel.stringValue
         country.iso3 = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
+            return
+        }
+        
+        country.code = Int(secondLabel.stringValue)
         
         executeUpdateCountry(country: country) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -283,12 +320,18 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let country = Country(JSON: initDict) else { return }
         
-        if let code = Int(secondLabel.stringValue) {
-            country.code = code
+        if secondLabel.stringValue.isEmpty == false {
+            country.code = 0
         }
         country.name = firstLabel.stringValue
         country.mark = thirdLabel.stringValue
         country.iso3 = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
+            return
+        }
+        
+        country.code = Int(secondLabel.stringValue)
         
         executeAddCountry(country: country) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -307,6 +350,10 @@ class EditViewController: NSViewController {
         person.oib = fourthLabel.stringValue
         person.partnerAddress = fifthLabel.stringValue
         person.shipmentAddress = seventhLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: PersonReqValidator(person: person)) else {
+            return
+        }
         
         executeUpdatePerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -327,6 +374,10 @@ class EditViewController: NSViewController {
         person.shipmentAddress = seventhLabel.stringValue
         person.id = generatorService.generateIdForPartner(partners: connectVC.partners)
         
+        guard requirementsSatisfied(reqValidator: PersonReqValidator(person: person)) else {
+            return
+        }
+        
         executeAddPerson(person: person) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)
@@ -339,18 +390,26 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = ["IdDokumenta" : originButton.doc!.docId!]
         guard let doc = Document(JSON: initDict) else { return }
         
-        if let tax = Double(fifthLabel.stringValue) {
-            doc.tax = tax
+        if fifthLabel.stringValue.isEmpty == false {
+            doc.tax = 0
         }
-        if let docNumber = Int(secondLabel.stringValue) {
-            doc.docNumber = docNumber
+        if secondLabel.stringValue.isEmpty == false {
+            doc.docNumber = 0
         }
-        if let docValue = Double(thirdLabel.stringValue) {
-            doc.docValue = docValue
+        if thirdLabel.stringValue.isEmpty == false {
+            doc.docValue = 0
         }
         
         doc.docDate = datePicker.dateValue
         doc.docVr = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: DocumentReqValidator(doc: doc)) else {
+            return
+        }
+        
+        doc.tax = Double(fifthLabel.stringValue)
+        doc.docNumber = Int(secondLabel.stringValue)
+        doc.docValue = Double(thirdLabel.stringValue)
         
         executeUpdateDocument(doc: doc) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -364,18 +423,26 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let doc = Document(JSON: initDict) else { return }
         
-        if let tax = Double(fifthLabel.stringValue) {
-            doc.tax = tax
+        if fifthLabel.stringValue.isEmpty == false {
+            doc.tax = 0
         }
-        if let docNumber = Int(secondLabel.stringValue) {
-            doc.docNumber = docNumber
+        if secondLabel.stringValue.isEmpty == false {
+            doc.docNumber = 0
         }
-        if let docValue = Double(thirdLabel.stringValue) {
-            doc.docValue = docValue
+        if thirdLabel.stringValue.isEmpty == false {
+            doc.docValue = 0
         }
         
         doc.docDate = datePicker.dateValue
         doc.docVr = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: DocumentReqValidator(doc: doc)) else {
+            return
+        }
+        
+        doc.tax = Double(fifthLabel.stringValue)
+        doc.docNumber = Int(secondLabel.stringValue)
+        doc.docValue = Double(thirdLabel.stringValue)
         
         var company: Company?
         var person: Person?
@@ -387,6 +454,11 @@ class EditViewController: NSViewController {
             person?.oib = ninthLabel.stringValue
             person?.type = "O"
             person?.id = generatorService.generateIdForPartner(partners: connectVC.partners)
+            
+            guard requirementsSatisfied(reqValidator: PersonReqValidator(person: person!)) else {
+                return
+            }
+            
         } else {
             company = Company(JSON: initDict)
             company?.name = seventhLabel.stringValue
@@ -394,6 +466,11 @@ class EditViewController: NSViewController {
             company?.oib = ninthLabel.stringValue
             company?.type = "T"
             company?.companyId = generatorService.generateIdForPartner(partners: connectVC.partners)
+            
+            guard requirementsSatisfied(reqValidator: CompanyReqValidator(company: company!)) else {
+                return
+            }
+            
         }
         
         executeAddDocument(doc: doc, company: company, person: person) { [weak self] (data) in
@@ -409,10 +486,16 @@ class EditViewController: NSViewController {
         guard let place = Place(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
-        if let postalCode = Int(fourthLabel.stringValue) {
-            place.postalCode = postalCode
-        }
         place.postalName = fifthLabel.stringValue
+        if fourthLabel.stringValue.isEmpty == false {
+            place.postalCode = 0
+        }
+        
+        guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
+            return
+        }
+        
+        place.postalCode = Int(fourthLabel.stringValue)
         
         executeUpdatePlace(place: place) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -428,10 +511,16 @@ class EditViewController: NSViewController {
         guard let place = Place(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
-        if let postalCode = Int(fourthLabel.stringValue) {
-            place.postalCode = postalCode
-        }
         place.postalName = fifthLabel.stringValue
+        if fourthLabel.stringValue.isEmpty == false {
+            place.postalCode = 0
+        }
+        
+        guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
+            return
+        }
+        
+        place.postalCode = Int(fourthLabel.stringValue)
         
         executeAddPlace(place: place, countryMark: originButton.country!.mark!) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -445,15 +534,23 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = ["IdStavke" : originButton.unit!.unitId!]
         guard let unit = Unit(JSON: initDict) else { return }
         
-        if let itemPrice = Double(firstLabel.stringValue) {
-            unit.itemPrice = itemPrice
+        if firstLabel.stringValue.isEmpty == false {
+            unit.itemPrice = 0
         }
-        if let itemQuantity = Double(secondLabel.stringValue) {
-            unit.itemQuantity = itemQuantity
+        if secondLabel.stringValue.isEmpty == false {
+            unit.itemQuantity = 0
         }
-        if let discount = Double(thirdLabel.stringValue) {
-            unit.discount = discount
+        if thirdLabel.stringValue.isEmpty == false {
+            unit.discount = 0
         }
+        
+        guard requirementsSatisfied(reqValidator: UnitReqValidator(unit: unit)) else {
+            return
+        }
+        
+        unit.itemPrice = Double(firstLabel.stringValue)
+        unit.itemQuantity = Double(secondLabel.stringValue)
+        unit.discount = Double(thirdLabel.stringValue)
         
         executeUpdateUnit(unit: unit) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -467,15 +564,23 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let unit = Unit(JSON: initDict) else { return }
         
-        if let itemPrice = Double(firstLabel.stringValue) {
-            unit.itemPrice = itemPrice
+        if firstLabel.stringValue.isEmpty == false {
+            unit.itemPrice = 0
         }
-        if let itemQuantity = Double(secondLabel.stringValue) {
-            unit.itemQuantity = itemQuantity
+        if secondLabel.stringValue.isEmpty == false {
+            unit.itemQuantity = 0
         }
-        if let discount = Double(thirdLabel.stringValue) {
-            unit.discount = discount
+        if thirdLabel.stringValue.isEmpty == false {
+            unit.discount = 0
         }
+        
+        guard requirementsSatisfied(reqValidator: UnitReqValidator(unit: unit)) else {
+            return
+        }
+        
+        unit.itemPrice = Double(firstLabel.stringValue)
+        unit.itemQuantity = Double(secondLabel.stringValue)
+        unit.discount = Double(thirdLabel.stringValue)
         
         guard let item = Item(JSON: initDict) else { return }
         
@@ -483,13 +588,24 @@ class EditViewController: NSViewController {
         item.measUnit = eightLabel.stringValue
         item.name = tenthLabel.stringValue
         
-        if let price = Double(seventhLabel.stringValue) {
-            item.price = price
+        if seventhLabel.stringValue.isEmpty == false {
+            item.price = 0
         }
-        if let secU = Int(ninthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
+        if ninthLabel.stringValue.isEmpty == false {
+            item.secU = NSNumber(integerLiteral: 0)
         }
         item.code = generatorService.generateIdForItem(items: connectVC.items)
+        
+        guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
+            return
+        }
+        
+        item.price = Double(seventhLabel.stringValue)
+        if let secU = Int(ninthLabel.stringValue) {
+            item.secU = NSNumber(integerLiteral: secU)
+        } else {
+            item.secU = nil
+        }
         
         executeAddUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -505,19 +621,30 @@ class EditViewController: NSViewController {
         guard let country = Country(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
-        if let postalCode = Int(fourthLabel.stringValue) {
-            place.postalCode = postalCode
+        if fourthLabel.stringValue.isEmpty == false {
+            place.postalCode = 0
         }
         place.postalName = fifthLabel.stringValue
-        if let id = Int(thirdLabel.stringValue) {
-            place.id = id
+        if thirdLabel.stringValue.isEmpty == false {
+            place.id = 0
         }
         country.name = sixthLabel.stringValue
-        if let code = Int(seventhLabel.stringValue) {
-            country.code = code
+        if seventhLabel.stringValue.isEmpty == false {
+            country.code = 0
         }
         country.mark = eightLabel.stringValue
         country.iso3 = ninthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
+            return
+        }
+        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
+            return
+        }
+        
+        place.postalCode = Int(fourthLabel.stringValue)
+        place.id = Int(thirdLabel.stringValue)
+        country.code = Int(seventhLabel.stringValue)
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
         
@@ -533,21 +660,30 @@ class EditViewController: NSViewController {
         let initDict: [String: Any] = [:]
         guard let doc = Document(JSON: initDict) else { return }
         
-        if let tax = Double(fifthLabel.stringValue) {
-            doc.tax = tax
+        if fifthLabel.stringValue.isEmpty == false {
+            doc.tax = 0
         }
-        if let docNumber = Int(secondLabel.stringValue) {
-            doc.docNumber = docNumber
+        if secondLabel.stringValue.isEmpty == false {
+            doc.docNumber = 0
         }
-        if let docValue = Double(thirdLabel.stringValue) {
-            doc.docValue = docValue
+        if thirdLabel.stringValue.isEmpty == false {
+            doc.docValue = 0
         }
-        if let docId = Int(firstLabel.stringValue) {
-            doc.docId = docId
+        if firstLabel.stringValue.isEmpty == false {
+            doc.docId = 0
         }
         
         doc.docDate = datePicker.dateValue
         doc.docVr = fourthLabel.stringValue
+        
+        guard requirementsSatisfied(reqValidator: DocumentReqValidator(doc: doc)) else {
+            return
+        }
+        
+        doc.tax = Double(fifthLabel.stringValue)
+        doc.docNumber = Int(secondLabel.stringValue)
+        doc.docValue = Double(thirdLabel.stringValue)
+        doc.docId = Int(firstLabel.stringValue)
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
         
@@ -599,10 +735,10 @@ class EditViewController: NSViewController {
     
     func configureWithItem(item: Item?) {
         secondStaticLabel.stringValue = Item.Attributes.text
-        thirdStaticLabel.stringValue = Item.Attributes.price
-        fourthStaticLabel.stringValue = Item.Attributes.measUnit
-        fifthStaticLabel.stringValue = Item.Attributes.secU
-        sixthStaticLabel.stringValue = Item.Attributes.name
+        thirdStaticLabel.stringValue = Item.Attributes.price + required
+        fourthStaticLabel.stringValue = Item.Attributes.measUnit + required
+        fifthStaticLabel.stringValue = Item.Attributes.secU + required
+        sixthStaticLabel.stringValue = Item.Attributes.name + required
         secondLabel.stringValue = item?.text ?? ""
         thirdLabel.stringValue = item?.price?.description ?? ""
         fourthLabel.stringValue = item?.measUnit ?? ""
@@ -619,11 +755,11 @@ class EditViewController: NSViewController {
     }
     
     func configureWithCompany(company: Company?) {
-        secondStaticLabel.stringValue = Company.CompanyAttributes.name
+        secondStaticLabel.stringValue = Company.CompanyAttributes.name + required
         secondLabel.stringValue = company?.name ?? ""
-        thirdStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
+        thirdStaticLabel.stringValue = Company.CompanyAttributes.registryNumber + required
         thirdLabel.stringValue = company?.registryNumber ?? ""
-        fourthStaticLabel.stringValue = Company.Attributes.oib
+        fourthStaticLabel.stringValue = Company.Attributes.oib + required
         fourthLabel.stringValue = company?.oib ?? ""
         fifthStaticLabel.stringValue = Company.Attributes.partnerAddress
         fifthLabel.stringValue = company?.partnerAddress ?? ""
@@ -640,11 +776,11 @@ class EditViewController: NSViewController {
     }
     
     func configureWithPerson(person: Person?) {
-        firstStaticLabel.stringValue = Person.PersonAttributes.firstName
+        firstStaticLabel.stringValue = Person.PersonAttributes.firstName + required
         firstLabel.stringValue = person?.firstName ?? ""
-        secondStaticLabel.stringValue = Person.PersonAttributes.lastName
+        secondStaticLabel.stringValue = Person.PersonAttributes.lastName + required
         secondLabel.stringValue = person?.lastName ?? ""
-        fourthStaticLabel.stringValue = Person.Attributes.oib
+        fourthStaticLabel.stringValue = Person.Attributes.oib + required
         fourthLabel.stringValue = person?.oib ?? ""
         fifthStaticLabel.stringValue = Person.Attributes.partnerAddress
         fifthLabel.stringValue = person?.partnerAddress ?? ""
@@ -661,13 +797,13 @@ class EditViewController: NSViewController {
     }
     
     func configureWithCountry(country: Country?) {
-        firstStaticLabel.stringValue = Country.Attributes.name
+        firstStaticLabel.stringValue = Country.Attributes.name + required
         firstLabel.stringValue = country?.name ?? ""
-        secondStaticLabel.stringValue = Country.Attributes.code
+        secondStaticLabel.stringValue = Country.Attributes.code + required
         secondLabel.stringValue = country?.code?.description ?? ""
-        thirdStaticLabel.stringValue = Country.Attributes.mark
+        thirdStaticLabel.stringValue = Country.Attributes.mark + required
         thirdLabel.stringValue = country?.mark ?? ""
-        fourthStaticLabel.stringValue = Country.Attributes.iso3
+        fourthStaticLabel.stringValue = Country.Attributes.iso3 + required
         fourthLabel.stringValue = country?.iso3 ?? ""
         
         if country != nil {
@@ -686,17 +822,17 @@ class EditViewController: NSViewController {
     }
     
     func configureWithDocument(doc: Document?, fromPartner: Bool) {
-        firstStaticLabel.stringValue = Document.Attributes.docId
+        firstStaticLabel.stringValue = Document.Attributes.docId + required
         firstLabel.stringValue = doc?.docId?.description ?? ""
-        secondStaticLabel.stringValue = Document.Attributes.docNumber
+        secondStaticLabel.stringValue = Document.Attributes.docNumber + required
         secondLabel.stringValue = doc?.docNumber?.description ?? ""
-        thirdStaticLabel.stringValue = Document.Attributes.docValue
+        thirdStaticLabel.stringValue = Document.Attributes.docValue + required
         thirdLabel.stringValue = doc?.docValue?.description ?? ""
         fourthStaticLabel.stringValue = Document.Attributes.docVr
         fourthLabel.stringValue = doc?.docVr ?? ""
-        fifthStaticLabel.stringValue = Document.Attributes.tax
+        fifthStaticLabel.stringValue = Document.Attributes.tax + required
         fifthLabel.stringValue = doc?.tax?.description ?? ""
-        twelvethStaticLabel.stringValue = Document.Attributes.docDate
+        twelvethStaticLabel.stringValue = Document.Attributes.docDate + required
         datePicker.dateValue = doc?.docDate ?? Date()
         
         if doc != nil || fromPartner {
@@ -711,13 +847,13 @@ class EditViewController: NSViewController {
         } else {
             firstStackView.isHidden = true
             if isPerson {
-                seventhStaticLabel.stringValue = Person.PersonAttributes.firstName
-                eightStaticLabel.stringValue = Person.PersonAttributes.lastName
-                ninthStaticLabel.stringValue = Person.Attributes.oib
+                seventhStaticLabel.stringValue = Person.PersonAttributes.firstName + required
+                eightStaticLabel.stringValue = Person.PersonAttributes.lastName + required
+                ninthStaticLabel.stringValue = Person.Attributes.oib + required
             } else {
-                seventhStaticLabel.stringValue = Company.CompanyAttributes.name
-                eightStaticLabel.stringValue = Company.CompanyAttributes.registryNumber
-                ninthStaticLabel.stringValue = Company.Attributes.oib
+                seventhStaticLabel.stringValue = Company.CompanyAttributes.name + required
+                eightStaticLabel.stringValue = Company.CompanyAttributes.registryNumber + required
+                ninthStaticLabel.stringValue = Company.Attributes.oib + required
             }
         }
         
@@ -727,11 +863,11 @@ class EditViewController: NSViewController {
     }
     
     func configureWithUnit(unit: Unit?) {
-        firstStaticLabel.stringValue = Unit.Attributes.itemPrice
+        firstStaticLabel.stringValue = Unit.Attributes.itemPrice + required
         firstLabel.stringValue = unit?.itemPrice?.description ?? ""
-        secondStaticLabel.stringValue = Unit.Attributes.itemQuantity
+        secondStaticLabel.stringValue = Unit.Attributes.itemQuantity + required
         secondLabel.stringValue = unit?.itemQuantity?.description ?? ""
-        thirdStaticLabel.stringValue = Unit.Attributes.discount
+        thirdStaticLabel.stringValue = Unit.Attributes.discount + required
         thirdLabel.stringValue = unit?.discount?.description ?? ""
         
         if unit != nil {
@@ -742,10 +878,10 @@ class EditViewController: NSViewController {
             tenthStackView.isHidden = true
         } else {
             sixthStaticLabel.stringValue = Item.Attributes.text
-            seventhStaticLabel.stringValue = Item.Attributes.price
-            eightStaticLabel.stringValue = Item.Attributes.measUnit
-            ninthStaticLabel.stringValue = Item.Attributes.secU
-            tenthStaticLabel.stringValue = Item.Attributes.name
+            seventhStaticLabel.stringValue = Item.Attributes.price + required
+            eightStaticLabel.stringValue = Item.Attributes.measUnit + required
+            ninthStaticLabel.stringValue = Item.Attributes.secU + required
+            tenthStaticLabel.stringValue = Item.Attributes.name + required
         }
         
         fifthStackView.isHidden = true
@@ -755,20 +891,20 @@ class EditViewController: NSViewController {
     }
     
     func configureWithPlace(place: Place?, withId: Bool) {
-        firstStaticLabel.stringValue = Place.Attributes.name
+        firstStaticLabel.stringValue = Place.Attributes.name + required
         firstLabel.stringValue = place?.name ?? ""
-        fourthStaticLabel.stringValue = Place.Attributes.postalCode
+        fourthStaticLabel.stringValue = Place.Attributes.postalCode + required
         fourthLabel.stringValue = place?.postalCode?.description ?? ""
         fifthStaticLabel.stringValue = Place.Attributes.postalName
         fifthLabel.stringValue = place?.postalName ?? ""
-        thirdStaticLabel.stringValue = Place.Attributes.id
+        thirdStaticLabel.stringValue = Place.Attributes.id + required
         thirdLabel.stringValue = place?.id?.description ?? ""
         
         if withId {
-            sixthStaticLabel.stringValue = "Naziv države: "
-            seventhStaticLabel.stringValue = "Šifra države: "
-            eightStaticLabel.stringValue = "Oznaka države: "
-            ninthStaticLabel.stringValue = "ISO3 države: "
+            sixthStaticLabel.stringValue = "Naziv države: " + required
+            seventhStaticLabel.stringValue = "Šifra države: " + required
+            eightStaticLabel.stringValue = "Oznaka države: " + required
+            ninthStaticLabel.stringValue = "ISO3 države: " + required
             thirdStackView.isHidden = false
             sixthStackView.isHidden = false
             seventhStackView.isHidden = false
@@ -1205,6 +1341,15 @@ class EditViewController: NSViewController {
             completion(dbData)
         })
         
+    }
+    
+    func requirementsSatisfied(reqValidator: Requiredable) -> Bool {
+        guard reqValidator.requirementFulfilled() else {
+            showAlert(alertString: "Potrebno je ispuniti sva obavezna polja", infoString: "")
+            return false
+        }
+        
+        return true
     }
     
 }

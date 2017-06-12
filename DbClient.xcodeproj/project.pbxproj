@@ -11,6 +11,14 @@
 		750434651ECC31A800A13176 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750434641ECC31A800A13176 /* EditViewController.swift */; };
 		7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750434691ECC47D400A13176 /* Modal.storyboard */; };
 		7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504346C1ECC497200A13176 /* ConfirmViewController.swift */; };
+		750757111EEE806F002C52EB /* CompanyReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757101EEE806F002C52EB /* CompanyReqValidator.swift */; };
+		750757131EEE808B002C52EB /* ItemReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757121EEE808B002C52EB /* ItemReqValidator.swift */; };
+		750757151EEE809F002C52EB /* CountryReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757141EEE809F002C52EB /* CountryReqValidator.swift */; };
+		750757171EEE80B2002C52EB /* PlaceReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757161EEE80B2002C52EB /* PlaceReqValidator.swift */; };
+		750757191EEE80BF002C52EB /* PersonReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757181EEE80BF002C52EB /* PersonReqValidator.swift */; };
+		7507571B1EEE80D2002C52EB /* UnitReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507571A1EEE80D2002C52EB /* UnitReqValidator.swift */; };
+		7507571D1EEE80F0002C52EB /* DocumentReqValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507571C1EEE80F0002C52EB /* DocumentReqValidator.swift */; };
+		7507571F1EEE80FB002C52EB /* Requiredable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507571E1EEE80FB002C52EB /* Requiredable.swift */; };
 		752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524525F1DFC5710009EACBE /* DisclosureButton.swift */; };
 		7527E9851DDF9D75003925BE /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9841DDF9D75003925BE /* Partner.swift */; };
 		7527E9871DDFAC48003925BE /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527E9861DDFAC48003925BE /* Unit.swift */; };
@@ -50,6 +58,14 @@
 		750434641ECC31A800A13176 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		750434691ECC47D400A13176 /* Modal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		7504346C1ECC497200A13176 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
+		750757101EEE806F002C52EB /* CompanyReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyReqValidator.swift; sourceTree = "<group>"; };
+		750757121EEE808B002C52EB /* ItemReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemReqValidator.swift; sourceTree = "<group>"; };
+		750757141EEE809F002C52EB /* CountryReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryReqValidator.swift; sourceTree = "<group>"; };
+		750757161EEE80B2002C52EB /* PlaceReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceReqValidator.swift; sourceTree = "<group>"; };
+		750757181EEE80BF002C52EB /* PersonReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonReqValidator.swift; sourceTree = "<group>"; };
+		7507571A1EEE80D2002C52EB /* UnitReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitReqValidator.swift; sourceTree = "<group>"; };
+		7507571C1EEE80F0002C52EB /* DocumentReqValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentReqValidator.swift; sourceTree = "<group>"; };
+		7507571E1EEE80FB002C52EB /* Requiredable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requiredable.swift; sourceTree = "<group>"; };
 		7524525F1DFC5710009EACBE /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
 		7527E9841DDF9D75003925BE /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		7527E9861DDFAC48003925BE /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
@@ -138,6 +154,21 @@
 			name = ConfirmScene;
 			sourceTree = "<group>";
 		};
+		7507570F1EEE7F4E002C52EB /* RequiredValidators */ = {
+			isa = PBXGroup;
+			children = (
+				7507571E1EEE80FB002C52EB /* Requiredable.swift */,
+				750757121EEE808B002C52EB /* ItemReqValidator.swift */,
+				7507571C1EEE80F0002C52EB /* DocumentReqValidator.swift */,
+				750757141EEE809F002C52EB /* CountryReqValidator.swift */,
+				750757161EEE80B2002C52EB /* PlaceReqValidator.swift */,
+				750757181EEE80BF002C52EB /* PersonReqValidator.swift */,
+				7507571A1EEE80D2002C52EB /* UnitReqValidator.swift */,
+				750757101EEE806F002C52EB /* CompanyReqValidator.swift */,
+			);
+			name = RequiredValidators;
+			sourceTree = "<group>";
+		};
 		752EF9A11DCE33E2000B6C42 = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +232,7 @@
 				7527E9841DDF9D75003925BE /* Partner.swift */,
 				7527E9861DDFAC48003925BE /* Unit.swift */,
 				7527E98C1DDFB64C003925BE /* Company.swift */,
+				7507570F1EEE7F4E002C52EB /* RequiredValidators */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -403,6 +435,8 @@
 			files = (
 				750434651ECC31A800A13176 /* EditViewController.swift in Sources */,
 				75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */,
+				7507571F1EEE80FB002C52EB /* Requiredable.swift in Sources */,
+				750757191EEE80BF002C52EB /* PersonReqValidator.swift in Sources */,
 				75F48C551DD910DA00FFB063 /* Place.swift in Sources */,
 				750242FE1ECF122100C1326A /* EditButton.swift in Sources */,
 				7527E9851DDF9D75003925BE /* Partner.swift in Sources */,
@@ -415,14 +449,20 @@
 				752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */,
 				7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
+				7507571D1EEE80F0002C52EB /* DocumentReqValidator.swift in Sources */,
+				750757131EEE808B002C52EB /* ItemReqValidator.swift in Sources */,
+				750757171EEE80B2002C52EB /* PlaceReqValidator.swift in Sources */,
 				75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */,
+				750757151EEE809F002C52EB /* CountryReqValidator.swift in Sources */,
 				7527E98D1DDFB64C003925BE /* Company.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
+				7507571B1EEE80D2002C52EB /* UnitReqValidator.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
 				75B59BF31EEC0AD900AA6EFC /* IdGeneratorService.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
+				750757111EEE806F002C52EB /* CompanyReqValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

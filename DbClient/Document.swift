@@ -19,7 +19,7 @@ class Document: Mappable {
 		static let docBeforeId = "Id prethodnog dokumenta: "
 		static let docValue = "Iznos dokumenta: "
 		static let tax = "Postotak poreza: "
-		static let docVr = "VrDokumenta: "
+		static let docVr = "Vrsta dokumenta: "
 	}
 	
 	var docNumber: Int?
