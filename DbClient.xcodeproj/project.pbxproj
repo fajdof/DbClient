@@ -12,6 +12,9 @@
 		750434651ECC31A800A13176 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750434641ECC31A800A13176 /* EditViewController.swift */; };
 		7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750434691ECC47D400A13176 /* Modal.storyboard */; };
 		7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504346C1ECC497200A13176 /* ConfirmViewController.swift */; };
+		750757231EEE8495002C52EB /* ChooseCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757221EEE8495002C52EB /* ChooseCountryViewController.swift */; };
+		750757271EEE8822002C52EB /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750757261EEE8822002C52EB /* CountryView.swift */; };
+		750757291EEE8840002C52EB /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750757281EEE8840002C52EB /* CountryView.xib */; };
 		7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518E66A1DE8ED59001C452A /* DbConnectViewModel.swift */; };
 		752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524525F1DFC5710009EACBE /* DisclosureButton.swift */; };
 		7527B62F1DE98F9000E1B531 /* DbTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527B62E1DE98F9000E1B531 /* DbTablePresenter.swift */; };
@@ -66,6 +69,9 @@
 		750434641ECC31A800A13176 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		750434691ECC47D400A13176 /* Modal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		7504346C1ECC497200A13176 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
+		750757221EEE8495002C52EB /* ChooseCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCountryViewController.swift; sourceTree = "<group>"; };
+		750757261EEE8822002C52EB /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
+		750757281EEE8840002C52EB /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryView.xib; sourceTree = "<group>"; };
 		7518E66A1DE8ED59001C452A /* DbConnectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbConnectViewModel.swift; sourceTree = "<group>"; };
 		7524525F1DFC5710009EACBE /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
 		7527B62E1DE98F9000E1B531 /* DbTablePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbTablePresenter.swift; sourceTree = "<group>"; };
@@ -172,6 +178,24 @@
 			name = ConfirmScene;
 			sourceTree = "<group>";
 		};
+		750757241EEE849C002C52EB /* ChooseCountryScene */ = {
+			isa = PBXGroup;
+			children = (
+				750757221EEE8495002C52EB /* ChooseCountryViewController.swift */,
+				750757251EEE87E2002C52EB /* Views */,
+			);
+			name = ChooseCountryScene;
+			sourceTree = "<group>";
+		};
+		750757251EEE87E2002C52EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				750757281EEE8840002C52EB /* CountryView.xib */,
+				750757261EEE8822002C52EB /* CountryView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		752EF9A11DCE33E2000B6C42 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +226,7 @@
 				75F9565D1ED08F6700923C92 /* ChooseScene */,
 				7504346B1ECC495600A13176 /* ConfirmScene */,
 				750434631ECC318700A13176 /* EditScene */,
+				750757241EEE849C002C52EB /* ChooseCountryScene */,
 				753D6EE01DD72F6E0027EDA7 /* Models */,
 				75F48C4F1DD8C3C500FFB063 /* SQLClient */,
 				752EF9B11DCE33E2000B6C42 /* Assets.xcassets */,
@@ -396,6 +421,7 @@
 				75F9D6E21ED433150061C1A6 /* placeholder.png in Resources */,
 				7504346A1ECC47D400A13176 /* Modal.storyboard in Resources */,
 				752EF9B51DCE33E2000B6C42 /* Main.storyboard in Resources */,
+				750757291EEE8840002C52EB /* CountryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +492,7 @@
 				75B59C041EEC33D800AA6EFC /* CompanyReqValidator.swift in Sources */,
 				75B59C021EEC33C100AA6EFC /* UnitReqValidator.swift in Sources */,
 				75B59BF51EEC270500AA6EFC /* IdGeneratorService.swift in Sources */,
+				750757271EEE8822002C52EB /* CountryView.swift in Sources */,
 				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,
 				7518E66B1DE8ED59001C452A /* DbConnectViewModel.swift in Sources */,
 				75F9565A1ED0424800923C92 /* ConfirmViewModel.swift in Sources */,
@@ -488,6 +515,7 @@
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
+				750757231EEE8495002C52EB /* ChooseCountryViewController.swift in Sources */,
 				75F956611ED0905800923C92 /* ChoosePresenter.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,

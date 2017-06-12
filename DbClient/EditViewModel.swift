@@ -361,13 +361,7 @@ class EditViewModel {
     
     func addPlaceToPartner(place: Place, country: Country, partnerId: Int?, shipment: Bool, completion: @escaping (_ dbData: [Any]?) -> ()) {
         
-        var query = insert + Tables.Country.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
-        query = query + "(" + "'\(country.iso3 ?? "")'"
-        query = query + colon + "'\(country.name ?? "")'"
-        query = query + colon + "\(country.code ?? 0)"
-        query = query + colon + "'\(country.mark ?? "")'" + "); "
-        
-        query = query + "SET IDENTITY_INSERT Mjesto ON; "
+        var query = "SET IDENTITY_INSERT Mjesto ON; "
         query = query + insert + Tables.Place.rawValue + " (NazMjesta, IdMjesta, OznDrzave,  PostBrMjesta, PostNazMjesta)" + values
         query = query + "(" + "'\(place.name ?? "")'"
         query = query + colon + "\(place.id ?? 0)"

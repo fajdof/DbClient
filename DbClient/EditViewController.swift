@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class EditViewController: NSViewController {
+class EditViewController: NSViewController, ChooseCountryDelegate {
     
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var saveButton: NSButton!
@@ -49,6 +49,9 @@ class EditViewController: NSViewController {
     @IBOutlet weak var twelvethStaticLabel: NSTextField!
     @IBOutlet weak var twelvethStackView: NSStackView!
     @IBOutlet weak var datePicker: NSDatePicker!
+    @IBOutlet weak var listShowStackView: NSStackView!
+    @IBOutlet weak var listShowStaticLabel: NSTextField!
+    @IBOutlet weak var listShowButton: NSButton!
     
     var originButton: EditButton!
     let presenter = EditPresenter()
@@ -56,6 +59,8 @@ class EditViewController: NSViewController {
     weak var connectVC: DbConnectViewController!
     var isPerson: Bool = false
     let generatorService = IdGeneratorService()
+    
+    var chosenCountry: Country?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +70,11 @@ class EditViewController: NSViewController {
         presenter.viewController = self
         
         cancelButton.action = #selector(EditViewController.cancelButtonPressed)
+        cancelButton.target = self
+        saveButton.target = self
+        listShowButton.target = self
+        
+        chosenCountry = connectVC.countries.first
         
         switch originButton.type! {
         case .Item:
@@ -78,9 +88,10 @@ class EditViewController: NSViewController {
         case .Company:
             if let company = originButton.company {
                 if originButton.subType == Tables.Place {
-                    self.presenter.configureWithPlace(place: nil, withId: true)
+                    self.presenter.configureWithPlace(place: nil, withId: true, countryMark: connectVC.countries.first?.mark)
                     saveButton.action = #selector(EditViewController.addPlaceToPartner)
                     title = Tables.Place.rawValue
+                    listShowButton.action = #selector(EditViewController.showCountryList)
                 } else {
                     if originButton.subType == Tables.Document {
                         presenter.configureWithDocument(doc: nil, fromPartner: true)
@@ -97,7 +108,7 @@ class EditViewController: NSViewController {
         case .Country:
             if let country = originButton.country {
                 if originButton.subType == Tables.Place {
-                    self.presenter.configureWithPlace(place: nil, withId: false)
+                    self.presenter.configureWithPlace(place: nil, withId: false, countryMark: nil)
                     saveButton.action = #selector(EditViewController.addPlace)
                     title = Tables.Place.rawValue
                 } else {
@@ -111,9 +122,10 @@ class EditViewController: NSViewController {
         case .Person:
             if let person = originButton.person {
                 if originButton.subType == Tables.Place {
-                    self.presenter.configureWithPlace(place: nil, withId: true)
+                    self.presenter.configureWithPlace(place: nil, withId: true, countryMark: connectVC.countries.first?.mark)
                     saveButton.action = #selector(EditViewController.addPlaceToPartner)
                     title = Tables.Place.rawValue
+                    listShowButton.action = #selector(EditViewController.showCountryList)
                 } else {
                     if originButton.subType == Tables.Document {
                         presenter.configureWithDocument(doc: nil, fromPartner: true)
@@ -148,7 +160,7 @@ class EditViewController: NSViewController {
             }
         case .Place:
             if let place = originButton.place {
-                self.presenter.configureWithPlace(place: place, withId: false)
+                self.presenter.configureWithPlace(place: place, withId: false, countryMark: nil)
             }
             saveButton.action = #selector(EditViewController.updatePlace)
         case .Unit:
@@ -167,6 +179,19 @@ class EditViewController: NSViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func showCountryList() {
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let chooseVC = modalStoryboard.instantiateController(withIdentifier: "ChooseCountryViewController") as! ChooseCountryViewController
+        chooseVC.countries = connectVC.countries
+        chooseVC.delegate = self
+        presentViewControllerAsModalWindow(chooseVC)
+    }
+    
+    func countryChosen(country: Country) {
+        chosenCountry = country
+        listShowButton.title = country.mark ?? ""
     }
     
     func updateItem() {
@@ -609,35 +634,25 @@ class EditViewController: NSViewController {
     func addPlaceToPartner() {
         let initDict: [String: Any] = [:]
         guard let place = Place(JSON: initDict) else { return }
-        guard let country = Country(JSON: initDict) else { return }
         
         place.name = firstLabel.stringValue
         if fourthLabel.stringValue.isEmpty == false {
             place.postalCode = 0
         }
         place.postalName = fifthLabel.stringValue
-        if thirdLabel.stringValue.isEmpty == false {
-            place.id = 0
-        }
-        country.name = sixthLabel.stringValue
-        if seventhLabel.stringValue.isEmpty == false {
-            country.code = 0
-        }
-        country.mark = eightLabel.stringValue
-        country.iso3 = ninthLabel.stringValue
         
         guard requirementsSatisfied(reqValidator: PlaceReqValidator(place: place)) else {
             return
         }
-        guard requirementsSatisfied(reqValidator: CountryReqValidator(country: country)) else {
-            return
-        }
         
         place.postalCode = Int(fourthLabel.stringValue)
-        place.id = Int(thirdLabel.stringValue)
-        country.code = Int(seventhLabel.stringValue)
+        place.id = generatorService.generateIdForPlace(places: connectVC.places)
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
+        
+        guard let country = chosenCountry else {
+            return
+        }
         
         viewModel.addPlaceToPartner(place: place, country: country, partnerId: partnerId, shipment: originButton.shipment) { [weak self] (data) in
             guard let `self` = self else { return }

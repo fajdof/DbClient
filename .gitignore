@@ -5,4 +5,5 @@
 *.p12
 *.dSYM.zip
 *.pkey
+fastlane/report.xml
 xcuserdata/

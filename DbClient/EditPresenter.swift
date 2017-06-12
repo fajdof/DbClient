@@ -33,6 +33,7 @@ class EditPresenter {
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
+        viewController.listShowStackView.isHidden = true
     }
     
     func configureWithCompany(company: Company?) {
@@ -54,6 +55,7 @@ class EditPresenter {
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
+        viewController.listShowStackView.isHidden = true
     }
     
     func configureWithPerson(person: Person?) {
@@ -75,6 +77,7 @@ class EditPresenter {
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
+        viewController.listShowStackView.isHidden = true
     }
     
     func configureWithCountry(country: Country?) {
@@ -100,6 +103,7 @@ class EditPresenter {
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
+        viewController.listShowStackView.isHidden = true
     }
     
     func configureWithDocument(doc: Document?, fromPartner: Bool) {
@@ -141,6 +145,7 @@ class EditPresenter {
         viewController.sixthStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
+        viewController.listShowStackView.isHidden = true
     }
     
     func configureWithUnit(unit: Unit?) {
@@ -169,9 +174,10 @@ class EditPresenter {
         viewController.fourthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
+        viewController.listShowStackView.isHidden = true
     }
     
-    func configureWithPlace(place: Place?, withId: Bool) {
+    func configureWithPlace(place: Place?, withId: Bool, countryMark: String?) {
         viewController.firstStaticLabel.stringValue = Place.Attributes.name + required
         viewController.firstLabel.stringValue = place?.name ?? ""
         viewController.fourthStaticLabel.stringValue = Place.Attributes.postalCode + required
@@ -182,23 +188,18 @@ class EditPresenter {
         viewController.thirdLabel.stringValue = place?.id?.description ?? ""
         
         if withId {
-            viewController.sixthStaticLabel.stringValue = "Naziv države: " + required
-            viewController.seventhStaticLabel.stringValue = "Šifra države: " + required
-            viewController.eightStaticLabel.stringValue = "Oznaka države: " + required
-            viewController.ninthStaticLabel.stringValue = "ISO3 države: " + required
-            viewController.thirdStackView.isHidden = false
-            viewController.sixthStackView.isHidden = false
-            viewController.seventhStackView.isHidden = false
-            viewController.eightStackView.isHidden = false
-            viewController.ninthStackView.isHidden = false
+            viewController.listShowStaticLabel.stringValue = "Oznaka države: " + required
+            viewController.listShowStackView.isHidden = false
+            viewController.listShowButton.title = countryMark ?? "Odaberite državu"
         } else {
-            viewController.thirdStackView.isHidden = true
-            viewController.sixthStackView.isHidden = true
-            viewController.seventhStackView.isHidden = true
-            viewController.eightStackView.isHidden = true
-            viewController.ninthStackView.isHidden = true
+            viewController.listShowStackView.isHidden = true
         }
         
+        viewController.thirdStackView.isHidden = true
+        viewController.eightStackView.isHidden = true
+        viewController.ninthStackView.isHidden = true
+        viewController.sixthStackView.isHidden = true
+        viewController.seventhStackView.isHidden = true
         viewController.secondStackView.isHidden = true
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
@@ -220,6 +221,7 @@ class EditPresenter {
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
+        viewController.listShowStackView.isHidden = true
     }
     
 }
