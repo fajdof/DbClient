@@ -85,7 +85,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         listShowButton.target = self
         
         chosenCountry = connectVC.countries.first
-        secU = NSNumber(integerLiteral: 1)
+        secU = originButton.item?.secU ?? NSNumber(integerLiteral: 1)
         
         switch originButton.type! {
         case .Item:
@@ -763,6 +763,11 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         fifthLabel.stringValue = item?.secU?.description ?? ""
         sixthLabel.stringValue = item?.name ?? ""
         listShowButton.title = "Da"
+        if let secU = item?.secU?.intValue {
+            if secU == 0 {
+                listShowButton.title = "Ne"
+            }
+        }
         
         firstStackView.isHidden = true
         seventhStackView.isHidden = true
@@ -899,6 +904,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
             seventhStackView.isHidden = true
             eightStackView.isHidden = true
             tenthStackView.isHidden = true
+            listShowStackView.isHidden = true
         } else {
             sixthStaticLabel.stringValue = Item.Attributes.text
             seventhStaticLabel.stringValue = Item.Attributes.price + required
