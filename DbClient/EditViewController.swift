@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class EditViewController: NSViewController, ChooseCountryDelegate {
+class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDelegate {
     
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var saveButton: NSButton!
@@ -61,6 +61,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
     let generatorService = IdGeneratorService()
     
     var chosenCountry: Country?
+    var secU: NSNumber?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,9 +76,11 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         listShowButton.target = self
         
         chosenCountry = connectVC.countries.first
+        secU = originButton.item?.secU ?? NSNumber(integerLiteral: 1)
         
         switch originButton.type! {
         case .Item:
+            listShowButton.action = #selector(EditViewController.showSecService)
             if let item = originButton.item {
                 presenter.configureWithItem(item: item)
                 saveButton.action = #selector(EditViewController.updateItem)
@@ -145,6 +148,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
                     self.presenter.configureWithUnit(unit: nil)
                     saveButton.action = #selector(EditViewController.addUnit)
                     title = Tables.Unit.rawValue
+                    listShowButton.action = #selector(EditViewController.showSecService)
                 } else {
                     if originButton.subType == Tables.Document {
                         self.presenter.configureWithDocId()
@@ -194,6 +198,22 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         listShowButton.title = country.mark ?? ""
     }
     
+    func showSecService() {
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let secVC = modalStoryboard.instantiateController(withIdentifier: "SecServiceViewController") as! SecServiceViewController
+        secVC.delegate = self
+        presentViewControllerAsModalWindow(secVC)
+    }
+    
+    func secServiceChosen(integerLiteral: Int) {
+        secU = NSNumber(integerLiteral: integerLiteral)
+        if integerLiteral == 1 {
+            listShowButton.title = "Da"
+        } else {
+            listShowButton.title = "Ne"
+        }
+    }
+    
     func updateItem() {
         let initDict: [String: Any] = ["SifArtikla" : originButton.item!.code!]
         guard let item = Item(JSON: initDict) else { return }
@@ -205,20 +225,14 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         if thirdLabel.stringValue.isEmpty == false {
             item.price = 0
         }
-        if fifthLabel.stringValue.isEmpty == false {
-            item.secU = NSNumber(integerLiteral: 0)
-        }
+        
+        item.secU = secU
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
             return
         }
         
         item.price = Double(thirdLabel.stringValue)
-        if let secU = Int(fifthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
-        } else {
-            item.secU = nil
-        }
         
         viewModel.updateItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -240,20 +254,13 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         if thirdLabel.stringValue.isEmpty == false {
             item.price = 0
         }
-        if fifthLabel.stringValue.isEmpty == false {
-            item.secU = NSNumber(integerLiteral: 0)
-        }
+        item.secU = secU
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
             return
         }
         
         item.price = Double(thirdLabel.stringValue)
-        if let secU = Int(fifthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
-        } else {
-            item.secU = nil
-        }
         
         viewModel.addItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -607,9 +614,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         if seventhLabel.stringValue.isEmpty == false {
             item.price = 0
         }
-        if ninthLabel.stringValue.isEmpty == false {
-            item.secU = NSNumber(integerLiteral: 0)
-        }
+        item.secU = secU
         item.code = generatorService.generateIdForItem(items: connectVC.items)
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
@@ -617,11 +622,6 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         }
         
         item.price = Double(seventhLabel.stringValue)
-        if let secU = Int(ninthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
-        } else {
-            item.secU = nil
-        }
         
         viewModel.addUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
             guard let `self` = self else { return }

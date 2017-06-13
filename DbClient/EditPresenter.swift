@@ -18,13 +18,19 @@ class EditPresenter {
         viewController.secondStaticLabel.stringValue = Item.Attributes.text
         viewController.thirdStaticLabel.stringValue = Item.Attributes.price + required
         viewController.fourthStaticLabel.stringValue = Item.Attributes.measUnit + required
-        viewController.fifthStaticLabel.stringValue = Item.Attributes.secU + required
+        viewController.listShowStaticLabel.stringValue = Item.Attributes.secU + required
         viewController.sixthStaticLabel.stringValue = Item.Attributes.name + required
         viewController.secondLabel.stringValue = item?.text ?? ""
         viewController.thirdLabel.stringValue = item?.price?.description ?? ""
         viewController.fourthLabel.stringValue = item?.measUnit ?? ""
         viewController.fifthLabel.stringValue = item?.secU?.description ?? ""
         viewController.sixthLabel.stringValue = item?.name ?? ""
+        viewController.listShowButton.title = "Da"
+        if let secU = item?.secU?.intValue {
+            if secU == 0 {
+                viewController.listShowButton.title = "Ne"
+            }
+        }
         
         viewController.firstStackView.isHidden = true
         viewController.seventhStackView.isHidden = true
@@ -33,7 +39,7 @@ class EditPresenter {
         viewController.tenthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
-        viewController.listShowStackView.isHidden = true
+        viewController.fifthStackView.isHidden = true
     }
     
     func configureWithCompany(company: Company?) {
@@ -162,19 +168,21 @@ class EditPresenter {
             viewController.eightStackView.isHidden = true
             viewController.ninthStackView.isHidden = true
             viewController.tenthStackView.isHidden = true
+            viewController.listShowStackView.isHidden = true
         } else {
             viewController.sixthStaticLabel.stringValue = Item.Attributes.text
             viewController.seventhStaticLabel.stringValue = Item.Attributes.price + required
             viewController.eightStaticLabel.stringValue = Item.Attributes.measUnit + required
-            viewController.ninthStaticLabel.stringValue = Item.Attributes.secU + required
+            viewController.listShowStaticLabel.stringValue = Item.Attributes.secU + required
             viewController.tenthStaticLabel.stringValue = Item.Attributes.name + required
+            viewController.listShowButton.title = "Da"
         }
     
         viewController.fifthStackView.isHidden = true
         viewController.fourthStackView.isHidden = true
         viewController.eleventhStackView.isHidden = true
         viewController.twelvethStackView.isHidden = true
-        viewController.listShowStackView.isHidden = true
+        viewController.ninthStackView.isHidden = true
     }
     
     func configureWithPlace(place: Place?, withId: Bool, countryMark: String?) {
