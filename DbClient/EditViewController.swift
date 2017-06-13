@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class EditViewController: NSViewController, ChooseCountryDelegate {
+class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDelegate {
     
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var saveButton: NSButton!
@@ -70,6 +70,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
     let generatorService = IdGeneratorService()
     
     var chosenCountry: Country?
+    var secU: NSNumber?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,9 +85,11 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         listShowButton.target = self
         
         chosenCountry = connectVC.countries.first
+        secU = NSNumber(integerLiteral: 1)
         
         switch originButton.type! {
         case .Item:
+            listShowButton.action = #selector(EditViewController.showSecService)
             if let item = originButton.item {
                 configureWithItem(item: item)
                 saveButton.action = #selector(EditViewController.updateItem)
@@ -154,6 +157,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
                     configureWithUnit(unit: nil)
                     saveButton.action = #selector(EditViewController.addUnit)
                     title = Tables.Unit.rawValue
+                    listShowButton.action = #selector(EditViewController.showSecService)
                 } else {
                     if originButton.subType == Tables.Document {
                         configureWithDocId()
@@ -203,6 +207,22 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         listShowButton.title = country.mark ?? ""
     }
     
+    func showSecService() {
+        let modalStoryboard = NSStoryboard(name: "Modal", bundle: nil)
+        let secVC = modalStoryboard.instantiateController(withIdentifier: "SecServiceViewController") as! SecServiceViewController
+        secVC.delegate = self
+        presentViewControllerAsModalWindow(secVC)
+    }
+    
+    func secServiceChosen(integerLiteral: Int) {
+        secU = NSNumber(integerLiteral: integerLiteral)
+        if integerLiteral == 1 {
+            listShowButton.title = "Da"
+        } else {
+            listShowButton.title = "Ne"
+        }
+    }
+    
     func updateItem() {
         let initDict: [String: Any] = ["SifArtikla" : originButton.item!.code!]
         guard let item = Item(JSON: initDict) else { return }
@@ -214,20 +234,14 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         if thirdLabel.stringValue.isEmpty == false {
             item.price = 0
         }
-        if fifthLabel.stringValue.isEmpty == false {
-            item.secU = NSNumber(integerLiteral: 0)
-        }
+        
+        item.secU = secU
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
             return
         }
         
         item.price = Double(thirdLabel.stringValue)
-        if let secU = Int(fifthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
-        } else {
-            item.secU = nil
-        }
         
         executeUpdateItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -249,20 +263,13 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         if thirdLabel.stringValue.isEmpty == false {
             item.price = 0
         }
-        if fifthLabel.stringValue.isEmpty == false {
-            item.secU = NSNumber(integerLiteral: 0)
-        }
+        item.secU = secU
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
             return
         }
         
         item.price = Double(thirdLabel.stringValue)
-        if let secU = Int(fifthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
-        } else {
-            item.secU = nil
-        }
         
         executeAddItem(item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -616,9 +623,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         if seventhLabel.stringValue.isEmpty == false {
             item.price = 0
         }
-        if ninthLabel.stringValue.isEmpty == false {
-            item.secU = NSNumber(integerLiteral: 0)
-        }
+        item.secU = secU
         item.code = generatorService.generateIdForItem(items: connectVC.items)
         
         guard requirementsSatisfied(reqValidator: ItemReqValidator(item: item)) else {
@@ -626,11 +631,6 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         }
         
         item.price = Double(seventhLabel.stringValue)
-        if let secU = Int(ninthLabel.stringValue) {
-            item.secU = NSNumber(integerLiteral: secU)
-        } else {
-            item.secU = nil
-        }
         
         executeAddUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
             guard let `self` = self else { return }
@@ -755,13 +755,14 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         secondStaticLabel.stringValue = Item.Attributes.text
         thirdStaticLabel.stringValue = Item.Attributes.price + required
         fourthStaticLabel.stringValue = Item.Attributes.measUnit + required
-        fifthStaticLabel.stringValue = Item.Attributes.secU + required
+        listShowStaticLabel.stringValue = Item.Attributes.secU + required
         sixthStaticLabel.stringValue = Item.Attributes.name + required
         secondLabel.stringValue = item?.text ?? ""
         thirdLabel.stringValue = item?.price?.description ?? ""
         fourthLabel.stringValue = item?.measUnit ?? ""
         fifthLabel.stringValue = item?.secU?.description ?? ""
         sixthLabel.stringValue = item?.name ?? ""
+        listShowButton.title = "Da"
         
         firstStackView.isHidden = true
         seventhStackView.isHidden = true
@@ -770,7 +771,7 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
-        listShowStackView.isHidden = true
+        fifthStackView.isHidden = true
     }
     
     func configureWithCompany(company: Company?) {
@@ -897,21 +898,21 @@ class EditViewController: NSViewController, ChooseCountryDelegate {
             sixthStackView.isHidden = true
             seventhStackView.isHidden = true
             eightStackView.isHidden = true
-            ninthStackView.isHidden = true
             tenthStackView.isHidden = true
         } else {
             sixthStaticLabel.stringValue = Item.Attributes.text
             seventhStaticLabel.stringValue = Item.Attributes.price + required
             eightStaticLabel.stringValue = Item.Attributes.measUnit + required
-            ninthStaticLabel.stringValue = Item.Attributes.secU + required
+            listShowStaticLabel.stringValue = Item.Attributes.secU + required
             tenthStaticLabel.stringValue = Item.Attributes.name + required
+            listShowButton.title = "Da"
         }
         
         fifthStackView.isHidden = true
         fourthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
-        listShowStackView.isHidden = true
+        ninthStackView.isHidden = true
     }
     
     func configureWithPlace(place: Place?, withId: Bool, countryMark: String?) {

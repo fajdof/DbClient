@@ -17,7 +17,7 @@ class Item: Mappable {
 		static let name = "Naziv: "
 		static let code = "Šifra: "
 		static let text = "Tekst: "
-		static let secU = "ZaštUsluga: "
+		static let secU = "Zaštitna usluga: "
 	}
 	
 	var price: Double?

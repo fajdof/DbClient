@@ -796,7 +796,67 @@
                 </viewController>
                 <customObject id="YY7-x9-HLg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2735" y="813"/>
+            <point key="canvasLocation" x="2623" y="813"/>
+        </scene>
+        <!--Sec Service View Controller-->
+        <scene sceneID="n2M-RH-Va7">
+            <objects>
+                <viewController storyboardIdentifier="SecServiceViewController" id="5iq-si-6fO" customClass="SecServiceViewController" customModule="DbClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="s50-Ju-Pgc">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9L-Hk-geF">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VTc-ZF-Lvu">
+                                        <rect key="frame" x="0.0" y="53" width="200" height="48"/>
+                                        <buttonCell key="cell" type="smallSquare" title="Button" bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fKQ-NF-ygj">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wbt-mY-DcY">
+                                        <rect key="frame" x="0.0" y="-1" width="200" height="48"/>
+                                        <buttonCell key="cell" type="smallSquare" title="Button" bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zda-pT-fom">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="1Bc-YB-Tib"/>
+                                    <constraint firstAttribute="trailing" secondItem="wbt-mY-DcY" secondAttribute="trailing" id="BwT-zd-Ws1"/>
+                                    <constraint firstAttribute="height" constant="100" id="GTo-n0-MfX"/>
+                                    <constraint firstItem="VTc-ZF-Lvu" firstAttribute="leading" secondItem="Z9L-Hk-geF" secondAttribute="leading" id="tkt-Ns-oVu"/>
+                                    <constraint firstAttribute="trailing" secondItem="VTc-ZF-Lvu" secondAttribute="trailing" id="ucF-LE-wOH"/>
+                                    <constraint firstItem="wbt-mY-DcY" firstAttribute="leading" secondItem="Z9L-Hk-geF" secondAttribute="leading" id="xwm-gD-WGK"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Z9L-Hk-geF" firstAttribute="leading" secondItem="s50-Ju-Pgc" secondAttribute="leading" id="Og5-kH-ed7"/>
+                            <constraint firstAttribute="trailing" secondItem="Z9L-Hk-geF" secondAttribute="trailing" id="fBC-bP-ke5"/>
+                            <constraint firstItem="Z9L-Hk-geF" firstAttribute="top" secondItem="s50-Ju-Pgc" secondAttribute="top" id="jD7-35-DeN"/>
+                            <constraint firstAttribute="bottom" secondItem="Z9L-Hk-geF" secondAttribute="bottom" id="y2Z-00-Cs1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="noButton" destination="wbt-mY-DcY" id="tLh-tB-osI"/>
+                        <outlet property="yesButton" destination="VTc-ZF-Lvu" id="X5n-P8-G2X"/>
+                    </connections>
+                </viewController>
+                <customObject id="ufK-hJ-6Vb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2982" y="807"/>
         </scene>
         <!--Choose View Controller-->
         <scene sceneID="Ahl-dS-eLT">
