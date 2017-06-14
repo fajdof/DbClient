@@ -208,8 +208,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
                 cellView.addShipmentButton.shipment = false
             }
             cellView.addShipmentButton.isHidden = false
-            cellView.addDocButton.isHidden = false
-            cellView.addDocButton.subType = Tables.Document
         case .Partner:
             cellView.editButton.partner = partners[row]
             cellView.addButton.partner = partners[row]
@@ -238,8 +236,6 @@ class DbTableViewController: NSViewController, NSTableViewDataSource, NSTableVie
                 cellView.addShipmentButton.shipment = false
             }
             cellView.addShipmentButton.isHidden = false
-            cellView.addDocButton.isHidden = false
-            cellView.addDocButton.subType = Tables.Document
         }
     }
     
