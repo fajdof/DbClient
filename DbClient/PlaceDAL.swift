@@ -10,7 +10,7 @@ import Foundation
 
 import ObjectMapper
 
-class PlaceDAL: DALType {
+class PlaceDAL: DALType, BLLConvertible {
     
     var name: String?
     var id: Int?
@@ -28,6 +28,10 @@ class PlaceDAL: DALType {
         postalName = placeBLL.postalName
         country = placeBLL.country
         partners = placeBLL.partners
+    }
+    
+    func toBLL() -> BLLType {
+        return Place(placeDAL: self)
     }
     
 }

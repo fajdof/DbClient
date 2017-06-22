@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Item: Mappable, Validateable, DALConvertible {
+class Item: Mappable, Validateable, DALConvertible, BLLType {
 	
 	struct Attributes {
 		static let price = "Cijena: "
@@ -32,6 +32,17 @@ class Item: Mappable, Validateable, DALConvertible {
 	required init?(map: Map) {
 		
 	}
+    
+    init(itemDAL: ItemDAL) {
+        price = itemDAL.price
+        measUnit = itemDAL.measUnit
+        name = itemDAL.name
+        code = itemDAL.code
+        image = itemDAL.image
+        text = itemDAL.text
+        secU = itemDAL.secU
+        units = itemDAL.units
+    }
 	
 	func mapping(map: Map) {
 		price <- map["CijArtikla"]

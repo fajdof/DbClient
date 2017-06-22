@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ItemDAL: DALType {
+class ItemDAL: DALType, BLLConvertible {
     
     var price: Double?
     var measUnit: String?
@@ -28,6 +28,10 @@ class ItemDAL: DALType {
         text = itemBLL.text
         secU = itemBLL.secU
         units = itemBLL.units
+    }
+    
+    func toBLL() -> BLLType {
+        return Item(itemDAL: self)
     }
     
 }

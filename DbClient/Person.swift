@@ -20,6 +20,17 @@ class Person: Partner {
 	var firstName: String?
 	var id: Int?
 	var lastName: String?
+    
+    init(personDAL: PersonDAL) {
+        super.init(partnerDAL: personDAL)
+        id = personDAL.id
+        firstName = personDAL.firstName
+        lastName = personDAL.lastName
+    }
+    
+    required init?(map: Map) {
+        fatalError("init(map:) has not been implemented")
+    }
 	
 	override func mapping(map: Map) {
 		firstName <- map["ImeOsobe"]

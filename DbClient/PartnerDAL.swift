@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PartnerDAL: DALType {
+class PartnerDAL: DALType, BLLConvertible {
     
     var shipmentAddress: String?
     var partnerAddress: String?
@@ -32,6 +32,10 @@ class PartnerDAL: DALType {
         shipmentPlace = partnerBLL.shipmentPlace
         partnerPlace = partnerBLL.partnerPlace
         docs = partnerBLL.docs
+    }
+    
+    func toBLL() -> BLLType {
+        return Partner(partnerDAL: self)
     }
     
 }

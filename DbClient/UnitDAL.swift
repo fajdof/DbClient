@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UnitDAL: DALType {
+class UnitDAL: DALType, BLLConvertible {
     
     var docId: Int?
     var unitId: Int?
@@ -28,6 +28,10 @@ class UnitDAL: DALType {
         itemCode = unitBLL.itemCode
         item = unitBLL.item
         document = unitBLL.document
+    }
+    
+    func toBLL() -> BLLType {
+        return Unit(unitDAL: self)
     }
     
 }

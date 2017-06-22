@@ -77,6 +77,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
     var idsToPeople: [Int: Person] = [:]
     
     var client: SQLClient?
+    let dalProvider = DALProvider()
 
 	
 	override func viewDidLoad() {

@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Country: Mappable, Validateable, DALConvertible {
+class Country: Mappable, Validateable, DALConvertible, BLLType {
 	
 	struct Attributes {
 		static let iso3 = "ISO3: "
@@ -27,6 +27,14 @@ class Country: Mappable, Validateable, DALConvertible {
 	required init?(map: Map) {
 		
 	}
+    
+    init(countryDAL: CountryDAL) {
+        iso3 = countryDAL.iso3
+        name = countryDAL.name
+        mark = countryDAL.mark
+        code = countryDAL.code
+        places = countryDAL.places
+    }
 	
 	func mapping(map: Map) {
 		iso3 <- map["ISO3Drzave"]

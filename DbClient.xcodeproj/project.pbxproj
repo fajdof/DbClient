@@ -37,6 +37,9 @@
 		755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DF95C1DD74994004F4D94 /* DbTableViewController.swift */; };
 		755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DF9611DD74D34004F4D94 /* DbNameView.swift */; };
 		755DF9641DD74D80004F4D94 /* DbNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 755DF9631DD74D80004F4D94 /* DbNameView.xib */; };
+		759785A91EFC583300BD655E /* BLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759785A81EFC583300BD655E /* BLLProvider.swift */; };
+		759785AB1EFC588600BD655E /* BLLConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759785AA1EFC588600BD655E /* BLLConvertible.swift */; };
+		759785AD1EFC591E00BD655E /* BLLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759785AC1EFC591E00BD655E /* BLLType.swift */; };
 		75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A719021DD8A7E700F93547 /* GeneralExtensions.swift */; };
 		75A719051DD8AB1E00F93547 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A719041DD8AB1E00F93547 /* Document.swift */; };
 		75A7190B1DD8B72A00F93547 /* DbListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7190A1DD8B72A00F93547 /* DbListView.xib */; };
@@ -120,6 +123,9 @@
 		755DF95C1DD74994004F4D94 /* DbTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbTableViewController.swift; sourceTree = "<group>"; };
 		755DF9611DD74D34004F4D94 /* DbNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbNameView.swift; sourceTree = "<group>"; };
 		755DF9631DD74D80004F4D94 /* DbNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbNameView.xib; sourceTree = "<group>"; };
+		759785A81EFC583300BD655E /* BLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLLProvider.swift; sourceTree = "<group>"; };
+		759785AA1EFC588600BD655E /* BLLConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLLConvertible.swift; sourceTree = "<group>"; };
+		759785AC1EFC591E00BD655E /* BLLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLLType.swift; sourceTree = "<group>"; };
 		75A719021DD8A7E700F93547 /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		75A719041DD8AB1E00F93547 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		75A7190A1DD8B72A00F93547 /* DbListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DbListView.xib; sourceTree = "<group>"; };
@@ -350,6 +356,7 @@
 		75F1B7571EFBB4D100122FD7 /* BLLModels */ = {
 			isa = PBXGroup;
 			children = (
+				759785AC1EFC591E00BD655E /* BLLType.swift */,
 				752871051DCFD17A000BBCDE /* Item.swift */,
 				75A719041DD8AB1E00F93547 /* Document.swift */,
 				75F48C501DD9081500FFB063 /* Country.swift */,
@@ -381,8 +388,9 @@
 		75F1B76F1EFBC88600122FD7 /* DAL */ = {
 			isa = PBXGroup;
 			children = (
-				75F1B7771EFBCE7200122FD7 /* DALProvider.swift */,
+				759785AA1EFC588600BD655E /* BLLConvertible.swift */,
 				7527D36E1EFC563A005CD6B6 /* DatabaseProvider.swift */,
+				75F1B7771EFBCE7200122FD7 /* DALProvider.swift */,
 				75F1B7721EFBCCF000122FD7 /* DALProviders */,
 				75F1B7581EFBB4DC00122FD7 /* DALModels */,
 			);
@@ -394,6 +402,7 @@
 			children = (
 				75F1B7691EFBBE5800122FD7 /* Validateable.swift */,
 				75F1B76B1EFBBF4D00122FD7 /* DALConvertible.swift */,
+				759785A81EFC583300BD655E /* BLLProvider.swift */,
 				75F1B7711EFBCCE400122FD7 /* BLLProviders */,
 				75F1B7571EFBB4D100122FD7 /* BLLModels */,
 			);
@@ -611,6 +620,7 @@
 				75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */,
 				75F1B7801EFBD4F500122FD7 /* PlaceDALProvider.swift in Sources */,
 				75F1B7641EFBB5B200122FD7 /* PartnerDAL.swift in Sources */,
+				759785AB1EFC588600BD655E /* BLLConvertible.swift in Sources */,
 				7507571F1EEE80FB002C52EB /* Requiredable.swift in Sources */,
 				750757191EEE80BF002C52EB /* PersonReqValidator.swift in Sources */,
 				75F1B75A1EFBB54200122FD7 /* ItemDAL.swift in Sources */,
@@ -660,11 +670,13 @@
 				75F1B7661EFBB5C100122FD7 /* UnitDAL.swift in Sources */,
 				75F2FBB91EEF0C310072A0D8 /* CountryView.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
+				759785AD1EFC591E00BD655E /* BLLType.swift in Sources */,
 				7527D36F1EFC563A005CD6B6 /* DatabaseProvider.swift in Sources */,
 				75F1B78C1EFBD5B400122FD7 /* PlaceBLLProvider.swift in Sources */,
 				75F1B7621EFBB5A400122FD7 /* PersonDAL.swift in Sources */,
 				75B59BF31EEC0AD900AA6EFC /* IdGeneratorService.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
+				759785A91EFC583300BD655E /* BLLProvider.swift in Sources */,
 				750757111EEE806F002C52EB /* CompanyReqValidator.swift in Sources */,
 				75F1B76E1EFBBFF500122FD7 /* DALType.swift in Sources */,
 			);

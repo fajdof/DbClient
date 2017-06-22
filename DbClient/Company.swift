@@ -20,6 +20,17 @@ class Company: Partner {
 	var companyId: Int?
 	var registryNumber: String?
 	var name: String?
+    
+    init(companyDAL: CompanyDAL) {
+        super.init(partnerDAL: companyDAL)
+        companyId = companyDAL.companyId
+        registryNumber = companyDAL.registryNumber
+        name = companyDAL.name
+    }
+    
+    required init?(map: Map) {
+        fatalError("init(map:) has not been implemented")
+    }
 	
 	override func mapping(map: Map) {
 		companyId <- map["IdTvrtke"]

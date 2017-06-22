@@ -20,5 +20,9 @@ class PersonDAL: PartnerDAL {
         firstName = personBLL.firstName
         lastName = personBLL.lastName
     }
+    
+    override func toBLL() -> BLLType {
+        return Person(personDAL: self)
+    }
 
 }

@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Document: Mappable, Validateable, DALConvertible {
+class Document: Mappable, Validateable, DALConvertible, BLLType {
 	
 	struct Attributes {
 		static let docNumber = "Broj dokumenta: "
@@ -37,6 +37,20 @@ class Document: Mappable, Validateable, DALConvertible {
 	required init?(map: Map) {
 		
 	}
+    
+    init(docDAL: DocumentDAL) {
+        docNumber = docDAL.docNumber
+        docDate = docDAL.docDate
+        docId = docDAL.docId
+        partnerId = docDAL.partnerId
+        docBeforeId = docDAL.docBeforeId
+        docValue = docDAL.docValue
+        tax = docDAL.tax
+        docVr = docDAL.docVr
+        units = docDAL.units
+        partner = docDAL.partner
+        docBefore = docDAL.docBefore
+    }
 	
 	func mapping(map: Map) {
 		docNumber <- map["BrDokumenta"]

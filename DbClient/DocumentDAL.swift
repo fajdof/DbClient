@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DocumentDAL: DALType {
+class DocumentDAL: DALType, BLLConvertible {
     
     var docNumber: Int?
     var docDate: Date?
@@ -34,6 +34,10 @@ class DocumentDAL: DALType {
         units = docBLL.units
         partner = docBLL.partner
         docBefore = docBLL.docBefore
+    }
+    
+    func toBLL() -> BLLType {
+        return Document(docDAL: self)
     }
     
 }

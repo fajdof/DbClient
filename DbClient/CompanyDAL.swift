@@ -21,4 +21,8 @@ class CompanyDAL: PartnerDAL {
         name = companyBLL.name
     }
     
+    override func toBLL() -> BLLType {
+        return Company(companyDAL: self)
+    }
+    
 }

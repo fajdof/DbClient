@@ -13,7 +13,7 @@ func == (lhs: Partner, rhs: Partner) -> Bool {
 	return lhs.partnerId == rhs.partnerId
 }
 
-class Partner: Mappable, Hashable, Validateable, DALConvertible {
+class Partner: Mappable, Hashable, Validateable, DALConvertible, BLLType {
 	
 	struct Attributes {
 		static let shipmentAddress = "Adresa isporuke: "
@@ -39,6 +39,19 @@ class Partner: Mappable, Hashable, Validateable, DALConvertible {
 	required init?(map: Map) {
 		
 	}
+    
+    init(partnerDAL: PartnerDAL) {
+        shipmentAddress = partnerDAL.shipmentAddress
+        partnerAddress = partnerDAL.partnerAddress
+        shipmentAddressId = partnerDAL.shipmentAddressId
+        partnerAddressId = partnerDAL.partnerAddressId
+        partnerId = partnerDAL.partnerId
+        oib = partnerDAL.oib
+        type = partnerDAL.type
+        shipmentPlace = partnerDAL.shipmentPlace
+        partnerPlace = partnerDAL.partnerPlace
+        docs = partnerDAL.docs
+    }
 	
 	func mapping(map: Map) {
 		shipmentAddress <- map["AdrIsporuke"]

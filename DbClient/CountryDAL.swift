@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CountryDAL: DALType {
+class CountryDAL: DALType, BLLConvertible {
     
     var iso3: String?
     var name: String?
@@ -22,6 +22,10 @@ class CountryDAL: DALType {
         mark = countryBLL.mark
         code = countryBLL.code
         places = countryBLL.places
+    }
+    
+    func toBLL() -> BLLType {
+        return Country(countryDAL: self)
     }
     
 }
