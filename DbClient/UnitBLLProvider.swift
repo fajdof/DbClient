@@ -17,4 +17,8 @@ class UnitBLLProvider {
         dalProvider.updateUnit(unit: unit.toDAL() as! UnitDAL, completion: completion)
     }
     
+    func deleteUnit(unit: Unit, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.deleteUnit(unit: unit.toDAL() as! UnitDAL, completion: completion)
+    }
+    
 }

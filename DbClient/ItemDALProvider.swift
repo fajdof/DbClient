@@ -51,4 +51,17 @@ class ItemDALProvider: DALProvider {
         })
     }
     
+    func deleteItem(item: ItemDAL, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Item.rawValue
+        query = query + whereClause + "SifArtikla = '\(item.code!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

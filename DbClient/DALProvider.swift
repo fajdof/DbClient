@@ -14,9 +14,9 @@ class DALProvider {
     let set = " SET "
     let whereClause = " WHERE "
     let colon = ", "
-    
     let insert = "INSERT INTO "
     let values = " VALUES "
+    let deleteFrom = "DELETE FROM "
     
     var client: SQLClient?
     

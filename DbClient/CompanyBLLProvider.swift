@@ -21,4 +21,8 @@ class CompanyBLLProvider {
         dalProvider.addCompany(company: company.toDAL() as! CompanyDAL, completion: completion)
     }
     
+    func deleteCompany(company: Company, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.deleteCompany(company: company.toDAL() as! CompanyDAL, completion: completion)
+    }
+    
 }

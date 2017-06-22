@@ -57,4 +57,23 @@ class PartnerDALProvider: DALProvider {
         })
     }
     
+    
+    func removePlaceFromPartner(shipment: Bool, partnerId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = update + Tables.Partner.rawValue + set
+        if shipment {
+            query = query + "IdMjestaIsporuke = NULL"
+        } else {
+            query = query + "IdMjestaPartnera = NULL"
+        }
+        query = query + whereClause + "IdPartnera = '\(partnerId!)'; "
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

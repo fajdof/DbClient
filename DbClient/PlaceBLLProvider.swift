@@ -17,4 +17,8 @@ class PlaceBLLProvider {
         dalProvider.updatePlace(place: place.toDAL() as! PlaceDAL, completion: completion)
     }
     
+    func deletePlace(place: Place, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.deletePlace(place: place.toDAL() as! PlaceDAL, completion: completion)
+    }
+    
 }

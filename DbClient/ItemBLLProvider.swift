@@ -20,4 +20,8 @@ class ItemBLLProvider {
         dalProvider.addItem(item: item.toDAL() as! ItemDAL, completion: completion)
     }
     
+    func deleteItem(item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.deleteItem(item: item.toDAL() as! ItemDAL, completion: completion)
+    }
+    
 }

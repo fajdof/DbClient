@@ -57,4 +57,17 @@ class PersonDALProvider: DALProvider {
         })
     }
     
+    func deletePerson(person: PersonDAL, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Person.rawValue
+        query = query + whereClause + "IdOsobe = '\(person.id!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

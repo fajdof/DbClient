@@ -58,4 +58,17 @@ class CompanyDALProvider: DALProvider {
         })
     }
     
+    func deleteCompany(company: CompanyDAL, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Company.rawValue
+        query = query + whereClause + "IdTvrtke = '\(company.companyId!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
+    
 }

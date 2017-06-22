@@ -60,6 +60,19 @@ class CountryDALProvider: DALProvider {
             completion(dbData)
         })
     }
+    
+    func deleteCountry(country: CountryDAL, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        
+        var query = deleteFrom + Tables.Country.rawValue
+        query = query + whereClause + "OznDrzave = '\(country.mark!)'"
+        
+        dump(query)
+        
+        client?.execute(query, completion: { (dbData) in
+            
+            completion(dbData)
+        })
+    }
 
     
 }

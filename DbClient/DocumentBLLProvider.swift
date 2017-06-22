@@ -31,4 +31,8 @@ class DocumentBLLProvider {
         dalProvider.addBeforeDoc(docId: docId, beforeDocId: beforeDocId, completion: completion)
     }
     
+    func deleteDocument(doc: Document, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.deleteDocument(doc: doc.toDAL() as! DocumentDAL, completion: completion)
+    }
+    
 }

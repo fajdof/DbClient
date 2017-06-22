@@ -273,7 +273,7 @@
 				750434631ECC318700A13176 /* EditScene */,
 				75F2FBB41EEF0C090072A0D8 /* ChooseCountryScene */,
 				7500CA911EEFE1F900F10CDE /* SecServiceScreen */,
-				753D6EE01DD72F6E0027EDA7 /* Models */,
+				753D6EE01DD72F6E0027EDA7 /* ModelLayers */,
 				75F48C4F1DD8C3C500FFB063 /* SQLClient */,
 				752EF9B11DCE33E2000B6C42 /* Assets.xcassets */,
 				752EF9B31DCE33E2000B6C42 /* Main.storyboard */,
@@ -295,14 +295,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		753D6EE01DD72F6E0027EDA7 /* Models */ = {
+		753D6EE01DD72F6E0027EDA7 /* ModelLayers */ = {
 			isa = PBXGroup;
 			children = (
 				75F1B7701EFBC89100122FD7 /* BLL */,
 				75F1B76F1EFBC88600122FD7 /* DAL */,
 				7507570F1EEE7F4E002C52EB /* RequiredValidators */,
 			);
-			name = Models;
+			name = ModelLayers;
 			sourceTree = "<group>";
 		};
 		753D6EE11DD72F7A0027EDA7 /* DbConnectScene */ = {
