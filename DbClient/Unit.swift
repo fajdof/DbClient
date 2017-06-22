@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Unit: Mappable {
+class Unit: Mappable, Validateable, DALConvertible {
 	
 	struct Attributes {
 		static let docId = "Id dokumenta: "
@@ -41,4 +41,13 @@ class Unit: Mappable {
 		discount <- map["PostoRabat"]
 		itemCode <- map["SifArtikla"]
 	}
+    
+    func valid() -> (Bool, String?) {
+        return (true,nil)
+    }
+    
+    func toDAL() -> DALType {
+        return UnitDAL(unitBLL: self)
+    }
+    
 }

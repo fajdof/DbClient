@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Place: Mappable {
+class Place: Mappable, Validateable, DALConvertible {
 	
 	struct Attributes {
 		static let name = "Naziv: "
@@ -38,4 +38,13 @@ class Place: Mappable {
 		postalCode <- map["PostBrMjesta"]
 		postalName <- map["PostNazMjesta"]
 	}
+    
+    func valid() -> (Bool, String?) {
+        return (true,nil)
+    }
+    
+    func toDAL() -> DALType {
+        return PlaceDAL(placeBLL: self)
+    }
+    
 }

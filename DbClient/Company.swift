@@ -26,4 +26,13 @@ class Company: Partner {
 		registryNumber <- map["MatBrTvrtke"]
 		name <- map["NazivTvrtke"]
 	}
+    
+    override func valid() -> (Bool, String?) {
+        return (true,nil)
+    }
+    
+    override func toDAL() -> DALType {
+        return CompanyDAL(companyBLL: self)
+    }
+    
 }

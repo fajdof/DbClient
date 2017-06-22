@@ -13,7 +13,7 @@ func == (lhs: Partner, rhs: Partner) -> Bool {
 	return lhs.partnerId == rhs.partnerId
 }
 
-class Partner: Mappable, Hashable {
+class Partner: Mappable, Hashable, Validateable, DALConvertible {
 	
 	struct Attributes {
 		static let shipmentAddress = "Adresa isporuke: "
@@ -53,4 +53,13 @@ class Partner: Mappable, Hashable {
 	var hashValue: Int {
 		return partnerId!
 	}
+    
+    func valid() -> (Bool, String?) {
+        return (true,nil)
+    }
+    
+    func toDAL() -> DALType {
+        return PartnerDAL(partnerBLL: self)
+    }
+    
 }

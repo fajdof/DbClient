@@ -26,4 +26,13 @@ class Person: Partner {
 		id <- map["IdOsobe"]
 		lastName <- map["PrezimeOsobe"]
 	}
+    
+    override func valid() -> (Bool, String?) {
+        return (true,nil)
+    }
+    
+    override func toDAL() -> DALType {
+        return PersonDAL(personBLL: self)
+    }
+    
 }

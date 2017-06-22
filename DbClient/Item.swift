@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Item: Mappable {
+class Item: Mappable, Validateable, DALConvertible {
 	
 	struct Attributes {
 		static let price = "Cijena: "
@@ -42,5 +42,33 @@ class Item: Mappable {
 		secU <- map["ZastUsluga"]
 		image <- map["SlikaArtikla"]
 	}
+    
+    func valid() -> (Bool, String?) {
+        if price == nil {
+            return (false, "Cijena mora biti decimalni broj")
+        }
+        
+        guard let mUnit = measUnit else {
+            return (false, "Jedinica mjere ne može biti prazna")
+        }
+        
+        if mUnit.characters.count > 10 {
+            return (false, "Jedinica mjere može sadržavati maksimalno 10 znakova")
+        }
+        
+        guard let `name` = name else {
+            return (false, "Naziv ne može biti prazan")
+        }
+        
+        if name.characters.count > 30 {
+            return (false, "Naziv može sadržavati maksimalno 30 znakova")
+        }
+        
+        return (true,nil)
+    }
+    
+    func toDAL() -> DALType {
+        return ItemDAL(itemBLL: self)
+    }
 	
 }

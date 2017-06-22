@@ -529,6 +529,18 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         place.postalCode = Int(fourthLabel.stringValue)
         
+//        if ItemBLL.validated() {
+//            ItemBLLProvider.update(ItemBLL) {
+//                self.dismiss(self)
+//                self.connectVC.emptyDatasource()
+//                self.connectVC.startQueryIterations()
+//            }
+//        }
+//        
+//        func update(ItemBLL) {
+//            ItemDALProvider.update(ItemBLL.toDal())
+//        }
+        
         executeUpdatePlace(place: place) { [weak self] (data) in
             guard let `self` = self else { return }
             self.dismiss(self)

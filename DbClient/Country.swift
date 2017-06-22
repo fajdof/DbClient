@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Country: Mappable {
+class Country: Mappable, Validateable, DALConvertible {
 	
 	struct Attributes {
 		static let iso3 = "ISO3: "
@@ -34,4 +34,13 @@ class Country: Mappable {
 		mark <- map["OznDrzave"]
 		code <- map["SifDrzave"]
 	}
+    
+    func valid() -> (Bool, String?) {
+        return (true,nil)
+    }
+    
+    func toDAL() -> DALType {
+        return CountryDAL(countryBLL: self)
+    }
+    
 }
