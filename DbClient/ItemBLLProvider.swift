@@ -16,8 +16,8 @@ class ItemBLLProvider {
         dalProvider.updateItem(item: itemBLL.toDAL() as! ItemDAL, completion: completion)
     }
     
-    func addItem() {
-        
+    func addItem(itemBLL: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.addItem(item: itemBLL.toDAL() as! ItemDAL, completion: completion)
     }
     
 }

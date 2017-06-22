@@ -55,6 +55,20 @@
 		75F1B7741EFBCD0900122FD7 /* ItemBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7731EFBCD0900122FD7 /* ItemBLLProvider.swift */; };
 		75F1B7761EFBCD1A00122FD7 /* ItemDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7751EFBCD1A00122FD7 /* ItemDALProvider.swift */; };
 		75F1B7781EFBCE7200122FD7 /* DALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7771EFBCE7200122FD7 /* DALProvider.swift */; };
+		75F1B77A1EFBCFC800122FD7 /* CountryDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7791EFBCFC800122FD7 /* CountryDALProvider.swift */; };
+		75F1B77C1EFBCFDA00122FD7 /* CountryBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B77B1EFBCFDA00122FD7 /* CountryBLLProvider.swift */; };
+		75F1B77E1EFBD4DF00122FD7 /* DocumentDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B77D1EFBD4DF00122FD7 /* DocumentDALProvider.swift */; };
+		75F1B7801EFBD4F500122FD7 /* PlaceDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B77F1EFBD4F500122FD7 /* PlaceDALProvider.swift */; };
+		75F1B7821EFBD50700122FD7 /* PersonDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7811EFBD50700122FD7 /* PersonDALProvider.swift */; };
+		75F1B7841EFBD51400122FD7 /* PartnerDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7831EFBD51400122FD7 /* PartnerDALProvider.swift */; };
+		75F1B7861EFBD52400122FD7 /* UnitDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7851EFBD52400122FD7 /* UnitDALProvider.swift */; };
+		75F1B7881EFBD53000122FD7 /* CompanyDALProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7871EFBD53000122FD7 /* CompanyDALProvider.swift */; };
+		75F1B78A1EFBD5A800122FD7 /* DocumentBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7891EFBD5A800122FD7 /* DocumentBLLProvider.swift */; };
+		75F1B78C1EFBD5B400122FD7 /* PlaceBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B78B1EFBD5B400122FD7 /* PlaceBLLProvider.swift */; };
+		75F1B78E1EFBD5CC00122FD7 /* PersonBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B78D1EFBD5CC00122FD7 /* PersonBLLProvider.swift */; };
+		75F1B7901EFBD5DC00122FD7 /* PartnerBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B78F1EFBD5DC00122FD7 /* PartnerBLLProvider.swift */; };
+		75F1B7921EFBD5ED00122FD7 /* UnitBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7911EFBD5ED00122FD7 /* UnitBLLProvider.swift */; };
+		75F1B7941EFBD60000122FD7 /* CompanyBLLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1B7931EFBD60000122FD7 /* CompanyBLLProvider.swift */; };
 		75F2FBB11EEF0BEB0072A0D8 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F2FBB01EEF0BEB0072A0D8 /* Modal.storyboard */; };
 		75F2FBB31EEF0C050072A0D8 /* ChooseCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F2FBB21EEF0C050072A0D8 /* ChooseCountryViewController.swift */; };
 		75F2FBB71EEF0C260072A0D8 /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F2FBB61EEF0C260072A0D8 /* CountryView.xib */; };
@@ -123,6 +137,20 @@
 		75F1B7731EFBCD0900122FD7 /* ItemBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemBLLProvider.swift; sourceTree = "<group>"; };
 		75F1B7751EFBCD1A00122FD7 /* ItemDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDALProvider.swift; sourceTree = "<group>"; };
 		75F1B7771EFBCE7200122FD7 /* DALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DALProvider.swift; sourceTree = "<group>"; };
+		75F1B7791EFBCFC800122FD7 /* CountryDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryDALProvider.swift; sourceTree = "<group>"; };
+		75F1B77B1EFBCFDA00122FD7 /* CountryBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryBLLProvider.swift; sourceTree = "<group>"; };
+		75F1B77D1EFBD4DF00122FD7 /* DocumentDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentDALProvider.swift; sourceTree = "<group>"; };
+		75F1B77F1EFBD4F500122FD7 /* PlaceDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDALProvider.swift; sourceTree = "<group>"; };
+		75F1B7811EFBD50700122FD7 /* PersonDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDALProvider.swift; sourceTree = "<group>"; };
+		75F1B7831EFBD51400122FD7 /* PartnerDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerDALProvider.swift; sourceTree = "<group>"; };
+		75F1B7851EFBD52400122FD7 /* UnitDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitDALProvider.swift; sourceTree = "<group>"; };
+		75F1B7871EFBD53000122FD7 /* CompanyDALProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyDALProvider.swift; sourceTree = "<group>"; };
+		75F1B7891EFBD5A800122FD7 /* DocumentBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentBLLProvider.swift; sourceTree = "<group>"; };
+		75F1B78B1EFBD5B400122FD7 /* PlaceBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceBLLProvider.swift; sourceTree = "<group>"; };
+		75F1B78D1EFBD5CC00122FD7 /* PersonBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonBLLProvider.swift; sourceTree = "<group>"; };
+		75F1B78F1EFBD5DC00122FD7 /* PartnerBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerBLLProvider.swift; sourceTree = "<group>"; };
+		75F1B7911EFBD5ED00122FD7 /* UnitBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitBLLProvider.swift; sourceTree = "<group>"; };
+		75F1B7931EFBD60000122FD7 /* CompanyBLLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyBLLProvider.swift; sourceTree = "<group>"; };
 		75F2FBB01EEF0BEB0072A0D8 /* Modal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		75F2FBB21EEF0C050072A0D8 /* ChooseCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCountryViewController.swift; sourceTree = "<group>"; };
 		75F2FBB61EEF0C260072A0D8 /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryView.xib; sourceTree = "<group>"; };
@@ -373,6 +401,13 @@
 			isa = PBXGroup;
 			children = (
 				75F1B7731EFBCD0900122FD7 /* ItemBLLProvider.swift */,
+				75F1B7891EFBD5A800122FD7 /* DocumentBLLProvider.swift */,
+				75F1B77B1EFBCFDA00122FD7 /* CountryBLLProvider.swift */,
+				75F1B78B1EFBD5B400122FD7 /* PlaceBLLProvider.swift */,
+				75F1B78D1EFBD5CC00122FD7 /* PersonBLLProvider.swift */,
+				75F1B78F1EFBD5DC00122FD7 /* PartnerBLLProvider.swift */,
+				75F1B7911EFBD5ED00122FD7 /* UnitBLLProvider.swift */,
+				75F1B7931EFBD60000122FD7 /* CompanyBLLProvider.swift */,
 			);
 			name = BLLProviders;
 			sourceTree = "<group>";
@@ -381,6 +416,13 @@
 			isa = PBXGroup;
 			children = (
 				75F1B7751EFBCD1A00122FD7 /* ItemDALProvider.swift */,
+				75F1B77D1EFBD4DF00122FD7 /* DocumentDALProvider.swift */,
+				75F1B7791EFBCFC800122FD7 /* CountryDALProvider.swift */,
+				75F1B77F1EFBD4F500122FD7 /* PlaceDALProvider.swift */,
+				75F1B7811EFBD50700122FD7 /* PersonDALProvider.swift */,
+				75F1B7831EFBD51400122FD7 /* PartnerDALProvider.swift */,
+				75F1B7851EFBD52400122FD7 /* UnitDALProvider.swift */,
+				75F1B7871EFBD53000122FD7 /* CompanyDALProvider.swift */,
 			);
 			name = DALProviders;
 			sourceTree = "<group>";
@@ -561,20 +603,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				750434651ECC31A800A13176 /* EditViewController.swift in Sources */,
+				75F1B7921EFBD5ED00122FD7 /* UnitBLLProvider.swift in Sources */,
 				75F1B7741EFBCD0900122FD7 /* ItemBLLProvider.swift in Sources */,
 				75A719031DD8A7E700F93547 /* GeneralExtensions.swift in Sources */,
+				75F1B7801EFBD4F500122FD7 /* PlaceDALProvider.swift in Sources */,
 				75F1B7641EFBB5B200122FD7 /* PartnerDAL.swift in Sources */,
 				7507571F1EEE80FB002C52EB /* Requiredable.swift in Sources */,
 				750757191EEE80BF002C52EB /* PersonReqValidator.swift in Sources */,
 				75F1B75A1EFBB54200122FD7 /* ItemDAL.swift in Sources */,
+				75F1B7941EFBD60000122FD7 /* CompanyBLLProvider.swift in Sources */,
 				75F48C551DD910DA00FFB063 /* Place.swift in Sources */,
 				750242FE1ECF122100C1326A /* EditButton.swift in Sources */,
+				75F1B7861EFBD52400122FD7 /* UnitDALProvider.swift in Sources */,
 				7500CA931EEFE21A00F10CDE /* SecServiceViewController.swift in Sources */,
 				75F1B75C1EFBB55100122FD7 /* DocumentDAL.swift in Sources */,
 				7527E9851DDF9D75003925BE /* Partner.swift in Sources */,
 				75F48C4E1DD8C3BF00FFB063 /* SQLClient.m in Sources */,
 				752EF9B01DCE33E2000B6C42 /* DbConnectViewController.swift in Sources */,
+				75F1B78A1EFBD5A800122FD7 /* DocumentBLLProvider.swift in Sources */,
 				75F1B7781EFBCE7200122FD7 /* DALProvider.swift in Sources */,
+				75F1B7881EFBD53000122FD7 /* CompanyDALProvider.swift in Sources */,
 				75F1B76C1EFBBF4D00122FD7 /* DALConvertible.swift in Sources */,
 				75F1B76A1EFBBE5800122FD7 /* Validateable.swift in Sources */,
 				7527E9871DDFAC48003925BE /* Unit.swift in Sources */,
@@ -584,24 +632,32 @@
 				75F2FBB31EEF0C050072A0D8 /* ChooseCountryViewController.swift in Sources */,
 				752452601DFC5710009EACBE /* DisclosureButton.swift in Sources */,
 				7504346D1ECC497200A13176 /* ConfirmViewController.swift in Sources */,
+				75F1B7901EFBD5DC00122FD7 /* PartnerBLLProvider.swift in Sources */,
+				75F1B78E1EFBD5CC00122FD7 /* PersonBLLProvider.swift in Sources */,
 				75A719051DD8AB1E00F93547 /* Document.swift in Sources */,
 				7507571D1EEE80F0002C52EB /* DocumentReqValidator.swift in Sources */,
 				750757131EEE808B002C52EB /* ItemReqValidator.swift in Sources */,
 				750757171EEE80B2002C52EB /* PlaceReqValidator.swift in Sources */,
+				75F1B7821EFBD50700122FD7 /* PersonDALProvider.swift in Sources */,
 				75F9565F1ED08F8700923C92 /* ChooseViewController.swift in Sources */,
 				75F1B75E1EFBB55E00122FD7 /* CountryDAL.swift in Sources */,
 				750757151EEE809F002C52EB /* CountryReqValidator.swift in Sources */,
+				75F1B77E1EFBD4DF00122FD7 /* DocumentDALProvider.swift in Sources */,
 				7527E98D1DDFB64C003925BE /* Company.swift in Sources */,
 				75F1B7601EFBB56600122FD7 /* PlaceDAL.swift in Sources */,
 				755DF9621DD74D34004F4D94 /* DbNameView.swift in Sources */,
 				75F1B7681EFBB5CB00122FD7 /* CompanyDAL.swift in Sources */,
+				75F1B77A1EFBCFC800122FD7 /* CountryDALProvider.swift in Sources */,
 				75F48C511DD9081500FFB063 /* Country.swift in Sources */,
+				75F1B77C1EFBCFDA00122FD7 /* CountryBLLProvider.swift in Sources */,
 				753D6EE31DD72FFF0027EDA7 /* DbItemView.swift in Sources */,
 				7507571B1EEE80D2002C52EB /* UnitReqValidator.swift in Sources */,
+				75F1B7841EFBD51400122FD7 /* PartnerDALProvider.swift in Sources */,
 				75F1B7761EFBCD1A00122FD7 /* ItemDALProvider.swift in Sources */,
 				75F1B7661EFBB5C100122FD7 /* UnitDAL.swift in Sources */,
 				75F2FBB91EEF0C310072A0D8 /* CountryView.swift in Sources */,
 				75A7190D1DD8B73700F93547 /* DbListView.swift in Sources */,
+				75F1B78C1EFBD5B400122FD7 /* PlaceBLLProvider.swift in Sources */,
 				75F1B7621EFBB5A400122FD7 /* PersonDAL.swift in Sources */,
 				75B59BF31EEC0AD900AA6EFC /* IdGeneratorService.swift in Sources */,
 				755DF95D1DD74994004F4D94 /* DbTableViewController.swift in Sources */,
