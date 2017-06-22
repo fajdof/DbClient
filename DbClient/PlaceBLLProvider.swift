@@ -13,4 +13,8 @@ class PlaceBLLProvider {
     
     let dalProvider = PlaceDALProvider()
     
+    func updatePlace(place: Place, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.updatePlace(place: place.toDAL() as! PlaceDAL, completion: completion)
+    }
+    
 }

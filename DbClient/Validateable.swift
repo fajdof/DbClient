@@ -10,6 +10,6 @@ import Foundation
 
 protocol Validateable {
     
-    func valid() -> (Bool,String?)
+    func validateWithError() -> (Bool,String?)
     
 }

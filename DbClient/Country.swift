@@ -35,7 +35,7 @@ class Country: Mappable, Validateable, DALConvertible {
 		code <- map["SifDrzave"]
 	}
     
-    func valid() -> (Bool, String?) {
+    func validateWithError() -> (Bool, String?) {
         return (true,nil)
     }
     

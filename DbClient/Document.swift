@@ -49,7 +49,7 @@ class Document: Mappable, Validateable, DALConvertible {
 		tax <- map["PostoPorez"]
 	}
     
-    func valid() -> (Bool, String?) {
+    func validateWithError() -> (Bool, String?) {
         return (true,nil)
     }
     

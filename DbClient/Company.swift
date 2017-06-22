@@ -27,7 +27,7 @@ class Company: Partner {
 		name <- map["NazivTvrtke"]
 	}
     
-    override func valid() -> (Bool, String?) {
+    override func validateWithError() -> (Bool, String?) {
         return (true,nil)
     }
     

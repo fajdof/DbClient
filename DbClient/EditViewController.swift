@@ -58,15 +58,6 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
     var isPerson: Bool = false
     let required = " *"
     
-    let update = "UPDATE "
-    let set = " SET "
-    let whereClause = " WHERE "
-    let colon = ", "
-    
-    let insert = "INSERT INTO "
-    let values = " VALUES "
-    
-    var client: SQLClient?
     let generatorService = IdGeneratorService()
     
     var chosenCountry: Country?
@@ -76,8 +67,6 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         super.viewDidLoad()
         
         title = originButton.type.rawValue
-        
-        client = SQLClient.sharedInstance()
         
         cancelButton.action = #selector(EditViewController.cancelButtonPressed)
         cancelButton.target = self
@@ -243,12 +232,22 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         item.price = Double(thirdLabel.stringValue)
         
-        executeUpdateItem(item: item) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = item.validateWithError()
+        
+        if valid {
+            let provider = ItemBLLProvider()
+            provider.updateItem(item: item, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
+        
     }
     
     func addItem() {
@@ -271,11 +270,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         item.price = Double(thirdLabel.stringValue)
         
-        executeAddItem(item: item) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = item.validateWithError()
+        
+        if valid {
+            let provider = ItemBLLProvider()
+            provider.addItem(item: item, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -293,11 +301,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
             return
         }
         
-        executeUpdateCompany(company: company) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = company.validateWithError()
+        
+        if valid {
+            let provider = CompanyBLLProvider()
+            provider.updateCompany(company: company, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -316,11 +333,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
             return
         }
         
-        executeAddCompany(company: company) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = company.validateWithError()
+        
+        if valid {
+            let provider = CompanyBLLProvider()
+            provider.addCompany(company: company, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -340,11 +366,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         country.code = Int(secondLabel.stringValue)
         
-        executeUpdateCountry(country: country) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = country.validateWithError()
+        
+        if valid {
+            let provider = CountryBLLProvider()
+            provider.updateCountry(country: country, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -365,11 +400,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         country.code = Int(secondLabel.stringValue)
         
-        executeAddCountry(country: country) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = country.validateWithError()
+        
+        if valid {
+            let provider = CountryBLLProvider()
+            provider.addCountry(country: country, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -387,11 +431,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
             return
         }
         
-        executeUpdatePerson(person: person) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = person.validateWithError()
+        
+        if valid {
+            let provider = PersonBLLProvider()
+            provider.updatePerson(person: person, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -410,11 +463,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
             return
         }
         
-        executeAddPerson(person: person) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = person.validateWithError()
+        
+        if valid {
+            let provider = PersonBLLProvider()
+            provider.addPerson(person: person, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -443,11 +505,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         doc.docNumber = Int(secondLabel.stringValue)
         doc.docValue = Double(thirdLabel.stringValue)
         
-        executeUpdateDocument(doc: doc) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = doc.validateWithError()
+        
+        if valid {
+            let provider = DocumentBLLProvider()
+            provider.updateDocument(doc: doc, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -491,6 +562,13 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
                 return
             }
             
+            if let (_, error) = person?.validateWithError() {
+                if let err = error {
+                    showAlert(alertString: err, infoString: "")
+                    return
+                }
+            }
+            
         } else {
             company = Company(JSON: initDict)
             company?.name = seventhLabel.stringValue
@@ -503,13 +581,29 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
                 return
             }
             
+            if let (_, error) = company?.validateWithError() {
+                if let err = error {
+                    showAlert(alertString: err, infoString: "")
+                    return
+                }
+            }
+            
         }
         
-        executeAddDocument(doc: doc, company: company, person: person) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = doc.validateWithError()
+        
+        if valid {
+            let provider = DocumentBLLProvider()
+            provider.addDocument(doc: doc, company: company, person: person, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -529,25 +623,21 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         place.postalCode = Int(fourthLabel.stringValue)
         
-//        if ItemBLL.validated() {
-//            ItemBLLProvider.update(ItemBLL) {
-//                self.dismiss(self)
-//                self.connectVC.emptyDatasource()
-//                self.connectVC.startQueryIterations()
-//            }
-//        }
-//        
-//        func update(ItemBLL) {
-//            ItemDALProvider.update(ItemBLL.toDal())
-//        }
+        let (valid, error) = place.validateWithError()
         
-        executeUpdatePlace(place: place) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        if valid {
+            let provider = PlaceBLLProvider()
+            provider.updatePlace(place: place, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
-
     }
     
     func addPlace() {
@@ -566,11 +656,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         place.postalCode = Int(fourthLabel.stringValue)
         
-        executeAddPlace(place: place, countryMark: originButton.country!.mark!) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = place.validateWithError()
+        
+        if valid {
+            let provider = CountryBLLProvider()
+            provider.addPlaceToCountry(place: place, countryMark: originButton.country?.mark, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -596,11 +695,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         unit.itemQuantity = Double(secondLabel.stringValue)
         unit.discount = Double(thirdLabel.stringValue)
         
-        executeUpdateUnit(unit: unit) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = unit.validateWithError()
+        
+        if valid {
+            let provider = UnitBLLProvider()
+            provider.updateUnit(unit: unit, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -644,11 +752,25 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         item.price = Double(seventhLabel.stringValue)
         
-        executeAddUnit(unit: unit, docId: originButton.doc?.docId, item: item) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        var (valid, error) = item.validateWithError()
+        if let err = error {
+            showAlert(alertString: err, infoString: "")
+        }
+        
+        (valid, error) = unit.validateWithError()
+        
+        if valid {
+            let provider = DocumentBLLProvider()
+            provider.addUnitToDocument(unit: unit, docId: originButton.doc?.docId, item: item, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -678,11 +800,20 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
             return
         }
         
-        executeAddPlaceToPartner(place: place, country: country, partnerId: partnerId, shipment: originButton.shipment) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = place.validateWithError()
+        
+        if valid {
+            let provider = PartnerBLLProvider()
+            provider.addPlaceToPartner(place: place, country: country, partnerId: partnerId, shipment: originButton.shipment, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
@@ -717,22 +848,32 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         
         let partnerId = originButton.person?.id ?? originButton.company!.companyId!
         
-        executeAddDocToPartner(doc: doc, partnerId: partnerId) { [weak self] (data) in
-            guard let `self` = self else { return }
-            self.dismiss(self)
-            self.connectVC.emptyDatasource()
-            self.connectVC.startQueryIterations()
+        let (valid, error) = doc.validateWithError()
+        
+        if valid {
+            let provider = PartnerBLLProvider()
+            provider.addDocToPartner(doc: doc, partnerId: partnerId, completion: { [weak self] (data) in
+                guard let `self` = self else { return }
+                self.dismiss(self)
+                self.connectVC.emptyDatasource()
+                self.connectVC.startQueryIterations()
+            })
+        } else {
+            if let err = error {
+                showAlert(alertString: err, infoString: "")
+            }
         }
     }
     
     func addBeforeDoc() {
         if let beforeDocId = Int(firstLabel.stringValue) {
-            executeAddBeforeDoc(docId: originButton.doc?.docId, beforeDocId: beforeDocId) { [weak self] (data) in
+            let provider = DocumentBLLProvider()
+            provider.addBeforeDoc(docId: originButton.doc?.docId, beforeDocId: beforeDocId, completion: { [weak self] (data) in
                 guard let `self` = self else { return }
                 self.dismiss(self)
                 self.connectVC.emptyDatasource()
                 self.connectVC.startQueryIterations()
-            }
+            })
         } else {
             showAlert(alertString: "Error", infoString: "Please enter valid document id")
         }
@@ -977,402 +1118,6 @@ class EditViewController: NSViewController, ChooseCountryDelegate, SecServiceDel
         tenthStackView.isHidden = true
         eleventhStackView.isHidden = true
         twelvethStackView.isHidden = true
-    }
-    
-    func executeUpdateItem(item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Item.rawValue + set
-        query = query + "NazArtikla = '\(item.name!)'"
-        query = query + colon + "JedMjere = '\(item.measUnit!)'"
-        query = query + colon + "TekstArtikla = '\(item.text!)'"
-        if let price = item.price {
-            query = query + colon + "CijArtikla = \(price)"
-        }
-        if let secU = item.secU {
-            query = query + colon + "ZastUsluga = \(secU)"
-        }
-        query = query + whereClause + "SifArtikla = '\(item.code!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddItem(item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = insert + Tables.Item.rawValue + " (CijArtikla, JedMjere, NazArtikla, TekstArtikla, SifArtikla, ZastUsluga)" + values
-        query = query + "(" + "\(item.price ?? 0)"
-        query = query + colon + "'\(item.measUnit ?? "")'"
-        query = query + colon + "'\(item.name ?? "")'"
-        query = query + colon + "'\(item.text ?? "")'"
-        query = query + colon + "\(item.code ?? 0)"
-        query = query + colon + "\(item.secU ?? NSNumber(integerLiteral: 0))" + ")"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeUpdateCountry(country: Country, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Country.rawValue + set
-        query = query + "ISO3Drzave = '\(country.iso3!)'"
-        query = query + colon + "NazDrzave = '\(country.name!)'"
-        if let code = country.code {
-            query = query + colon + "SifDrzave = \(code)"
-        }
-        query = query + whereClause + "OznDrzave = '\(country.mark!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddCountry(country: Country, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = insert + Tables.Country.rawValue + " (ISO3Drzave, NazDrzave, SifDrzave, OznDrzave)" + values
-        query = query + "(" + "'\(country.iso3 ?? "")'"
-        query = query + colon + "'\(country.name ?? "")'"
-        query = query + colon + "\(country.code ?? 0)"
-        query = query + colon + "'\(country.mark ?? "")'" + ")"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeUpdateDocument(doc: Document, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Document.rawValue + set
-        query = query + "VrDokumenta = '\(doc.docVr!)'"
-        if let docNumber = doc.docNumber {
-            query = query + colon + "BrDokumenta = \(docNumber)"
-        }
-        if let docDate = doc.docDate {
-            let dateString = docDate.string(custom: "YYYYMMdd hh:mm:ss a")
-            query = query + colon + "DatDokumenta = '\(dateString)'"
-        }
-        if let docValue = doc.docValue {
-            query = query + colon + "IznosDokumenta = \(docValue)"
-        }
-        if let tax = doc.tax {
-            query = query + colon + "PostoPorez = \(tax)"
-        }
-        query = query + whereClause + "IdDokumenta = '\(doc.docId!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddDocument(doc: Document, company: Company?, person: Person?, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = ""
-        
-        if let `person` = person {
-            query = "SET IDENTITY_INSERT Partner ON; "
-            query = query + insert + Tables.Partner.rawValue + " (IdPartnera, TipPartnera, OIB)" + values
-            query = query + "(" + "\(person.id ?? 0)"
-            query = query + colon + "'\(person.type ?? "")'"
-            query = query + colon + "'\(person.oib ?? "")'" + "); "
-            query = query + "SET IDENTITY_INSERT Partner OFF; "
-            
-            query = query + insert + Tables.Person.rawValue + " (IdOsobe, ImeOsobe, PrezimeOsobe)" + values
-            query = query + "(" + "\(person.id ?? 0)"
-            query = query + colon + "'\(person.firstName ?? "")'"
-            query = query + colon + "'\(person.lastName ?? "")'" + "); "
-        }
-        
-        if let `company` = company {
-            query = "SET IDENTITY_INSERT Partner ON; "
-            query = query + insert + Tables.Partner.rawValue + " (IdPartnera, TipPartnera, OIB)" + values
-            query = query + "(" + "\(company.companyId ?? 0)"
-            query = query + colon + "'\(company.type ?? "")'"
-            query = query + colon + "'\(company.oib ?? "")'" + "); "
-            query = query + "SET IDENTITY_INSERT Partner OFF; "
-            
-            query = query + insert + Tables.Company.rawValue + " (IdTvrtke, NazivTvrtke, MatBrTvrtke)" + values
-            query = query + "(" + "\(company.companyId ?? 0)"
-            query = query + colon + "'\(company.name ?? "")'"
-            query = query + colon + "'\(company.registryNumber ?? "")'" + "); "
-        }
-        
-        query = query + insert + Tables.Document.rawValue + " (VrDokumenta, BrDokumenta, DatDokumenta, IznosDokumenta, IdPartnera, PostoPorez)" + values
-        query = query + "(" + "'\(doc.docVr ?? "")'"
-        query = query + colon + "\(doc.docNumber ?? 0)"
-        query = query + colon + "'\(doc.docDate?.string(custom: "YYYYMMdd hh:mm:ss a") ?? "")'"
-        query = query + colon + "\(doc.docValue ?? 0)"
-        query = query + colon + "\(company?.companyId ?? (person?.id ?? 0))"
-        query = query + colon + "\(doc.tax ?? 0)" + ")"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddUnit(unit: Unit, docId: Int?, item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = insert + Tables.Item.rawValue + " (CijArtikla, JedMjere, NazArtikla, TekstArtikla, SifArtikla, ZastUsluga)" + values
-        query = query + "(" + "\(item.price ?? 0)"
-        query = query + colon + "'\(item.measUnit ?? "")'"
-        query = query + colon + "'\(item.name ?? "")'"
-        query = query + colon + "'\(item.text ?? "")'"
-        query = query + colon + "\(item.code ?? 0)"
-        query = query + colon + "\(item.secU ?? NSNumber(integerLiteral: 0))" + "); "
-        
-        query = query + insert + Tables.Unit.rawValue + " (IdDokumenta, JedCijArtikla, KolArtikla, SifArtikla, PostoRabat)" + values
-        query = query + "(" + "\(docId ?? 0)"
-        query = query + colon + "\(unit.itemPrice ?? 0)"
-        query = query + colon + "\(unit.itemQuantity ?? 0)"
-        query = query + colon + "\(item.code ?? 0)"
-        query = query + colon + "\(unit.discount ?? 0)" + ")"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeUpdateUnit(unit: Unit, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Unit.rawValue + set
-        query = query + "JedCijArtikla = \(unit.itemPrice ?? 0)"
-        if let itemQuantity = unit.itemQuantity {
-            query = query + colon + "KolArtikla = \(itemQuantity)"
-        }
-        if let discount = unit.discount {
-            query = query + colon + "PostoRabat = \(discount)"
-        }
-        query = query + whereClause + "IdStavke = '\(unit.unitId!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddPlace(place: Place, countryMark: String?, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = insert + Tables.Place.rawValue + " (NazMjesta, OznDrzave, PostBrMjesta, PostNazMjesta)" + values
-        query = query + "(" + "'\(place.name ?? "")'"
-        query = query + colon + "'\(countryMark ?? "")'"
-        query = query + colon + "\(place.postalCode ?? 0)"
-        query = query + colon + "'\(place.postalName ?? "")'" + ")"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeUpdatePlace(place: Place, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Place.rawValue + set
-        query = query + "NazMjesta = '\(place.name!)'"
-        if let postalCode = place.postalCode {
-            query = query + colon + "PostBrMjesta = \(postalCode)"
-        }
-        query = query + colon + "PostNazMjesta = '\(place.postalName!)'"
-        query = query + whereClause + "IdMjesta = '\(place.id!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeUpdateCompany(company: Company, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Partner.rawValue + set
-        query = query + "OIB = '\(company.oib!)'"
-        query = query + colon + "AdrIsporuke = '\(company.shipmentAddress!)'"
-        query = query + colon + "AdrPartnera = '\(company.partnerAddress!)'"
-        query = query + whereClause + "IdPartnera = '\(company.companyId!)'; "
-        
-        query = query + update + Tables.Company.rawValue + set
-        query = query + "NazivTvrtke = '\(company.name!)'"
-        if let registryNumber = company.registryNumber {
-            query = query + colon + "MatBrTvrtke = '\(registryNumber)'"
-        }
-        query = query + whereClause + "IdTvrtke = '\(company.companyId!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddCompany(company: Company, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = "SET IDENTITY_INSERT Partner ON; "
-        query = query + insert + Tables.Partner.rawValue + " (IdPartnera, TipPartnera, OIB, AdrIsporuke, AdrPartnera)" + values
-        query = query + "(" + "\(company.companyId ?? 0)"
-        query = query + colon + "'\(company.type ?? "")'"
-        query = query + colon + "'\(company.oib ?? "")'"
-        query = query + colon + "'\(company.shipmentAddress ?? "")'"
-        query = query + colon + "'\(company.partnerAddress ?? "")'" + "); "
-        query = query + "SET IDENTITY_INSERT Partner OFF; "
-        
-        query = query + insert + Tables.Company.rawValue + " (IdTvrtke, NazivTvrtke, MatBrTvrtke)" + values
-        query = query + "(" + "\(company.companyId ?? 0)"
-        query = query + colon + "'\(company.name ?? "")'"
-        query = query + colon + "'\(company.registryNumber ?? "")'" + "); "
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeUpdatePerson(person: Person, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Partner.rawValue + set
-        query = query + "OIB = '\(person.oib!)'"
-        query = query + colon + "AdrIsporuke = '\(person.shipmentAddress!)'"
-        query = query + colon + "AdrPartnera = '\(person.partnerAddress!)'"
-        query = query + whereClause + "IdPartnera = '\(person.id!)'; "
-        
-        query = query + update + Tables.Person.rawValue + set
-        query = query + "ImeOsobe = '\(person.firstName!)'"
-        query = query + colon + "PrezimeOsobe = '\(person.lastName!)'"
-        query = query + whereClause + "IdOsobe = '\(person.id!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddPerson(person: Person, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = "SET IDENTITY_INSERT Partner ON; "
-        query = query + insert + Tables.Partner.rawValue + " (IdPartnera, TipPartnera, OIB, AdrIsporuke, AdrPartnera)" + values
-        query = query + "(" + "\(person.id ?? 0)"
-        query = query + colon + "'\(person.type ?? "")'"
-        query = query + colon + "'\(person.oib ?? "")'"
-        query = query + colon + "'\(person.shipmentAddress ?? "")'"
-        query = query + colon + "'\(person.partnerAddress ?? "")'" + "); "
-        query = query + "SET IDENTITY_INSERT Partner OFF; "
-        
-        query = query + insert + Tables.Person.rawValue + " (IdOsobe, ImeOsobe, PrezimeOsobe)" + values
-        query = query + "(" + "\(person.id ?? 0)"
-        query = query + colon + "'\(person.firstName ?? "")'"
-        query = query + colon + "'\(person.lastName ?? "")'" + "); "
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddPlaceToPartner(place: Place, country: Country, partnerId: Int?, shipment: Bool, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = "SET IDENTITY_INSERT Mjesto ON; "
-        query = query + insert + Tables.Place.rawValue + " (NazMjesta, IdMjesta, OznDrzave,  PostBrMjesta, PostNazMjesta)" + values
-        query = query + "(" + "'\(place.name ?? "")'"
-        query = query + colon + "\(place.id ?? 0)"
-        query = query + colon + "'\(country.mark ?? "")'"
-        query = query + colon + "\(place.postalCode ?? 0)"
-        query = query + colon + "'\(place.postalName ?? "")'" + "); "
-        query = query + "SET IDENTITY_INSERT Mjesto OFF; "
-        
-        query = query + update + Tables.Partner.rawValue + set
-        if shipment {
-            query = query + "IdMjestaIsporuke = '\(place.id!)'"
-        } else {
-            query = query + "IdMjestaPartnera = '\(place.id!)'"
-        }
-        query = query + whereClause + "IdPartnera = '\(partnerId!)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddDocToPartner(doc: Document, partnerId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = insert + Tables.Document.rawValue + " (VrDokumenta, BrDokumenta, DatDokumenta, IznosDokumenta, IdPartnera, PostoPorez)" + values
-        query = query + "(" + "'\(doc.docVr ?? "")'"
-        query = query + colon + "\(doc.docNumber ?? 0)"
-        query = query + colon + "'\(doc.docDate?.string(custom: "YYYYMMdd hh:mm:ss a") ?? "")'"
-        query = query + colon + "\(doc.docValue ?? 0)"
-        query = query + colon + "\(partnerId ?? 0)"
-        query = query + colon + "\(doc.tax ?? 0)" + ")"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-    }
-    
-    
-    func executeAddBeforeDoc(docId: Int?, beforeDocId: Int?, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        
-        var query = update + Tables.Document.rawValue + set
-        query = query + "IdPrethDokumenta = '\(beforeDocId ?? 0)'"
-        query = query + whereClause + "IdDokumenta = '\(docId ?? 0)'"
-        
-        dump(query)
-        
-        client?.execute(query, completion: { (dbData) in
-            
-            completion(dbData)
-        })
-        
     }
     
     func requirementsSatisfied(reqValidator: Requiredable) -> Bool {

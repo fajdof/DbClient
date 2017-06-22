@@ -13,4 +13,12 @@ class CompanyBLLProvider {
     
     let dalProvider = CompanyDALProvider()
     
+    func updateCompany(company: Company, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.updateCompany(company: company.toDAL() as! CompanyDAL, completion: completion)
+    }
+    
+    func addCompany(company: Company, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.addCompany(company: company.toDAL() as! CompanyDAL, completion: completion)
+    }
+    
 }

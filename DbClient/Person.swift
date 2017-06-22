@@ -27,7 +27,7 @@ class Person: Partner {
 		lastName <- map["PrezimeOsobe"]
 	}
     
-    override func valid() -> (Bool, String?) {
+    override func validateWithError() -> (Bool, String?) {
         return (true,nil)
     }
     

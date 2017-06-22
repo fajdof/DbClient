@@ -54,7 +54,7 @@ class Partner: Mappable, Hashable, Validateable, DALConvertible {
 		return partnerId!
 	}
     
-    func valid() -> (Bool, String?) {
+    func validateWithError() -> (Bool, String?) {
         return (true,nil)
     }
     

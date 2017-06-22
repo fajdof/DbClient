@@ -42,7 +42,7 @@ class Unit: Mappable, Validateable, DALConvertible {
 		itemCode <- map["SifArtikla"]
 	}
     
-    func valid() -> (Bool, String?) {
+    func validateWithError() -> (Bool, String?) {
         return (true,nil)
     }
     

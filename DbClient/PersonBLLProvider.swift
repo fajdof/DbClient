@@ -13,4 +13,13 @@ class PersonBLLProvider {
     
     let dalProvider = PersonDALProvider()
     
+    func updatePerson(person: Person, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.updatePerson(person: person.toDAL() as! PersonDAL, completion: completion)
+    }
+    
+    
+    func addPerson(person: Person, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.addPerson(person: person.toDAL() as! PersonDAL, completion: completion)
+    }
+    
 }

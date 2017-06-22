@@ -43,7 +43,7 @@ class Item: Mappable, Validateable, DALConvertible {
 		image <- map["SlikaArtikla"]
 	}
     
-    func valid() -> (Bool, String?) {
+    func validateWithError() -> (Bool, String?) {
         if price == nil {
             return (false, "Cijena mora biti decimalni broj")
         }

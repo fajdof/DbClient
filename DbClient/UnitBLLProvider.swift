@@ -13,4 +13,8 @@ class UnitBLLProvider {
     
     let dalProvider = UnitDALProvider()
     
+    func updateUnit(unit: Unit, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.updateUnit(unit: unit.toDAL() as! UnitDAL, completion: completion)
+    }
+    
 }

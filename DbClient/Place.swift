@@ -39,7 +39,7 @@ class Place: Mappable, Validateable, DALConvertible {
 		postalName <- map["PostNazMjesta"]
 	}
     
-    func valid() -> (Bool, String?) {
+    func validateWithError() -> (Bool, String?) {
         return (true,nil)
     }
     

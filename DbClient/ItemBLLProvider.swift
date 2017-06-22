@@ -12,12 +12,12 @@ class ItemBLLProvider {
     
     let dalProvider = ItemDALProvider()
     
-    func updateItem(itemBLL: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        dalProvider.updateItem(item: itemBLL.toDAL() as! ItemDAL, completion: completion)
+    func updateItem(item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.updateItem(item: item.toDAL() as! ItemDAL, completion: completion)
     }
     
-    func addItem(itemBLL: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
-        dalProvider.addItem(item: itemBLL.toDAL() as! ItemDAL, completion: completion)
+    func addItem(item: Item, completion: @escaping (_ dbData: [Any]?) -> ()) {
+        dalProvider.addItem(item: item.toDAL() as! ItemDAL, completion: completion)
     }
     
 }
