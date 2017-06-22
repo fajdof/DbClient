@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class PartnerDAL: DALType, BLLConvertible {
+func == (lhs: PartnerDAL, rhs: PartnerDAL) -> Bool {
+    return lhs.partnerId == rhs.partnerId
+}
+
+
+class PartnerDAL: DALType, BLLConvertible, Mappable, Hashable {
     
     var shipmentAddress: String?
     var partnerAddress: String?
@@ -17,9 +23,23 @@ class PartnerDAL: DALType, BLLConvertible {
     var partnerId: Int?
     var oib: String?
     var type: String?
-    var shipmentPlace: Place?
-    var partnerPlace: Place?
-    var docs: [Document] = []
+    var shipmentPlace: PlaceDAL?
+    var partnerPlace: PlaceDAL?
+    var docs: [DocumentDAL] = []
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        shipmentAddress <- map["AdrIsporuke"]
+        partnerAddress <- map["AdrPartnera"]
+        shipmentAddressId <- map["IdMjestaIsporuke"]
+        partnerAddressId <- map["IdMjestaPartnera"]
+        partnerId <- map["IdPartnera"]
+        oib <- map["OIB"]
+        type <- map["TipPartnera"]
+    }
     
     init(partnerBLL: Partner) {
         shipmentAddress = partnerBLL.shipmentAddress
@@ -29,13 +49,23 @@ class PartnerDAL: DALType, BLLConvertible {
         partnerId = partnerBLL.partnerId
         oib = partnerBLL.oib
         type = partnerBLL.type
-        shipmentPlace = partnerBLL.shipmentPlace
-        partnerPlace = partnerBLL.partnerPlace
-        docs = partnerBLL.docs
+        if let bllShipmentPlace = partnerBLL.shipmentPlace {
+            shipmentPlace = PlaceDAL(placeBLL: bllShipmentPlace)
+        }
+        if let bllPartnerPlace = partnerBLL.partnerPlace {
+            partnerPlace = PlaceDAL(placeBLL: bllPartnerPlace)
+        }
+        docs = partnerBLL.docs.map({ (doc) -> DocumentDAL in
+            return DocumentDAL(docBLL: doc)
+        })
     }
     
     func toBLL() -> BLLType {
         return Partner(partnerDAL: self)
+    }
+    
+    var hashValue: Int {
+        return partnerId!
     }
     
 }

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class UnitDAL: DALType, BLLConvertible {
+class UnitDAL: DALType, BLLConvertible, Mappable {
     
     var docId: Int?
     var unitId: Int?
@@ -16,8 +17,21 @@ class UnitDAL: DALType, BLLConvertible {
     var itemQuantity: Double?
     var discount: Double?
     var itemCode: Int?
-    var item: Item?
-    var document: Document?
+    var item: ItemDAL?
+    var document: DocumentDAL?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        docId <- map["IdDokumenta"]
+        unitId <- map["IdStavke"]
+        itemPrice <- map["JedCijArtikla"]
+        itemQuantity <- map["KolArtikla"]
+        discount <- map["PostoRabat"]
+        itemCode <- map["SifArtikla"]
+    }
     
     init(unitBLL: Unit) {
         docId = unitBLL.docId
@@ -26,8 +40,12 @@ class UnitDAL: DALType, BLLConvertible {
         itemQuantity = unitBLL.itemQuantity
         discount = unitBLL.discount
         itemCode = unitBLL.itemCode
-        item = unitBLL.item
-        document = unitBLL.document
+        if let bllItem = unitBLL.item {
+            item = ItemDAL(itemBLL: bllItem)
+        }
+        if let bllDocument = unitBLL.document {
+            document = DocumentDAL(docBLL: bllDocument)
+        }
     }
     
     func toBLL() -> BLLType {

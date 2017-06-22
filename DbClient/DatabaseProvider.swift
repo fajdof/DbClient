@@ -9,7 +9,7 @@
 import Foundation
 
 
-class DbConnectViewModel {
+class DatabaseProvider {
     
     let hostName = "rppp.fer.hr:3000"
     let username = "rppp"
@@ -17,22 +17,22 @@ class DbConnectViewModel {
     let dbName = "Firma"
     let selectQuery = "SELECT * FROM "
     
-    var items: [Item] = []
-    var docs: [Document] = []
-    var countries: [Country] = []
-    var places: [Place] = []
-    var people: [Person] = []
-    var partners: [Partner] = []
-    var units: [Unit] = []
-    var companies: [Company] = []
+    var items: [ItemDAL] = []
+    var docs: [DocumentDAL] = []
+    var countries: [CountryDAL] = []
+    var places: [PlaceDAL] = []
+    var people: [PersonDAL] = []
+    var partners: [PartnerDAL] = []
+    var units: [UnitDAL] = []
+    var companies: [CompanyDAL] = []
     
-    var idsToItems: [Int: Item] = [:]
-    var idsToCountries: [String: Country] = [:]
-    var idsToPlaces: [Int: Place] = [:]
-    var idsToDocs: [Int: Document] = [:]
-    var idsToPartners: [Int: Partner] = [:]
-    var idsToCompanies: [Int: Company] = [:]
-    var idsToPeople: [Int: Person] = [:]
+    var idsToItems: [Int: ItemDAL] = [:]
+    var idsToCountries: [String: CountryDAL] = [:]
+    var idsToPlaces: [Int: PlaceDAL] = [:]
+    var idsToDocs: [Int: DocumentDAL] = [:]
+    var idsToPartners: [Int: PartnerDAL] = [:]
+    var idsToCompanies: [Int: CompanyDAL] = [:]
+    var idsToPeople: [Int: PersonDAL] = [:]
     
     var client: SQLClient?
     
@@ -74,53 +74,53 @@ class DbConnectViewModel {
     func parseRow(row: Dictionary<String, AnyObject>, type: Tables) {
         switch type {
         case .Item:
-            if let item = Item(JSON: row) {
+            if let item = ItemDAL(JSON: row) {
                 items.append(item)
                 if let code = item.code {
                     idsToItems[code] = item
                 }
             }
         case .Document:
-            if let doc = Document(JSON: row) {
+            if let doc = DocumentDAL(JSON: row) {
                 docs.append(doc)
                 if let docId = doc.docId {
                     idsToDocs[docId] = doc
                 }
             }
         case .Country:
-            if let country = Country(JSON: row) {
+            if let country = CountryDAL(JSON: row) {
                 countries.append(country)
                 if let mark = country.mark {
                     idsToCountries[mark] = country
                 }
             }
         case .Place:
-            if let place = Place(JSON: row) {
+            if let place = PlaceDAL(JSON: row) {
                 places.append(place)
                 if let id = place.id {
                     idsToPlaces[id] = place
                 }
             }
         case .Person:
-            if let person = Person(JSON: row) {
+            if let person = PersonDAL(JSON: row) {
                 people.append(person)
                 if let id = person.id {
                     idsToPeople[id] = person
                 }
             }
         case .Partner:
-            if let partner = Partner(JSON: row) {
+            if let partner = PartnerDAL(JSON: row) {
                 partners.append(partner)
                 if let partnerId = partner.partnerId {
                     idsToPartners[partnerId] = partner
                 }
             }
         case .Unit:
-            if let unit = Unit(JSON: row) {
+            if let unit = UnitDAL(JSON: row) {
                 units.append(unit)
             }
         case .Company:
-            if let company = Company(JSON: row) {
+            if let company = CompanyDAL(JSON: row) {
                 companies.append(company)
                 if let id = company.companyId {
                     idsToCompanies[id] = company

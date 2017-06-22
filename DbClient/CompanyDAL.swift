@@ -7,12 +7,23 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class CompanyDAL: PartnerDAL {
     
     var companyId: Int?
     var registryNumber: String?
     var name: String?
+    
+    required init?(map: Map) {
+        fatalError("init(map:) has not been implemented")
+    }
+    
+    override func mapping(map: Map) {
+        companyId <- map["IdTvrtke"]
+        registryNumber <- map["MatBrTvrtke"]
+        name <- map["NazivTvrtke"]
+    }
     
     init(companyBLL: Company) {
         super.init(partnerBLL: companyBLL)

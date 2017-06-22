@@ -7,18 +7,29 @@
 //
 
 import Foundation
-
 import ObjectMapper
 
-class PlaceDAL: DALType, BLLConvertible {
+class PlaceDAL: DALType, BLLConvertible, Mappable {
     
     var name: String?
     var id: Int?
     var countryCode: String?
     var postalCode: Int?
     var postalName: String?
-    var country: Country?
-    var partners: Set<Partner> = []
+    var country: CountryDAL?
+    var partners: Set<PartnerDAL> = []
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        name <- map["NazMjesta"]
+        id <- map["IdMjesta"]
+        countryCode <- map["OznDrzave"]
+        postalCode <- map["PostBrMjesta"]
+        postalName <- map["PostNazMjesta"]
+    }
     
     init(placeBLL: Place) {
         name = placeBLL.name
@@ -26,8 +37,12 @@ class PlaceDAL: DALType, BLLConvertible {
         countryCode = placeBLL.countryCode
         postalCode = placeBLL.postalCode
         postalName = placeBLL.postalName
-        country = placeBLL.country
-        partners = placeBLL.partners
+        if let bllCountry = placeBLL.country {
+            country = CountryDAL(countryBLL: bllCountry)
+        }
+        partners = Set<PartnerDAL>(placeBLL.partners.map({ (partner) -> PartnerDAL in
+            return PartnerDAL(partnerBLL: partner)
+        }))
     }
     
     func toBLL() -> BLLType {
