@@ -33,7 +33,9 @@ class Country: Mappable, Validateable, DALConvertible, BLLType {
         name = countryDAL.name
         mark = countryDAL.mark
         code = countryDAL.code
-        places = countryDAL.places
+        places = countryDAL.places.map({ (place) -> Place in
+            return Place(placeDAL: place)
+        })
     }
 	
 	func mapping(map: Map) {

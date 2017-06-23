@@ -253,7 +253,7 @@ class DatabaseProvider {
     }
     
     
-    func addPartnerProperties(to partnerObject: Partner, partnerOrigin: Partner) {
+    func addPartnerProperties(to partnerObject: PartnerDAL, partnerOrigin: PartnerDAL) {
         partnerObject.oib = partnerOrigin.oib
         partnerObject.docs = partnerOrigin.docs
         partnerObject.partnerAddress = partnerOrigin.partnerAddress
@@ -263,6 +263,24 @@ class DatabaseProvider {
         partnerObject.shipmentPlace = partnerOrigin.shipmentPlace
         partnerObject.partnerPlace = partnerOrigin.partnerPlace
         partnerObject.type = partnerOrigin.type
+    }
+    
+    func clearData() {
+        items = []
+        companies = []
+        countries = []
+        docs = []
+        units = []
+        places = []
+        people = []
+        partners = []
+        idsToCompanies = [:]
+        idsToDocs = [:]
+        idsToItems = [:]
+        idsToPeople = [:]
+        idsToPlaces = [:]
+        idsToPartners = [:]
+        idsToCountries = [:]
     }
     
 }

@@ -40,8 +40,12 @@ class Unit: Mappable, Validateable, DALConvertible, BLLType {
         itemQuantity = unitDAL.itemQuantity
         discount = unitDAL.discount
         itemCode = unitDAL.itemCode
-        item = unitDAL.item
-        document = unitDAL.document
+        if let dalItem = unitDAL.item {
+            item = Item(itemDAL: dalItem)
+        }
+        if let dalDocument = unitDAL.document {
+            document = Document(docDAL: dalDocument)
+        }
     }
 	
 	func mapping(map: Map) {

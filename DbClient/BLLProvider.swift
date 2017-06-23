@@ -48,4 +48,40 @@ class BLLProvider {
         dalProvider.addPartnerPropertiesToCompany(completion: completion)
     }
     
+    func getItems() -> [Item] {
+        return dalProvider.getItems()
+    }
+    
+    func getDocs() -> [Document] {
+        return dalProvider.getDocs()
+    }
+    
+    func getPartners() -> [Partner] {
+        return dalProvider.getPartners()
+    }
+    
+    func getUnits() -> [Unit] {
+        return dalProvider.getUnits()
+    }
+    
+    func getPeople() -> [Person] {
+        return dalProvider.getPeople()
+    }
+    
+    func getCompanies() -> [Company] {
+        return dalProvider.getCompanies()
+    }
+    
+    func getPlaces() -> [Place] {
+        return dalProvider.getPlaces()
+    }
+    
+    func getCountries() -> [Country] {
+        return dalProvider.getCountries()
+    }
+    
+    func clearDatabaseProvider() {
+        dalProvider.clearDatabaseProvider()
+    }
+    
 }

@@ -63,35 +63,55 @@ class DALProvider {
     }
     
     func getItems() -> [Item] {
-        return databaseProvider.items
+        return databaseProvider.items.map({ (itemDAL) -> Item in
+            return Item(itemDAL: itemDAL)
+        })
     }
     
-    func getDocs() {
-        
+    func getDocs() -> [Document] {
+        return databaseProvider.docs.map({ (docDAL) -> Document in
+            return Document(docDAL: docDAL)
+        })
     }
     
-    func getPartners() {
-        
+    func getPartners() -> [Partner] {
+        return databaseProvider.partners.map({ (partnerDAL) -> Partner in
+            return Partner(partnerDAL: partnerDAL)
+        })
     }
     
-    func getUnits() {
-        
+    func getUnits() -> [Unit] {
+        return databaseProvider.units.map({ (unitDAL) -> Unit in
+            return Unit(unitDAL: unitDAL)
+        })
     }
     
-    func getPeople() {
-        
+    func getPeople() -> [Person] {
+        return databaseProvider.people.map({ (personDAL) -> Person in
+            return Person(personDAL: personDAL)
+        })
     }
     
-    func getCompanies() {
-        
+    func getCompanies() -> [Company] {
+        return databaseProvider.companies.map({ (companyDAL) -> Company in
+            return Company(companyDAL: companyDAL)
+        })
     }
     
-    func getPlaces() {
-        
+    func getPlaces() -> [Place] {
+        return databaseProvider.places.map({ (placeDAL) -> Place in
+            return Place(placeDAL: placeDAL)
+        })
     }
     
-    func getCountries() {
-        
+    func getCountries() -> [Country] {
+        return databaseProvider.countries.map({ (countryDAL) -> Country in
+            return Country(countryDAL: countryDAL)
+        })
+    }
+    
+    func clearDatabaseProvider() {
+        databaseProvider.clearData()
     }
     
 }

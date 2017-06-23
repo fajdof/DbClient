@@ -131,21 +131,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
     
     func emptyDatasource() {
         tables = []
-        items = []
-        companies = []
-        countries = []
-        docs = []
-        units = []
-        places = []
-        people = []
-        partners = []
-//        idsToCompanies = [:]
-//        idsToDocs = [:]
-//        idsToItems = [:]
-//        idsToPeople = [:]
-//        idsToPlaces = [:]
-//        idsToPartners = [:]
-//        idsToCountries = [:]
+        bllProvider.clearDatabaseProvider()
     }
 	
 	
@@ -238,15 +224,7 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
         case .Person:
             dbTableVC1.people = people
         case .Partner:
-            dbTableVC1.partners = partners.map({ (partner) -> Partner in
-                if let company = self.idsToCompanies[partner.partnerId!] {
-                    return company
-                }
-                if let person = self.idsToPeople[partner.partnerId!] {
-                    return person
-                }
-                return partner
-            })
+            dbTableVC1.partners = partners
         case .Unit:
             dbTableVC1.units = units
         case .Company:
@@ -305,45 +283,73 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	func updateDataSource(type: Tables) {
 		switch type {
 		case .Item:
-			items = items.sorted(by: { (fItem, sItem) -> Bool in
+			items = bllProvider.getItems().sorted(by: { (fItem, sItem) -> Bool in
                 return fItem.code! > sItem.code!
             })
 		case .Country:
-			countries = countries.sorted(by: { (fCountry, sCountry) -> Bool in
+			countries = bllProvider.getCountries().sorted(by: { (fCountry, sCountry) -> Bool in
                 return fCountry.mark! < sCountry.mark!
             })
 		case .Company:
-			companies = companies.sorted(by: { (fCompany, sCompany) -> Bool in
+			companies = bllProvider.getCompanies().sorted(by: { (fCompany, sCompany) -> Bool in
                 return fCompany.companyId! > sCompany.companyId!
             })
 		case .Document:
-			docs = docs.sorted(by: { (fDoc, sDoc) -> Bool in
+			docs = bllProvider.getDocs().sorted(by: { (fDoc, sDoc) -> Bool in
                 return fDoc.docId! > sDoc.docId!
             })
 		case .Partner:
-			partners = partners.sorted(by: { (fPartner, sPartner) -> Bool in
+			partners = bllProvider.getPartners().sorted(by: { (fPartner, sPartner) -> Bool in
                 return fPartner.partnerId! > sPartner.partnerId!
             })
 		case .Person:
-			people = people.sorted(by: { (fPerson, sPerson) -> Bool in
+			people = bllProvider.getPeople().sorted(by: { (fPerson, sPerson) -> Bool in
                 return fPerson.id! > sPerson.id!
             })
 		case .Unit:
-			units = units.sorted(by: { (fUnit, sUnit) -> Bool in
+			units = bllProvider.getUnits().sorted(by: { (fUnit, sUnit) -> Bool in
                 return fUnit.unitId! > sUnit.unitId!
             })
 		case .Place:
-			places = places.sorted(by: { (fPlace, sPlace) -> Bool in
+			places = bllProvider.getPlaces().sorted(by: { (fPlace, sPlace) -> Bool in
                 return fPlace.id! > sPlace.id!
             })
 		}
 	}
+    
+    func updateAllDataSources() {
+        items = bllProvider.getItems().sorted(by: { (fItem, sItem) -> Bool in
+            return fItem.code! > sItem.code!
+        })
+        countries = bllProvider.getCountries().sorted(by: { (fCountry, sCountry) -> Bool in
+            return fCountry.mark! < sCountry.mark!
+        })
+        companies = bllProvider.getCompanies().sorted(by: { (fCompany, sCompany) -> Bool in
+            return fCompany.companyId! > sCompany.companyId!
+        })
+        docs = bllProvider.getDocs().sorted(by: { (fDoc, sDoc) -> Bool in
+            return fDoc.docId! > sDoc.docId!
+        })
+        partners = bllProvider.getPartners().sorted(by: { (fPartner, sPartner) -> Bool in
+            return fPartner.partnerId! > sPartner.partnerId!
+        })
+        people = bllProvider.getPeople().sorted(by: { (fPerson, sPerson) -> Bool in
+            return fPerson.id! > sPerson.id!
+        })
+        units = bllProvider.getUnits().sorted(by: { (fUnit, sUnit) -> Bool in
+            return fUnit.unitId! > sUnit.unitId!
+        })
+        places = bllProvider.getPlaces().sorted(by: { (fPlace, sPlace) -> Bool in
+            return fPlace.id! > sPlace.id!
+        })
+    }
 	
 	
 	func incrementProgress() {
 		progressIndicator.increment(by: 1)
 		if progressIndicator.doubleValue == progressIndicator.maxValue {
 			progressIndicator.isHidden = true
+            updateAllDataSources()
             populateTableVC(withTable: dbTableVC1.type)
             dbTableVC2.emptyDbTableVC2(parentVC: self)
 		}

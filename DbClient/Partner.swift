@@ -48,9 +48,15 @@ class Partner: Mappable, Hashable, Validateable, DALConvertible, BLLType {
         partnerId = partnerDAL.partnerId
         oib = partnerDAL.oib
         type = partnerDAL.type
-        shipmentPlace = partnerDAL.shipmentPlace
-        partnerPlace = partnerDAL.partnerPlace
-        docs = partnerDAL.docs
+        if let dalShipmentPlace = partnerDAL.shipmentPlace {
+            shipmentPlace = Place(placeDAL: dalShipmentPlace)
+        }
+        if let dalPartnerPlace = partnerDAL.partnerPlace {
+            partnerPlace = Place(placeDAL: dalPartnerPlace)
+        }
+        docs = partnerDAL.docs.map({ (doc) -> Document in
+            return Document(docDAL: doc)
+        })
     }
 	
 	func mapping(map: Map) {

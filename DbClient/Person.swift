@@ -29,7 +29,7 @@ class Person: Partner {
     }
     
     required init?(map: Map) {
-        fatalError("init(map:) has not been implemented")
+        super.init(map: map)
     }
 	
 	override func mapping(map: Map) {

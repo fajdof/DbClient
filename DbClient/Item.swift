@@ -41,7 +41,9 @@ class Item: Mappable, Validateable, DALConvertible, BLLType {
         image = itemDAL.image
         text = itemDAL.text
         secU = itemDAL.secU
-        units = itemDAL.units
+        units = itemDAL.units.map({ (unit) -> Unit in
+            return Unit(unitDAL: unit)
+        })
     }
 	
 	func mapping(map: Map) {

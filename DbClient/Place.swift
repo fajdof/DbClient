@@ -37,8 +37,12 @@ class Place: Mappable, Validateable, DALConvertible, BLLType {
         countryCode = placeDAL.countryCode
         postalCode = placeDAL.postalCode
         postalName = placeDAL.postalName
-        country = placeDAL.country
-        partners = placeDAL.partners
+        if let dalCountry = placeDAL.country {
+            country = Country(countryDAL: dalCountry)
+        }
+        partners = Set<Partner>(placeDAL.partners.map({ (partner) -> Partner in
+            return Partner(partnerDAL: partner)
+        }))
     }
 	
 	func mapping(map: Map) {

@@ -47,9 +47,15 @@ class Document: Mappable, Validateable, DALConvertible, BLLType {
         docValue = docDAL.docValue
         tax = docDAL.tax
         docVr = docDAL.docVr
-        units = docDAL.units
-        partner = docDAL.partner
-        docBefore = docDAL.docBefore
+        units = docDAL.units.map({ (unit) -> Unit in
+            return Unit(unitDAL: unit)
+        })
+        if let dalPartner = docDAL.partner {
+            partner = Partner(partnerDAL: dalPartner)
+        }
+        if let dalDocBefore = docDAL.docBefore {
+            docBefore = Document(docDAL: dalDocBefore)
+        }
     }
 	
 	func mapping(map: Map) {
