@@ -62,8 +62,8 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	var dbTableVC1: DbTableViewController!
 	var dbTableVC2: DbTableViewController!
     
-    let bllProvider = BLLProvider()
-
+    var bllProvider: BLLProvider!
+    let databaseProvider = DatabaseProvider()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -72,8 +72,10 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 		tableView.delegate = self
 		tableView.register(NSNib(nibNamed: dbNameView, bundle: nil), forIdentifier: dbNameView)
 		progressIndicator.isHidden = true
+        
+        bllProvider = BLLProvider(databaseProvider: databaseProvider)
 		
-		executeQueries()
+		connectViaDatabaseProvider()
 		
 		addDbTablesAsChildren()
 	}
@@ -106,10 +108,10 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	}
 	
 	
-	func executeQueries() {
+	func connectViaDatabaseProvider() {
 		queryTables = [Tables.Item, Tables.Document, Tables.Country, Tables.Place, Tables.Person, Tables.Partner, Tables.Unit, Tables.Company]
 		
-		bllProvider.connectToSqlServer(completion: { [weak self] completed in
+		databaseProvider.connectToSqlServer(completion: { [weak self] completed in
 			guard let `self` = self else { return }
 			
 			if completed {
@@ -131,18 +133,18 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
     
     func emptyDatasource() {
         tables = []
-        bllProvider.clearDatabaseProvider()
+        databaseProvider.clearData()
     }
 	
 	
 	func queryIteration(index: Int) {
 		let table = queryTables[index]
 		
-		bllProvider.executeQuery(table: table, completion: { [weak self] (dbData) in
+		databaseProvider.executeQuery(table: table, completion: { [weak self] (dbData) in
 			guard let `self` = self else { return }
 			
 			if let data = dbData {
-				self.bllProvider.proccessQuery(data: data, type: table)
+				self.databaseProvider.proccessQuery(data: data, type: table)
 				self.updateTableView(table: table)
 				if index < self.queryTables.count-1 {
 					self.queryIteration(index: index + 1)
@@ -158,22 +160,22 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
 	
 	
 	func makeConnections() {
-		bllProvider.connectUnitsWithItemsAndDocs { [weak self] in
+		databaseProvider.connectUnitsWithItemsAndDocs { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		bllProvider.connectCountriesAndPlaces { [weak self] in
+		databaseProvider.connectCountriesAndPlaces { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		bllProvider.connectPlacesAndPartners { [weak self] in
+		databaseProvider.connectPlacesAndPartners { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		bllProvider.connectDocsWithPartnersAndPreviousDocs { [weak self] in
+		databaseProvider.connectDocsWithPartnersAndPreviousDocs { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		bllProvider.addPartnerPropertiesToPerson { [weak self] in
+		databaseProvider.addPartnerPropertiesToPerson { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
-		bllProvider.addPartnerPropertiesToCompany { [weak self] in
+		databaseProvider.addPartnerPropertiesToCompany { [weak self] in
 			self?.dbTableVC1.tableView.reloadData()
 		}
 	}
@@ -316,40 +318,12 @@ class DbConnectViewController: NSViewController, NSTableViewDataSource, NSTableV
             })
 		}
 	}
-    
-    func updateAllDataSources() {
-        items = bllProvider.getItems().sorted(by: { (fItem, sItem) -> Bool in
-            return fItem.code! > sItem.code!
-        })
-        countries = bllProvider.getCountries().sorted(by: { (fCountry, sCountry) -> Bool in
-            return fCountry.mark! < sCountry.mark!
-        })
-        companies = bllProvider.getCompanies().sorted(by: { (fCompany, sCompany) -> Bool in
-            return fCompany.companyId! > sCompany.companyId!
-        })
-        docs = bllProvider.getDocs().sorted(by: { (fDoc, sDoc) -> Bool in
-            return fDoc.docId! > sDoc.docId!
-        })
-        partners = bllProvider.getPartners().sorted(by: { (fPartner, sPartner) -> Bool in
-            return fPartner.partnerId! > sPartner.partnerId!
-        })
-        people = bllProvider.getPeople().sorted(by: { (fPerson, sPerson) -> Bool in
-            return fPerson.id! > sPerson.id!
-        })
-        units = bllProvider.getUnits().sorted(by: { (fUnit, sUnit) -> Bool in
-            return fUnit.unitId! > sUnit.unitId!
-        })
-        places = bllProvider.getPlaces().sorted(by: { (fPlace, sPlace) -> Bool in
-            return fPlace.id! > sPlace.id!
-        })
-    }
 	
 	
 	func incrementProgress() {
 		progressIndicator.increment(by: 1)
 		if progressIndicator.doubleValue == progressIndicator.maxValue {
 			progressIndicator.isHidden = true
-            updateAllDataSources()
             populateTableVC(withTable: dbTableVC1.type)
             dbTableVC2.emptyDbTableVC2(parentVC: self)
 		}
